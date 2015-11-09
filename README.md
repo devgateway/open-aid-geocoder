@@ -12,29 +12,33 @@ http://devgateway.github.io/open-aid-geocoder
 
 #Development
 
-```
+
 ##npm build
+```
 git clone 
 cd  
 npm install
 npm run build
 npm start 
 open http://localhost:3000
-
+```
 
 ##gulp build
+```
 npm install gulp -G
 npm install 
 gulp 
-
+```
 
 ##Production build
+```
 npm install gulp -G
 npm install 
 gulp build-prod
-
+```
 
 ##gh_pages deployment
+```
 gulp deploy
 
 ``` 
