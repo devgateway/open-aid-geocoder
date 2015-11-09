@@ -12,17 +12,11 @@ var config = require('./webpack.config.dev');
 var open = require('gulp-open');
 
 var server_port = 3000;
-  var app = express();
-
-
+var app = express();
 var webpackConfig = require("./webpack.config.dev.js");
 var devConfig = Object.create(webpackConfig);
-
-
 var webpackProdConfig = require("./webpack.config.prod.js");
 var prodConfig = Object.create(webpackProdConfig);
-
-
 
 var browser = os.platform() === 'linux' ? 'google-chrome' : (
   os.platform() === 'darwin' ? 'google chrome' : (
@@ -32,7 +26,7 @@ var browser = os.platform() === 'linux' ? 'google-chrome' : (
 
 
 gulp.task("default", ["build-dev", "server","open-dev"]);
-
+gulp.task("build-prod", ["set-prod-node-env","build:webpack-prod"]);
 
 var devCompiler = webpack(devConfig);
 
@@ -50,7 +44,7 @@ gulp.task("build-dev", function(callback) {
 
 var prodCompiler = webpack(prodConfig);
 
-gulp.task("build-prod", function(callback) {
+gulp.task("build:webpack-prod", function(callback) {
   // run webpack
   prodCompiler.run(function(err, stats) {
     if (err) throw new gutil.PluginError("build-prod", err);
@@ -103,3 +97,11 @@ gulp.task('open-dev', function(){
 })
 
 
+
+gulp.task('set-dev-node-env', function() {
+    return process.env.NODE_ENV = 'development';
+});
+
+gulp.task('set-prod-node-env', function() {
+    return process.env.NODE_ENV = 'production';
+});
