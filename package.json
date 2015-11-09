@@ -1,5 +1,5 @@
 {
-  "name": "Open AidData Geocoder",
+  "name": "open-aid-geocoder",
   "version": "1.0.0",
   "description": "A  tool for Geocoding aid projects",
   "scripts": {
