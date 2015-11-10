@@ -1,8 +1,6 @@
 
 require('leaflet/dist/leaflet.css')
 
-
-
 import React from 'react';
 
 import ReactDOM from 'react-dom';
@@ -16,7 +14,7 @@ class Map extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: "Test"
+      data: ""
     }
   }
 
