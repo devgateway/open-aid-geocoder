@@ -21,7 +21,7 @@ class HeaderNavBar extends React.Component {
             <NavDropdown eventKey={4} title="Menu" id="basic-nav-dropdown">
               <MenuItem eventKey="1"></MenuItem>
               <MenuItem eventKey="2">Auto Zoom</MenuItem>
-              <MenuItem eventKey="3">User Guide else here</MenuItem>
+              <MenuItem eventKey="3">User Guide</MenuItem>
               <MenuItem divider />
               <MenuItem eventKey="4">About</MenuItem>
             </NavDropdown>
