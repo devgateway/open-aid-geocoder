@@ -16,7 +16,7 @@ class Map extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: "Test"
+      data: ""
     }
   }
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import { render } from 'react-dom';
 
 import {Navbar,Nav,NavDropdown,MenuItem,NavBrand,NavItem}  from 'react-bootstrap';
+
+import {Gazetteer} from './gazetteer.jsx';
 
 class HeaderNavBar extends React.Component {
   
@@ -12,16 +13,17 @@ class HeaderNavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar inverse>
+        <Navbar>
            <NavBrand><a href="#">Open Geocoder</a></NavBrand>
           <Nav right>
             <NavItem eventKey={2} href="#">Home</NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey="1">Action</MenuItem>
-              <MenuItem eventKey="2">Another action</MenuItem>
-              <MenuItem eventKey="3">Something else here</MenuItem>
+            <NavItem  eventKey={3}><Gazetteer/></NavItem>
+            <NavDropdown eventKey={4} title="Menu" id="basic-nav-dropdown">
+              <MenuItem eventKey="1"></MenuItem>
+              <MenuItem eventKey="2">Auto Zoom</MenuItem>
+              <MenuItem eventKey="3">User Guide else here</MenuItem>
               <MenuItem divider />
-              <MenuItem eventKey="4">Separated link</MenuItem>
+              <MenuItem eventKey="4">About</MenuItem>
             </NavDropdown>
           </Nav>
         </Navbar>
