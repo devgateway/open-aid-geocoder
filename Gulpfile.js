@@ -27,6 +27,8 @@ var browser = os.platform() === 'linux' ? 'google-chrome' : (
 
 gulp.task("default", ["build-dev", "server","open-dev"]);
 gulp.task("build-prod", ["set-prod-node-env","build:webpack-prod"]);
+gulp.task("deploy", ["set-prod-node-env","build:webpack-prod","gh_pages"]);
+
 
 var devCompiler = webpack(devConfig);
 
@@ -85,7 +87,7 @@ gulp.task("server", function(callback) {
 
 
  
-gulp.task('deploy', function() {
+gulp.task('gh_pages', function() {
   return gulp.src('./dist/**/*')
     .pipe(ghPages());
 });

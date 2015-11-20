@@ -1,11 +1,14 @@
 require('../stylesheets/app.scss');
 require('bootstrap/dist/css/bootstrap.css')
 
+window.GEO_NAMES_SERVICE_USER_NAME='aiddata';
+
+
 import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
 import React from 'react';
 import { render } from 'react-dom';
 import {Projects} from './components/projects.jsx'
-import {Map} from './components/Map.jsx'
+import {MapView} from './components/map/Map.jsx'
 import {HeaderNavBar}  from './components/headerNavBar.jsx';
 
 class App extends React.Component {
@@ -33,7 +36,7 @@ render((
     
     </Route>
     <Route path="/geocoding" component={App}>
-      <Route path="map/:id" component={Map}/>
+      <Route path="map/:id" component={MapView}/>
       <Route path="*" component={NoMatch}/>
       <Redirect from="/" to="list" />
   

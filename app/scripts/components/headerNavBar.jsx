@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Navbar,Nav,NavDropdown,MenuItem,NavBrand,NavItem}  from 'react-bootstrap';
 
-import {Gazetteer} from './gazetteer.jsx';
+import {LocationsSearch} from './LocationsSearch.jsx';
 
 class HeaderNavBar extends React.Component {
   
@@ -12,21 +12,47 @@ class HeaderNavBar extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar>
-           <NavBrand><a href="#">Open Geocoder</a></NavBrand>
-          <Nav right>
-            <NavItem eventKey={2} href="#">Home</NavItem>
-            <NavItem  eventKey={3}><Gazetteer/></NavItem>
-            <NavDropdown eventKey={4} title="Menu" id="basic-nav-dropdown">
-              <MenuItem eventKey="1"></MenuItem>
-              <MenuItem eventKey="2">Auto Zoom</MenuItem>
-              <MenuItem eventKey="3">User Guide</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey="4">About</MenuItem>
-            </NavDropdown>
-          </Nav>
-        </Navbar>
+   <div>
+<nav className="navbar navbar-default">
+  <div className="container-fluid">
+    <div className="navbar-header">
+      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span className="sr-only">Toggle navigation</span>
+        <span className="icon-bar"></span>
+        <span className="icon-bar"></span>
+        <span className="icon-bar"></span>
+      </button>
+      <a className="navbar-brand" href="#">Open Geocoder</a>
+    </div>
+
+    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul className="nav navbar-nav">
+        <li className="active"><a href="#">Link <span className="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+       
+
+      </ul>
+     <LocationsSearch/>
+     
+      <ul className="nav navbar-nav navbar-right">
+          <NavDropdown eventKey={4} title="Dropdown" id="nav-dropdown">
+          <MenuItem eventKey="4.1">Action</MenuItem>
+          <MenuItem eventKey="4.2">Another action</MenuItem>
+          <MenuItem eventKey="4.3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4.4">Separated link</MenuItem>
+        </NavDropdown>
+       
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
           {this.props.children}
       </div>
     )
