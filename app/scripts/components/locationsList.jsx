@@ -3,22 +3,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {LocationsStore} from '../stores/locations.es6';
 
+/*
+  Renders a single Location 
+*/
 class Item extends React.Component{
 
   constructor() {
     super();
   }
 
-  componentDidMount() {
-   debugger;
-   }
+  componentDidMount() { }
 
-  componentWillUnmount() {
-  debugger;
-  }
+  componentWillUnmount() {}
 
   render() {
-    debugger;
     return (
 
        <a href="#" class="list-group-item active">
@@ -34,21 +32,17 @@ class Item extends React.Component{
 }
 
   
-
-
-
+/*
+  Renders a  List of locations  
+*/
 class ListItems extends React.Component{
   constructor() {
     super();
   }
 
-  componentDidMount() {
-   debugger;
-   }
+  componentDidMount() {}
 
-  componentWillUnmount() {
-  debugger;
-  }
+  componentWillUnmount() {}
 
   render() {
     return (
@@ -63,7 +57,9 @@ class ListItems extends React.Component{
   }
 }
 
-
+/*
+   This view renders  the Gazzetter Results 
+*/
 class LocationsList extends React.Component {
 
     constructor() {
@@ -83,8 +79,6 @@ class LocationsList extends React.Component {
       this.setState(data.toJS())
     }
 
-
-
     render() {
     return (
        <div id="locations">
@@ -101,4 +95,4 @@ class LocationsList extends React.Component {
 }
 
 
-export { LocationsList }
+export { LocationsList } //TODO: rename maybe 

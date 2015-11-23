@@ -1,5 +1,6 @@
 require('../stylesheets/app.scss');
 require('bootstrap/dist/css/bootstrap.css')
+require("babel-polyfill");
 
 window.GEO_NAMES_SERVICE_USER_NAME='aiddata';
 

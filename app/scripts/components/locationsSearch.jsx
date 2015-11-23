@@ -75,7 +75,7 @@ let LocationsSearch = React.createClass({
                   
                       type="text" 
                       value={this.state.text} 
-                      placeholder="Enter text to search" 
+                      placeholder="Enter text   to search" 
                       bsStyle={this.validationState() } 
                       hasFeedback bsSize="small" 
                       ref="text" 
