@@ -1,4 +1,17 @@
+ const Settings = class SettingsConstants {
+ 	static AUTO_ZOOM = "AUTO_ZOOM";
+ 	static AUTO_REMOVE_LOCATIONS: "AUTO_REMOVE_LOCATIONS";
 
-export const ACTION_SEARCH_LOCATIONS='searchLocations'
-export const ACTION_SEARCH_LOCATIONS_COMPLETED='searchLocationsCompleted'
+ }
 
+
+ const Search = class SearchConstants {
+ 	static ACTION_SEARCH_LOCATIONS = 'ACTION_SEARCH_LOCATIONS';
+ 	static ACTION_SEARCH_LOCATIONS_COMPLETED = 'ACTION_SEARCH_LOCATIONS_COMPLETED';
+ }
+
+
+
+ export {
+ 	Search, Settings
+ }

@@ -65,3 +65,10 @@ body{
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
+
+#locations {
+  .list{
+    max-height: 500px;
+    overflow-y:auto;
+  }
+}

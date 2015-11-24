@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {LocationsStore} from '../stores/locations.es6';
+import {LocationsStore} from '../stores/Locations.es6';
 
 /*
   Renders a single Location 
@@ -18,10 +18,9 @@ class Item extends React.Component{
 
   render() {
     return (
-
-       <a href="#" class="list-group-item active">
-       <h4 class="list-group-item-heading">{this.props.name}</h4>
-       <p class="list-group-item-text">
+       <a href="#" className="list-group-item">
+       <h4 className="list-group-item-heading">{this.props.name}</h4>
+       <p className="list-group-item-text">
           {this.props.countryName}
           {this.props.fclName}
           {this.props.fcodeName}
@@ -46,12 +45,12 @@ class ListItems extends React.Component{
 
   render() {
     return (
-  <div class="list-group">
+  <div className="list-group">
 
     {
       this.props.records.map((item) =>{
 
-        return <Item {...item}/>}) 
+        return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
     }
     </div>)
   }
@@ -72,6 +71,7 @@ class LocationsList extends React.Component {
     }
 
     componentWillUnmount() {
+      
       LocationsStore.unlisten(this.onStoreChange);
     }
 
@@ -84,7 +84,7 @@ class LocationsList extends React.Component {
        <div id="locations">
         <div className="panel panel-info">
            <div className="panel-heading">List of Locations</div>
-          <div className="panel-body">
+          <div className="panel-body list">
             <ListItems {...this.state}/>
           </div>
         </div>

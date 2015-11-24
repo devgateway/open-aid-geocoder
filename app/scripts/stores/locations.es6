@@ -1,9 +1,9 @@
 import {createStore} from 'reflux';
-import {getAction} from '../actions/actions.es6';
-import * as constans from '../constants/contants.es6';
-import * as geoJson from '../util/geojson.es6';
+
+import * as Actions from '../actions/Actions.es6';
+import *  as Constants from '../constants/Contants.es6';
 import {List,Map,Record} from 'immutable';
-import {StoreMixins} from '../mixins/storeMixins.es6';
+import {StoreMixins} from '../mixins/StoreMixins.es6';
 
 
 const initialData  = {total:0,records:new List()};
@@ -14,10 +14,11 @@ const LocationsStore = createStore({
 	mixins: [StoreMixins],
 
 	init() {
+		
 		this.data=initialData;
-		this.listenTo(getAction(constans.ACTION_SEARCH_LOCATIONS), 'search');
-		this.listenTo(getAction(constans.ACTION_SEARCH_LOCATIONS).completed, 'done');
-		this.listenTo(getAction(constans.ACTION_SEARCH_LOCATIONS).failed, 'failed');
+		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS), 'search');
+		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS).completed, 'done');
+		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS).failed, 'failed');
 	},
 
 	
@@ -29,7 +30,6 @@ const LocationsStore = createStore({
 
 	
 	search() {
-		console.log('search');
 	},
 
 	done(rawData) {

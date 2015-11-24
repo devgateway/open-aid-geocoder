@@ -3,11 +3,9 @@ import React from 'react'
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
 
 
-import  {actionsCaller} from '../actions/actions.es6'
-
-import {LocationsStore} from '../stores/locations.es6';
-
-import * as constants from '../constants/contants.es6';
+import  * as Actions from '../actions/Actions.es6'
+import {LocationsStore} from '../stores/Locations.es6';
+import * as Constants from '../constants/Contants.es6';
 
 
 let LocationsSearch = React.createClass({ 
@@ -35,7 +33,7 @@ let LocationsSearch = React.createClass({
 
 
       doSearch(){
-        actionsCaller(constants.ACTION_SEARCH_LOCATIONS,this.state)
+        Actions.invoke(Constants.Search.ACTION_SEARCH_LOCATIONS,this.state)
       },
 
 

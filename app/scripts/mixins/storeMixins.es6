@@ -1,14 +1,9 @@
 import {createStore} from 'reflux';
-import {getAction} from '../actions/actions.es6';
-import * as constans from '../constants/contants.es6';
-import * as geoJson from '../util/geojson.es6';
 import {List,Map,Record} from 'immutable';
-
 
 const FALSE_DATA = {};
 
 const StoreMixins = {
-
 	initialData: FALSE_DATA,
 	mixins: [],
 

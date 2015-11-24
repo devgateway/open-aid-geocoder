@@ -36,10 +36,11 @@ class HeaderNavBar extends React.Component {
      <LocationsSearch/>
      
       <ul className="nav navbar-nav navbar-right">
-          <NavDropdown eventKey={4} title="Dropdown" id="nav-dropdown">
-          <MenuItem eventKey="4.1">Action</MenuItem>
-          <MenuItem eventKey="4.2">Another action</MenuItem>
-          <MenuItem eventKey="4.3">Something else here</MenuItem>
+
+          <NavDropdown eventKey={4} title="Options" id="nav-dropdown">
+          <MenuItem eventKey="4.2">Auto Zoom <input type="checkbox"/></MenuItem>
+          <MenuItem eventKey="4.2">Auto Clean Locations <i class="fa fa-check"></i></MenuItem>
+          <MenuItem eventKey="4.3">Cler Locations</MenuItem>
           <MenuItem divider />
           <MenuItem eventKey="4.4">Separated link</MenuItem>
         </NavDropdown>
