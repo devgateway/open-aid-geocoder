@@ -65,10 +65,12 @@ gulp.task("server", function(callback) {
     
   }));
 
-  app.use(express.static('shapes'));
+  var publicPath = path.resolve(__dirname, 'assets/');
+  app.use(express.static(publicPath));
+
   app.use(require('webpack-hot-middleware')(devCompiler));
 
-  app.get('*', function(req, res) {
+  app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/app/', 'index.html'));
   });
 
