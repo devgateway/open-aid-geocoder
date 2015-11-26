@@ -62,9 +62,10 @@ gulp.task("server", function(callback) {
 
   app.use(require('webpack-dev-middleware')(devCompiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    
   }));
 
+  app.use(express.static('shapes'));
   app.use(require('webpack-hot-middleware')(devCompiler));
 
   app.get('*', function(req, res) {

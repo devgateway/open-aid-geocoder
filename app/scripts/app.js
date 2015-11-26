@@ -2,12 +2,14 @@ require('../stylesheets/app.scss');
 require('bootstrap/dist/css/bootstrap.css')
 require("babel-polyfill");
 
-import  Settings from  "./util/Settings.es6";
 
 window.GEO_NAMES_SERVICE_USER_NAME='aiddata';
-
 window.Settings=new Settings()
 
+
+
+import  Settings from  "./util/Settings.es6";
+import  * as Actions from './actions/Actions.es6'
 import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
 import React from 'react';
 import { render } from 'react-dom';
@@ -16,6 +18,8 @@ import {MapView} from './components/map/Map.jsx'
 import {HeaderNavBar}  from './components/headerNavBar.jsx';
 
 class App extends React.Component {
+
+
   render() {
     return (
       <div>

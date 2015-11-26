@@ -4,14 +4,16 @@
 
  }
 
-
  const Search = class SearchConstants {
  	static ACTION_SEARCH_LOCATIONS = 'ACTION_SEARCH_LOCATIONS';
  	static ACTION_SEARCH_LOCATIONS_COMPLETED = 'ACTION_SEARCH_LOCATIONS_COMPLETED';
  }
 
 
+const Shapes = class ShapesConstants {
+ 	static ACTION_LOAD_SHAPE = 'ACTION_LOAD_SHAPE';
+ }
 
  export {
- 	Search, Settings
+ 	Search, Settings,Shapes
  }

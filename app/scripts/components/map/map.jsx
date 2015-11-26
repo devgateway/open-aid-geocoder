@@ -9,10 +9,12 @@ import {LocationsList} from '../LocationsList.jsx';
 import {Path} from 'react-leaflet'
 import { geoJson } from 'leaflet';
 import {LocationsGeoJsonStore} from '../../stores/LocationsGeoJson.es6';
+import {ShapesStore} from '../../stores/ShapesStore.es6';
+import * as Actions from '../../actions/Actions.es6';
+import * as Constants from '../../constants/Contants.es6';
 
 class DynamicGeoJson extends Path {
   constructor() {
-    debugger;
     super();
   }
 
@@ -24,25 +26,26 @@ class DynamicGeoJson extends Path {
     super.componentWillMount();
     const {data, map, ...props} = this.props;
     this.leafletElement = geoJson(data, props);
-  }
 
+  }
 
 
   componentDidUpdate(prevProps) {
-
+    const {data, map, ...props} = this.props;
     if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
-      const {data, map, ...props} = this.props;
-      (this.props.layerGroup || this.props.map).removeLayer(this.leafletElement);
+      let parent = (this.props.layerGroup || this.props.map)
+      parent.removeLayer(this.leafletElement);
       this.leafletElement = geoJson(data, props);
-      (this.props.layerGroup || this.props.map).addLayer(this.leafletElement);
-      map.fitBounds(this.leafletElement.getBounds())
+      parent.addLayer(this.leafletElement);
+      if (props.autoZoom) {
+        map.fitBounds(this.leafletElement)
+      }
     }
-
     this.setStyleIfChanged(prevProps, this.props);
   }
-
-
 }
+
+
 
 class MapView extends React.Component {
 
@@ -52,14 +55,24 @@ class MapView extends React.Component {
   }
 
   componentDidMount() {
-    LocationsGeoJsonStore.listen(this.onStoreChange.bind(this));
+    LocationsGeoJsonStore.listen(this.onLocationsUpdated.bind(this));
+    
+    ShapesStore.listen(this.onShapeUpdated.bind(this));
+
+    Actions.invoke(Constants.Shapes.ACTION_LOAD_SHAPE,'MOZ') ///Country shape should be loaded after loading project information
+
   }
 
   componentWillUnmount() {
-    LocationsGeoJsonStore.unlisten(this.onStoreChange.bind(this));
+    LocationsGeoJsonStore.unlisten(this.onLocationsUpdated.bind(this));
   }
 
-  onStoreChange(data) {
+  onShapeUpdated(data){
+      debugger;
+      this.setState(Object.assign(this.state, {shape: data.shape}))
+  }
+
+  onLocationsUpdated(data) {
     this.setState(Object.assign(this.state, {locations: data.geojson}))
   }
 
@@ -69,7 +82,8 @@ class MapView extends React.Component {
         <LocationsList/>
           <Map center={this.state.position} zoom={this.state.zoom}>
           <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-          <DynamicGeoJson data={this.state.locations}/>
+          <DynamicGeoJson data={this.state.locations} autoZoom={true}/>
+          <DynamicGeoJson data={this.state.shape} autoZoom={true}/>
         </Map>
       </div> )
   }

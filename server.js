@@ -13,9 +13,14 @@ app.use(require('webpack-dev-middleware')(devCompiler, {
     publicPath: config.output.publicPath
   }));
 
+
+  var publicPath = path.resolve(__dirname, 'assets/');
+  app.use(express.static(publicPath));
+
+
   app.use(require('webpack-hot-middleware')(devCompiler));
 
-  app.get('*', function(req, res) {
+  app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/app/', 'index.html'));
   });
 
