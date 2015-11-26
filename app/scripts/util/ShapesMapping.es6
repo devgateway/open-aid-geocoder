@@ -1,7 +1,7 @@
 import AjaxUtil from './AjaxUtil.js';
 
 let _mappings = {
-	"MOZ": '/shapes/MOZ.json'
+	"MOZ": 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MOZ.json'
 }
 
 let util=AjaxUtil;
