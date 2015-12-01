@@ -1,8 +1,10 @@
-import {createActions} from 'reflux';
+import {createActions} from 'reflux'
 import * as Constants from '../constants/Contants.es6'
 import GeonamesClient from '../util/gazetteers/GeonamesClient.es6'
-import AjaxUtil from '../util/AjaxUtil.es6;
-import getGeoJsonShape from '../util/ShapesMapping.es6';
+
+import AjaxUtil from '../util/AjaxUtil.es6'
+
+import getGeoJsonShape from '../util/ShapesMapping.es6'
 
 let actionsDef={
 

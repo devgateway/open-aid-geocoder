@@ -10,7 +10,7 @@ module.exports = {
     './app/scripts/app'
   ],
   output: {
-    path: path.join(__dirname),
+    path: path.join(__dirname,'tmp'),
     filename: 'bundle.js',
   },
   plugins: [

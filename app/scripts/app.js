@@ -6,20 +6,19 @@ require("babel-polyfill");
 window.GEO_NAMES_SERVICE_USER_NAME='aiddata';
 window.Settings=new Settings()
 
-
-
 import  Settings from  "./util/Settings.es6";
 import  * as Actions from './actions/Actions.es6'
 import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
 import React from 'react';
 import { render } from 'react-dom';
-import {Projects} from './components/projects.jsx'
+import Projects  from './components/projects.jsx'
 import {MapView} from './components/map/Map.jsx'
 import {HeaderNavBar}  from './components/headerNavBar.jsx';
 
+
+
 class App extends React.Component {
-
-
+  
   render() {
     return (
       <div>
@@ -37,20 +36,19 @@ class NoMatch extends React.Component{
 	}
 }
 
+
 render((
   <Router>
     <Route path="/" component={Projects}>
-     <IndexRoute component={Projects} />
+      <IndexRoute component={Projects} />
     
     </Route>
     <Route path="/geocoding" component={App}>
       <Route path="map/:id" component={MapView}/>
       <Route path="*" component={NoMatch}/>
       <Redirect from="/" to="list" />
-  
     </Route>
-
-  </Router>
+ </Router>
 ), document.getElementById('root'))
 
 

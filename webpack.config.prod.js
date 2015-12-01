@@ -11,8 +11,8 @@ module.exports = {
   entry: ['./app/scripts/app'],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: './'
+    filename: 'bundle.js'
+    
   },
 
 
