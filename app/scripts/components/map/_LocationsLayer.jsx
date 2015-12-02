@@ -6,14 +6,14 @@ import { PropTypes } from 'react';
 import DynamicGeoJson from './DynamicGeoJson.jsx';
 
 
-export default class CountryLayer extends React.Component {
+export default class LocationsLayer extends DynamicGeoJson {
 
   constructor() {
     super();
+    
   }
 
-
- style(){
+  style(){
     return { radius: 8,fillColor: "#CC6666",color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8 };
   }
 
@@ -50,11 +50,9 @@ export default class CountryLayer extends React.Component {
     if (!L.Browser.ie && !L.Browser.opera) {
       layer.bringToFront();
     }
-    
+    this.info.update(layer.feature.properties);
   }
 
 
-  render() {
-    return <DynamicGeoJson {...this.props} onEachFeature={this.onEachFeature.bind(this)} pointToLayer={this.pointToLayer.bind(this)}/>
-  }
+
 }

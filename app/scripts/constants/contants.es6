@@ -14,6 +14,4 @@ const Shapes = class ShapesConstants {
  	static ACTION_LOAD_SHAPE = 'ACTION_LOAD_SHAPE';
  }
 
- export {
- 	Search, Settings,Shapes
- }
+ export {Search, Settings,Shapes}
