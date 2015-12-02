@@ -1,6 +1,5 @@
 import Axios from 'axios';
 
-
 export default class AjaxUtil {
 	static get(url, params = {}) {
 		return new Promise(
@@ -17,6 +16,7 @@ export default class AjaxUtil {
 					});
 			});
 	}
+
 
 
 }

@@ -46,6 +46,10 @@ module.exports = {
     }]
   },
   resolve: {
+    alias: {
+      'react': path.join(__dirname, 'node_modules', 'react')
+    },
     extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx",".es6"]
   }
+
 };

@@ -32,13 +32,13 @@ class Projects extends React.Component {
             <Row>
             <Col>
               <ListGroup>
-                <ListGroupItem><Link to="/geocoding/map/1">Upper Helmand Valley Development Road</Link></ListGroupItem>
-                <ListGroupItem><Link to="/geocoding/map/1">Fertilizer and Agrochemicals Storage Project</Link></ListGroupItem>
-                <ListGroupItem><Link to="/geocoding/map/1">Seraj Agricultural Development</Link></ListGroupItem>
-                <ListGroupItem><Link to="/geocoding/map/1">Regional Power Transmission Interconnection</Link></ListGroupItem>
-                <ListGroupItem><Link to="/geocoding/map/1">Gawargan and Charddarah Agricultural Development Project</Link></ListGroupItem>
-                <ListGroupItem><Link to="/geocoding/map/1">Sectoral Planning Study of Afghan Agriculture </Link></ListGroupItem>
-                <ListGroupItem><Link to="/geocoding/map/1">Kajakai Gate Project Preparation and Preliminary Assessment of Flood Control Scheme in the Lower Helmand Valley</Link></ListGroupItem>
+                <ListGroupItem><Link to="/fixed/map">Upper Helmand Valley Development Road</Link></ListGroupItem>
+                <ListGroupItem><Link to="/fixed/map">Fertilizer and Agrochemicals Storage Project</Link></ListGroupItem>
+                <ListGroupItem><Link to="/fixed/map">Seraj Agricultural Development</Link></ListGroupItem>
+                <ListGroupItem><Link to="/fixed/map">Regional Power Transmission Interconnection</Link></ListGroupItem>
+                <ListGroupItem><Link to="/fixed/map">Gawargan and Charddarah Agricultural Development Project</Link></ListGroupItem>
+                <ListGroupItem><Link to="/fixed/map">Sectoral Planning Study of Afghan Agriculture </Link></ListGroupItem>
+                <ListGroupItem><Link to="/fixed/map">Kajakai Gate Project Preparation and Preliminary Assessment of Flood Control Scheme in the Lower Helmand Valley</Link></ListGroupItem>
               </ListGroup>
             </Col>
             </Row>

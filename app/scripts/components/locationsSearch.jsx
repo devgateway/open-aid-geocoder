@@ -20,7 +20,7 @@ let LocationsSearch = React.createClass({
       },
 
       componentWillUnmount() {
-        LocationsStore.unlisten(this.onStoreChange);
+       // LocationsStore.unlisten(this.onStoreChange);
       },
 
       onStoreChange(){
