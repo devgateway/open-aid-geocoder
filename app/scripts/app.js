@@ -12,15 +12,14 @@ import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
 import React from 'react';
 import { render } from 'react-dom';
 import Projects  from './components/projects.jsx'
+import {MapView} from './components/map/Map.jsx'
 import {HeaderNavBar}  from './components/headerNavBar.jsx';
 
-import GridLayout from './components/Grid.jsx';
-import Fixedlayout from  './components/Fixed.jsx';
-/**
- * Root view
- */
+
+
 class App extends React.Component {
- render() {
+  
+  render() {
     return (
       <div>
           <HeaderNavBar/>
@@ -31,9 +30,6 @@ class App extends React.Component {
 }
 
 
-/*
-Not found view
- */
 class NoMatch extends React.Component{
 	render(){
 		return <h1>Not found</h1>
@@ -45,18 +41,13 @@ render((
   <Router>
     <Route path="/" component={Projects}>
       <IndexRoute component={Projects} />
-    </Route>
-  
-    <Route path="/grid" component={App}>
-      <Route path="map" component={GridLayout}/>
-    </Route>
-  
-    <Route path="/fixed" component={App}>
-      <Route path="map" component={Fixedlayout}/>
-    </Route>
     
-    <Route path="*" component={NoMatch}/>
-
+    </Route>
+    <Route path="/geocoding" component={App}>
+      <Route path="map/:id" component={MapView}/>
+      <Route path="*" component={NoMatch}/>
+      <Redirect from="/" to="list" />
+    </Route>
  </Router>
 ), document.getElementById('root'))
 

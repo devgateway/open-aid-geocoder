@@ -5,7 +5,7 @@ import { Path } from 'react-leaflet';
 import React from 'react';
 
 export default  class DynamicGeoJson extends Path {
-  constructor(){
+  constructor() {
     super();
   }
 
@@ -50,7 +50,7 @@ export default  class DynamicGeoJson extends Path {
   componentDidUpdate(prevProps) {
     const {data, map, ...props} = this.props;
     if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
-        this._update(); //update layer 
+        this._update();
       if (props.autoZoom) {
         map.fitBounds(this.leafletElement)
       }

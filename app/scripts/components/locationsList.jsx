@@ -63,20 +63,16 @@ class LocationsList extends React.Component {
 
     constructor() {
       super();
-      debugger;
-      this.store=LocationsStore;
-      let data=(this.store.get())?this.store.get().toJS():[]
-      this.state=data
+      this.state={records:[]}
     }
 
     componentDidMount() {
-
-     this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
-  
+      LocationsStore.listen(this.onStoreChange.bind(this));
     }
 
     componentWillUnmount() {
-      this.unsuscribe()
+      
+      LocationsStore.unlisten(this.onStoreChange);
     }
 
     onStoreChange(data){

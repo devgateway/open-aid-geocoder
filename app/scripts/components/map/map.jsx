@@ -14,58 +14,46 @@ import * as Constants from '../../constants/Contants.es6';
 import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
 
-
 class MapView extends React.Component {
 
-    constructor() {
-      super();
-      this.state = {
-        shape:ShapesStore.get().geojson,
-        locations:LocationsGeoJsonStore.get().geojson,
-        position: [0.0, 0.0],
-        zoom: 3
-      }
-    }
+  constructor() {
+    super();
+    this.state = {data: [],position: [0.0, 0.0],zoom: 3}
+  }
 
-    componentDidMount() {
-      debugger;
-      /*Set listeners*/
-      this.unsubscribeLocations = LocationsGeoJsonStore.listen(this.onLocationsUpdated.bind(this));
-      this.unsubscribeShapes = ShapesStore.listen(this.onShapeUpdated.bind(this));
-    
-     /*Invoke initial actions*/
-      Actions.invoke(Constants.Shapes.ACTION_LOAD_SHAPE, 'MOZ') ///Country shape should be loaded after loading project information
+  componentDidMount() {
+    /*Set listeners*/
+    LocationsGeoJsonStore.listen(this.onLocationsUpdated.bind(this));
+    ShapesStore.listen(this.onShapeUpdated.bind(this));
 
-    }
+    /*Invoke initial actions*/
+    Actions.invoke(Constants.Shapes.ACTION_LOAD_SHAPE,'MOZ') ///Country shape should be loaded after loading project information
 
-    componentWillUnmount() {
-      this.unsubscribeLocations();
-      this.unsubscribeShapes();
-    }
+  }
 
-    /*Handle updates of country shapes*/
-    onShapeUpdated(data) {
-      this.setState(Object.assign(this.state, {
-        shape: data.geojson
-      }))
-    }
+  componentWillUnmount() {
+    /*Remove listeners*/
+    LocationsGeoJsonStore.unlisten(this.onLocationsUpdated.bind(this));
+    ShapesStore.unlisten(this.onShapeUpdated.bind(this));
+  }
 
-    /*Habdle updates of locations*/
-    onLocationsUpdated(data) {
-      this.setState(Object.assign(this.state, {
-        locations: data.geojson
-      }))
-    }
+  /*Handle updates of country shapes*/
+  onShapeUpdated(data){
+      this.setState(Object.assign(this.state, {shape: data.shape}))
+  }
+
+  /*Habdle updates of locations*/
+  onLocationsUpdated(data) {
+    this.setState(Object.assign(this.state, {locations: data.geojson}))
+  }
+
 
   render() {
-    debugger;
     return (
       <div>
-         
+        <LocationsList/>
           <Map center={this.state.position} zoom={this.state.zoom}>
-         
           <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-          
           <LocationsLayer data={this.state.locations} autoZoom={true}/>
           <CountryLayer data={this.state.shape} autoZoom={true}/>
         </Map>
@@ -73,4 +61,4 @@ class MapView extends React.Component {
   }
 }
 
-export default MapView
+export { MapView }

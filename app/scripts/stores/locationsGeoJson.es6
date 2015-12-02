@@ -7,7 +7,7 @@ import {LocationsStore} from './Locations.es6'
 import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
 
 
-const initialData = {'geojson':null};
+const initialData = {};
 
 const LocationsGeoJsonStore = createStore({
 
@@ -19,16 +19,15 @@ const LocationsGeoJsonStore = createStore({
 	},
 
 	process(data) {
-		let featureCollection=
+		let geojson=
 		new GeoJsonBuilder({
 			type: "Point",
 			coordinates: function() {
 				return [this.lng, this.lat]
 			}
 		}).build(data.get('records'));
-		debugger;
 
-		this.setData({'geojson':featureCollection})
+		this.setData({geojson})
 	}
 
 

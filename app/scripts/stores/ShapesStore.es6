@@ -7,7 +7,7 @@ import {LocationsStore} from './Locations.es6'
 import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
 
 
-const initialData = {'geojson':null};
+const initialData = {};
 
 const ShapesStore = createStore({
 
@@ -27,7 +27,7 @@ const ShapesStore = createStore({
 	},
 
 	completed(shape){
-		this.setData({ 'geojson':shape })
+		this.setData({ shape })
 		console.log('Country shape was loaded ');
 	},
 
