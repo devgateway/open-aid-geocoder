@@ -1,7 +1,6 @@
 .Grid {
     position: absolute;
     z-index: 999;
-    background-color:;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -o-transition: all .3s;

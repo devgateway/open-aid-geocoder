@@ -34,8 +34,8 @@ class HeaderNavBar extends React.Component {
                     <NavDropdown eventKey={4} title="Options" id="nav-dropdown">
                     <MenuItem eventKey="4.2">Auto Zoom <input type="checkbox"/></MenuItem>
                     <MenuItem eventKey="4.2">Auto Clean Locations <i className="fa fa-check"></i></MenuItem>
-                    <MenuItem eventKey="4.3"  href="/#/fixed/map">Fixed Layout</MenuItem>
-                    <MenuItem eventKey="4.5"  href="/#/grid/map">Grid Layout</MenuItem>
+                    <MenuItem eventKey="4.3"  href="#/fixed/map">Fixed Layout</MenuItem>
+                    <MenuItem eventKey="4.5"  href="#/grid/map">Grid Layout</MenuItem>
                     <MenuItem divider />
                     <MenuItem eventKey="4.5">Separated link</MenuItem>
                   </NavDropdown>
