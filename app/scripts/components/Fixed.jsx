@@ -6,6 +6,9 @@ import ReactDOM from 'react-dom';
 import {LocationsList} from './LocationsList.jsx';
 import MapView from './map/Map.jsx'
 
+/**
+ * 
+ */
 class FixedLayout extends React.Component {
 
     constructor() {

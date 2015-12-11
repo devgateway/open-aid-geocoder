@@ -3,6 +3,9 @@ import {Navbar,Nav,NavDropdown,MenuItem,NavBrand,NavItem}  from 'react-bootstrap
 import {LocationsSearch} from './LocationsSearch.jsx';
 import { Link  } from 'react-router'
  
+ /**
+  * 
+  */
 class HeaderNavBar extends React.Component {
   
   constructor() {

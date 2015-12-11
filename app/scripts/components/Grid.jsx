@@ -4,7 +4,11 @@ import React from 'react';
 import  Grid from '../util/lib/Grid.jsx';
 import {LocationsList} from './LocationsList.jsx';
 import MapView from './map/Map.jsx';
-
+/**
+ * [render description]
+ * @param  {String} ) {                   return (            <div className [description]
+ * @return {[type]}   [description]
+ */
 let  GridLayout = React.createClass({
     render: function() {
         return (
