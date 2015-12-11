@@ -3,12 +3,10 @@ import * as Actions from '../actions/Actions.es6';
 import *  as Constants from '../constants/Contants.es6';
 import {List, Map, Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
-import {LocationsStore} from './Locations.es6'
+import LocationsStore from './Locations.es6'
 import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
 
-
 const initialData = {};
-
 const ShapesStore = createStore({
 
 	initialData: initialData,
@@ -40,6 +38,4 @@ const ShapesStore = createStore({
 
 
 
-export {
-	ShapesStore
-};
+export default ShapesStore;

@@ -4,7 +4,7 @@ import {NavDropdown,MenuItem}  from 'react-bootstrap';
 
 
 import  * as Actions from '../actions/Actions.es6'
-import {LocationsStore} from '../stores/Locations.es6';
+import LocationsStore from '../stores/Locations.es6';
 import * as Constants from '../constants/Contants.es6';
 
 

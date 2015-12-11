@@ -12,8 +12,11 @@
 
 const Shapes = class ShapesConstants {
  	static ACTION_LOAD_SHAPE = 'ACTION_LOAD_SHAPE';
+	static ACTION_POPUP_INFO = 'ACTION_POPUP_INFO';
+	static ACTION_CODE_LOCATION = 'ACTION_CODE_LOCATION';
+	static ACTION_SAVE_CODED_LOCATION= 'ACTION_SAVE_CODED_LOCATION';
+	static ACTION_DELETE_CODED_LOCATION = 'ACTION_DELETE_CODED_LOCATION'; 
+ 		
  }
 
- export {
- 	Search, Settings,Shapes
- }
+ export {Search, Settings, Shapes}
