@@ -99,4 +99,4 @@ class LocationsList extends React.Component {
 }
 
 
-export { LocationsList } //TODO: rename maybe 
+export default LocationsList  //TODO: rename maybe 

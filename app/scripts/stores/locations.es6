@@ -6,7 +6,7 @@ import {List,Map,Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 
 
-const initialData  = {total:0,records:new List()};
+const initialData  =new Map({total:0,records:new List()});
 
 const LocationsStore = createStore({
 

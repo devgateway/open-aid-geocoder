@@ -15,7 +15,9 @@ import Projects  from './components/projects.jsx'
 import {HeaderNavBar}  from './components/headerNavBar.jsx';
 
 import GridLayout from './components/Grid.jsx';
-import Fixedlayout from  './components/Fixed.jsx';
+import FixedLayout from  './components/Fixed.jsx';
+
+console.log(FixedLayout)
 /**
  * Root view
  */
@@ -52,7 +54,7 @@ render((
     </Route>
   
     <Route path="/fixed" component={App}>
-      <Route path="map" component={Fixedlayout}/>
+      <Route path="map" component={FixedLayout}/>
     </Route>
     
     <Route path="*" component={NoMatch}/>

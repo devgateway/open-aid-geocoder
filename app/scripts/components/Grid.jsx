@@ -2,7 +2,7 @@
 require('../../stylesheets/gridisgood.css')
 import React from 'react';
 import  Grid from '../util/lib/Grid.jsx';
-import {LocationsList} from './LocationsList.jsx';
+import LocationsList from './LocationsList.jsx';
 import MapView from './map/Map.jsx';
 /**
  * [render description]
@@ -11,6 +11,7 @@ import MapView from './map/Map.jsx';
  */
 let  GridLayout = React.createClass({
     render: function() {
+        debugger;
         return (
             <div className="grid">
                 <Grid
