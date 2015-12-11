@@ -47,12 +47,15 @@ let get=(name)=>{
 	return actions[name] 
 } 	
 
+
 /*Ajax calls for async actions */
 actions[Constants.Search.ACTION_SEARCH_LOCATIONS].listen(function (options) {
-	new GeonamesClient (options)
+	new GeonamesClient(options)
 	.find().then((results)=> actions[Constants.Search.ACTION_SEARCH_LOCATIONS].completed(results))
 	.catch((message)=>actions[Constants.Search.ACTION_SEARCH_LOCATIONS].failed(message));
 })
+
+
 
 /*Ajax calls for async actions */
 actions[Constants.Shapes.ACTION_LOAD_SHAPE].listen(function (iso) {
