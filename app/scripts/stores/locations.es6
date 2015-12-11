@@ -6,7 +6,7 @@ import {List,Map,Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 
 
-const initialData  = new Map({total:0,records:new List()});
+const initialData  = {total:0,records:new List()};
 
 const LocationsStore = createStore({
 
@@ -14,19 +14,16 @@ const LocationsStore = createStore({
 	mixins: [StoreMixins],
 
 	init() {
+		this.data=initialData;
 		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS), 'search');
 		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS).completed, 'done');
 		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS).failed, 'failed');
 	},
 
-	
-
-	
 	getInitialState: function() {
 		return this.get();
 	},
 
-	
 	search() {
 	},
 
@@ -45,4 +42,4 @@ const LocationsStore = createStore({
 });
 
 
-export {LocationsStore};
+export default LocationsStore;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {LocationsStore} from '../stores/Locations.es6';
+import LocationsStore from '../stores/Locations.es6';
 
 /*
   Renders a single Location 

@@ -3,6 +3,7 @@ var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config.dev');
 
+
 var app = express();
 var devCompiler = webpack(config);
 
@@ -20,9 +21,19 @@ app.use(require('webpack-dev-middleware')(devCompiler, {
 
   app.use(require('webpack-hot-middleware')(devCompiler));
 
+
+
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/app/', 'index.html'));
   });
+
+
+  app.get('/projects', function(req, res) {
+    res.sendFile(path.join(__dirname + '/app/', 'index.html'));
+  });
+
+
+
 
   app.listen(server_port, 'localhost', function(err) {
     if (err) {

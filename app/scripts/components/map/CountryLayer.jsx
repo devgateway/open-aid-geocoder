@@ -1,45 +1,87 @@
-require('leaflet/dist/leaflet.css')
 
 import React from 'react';
+import { Children, PropTypes } from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
 import * as Constants from '../../constants/Contants.es6';
-import { PropTypes } from 'react';
 import DynamicGeoJson from './DynamicGeoJson.jsx';
+import { Map, popup } from 'leaflet';
+import Popup from './PopUp.jsx';
 
-
-export default class CountryLayer extends React.Component {
+/**
+ * 
+ */
+export default class CountryLayer extends DynamicGeoJson {
 
   constructor() {
     super();
   }
 
-  onEachFeature(feature,layer){
-    layer.bindPopup(this.popup(feature));
+  /**
+   * [style description]
+   * @return {[type]} [description]
+   */
+  style() {
+    return {
+      radius: 8,
+      fillColor: "#F2AF33",
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    };
   }
 
-  //Shape poup TODO://Fill with useful information 
-  popup(feature){ 
-    return `
-    <div class="panel panel-success">
-        <div class="panel-body">
-          <div> ISO:${feature.properties.ISO} </div>
-          <div>Country: ${feature.properties.NAME_0} </div>
-          <div>1st : ${feature.properties.NAME_1} </div>
-          <div>2nd : ${feature.properties.NAME_2} </div>
-          <div>Type: ${feature.properties.TYPE_2} </div>
-        </div>
-      </div>`
+  /**
+   * [highlightStyle description]
+   * @return {[type]} [description]
+   */
+  highlightStyle() {
+    return {
+      radius: 10,
+      fillColor: "#F25A33",
+      color: "#000",
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.8
+    };
   }
 
-  style(){
-    return  {
-      "color": "#ff7800",
-      "weight": 1,
-      "opacity": 0.65
+  /**
+   * [onEachFeature description]
+   * @param  {[type]} feature [description]
+   * @param  {[type]} layer   [description]
+   * @return {[type]}         [description]
+   */
+  onEachFeature(feature, layer) {
+    layer.on({
+      mouseover: this.highlightFeature.bind(this),
+      mouseout: this.resetHighlight.bind(this)});
+  }
+
+  /**
+   * [resetHighlight description]
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
+  resetHighlight(e) {
+    var layer = e.target;
+    var feature = e.target.feature;
+    layer.setStyle(this.style());
+  }
+
+
+  /**
+   * [highlightFeature description]
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
+  highlightFeature(e) {
+    var layer = e.target;
+    var feature = e.target.feature;
+    layer.setStyle(this.highlightStyle());
+    if (!L.Browser.ie && !L.Browser.opera) {
+     // layer.bringToFront();
     }
-  }
 
-
-  render() {
-    return <DynamicGeoJson {...this.props} onEachFeature={this.onEachFeature.bind(this)} style={this.style}/>
   }
 }
