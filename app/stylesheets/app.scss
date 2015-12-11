@@ -72,3 +72,52 @@ body{
     overflow-y:auto;
   }
 }
+
+
+.popup{
+    min-width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+    padding-right: 10px;
+    border: 1px solid #f0ad4e;
+    border-left-width: 5px;
+    border-radius: 3px;
+  
+
+
+  button{
+      margin-right:15px;
+  }
+  h4 {
+      color: #f0ad4e;
+  }
+
+  p {
+    margin: 2px;
+    padding:2px;
+  }
+}
+
+.dataEntry{
+
+    padding: 10px;
+    margin: 5px 0;
+    padding-right: 10px;
+    border: 1px solid #5cb85c;
+    border-left-width: 5px;
+    border-radius: 3px;
+    width:400px;
+    
+  
+  button{
+      margin-right:15px;
+  }
+  h4 {
+      color: #5cb85c;
+  }
+
+  p {
+    margin: 2px;
+    padding:2px;
+  }
+}

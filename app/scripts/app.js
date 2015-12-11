@@ -1,6 +1,7 @@
+require("babel-polyfill");
 require('../stylesheets/app.scss');
 require('bootstrap/dist/css/bootstrap.css')
-require("babel-polyfill");
+require('leaflet/dist/leaflet.css')
 
 
 window.GEO_NAMES_SERVICE_USER_NAME='aiddata';
@@ -11,9 +12,9 @@ import  * as Actions from './actions/Actions.es6'
 import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
 import React from 'react';
 import { render } from 'react-dom';
-import Projects  from './components/projects.jsx'
+import Projects  from './components/Projects.jsx'
 import {MapView} from './components/map/Map.jsx'
-import {HeaderNavBar}  from './components/headerNavBar.jsx';
+import {HeaderNavBar}  from './components/HeaderNavBar.jsx';
 
 
 
