@@ -3,6 +3,7 @@ require('bootstrap/dist/css/bootstrap.css')
 require("babel-polyfill");
 
 
+window.API_URL='http://localhost:3000/';
 window.GEO_NAMES_SERVICE_USER_NAME='aiddata';
 window.Settings=new Settings()
 

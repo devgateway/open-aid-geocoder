@@ -19,7 +19,6 @@ let getGeoJsonShape = (iso) => {
 		let url = _mappings[iso];
 
 		return new Promise((resolve, reject) => {
-			debugger;
 			AjaxUtil.get(url)
 				.then((response) => {
 					resolve(response.data);

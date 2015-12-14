@@ -41,7 +41,6 @@ export default class LocationsLayer extends DynamicGeoJson {
   }
 
   highlightFeature(e) {
-    debugger;
     var layer = e.target;
     var feature = e.target.feature;
     
