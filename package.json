@@ -71,6 +71,7 @@
     "react-addons-linked-state-mixin": "^0.14.2",
     "react-bootstrap": "^0.27.3",
     "react-dom": "^0.14.3",
+	"react-draggable": "^1.1.3",
     "react-leaflet": "^0.9.0",
     "react-router": "^1.0.0-rc4",
     "reflux": "^0.3.0",

@@ -40,6 +40,18 @@ body{
 	z-index: 100;
 
 }
+
+#project-info {
+	position: absolute;
+	right: 20px;
+	top: 100px;
+	width: 500px;
+	z-index: 99;
+}
+
+.handle {
+	cursor: move;
+}
  
 .opacity-10 {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
