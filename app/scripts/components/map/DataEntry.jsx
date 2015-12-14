@@ -29,14 +29,14 @@ export default class DataEntry extends React.Component {
                 </div>
                 
                 <div className="row"> 
-                    <div className="col-lg-5">
+                    <div className="col-lg-4">
                      <div className="form-group">
                       <label  for="geonameId,">Identifier</label>
                       <input type="text" className="form-control" id="geonameId," value={this.props.geonameId}/>
                     </div>
                   </div>
                 
-                  <div className="col-lg-4">
+                  <div className="col-lg-3">
                      <div className="form-group">
                       <label  for="lat">Latitude</label>
                       
