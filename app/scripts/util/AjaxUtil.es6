@@ -16,7 +16,7 @@ export default class AjaxUtil {
 						reject(response);
 					});
 			});
-	},
+	}
 
 	static put(url, body = {}) {
 		return new Promise(
