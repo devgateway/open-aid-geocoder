@@ -3,6 +3,7 @@ var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config.dev');
 
+
 var app = express();
 var devCompiler = webpack(config);
 var API = require('./api/API.js'); 
@@ -18,12 +19,22 @@ var server_port = 3000;
 
   app.use(require('webpack-hot-middleware')(devCompiler));
 
+
+
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/app/', 'index.html'));
   });
 
   //initialize MOCK API
   API(app);
+
+
+  app.get('/projects', function(req, res) {
+    res.sendFile(path.join(__dirname + '/app/', 'index.html'));
+  });
+
+
+
 
   app.listen(server_port, 'localhost', function(err) {
     if (err) {

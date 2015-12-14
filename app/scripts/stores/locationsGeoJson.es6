@@ -3,11 +3,11 @@ import {getAction} from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
 import {List, Map, Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
-import {LocationsStore} from './Locations.es6'
+import LocationsStore from './Locations.es6'
 import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
 
 
-const initialData = {};
+const initialData = {'geojson':null};
 
 const LocationsGeoJsonStore = createStore({
 
@@ -19,15 +19,16 @@ const LocationsGeoJsonStore = createStore({
 	},
 
 	process(data) {
-		let geojson=
+		let featureCollection=
 		new GeoJsonBuilder({
 			type: "Point",
 			coordinates: function() {
 				return [this.lng, this.lat]
 			}
 		}).build(data.get('records'));
+		debugger;
 
-		this.setData({geojson})
+		this.setData({'geojson':featureCollection})
 	}
 
 
@@ -35,6 +36,4 @@ const LocationsGeoJsonStore = createStore({
 
 
 
-export {
-	LocationsGeoJsonStore
-};
+export default	LocationsGeoJsonStore
