@@ -34,15 +34,15 @@ module.exports  = function routing(app){
                 });
 	});
 
-	app.get('project/:id',function(req, res) {
- 		    db.findOne({project_id: parseInt(req.params.id)}, function(err, project) {
+	app.get('/project/:id',function(req, res) {
+            db.findOne({project_id: parseInt(req.params.id)}, function(err, project) {
                         res.json(project);
                     });
 	});
 
-	app.put('project/:id',function(req, res) {
+	app.put('/project/:id',function(req, res) {
 		delete req.body._id;
-	    db.update({'project_id': parseInt(req.query.id)}, req.body, {}, function(err, numReplaced) {
+	    db.update({'project_id': parseInt(req.params.id)}, req.body, {}, function(err, numReplaced) {
 	        res.json(req.body);
 	    });
 	});
