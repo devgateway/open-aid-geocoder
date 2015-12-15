@@ -5,7 +5,9 @@ import { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import LocationsList from './LocationsList.jsx';
 import MapView from './map/Map.jsx'
-console.log(MapView)
+import ProjectInfo from './ProjectInfo.jsx';
+
+
 /**
  * 
  */
@@ -21,6 +23,7 @@ class FixedLayout extends React.Component {
       <div className="fixed">
         <LocationsList/>
         <MapView/>
+		<ProjectInfo/>
       </div> )
   }
 }
