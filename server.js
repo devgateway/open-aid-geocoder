@@ -6,18 +6,16 @@ var config = require('./webpack.config.dev');
 
 var app = express();
 var devCompiler = webpack(config);
-
+var API = require('./api/API.js'); 
 var server_port = 3000;
 
-app.use(require('webpack-dev-middleware')(devCompiler, {
+  app.use(require('webpack-dev-middleware')(devCompiler, {
     noInfo: true,
     publicPath: config.output.publicPath
   }));
 
-
   var publicPath = path.resolve(__dirname, 'assets/');
   app.use(express.static(publicPath));
-
 
   app.use(require('webpack-hot-middleware')(devCompiler));
 
@@ -26,6 +24,9 @@ app.use(require('webpack-dev-middleware')(devCompiler, {
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/app/', 'index.html'));
   });
+
+  //initialize MOCK API
+  API(app);
 
 
   app.get('/projects', function(req, res) {
@@ -43,6 +44,9 @@ app.use(require('webpack-dev-middleware')(devCompiler, {
     console.log('Listening at http://localhost:' + server_port);
   });
 
+
+
+ 
 
 
 

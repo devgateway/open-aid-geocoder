@@ -11,6 +11,7 @@ var webpack = require('webpack');
 var config = require('./webpack.config.dev');
 var open = require('gulp-open');
 
+var API = require('./api/API.js');
 var server_port = 3000;
 var app = express();
 var webpackConfig = require("./webpack.config.dev.js");
@@ -21,8 +22,6 @@ var prodConfig = Object.create(webpackProdConfig);
 var browser = os.platform() === 'linux' ? 'google-chrome' : (
   os.platform() === 'darwin' ? 'google chrome' : (
   os.platform() === 'win32' ? 'chrome' : 'firefox'));
-
-
 
 
 gulp.task("default", ["build-dev", "server","open-dev"]);
@@ -57,7 +56,6 @@ gulp.task("build:webpack-prod", function(callback) {
   });
 });
 
-
 gulp.task("server", function(callback) {
 
   app.use(require('webpack-dev-middleware')(devCompiler, {
@@ -74,6 +72,9 @@ gulp.task("server", function(callback) {
     res.sendFile(path.join(__dirname + '/app/', 'index.html'));
   });
 
+    //initialize MOCK API
+  API(app);
+
   app.listen(server_port, 'localhost', function(err) {
     if (err) {
       console.log(err);
@@ -81,9 +82,6 @@ gulp.task("server", function(callback) {
     }
     console.log('Listening at http://localhost:' + server_port);
   });
-
-
-
 
 });
 

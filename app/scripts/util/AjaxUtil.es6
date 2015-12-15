@@ -17,6 +17,18 @@ export default class AjaxUtil {
 			});
 	}
 
+	static put(url, body = {}) {
+		return new Promise(
+			function(resolve, reject) { 
+				Axios.put(url, body)
+					.then(function(response) {
+						resolve(response);
+					})
+					.catch(function(response) {
+						reject(response);
+					});
+			});
+	}
 
 
 }
