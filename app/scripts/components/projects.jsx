@@ -5,17 +5,57 @@ import ReactDOM from 'react-dom';
 
 import {ListGroup,ListGroupItem,Pagination,Grid,Row,Col}  from 'react-bootstrap';
 
-import { Link  } from 'react-router'
+import { Link  } from 'react-router';
+
+import  * as Actions from '../actions/Actions.es6';
+import * as Constants from '../constants/Contants.es6';
+
+import ProjectStore from '../stores/ProjectStore.es6';
+
+/* Renders a link to a specific project */
+class ProjectLink extends React.Component {
+  constructor() {
+    super();
+  }
+
+  componentDidMount() { }
+
+  componentWillUnmount() {}
+
+  render() {
+    return (
+		<ListGroupItem><Link to={"/fixed/map/" + this.props.id}>{this.props.title}</Link></ListGroupItem>       
+    )
+  }
+}
 
 class Projects extends React.Component {
 
   constructor() {
     super();
-    this.state = {data: ""}
+	this.loadProjects();
+	this.store = ProjectStore;
+	let data = (this.store.get()) ? this.store.get() : [];
+    this.state = data;
+  }
+  
+  componentDidMount() {  
+  	this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
+  }
+
+  componentWillUnmount() {
+  	this.unsuscribe()
   }
 
   handleSelect(){
-
+  }
+  
+  loadProjects() {
+  	Actions.invoke(Constants.Project.ACTION_LOAD_ALL_PROJECTS);  
+  }
+  
+  onStoreChange(data){
+    this.setState(data);
   }
 
   render() {
@@ -24,21 +64,19 @@ class Projects extends React.Component {
           <Row>
             <Col>
                <div className="bs-callout bs-callout-warning">
-                  <h4>Mock project list</h4>
-                  <p>Pick a project to start geocoding it, TODO: It should load a list of projects from an end-point or this page should be provided by the host system </p>
+                  <h4>Project List</h4>
+                  <p>Pick a project to start geocoding it.</p>
                </div>
             </Col>
             </Row>
             <Row>
             <Col>
               <ListGroup>
-                <ListGroupItem><Link to="/fixed/map">Upper Helmand Valley Development Road</Link></ListGroupItem>
-                <ListGroupItem><Link to="/fixed/map">Fertilizer and Agrochemicals Storage Project</Link></ListGroupItem>
-                <ListGroupItem><Link to="/fixed/map">Seraj Agricultural Development</Link></ListGroupItem>
-                <ListGroupItem><Link to="/fixed/map">Regional Power Transmission Interconnection</Link></ListGroupItem>
-                <ListGroupItem><Link to="/fixed/map">Gawargan and Charddarah Agricultural Development Project</Link></ListGroupItem>
-                <ListGroupItem><Link to="/fixed/map">Sectoral Planning Study of Afghan Agriculture </Link></ListGroupItem>
-                <ListGroupItem><Link to="/fixed/map">Kajakai Gate Project Preparation and Preliminary Assessment of Flood Control Scheme in the Lower Helmand Valley</Link></ListGroupItem>
+			  {
+			  	this.state.projects.map((project) => { 
+					return <ProjectLink key={project._id} id={(project.project_id).toString()} title={project.title}/>
+				})
+			  }
               </ListGroup>
             </Col>
             </Row>

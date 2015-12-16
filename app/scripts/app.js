@@ -55,7 +55,7 @@ render((
     </Route>
   
     <Route path="/fixed" component={App}>
-      <Route path="map" component={FixedLayout}/>
+      <Route path="map/:projectID" component={FixedLayout}/>
     </Route>
     
     <Route path="*" component={NoMatch}/>
