@@ -2,7 +2,7 @@ import AjaxUtil from './AjaxUtil.es6';
 
 let _dataSources = {
 	'projects': window.API_URL + 'projects',
-	'project': window.API_URL + 'project',
+	'project': window.API_URL + 'project/',
 }
 
 let util=AjaxUtil;
@@ -29,7 +29,7 @@ let getProjectList = () => {
   * @return {} project
  */
 let getProject = (project_id) => {
-	let url = _dataSources.project + '?id=' + project_id;
+	let url = _dataSources.project + project_id;
 	return new Promise((resolve, reject) => {
 		AjaxUtil.get(url)
 			.then((response) => {
@@ -46,7 +46,7 @@ let getProject = (project_id) => {
   * @return {} project
  */
 let saveProject = (project) => {
-	let url = _dataSources.project + '?id=' + project.project_id;
+	let url = _dataSources.project + project.project_id;
 	return new Promise((resolve, reject) => {
 		AjaxUtil.put(url, project)
 			.then((response) => {
