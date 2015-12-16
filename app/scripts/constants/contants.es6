@@ -16,7 +16,12 @@ const Shapes = class ShapesConstants {
 	static ACTION_CODE_LOCATION = 'ACTION_CODE_LOCATION';
 	static ACTION_SAVE_CODED_LOCATION= 'ACTION_SAVE_CODED_LOCATION';
 	static ACTION_DELETE_CODED_LOCATION = 'ACTION_DELETE_CODED_LOCATION'; 
+}
  		
- }
+ 
+ const Project = class ProjectConstants {
+ 	static ACTION_LOAD_ALL_PROJECTS = 'ACTION_LOAD_ALL_PROJECTS';
+	static ACTION_LOAD_SINGLE_PROJECT = 'ACTION_LOAD_SINGLE_PROJECT';
+}
 
- export {Search, Settings, Shapes}
+ export {Search, Settings, Shapes, Project}
