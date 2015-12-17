@@ -70,7 +70,7 @@ class MapView extends React.Component {
     this.unsubscribers.push(GeocodingStore.listen(this.onGeocodingUpdate.bind(this)));
 
     /*Invoke initial actions*/
-    Actions.invoke(Constants.Shapes.ACTION_LOAD_SHAPE,'MOZ') ///Country shape should be loaded after loading project information
+    Actions.invoke(Constants.Shapes.ACTION_LOAD_SHAPE, this.props.) ///Country shape should be loaded after loading project information
 
   }
 
