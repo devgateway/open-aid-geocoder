@@ -15,9 +15,9 @@ const LocationsStore = createStore({
 
 	init() {
 		this.data=initialData;
-		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS), 'search');
-		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS).completed, 'done');
-		this.listenTo(Actions.get(Constants.Search.ACTION_SEARCH_LOCATIONS).failed, 'failed');
+		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATIONS), 'search');
+		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATIONS).completed, 'done');
+		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATIONS).failed, 'failed');
 	},
 
 	getInitialState: function() {

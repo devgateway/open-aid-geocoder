@@ -37,9 +37,9 @@ const PopUpStore = createStore({
 	mixins: [StoreMixins],
 	//this can be sotred in a json file or maybe
 	init() {
-			this.listenTo(Actions.get(Constants.Shapes.ACTION_CODE_LOCATION), 'codeLocation');
-			this.listenTo(Actions.get(Constants.Shapes.ACTION_SAVE_CODED_LOCATION), 'saveCodedLocation');
-			this.listenTo(Actions.get(Constants.Shapes.ACTION_DELETE_CODED_LOCATION), 'deleteCodedLocation');
+			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'codeLocation');
+			this.listenTo(Actions.get(Constants.ACTION_SAVE_CODED_LOCATION), 'saveCodedLocation');
+			this.listenTo(Actions.get(Constants.ACTION_DELETE_CODED_LOCATION), 'deleteCodedLocation');
 	},
 
 	getInitialState(){
