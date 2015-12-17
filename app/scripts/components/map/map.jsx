@@ -14,6 +14,7 @@ import LocationsGeoJsonStore from '../../stores/LocationsGeoJson.es6';
 import ShapesStore from '../../stores/ShapesStore.es6';
 import PopUpStore from '../../stores/Popup.es6';
 import GeocodingStore from '../../stores/Geocoding.es6';
+import ProjectStore from '../../stores/Project.es6';
 
 import * as Actions from '../../actions/Actions.es6';
 import * as Constants from '../../constants/Contants.es6';
@@ -68,9 +69,7 @@ class MapView extends React.Component {
     this.unsubscribers.push(ShapesStore.listen(this.onShapeUpdated.bind(this))); 
     this.unsubscribers.push(PopUpStore.listen(this.onPopupUpdated.bind(this)));
     this.unsubscribers.push(GeocodingStore.listen(this.onGeocodingUpdate.bind(this)));
-
-    /*Invoke initial actions*/
-    Actions.invoke(Constants.ACTION_LOAD_SHAPE,'MOZ') ///Country shape should be loaded after loading project information
+    this.unsubscribers.push(ProjectStore.listen(this.onProjectUpdate.bind(this)));
 
   }
 
@@ -106,6 +105,15 @@ class MapView extends React.Component {
       'geocoding': data,
       'mode': 'dataEntry'
     }))
+  }
+
+  onProjectUpdate(data) {
+    this.setState(Object.assign(this.state, {
+      'project': data.project.data
+    }));
+    if (data.project.data.country){
+      Actions.invoke(Constants.ACTION_LOAD_SHAPE, data.project.data.country.iso3); //Load the shape of project country
+    }
   }
 
   /*this is called by location onClick */
