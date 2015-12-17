@@ -11,9 +11,9 @@ const SingleProjectStore = createStore({
 
 	init() {
 		this.data=initialData;
-		this.listenTo(Actions.get(Constants.Project.ACTION_LOAD_SINGLE_PROJECT), 'loading');		
-		this.listenTo(Actions.get(Constants.Project.ACTION_LOAD_SINGLE_PROJECT).completed, 'completed');
-		this.listenTo(Actions.get(Constants.Project.ACTION_LOAD_SINGLE_PROJECT).failed, 'failed');
+		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT), 'loading');		
+		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).completed, 'completed');
+		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).failed, 'failed');
 	},
 
 
@@ -22,7 +22,7 @@ const SingleProjectStore = createStore({
 	},
 
 	completed(project){
-		this.setData({ "project": project });
+		this.setData({ "project": project }); //TODO: use inmutable???
 	},
 
 	failed(message){

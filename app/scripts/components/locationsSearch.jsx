@@ -1,8 +1,6 @@
 import {Input,Button,Grid,Row,Col}  from 'react-bootstrap';
 import React from 'react'
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
-
-
 import  * as Actions from '../actions/Actions.es6'
 import LocationsStore from '../stores/Locations.es6';
 import SingleProjectStore from '../stores/SingleProjectStore.es6';
@@ -39,7 +37,7 @@ let LocationsSearch = React.createClass({
 	  },
 	  
       doSearch(){
-        Actions.invoke(Constants.Search.ACTION_SEARCH_LOCATIONS,this.state)
+        Actions.invoke(Constants.ACTION_SEARCH_LOCATIONS,this.state)
       },
 
 

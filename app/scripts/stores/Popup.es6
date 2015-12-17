@@ -16,7 +16,7 @@ const PopUpStore = createStore({
 	mixins: [StoreMixins],
 
 	init() {
-			this.listenTo(Actions.get(Constants.Shapes.ACTION_POPUP_INFO), 'populateProperties');
+			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'populateProperties');
 	},
 
 	getInitialState(){
