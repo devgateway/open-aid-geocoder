@@ -6,7 +6,7 @@ import { Link  } from 'react-router'
  /**
   * 
   */
-class HeaderNavBar extends React.Component {
+export default class Header extends React.Component {
   
   constructor() {
     super();
@@ -53,6 +53,3 @@ class HeaderNavBar extends React.Component {
   }
 }
 
-export {
-  HeaderNavBar
-}

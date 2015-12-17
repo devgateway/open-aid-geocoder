@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import  * as Actions from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
-import SingleProjectStore from '../stores/SingleProjectStore.es6';
+import ProjectStore from '../stores/Project.es6';
 
 /*
    This view renders the Project Information UI component
@@ -17,7 +17,7 @@ class ProjectInfo extends React.Component {
 	
 	componentWillMount() {
 	  this.loadProject(this.props.id);
-	  this.store = SingleProjectStore;
+	  this.store = ProjectStore;
 	  let data = (this.store.get()) ? this.store.get() : [];
 	  this.state = data;		
 	}
@@ -31,7 +31,7 @@ class ProjectInfo extends React.Component {
     }
 	
 	loadProject(id) {
-	  Actions.invoke(Constants.Project.ACTION_LOAD_SINGLE_PROJECT, id);  
+	  Actions.invoke(Constants.ACTION_LOAD_SINGLE_PROJECT, id);  
 	}
 	
 	onStoreChange(data){

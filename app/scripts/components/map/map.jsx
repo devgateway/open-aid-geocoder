@@ -33,7 +33,7 @@ import DataEntry from  './DataEntry.jsx';
 
    codeLocation(){
 
-     Actions.invoke(Constants.Shapes.ACTION_CODE_LOCATION,this.props) ///Country shape should be loaded after loading project information
+     Actions.invoke(Constants.ACTION_CODE_LOCATION,this.props) ///Country shape should be loaded after loading project information
    }
  
    render() {
@@ -70,7 +70,7 @@ class MapView extends React.Component {
     this.unsubscribers.push(GeocodingStore.listen(this.onGeocodingUpdate.bind(this)));
 
     /*Invoke initial actions*/
-    Actions.invoke(Constants.Shapes.ACTION_LOAD_SHAPE, this.props.) ///Country shape should be loaded after loading project information
+    Actions.invoke(Constants.ACTION_LOAD_SHAPE,'MOZ') ///Country shape should be loaded after loading project information
 
   }
 
@@ -118,7 +118,7 @@ class MapView extends React.Component {
     let countryFeature=(countryInfo && countryInfo.length >0 )?countryInfo[0].feature:null;
     const { latlng }=e;
     //at this stage I have the location feature + country feature 
-    Actions.invoke(Constants.Shapes.ACTION_POPUP_INFO,{ locationFeature, countryFeature, 'position':latlng}) ///Country shape should be loaded after loading project information
+    Actions.invoke(Constants.ACTION_POPUP_INFO,{ locationFeature, countryFeature, 'position':latlng}) ///Country shape should be loaded after loading project information
   }
  
   /*Query features behind the point*/
