@@ -3,7 +3,7 @@ import React from 'react'
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
 import  * as Actions from '../actions/Actions.es6'
 import LocationsStore from '../stores/Locations.es6';
-import SingleProjectStore from '../stores/SingleProjectStore.es6';
+import SingleProjectStore from '../stores/Project.es6';
 import * as Constants from '../constants/Contants.es6';
 
 
