@@ -32,8 +32,8 @@
                         "lon" : 39.0000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298273c"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298273c"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -62,8 +62,8 @@
                         "lon" : 34.5000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298273c"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298273c"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -109,8 +109,8 @@
                         "lon" : 33.5000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e42982723"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e42982723"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -156,8 +156,8 @@
                         "lon" : 39.0000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e42982713"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e42982713"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -186,8 +186,8 @@
                         "lon" : 37.0000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e42982713"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e42982713"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -216,8 +216,8 @@
                         "lon" : 39.0000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e42982713"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e42982713"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -265,8 +265,8 @@
                         "lon" : 32.4588890075683590
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -297,8 +297,8 @@
                         "lon" : 32.5891685485839840
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -329,8 +329,8 @@
                         "lon" : 32.5804290771484370
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -379,8 +379,8 @@
                         "lon" : 32.5956993103027340
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -428,8 +428,8 @@
                         "lon" : 32.6362495422363280
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -460,8 +460,8 @@
                         "lon" : 32.5229492187500000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -509,8 +509,8 @@
                         "lon" : 32.5567588806152340
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -541,8 +541,8 @@
                         "lon" : 32.5634613037109370
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fe55e4b0c74e4298267b"
+                        "ref" : "project",
+                        "id" : "5269fe55e4b0c74e4298267b"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -588,8 +588,8 @@
                         "lon" : 37.0000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fd93e4b0c74e4297bdd7"
+                        "ref" : "project",
+                        "id" : "5269fd93e4b0c74e4297bdd7"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -620,8 +620,8 @@
                         "lon" : 36.2000007629394530
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fd93e4b0c74e4297bdd7"
+                        "ref" : "project",
+                        "id" : "5269fd93e4b0c74e4297bdd7"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -652,8 +652,8 @@
                         "lon" : 33.7294425964355470
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fd93e4b0c74e4297bdd7"
+                        "ref" : "project",
+                        "id" : "5269fd93e4b0c74e4297bdd7"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -701,8 +701,8 @@
                         "lon" : 34.7430572509765630
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fd93e4b0c74e4297bdd7"
+                        "ref" : "project",
+                        "id" : "5269fd93e4b0c74e4297bdd7"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -750,8 +750,8 @@
                         "lon" : 35.0272216796875000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fd93e4b0c74e4297bdd7"
+                        "ref" : "project",
+                        "id" : "5269fd93e4b0c74e4297bdd7"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
@@ -780,8 +780,8 @@
                         "lon" : 33.0000000000000000
                     },
                     "loc_parent" : {
-                        "$ref" : "project",
-                        "$id" : "5269fd93e4b0c74e4297bdd7"
+                        "ref" : "project",
+                        "id" : "5269fd93e4b0c74e4297bdd7"
                     },
                     "rIndex" : false,
                     "loc_geometry" : {
