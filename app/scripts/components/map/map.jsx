@@ -19,6 +19,7 @@ import ProjectStore from '../../stores/Project.es6';
 import * as Actions from '../../actions/Actions.es6';
 import * as Constants from '../../constants/Contants.es6';
 
+import CodingLocationLayer  from './CodingLocationLayer.jsx';
 import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
 import MapPopUp from './PopUp.jsx';
@@ -102,7 +103,7 @@ class MapView extends React.Component {
 
   onGeocodingUpdate(data) {
     this.setState(Object.assign(this.state, {
-      'geocoding': data,
+      'geocoding': data.geojson,
       'mode': 'dataEntry'
     }))
   }
@@ -144,6 +145,7 @@ class MapView extends React.Component {
             <Map center={this.state.center} zoom={this.state.zoom} ref="map">
                 <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
                 <LocationsLayer   onFeatureClick={this.locationClick.bind(this)}  data={this.state.locations} autoZoom={true}></LocationsLayer>
+                <CodingLocationLayer   onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={true}></CodingLocationLayer>                
                 <CountryLayer data={this.state.shape} autoZoom={true}  ref="countries"/>  
                   {popupContent}
             </Map>
