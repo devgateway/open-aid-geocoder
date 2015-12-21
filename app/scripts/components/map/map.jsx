@@ -14,10 +14,12 @@ import LocationsGeoJsonStore from '../../stores/LocationsGeoJson.es6';
 import ShapesStore from '../../stores/ShapesStore.es6';
 import PopUpStore from '../../stores/Popup.es6';
 import GeocodingStore from '../../stores/Geocoding.es6';
+import ProjectStore from '../../stores/Project.es6';
 
 import * as Actions from '../../actions/Actions.es6';
 import * as Constants from '../../constants/Contants.es6';
 
+import CodingLocationLayer  from './CodingLocationLayer.jsx';
 import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
 import MapPopUp from './PopUp.jsx';
@@ -68,9 +70,7 @@ class MapView extends React.Component {
     this.unsubscribers.push(ShapesStore.listen(this.onShapeUpdated.bind(this))); 
     this.unsubscribers.push(PopUpStore.listen(this.onPopupUpdated.bind(this)));
     this.unsubscribers.push(GeocodingStore.listen(this.onGeocodingUpdate.bind(this)));
-
-    /*Invoke initial actions*/
-    Actions.invoke(Constants.ACTION_LOAD_SHAPE,'MOZ') ///Country shape should be loaded after loading project information
+    this.unsubscribers.push(ProjectStore.listen(this.onProjectUpdate.bind(this)));
 
   }
 
@@ -103,9 +103,18 @@ class MapView extends React.Component {
 
   onGeocodingUpdate(data) {
     this.setState(Object.assign(this.state, {
-      'geocoding': data,
+      'geocoding': data.geojson,
       'mode': 'dataEntry'
     }))
+  }
+
+  onProjectUpdate(data) {
+    this.setState(Object.assign(this.state, {
+      'project': data.project.data
+    }));
+    if (data.project.data.country){
+      Actions.invoke(Constants.ACTION_LOAD_SHAPE, data.project.data.country.iso3); //Load the shape of project country
+    }
   }
 
   /*this is called by location onClick */
@@ -135,8 +144,9 @@ class MapView extends React.Component {
         <div>
             <Map center={this.state.center} zoom={this.state.zoom} ref="map">
                 <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-                <LocationsLayer   onFeatureClick={this.locationClick.bind(this)}  data={this.state.locations} autoZoom={true}></LocationsLayer>
                 <CountryLayer data={this.state.shape} autoZoom={true}  ref="countries"/>  
+                <LocationsLayer   onFeatureClick={this.locationClick.bind(this)}  data={this.state.locations} autoZoom={true}></LocationsLayer>
+                <CodingLocationLayer   onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={true}></CodingLocationLayer>                
                   {popupContent}
             </Map>
        </div> )
