@@ -77,7 +77,6 @@ actions[Constants.ACTION_LOAD_ALL_PROJECTS].listen(function() {
 })
 
 actions[Constants.ACTION_LOAD_SINGLE_PROJECT].listen(function(id) {
-	debugger;
 	APIClient.getProject(id)
 		.then((results) => actions[Constants.ACTION_LOAD_SINGLE_PROJECT].completed(results))
 		.catch((message) => actions[Constants.ACTION_LOAD_SINGLE_PROJECT].failed(message));

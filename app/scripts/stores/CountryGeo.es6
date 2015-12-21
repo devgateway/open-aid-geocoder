@@ -25,7 +25,7 @@ const ShapesStore = createStore({
 	},
 
 	completed(shape){
-		this.setData({ shape })
+		this.setData(shape)
 		console.log('Country shape was loaded ');
 	},
 
