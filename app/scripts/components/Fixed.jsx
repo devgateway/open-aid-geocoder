@@ -26,7 +26,7 @@ class FixedLayout extends React.Component {
       <div className="fixed">
         <LocationsList/>
         <MapView/>
-		<ProjectInfo id={this.props.params.projectID}/>
+		    <ProjectInfo id={this.props.params.projectID}/>
       </div> )
   }
 }

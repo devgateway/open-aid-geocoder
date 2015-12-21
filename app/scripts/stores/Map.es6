@@ -55,6 +55,9 @@ const PopUpStore = createStore({
 		init() {
 			this.listenTo(LocationsGeoJson, this.updateLocations);
 			this.listenTo(CountryGeo, this.updateCountry);
+			
+			/*LISTEN PROJECT STORE */
+			this.listenTo(CountryGeo, this.updateCountry);
 		
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');

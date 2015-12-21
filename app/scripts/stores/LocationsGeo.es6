@@ -3,7 +3,7 @@ import {getAction} from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
 import {List, Map, Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
-import LocationsStore from './Locations.es6'
+import LocationsStore from './Locations.es6';
 import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
 
 
@@ -26,8 +26,9 @@ const LocationsGeoJsonStore = createStore({
 				return [this.lng, this.lat]
 			}
 		}).build(data.get('records'));
-
+		
 		this.setData(featureCollection)
+
 	}
 
 
