@@ -9,8 +9,11 @@ export default  class GeonamesClient extends BaseClient{
 	}
 
 	parseQuery(params={}){
-		return Object.assign(params,{'q':this.options.text,username:GEO_NAMES_SERVICE_USER_NAME,type:'json'})
-
+		let result = Object.assign(params,{'q':this.options.text,username:GEO_NAMES_SERVICE_USER_NAME,type:'json'})
+		if(this.options.country) {
+			Object.assign(result, { 'country': this.options.countryISO })
+		}
+		return result
 	}
 
 	paginate(params={}){

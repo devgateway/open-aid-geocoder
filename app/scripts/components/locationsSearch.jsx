@@ -3,6 +3,7 @@ import React from 'react'
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
 import  * as Actions from '../actions/Actions.es6'
 import LocationsStore from '../stores/Locations.es6';
+import SingleProjectStore from '../stores/Project.es6';
 import * as Constants from '../constants/Contants.es6';
 
 
@@ -15,6 +16,7 @@ let LocationsSearch = React.createClass({
 
       componentDidMount() {
         LocationsStore.listen(this.onStoreChange);
+		SingleProjectStore.listen(this.getCountry);
       },
 
       componentWillUnmount() {
@@ -29,7 +31,11 @@ let LocationsSearch = React.createClass({
         this.setState({currentStatus: status});
       },
 
-
+	  getCountry(data) {
+	  	let countryISO = data.project.data.country.iso2;
+		let newState = Object.assign(this.state, { countryISO });
+	  },
+	  
       doSearch(){
         Actions.invoke(Constants.ACTION_SEARCH_LOCATIONS,this.state)
       },
