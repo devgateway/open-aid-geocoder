@@ -144,9 +144,9 @@ class MapView extends React.Component {
         <div>
             <Map center={this.state.center} zoom={this.state.zoom} ref="map">
                 <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
+                <CountryLayer data={this.state.shape} autoZoom={true}  ref="countries"/>  
                 <LocationsLayer   onFeatureClick={this.locationClick.bind(this)}  data={this.state.locations} autoZoom={true}></LocationsLayer>
                 <CodingLocationLayer   onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={true}></CodingLocationLayer>                
-                <CountryLayer data={this.state.shape} autoZoom={true}  ref="countries"/>  
                   {popupContent}
             </Map>
        </div> )
