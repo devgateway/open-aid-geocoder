@@ -21,7 +21,7 @@ class FixedLayout extends React.Component {
 	}
 
   render() {
-    debugger;
+   
     return (
       <div className="fixed">
         <LocationsList/>
@@ -30,5 +30,5 @@ class FixedLayout extends React.Component {
       </div> )
   }
 }
-debugger;
+
 export default FixedLayout 

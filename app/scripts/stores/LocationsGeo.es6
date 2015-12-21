@@ -26,9 +26,8 @@ const LocationsGeoJsonStore = createStore({
 				return [this.lng, this.lat]
 			}
 		}).build(data.get('records'));
-		debugger;
 
-		this.setData({'geojson':featureCollection})
+		this.setData(featureCollection)
 	}
 
 

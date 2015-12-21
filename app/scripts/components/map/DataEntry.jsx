@@ -17,7 +17,6 @@ export default class DataEntry extends React.Component {
    }
   
   render() {
-    debugger;
      return (
         <div className="dataEntry" >
         <h4>Geocode location</h4>

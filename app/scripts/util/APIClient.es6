@@ -1,14 +1,11 @@
 import AjaxUtil from './AjaxUtil.es6';
-debugger;
 
 export default class ApiClient {
-
 	/**
 	 * Get all projects fron mock data
 	 * @return {[array]}     an array with all projects
 	 */
 	static getProjectList() {
-		debugger;
 		return new Promise((resolve, reject) => {
 			AjaxUtil.get(window.PROJECT_LIST_URL)
 				.then((response) => {

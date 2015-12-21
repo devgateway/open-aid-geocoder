@@ -11,7 +11,7 @@ import MapView from './map/Map.jsx';
  */
 let  GridLayout = React.createClass({
     render: function() {
-        debugger;
+        
         return (
             <div className="grid">
                 <Grid
