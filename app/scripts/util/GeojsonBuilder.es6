@@ -72,7 +72,6 @@ class GeoJsonBuilder {
 		let featureCollection = new FeatureCollection()
 	
 		list.forEach((record) => {
-			debugger;
 			let coordinates = this.options.coordinates.bind(record)(); // extract coordinates 
 			featureCollection.addFeature(new Feature(new Geometry(this.options.type, coordinates), record)); //record is passed as properites in order to have al loriginal properties available 
 		}.bind(this))
