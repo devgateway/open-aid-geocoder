@@ -69,7 +69,7 @@ const PopUpStore = createStore({
 			newState.geocoding = data.geojson;
 			this.setData(newState);
 		},
-		
+
 		updatePopupDataEntry(params) {
 			
 			debugger;
@@ -103,7 +103,7 @@ const PopUpStore = createStore({
 						'id': params.geonameId,
 						'description': '',
 						'activityDescription': '',
-						'admin0': {
+						'country': {
 							lvel:0,
 							name: params.NAME_0
 						},
