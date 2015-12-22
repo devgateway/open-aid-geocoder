@@ -1,8 +1,12 @@
 @import "constans.scss";
 @import "callouts.scss";
 
+//Fonts
+@import url(https://fonts.googleapis.com/css?family=Slabo+27px);
+@import url(https://fonts.googleapis.com/css?family=Roboto:700);
+
 body{
-	font-size: $font-size
+	font-size: $font-size;
 }
 
 .active{
@@ -33,25 +37,41 @@ body{
 }
 
 #locations {
+	font-family: 'Slabo 27px', serif;
 	position: absolute;
-	left: 20px;
-	top: 200px;
-	width: 250px;
+	right: 10px;
+	top: 150px;
+	width: 280px;
 	z-index: 100;
-
+	
+	.list-group-item {
+		padding: 10px;
+	}
+	
+	.location-item {
+		font-size: 0.9em;
+	}
 }
 
+
 #project-info {
+	font-family: 'Slabo 27px', serif;
 	position: absolute;
-	right: 20px;
-	top: 100px;
+	left: 10px;
+	top: 80px;
 	width: 500px;
 	z-index: 99;
 }
 
 .handle {
 	cursor: move;
+	font-family: 'Roboto', sans-serif;
 }
+
+.small-heading {
+	font-size: 0.8em ! important;
+}
+	
  
 .opacity-10 {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
