@@ -16,7 +16,6 @@ const SingleProjectStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).failed, 'failed');
 	},
 
-
 	loading(){
 		console.log('Loading project...')
 	},

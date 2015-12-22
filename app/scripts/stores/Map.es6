@@ -6,6 +6,7 @@ import {List,Map,Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 
 import LocationsGeoJson from './LocationsGeo.es6';
+import ProjectGeoJson from './ProjectGeo.es6';
 import CountryGeo from  './CountryGeo.es6';
 
 const locationClassList= [{
@@ -57,7 +58,7 @@ const PopUpStore = createStore({
 			this.listenTo(CountryGeo, this.updateCountry);
 			
 			/*LISTEN PROJECT STORE */
-			this.listenTo(CountryGeo, this.updateCountry);
+			this.listenTo(ProjectGeoJson, this.updateProjectLocations);
 		
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
@@ -81,7 +82,13 @@ const PopUpStore = createStore({
 
 		},
 
+		updateProjectLocations(data) {
+			var newState = Object.assign({}, this.get())
+			newState.geocoding = data.geojson;
+			this.setData(newState);
+		},
 
+		
 		updatePopupDataEntry(params) {
 			debugger;
 			  let dataEntryInput= {
