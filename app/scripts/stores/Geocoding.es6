@@ -1,10 +1,10 @@
 import {createStore} from 'reflux';
-
+import ProjectStore from './Project.es6'
 import * as Actions from '../actions/Actions.es6';
 import *  as Constants from '../constants/Contants.es6';
 import {List,Map,Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
-
+import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
 
 
 const locationClassList= [{
@@ -37,6 +37,7 @@ const PopUpStore = createStore({
 	mixins: [StoreMixins],
 	//this can be sotred in a json file or maybe
 	init() {
+			this.listenTo(ProjectStore, this.process);
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'codeLocation');
 			this.listenTo(Actions.get(Constants.ACTION_SAVE_CODED_LOCATION), 'saveCodedLocation');
 			this.listenTo(Actions.get(Constants.ACTION_DELETE_CODED_LOCATION), 'deleteCodedLocation');
@@ -44,6 +45,19 @@ const PopUpStore = createStore({
 
 	getInitialState(){
 		return this.get();
+	},
+
+	process(data) {
+		if (data.project.data.locations) {
+			let featureCollection=
+			new GeoJsonBuilder({
+				type: "Point",
+				coordinates: function() {
+					return [this.loc_point.lon, this.loc_point.lat]
+				}
+			}).build(data.project.data.locations);
+			this.setData({'geojson':featureCollection});
+		}
 	},
 
 	codeLocation(params){

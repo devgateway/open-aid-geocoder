@@ -19,7 +19,7 @@ export default class DataEntry extends React.Component {
   render() {
     debugger;
      return (
-        <div className="dataEntry" >
+        <div className="dataEntry small" >
         <h4>Geocode location</h4>
               <form className="">
               <div className="form-group">
