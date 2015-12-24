@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import LocationsStore from '../stores/Locations.es6';
+import * as Actions from '../actions/Actions.es6';
+import *  as Constants from '../constants/Contants.es6';
 
 /*
   Renders a single Location 
@@ -16,10 +18,14 @@ class Item extends React.Component{
   componentDidMount() { }
 
   componentWillUnmount() {}
+  
+  setActiveLocation(data) {
+	Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, data);	
+  }
 
   render() {
     return (
-       <a href="#" className="list-group-item">
+       <div className="location list-group-item" onClick={this.setActiveLocation.bind(this, this.props)}>
        <h4 className="list-group-item-heading"><strong>{this.props.name}</strong>, {this.props.countryName}</h4>
        <p className="list-group-item-text location-item">          
           {this.props.fclName}
@@ -27,7 +33,7 @@ class Item extends React.Component{
 		<p className="list-group-item-text location-item">          
           {this.props.fcodeName}
         </p>
-        </a>
+        </div>
     )
   }
 }
@@ -65,6 +71,7 @@ class LocationsList extends React.Component {
 
     constructor() {
       super();
+      debugger;
       this.store=LocationsStore;
       let data=(this.store.get())?this.store.get().toJS():[]
       this.state=data

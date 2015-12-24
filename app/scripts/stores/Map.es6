@@ -43,11 +43,21 @@ const PopUpStore = createStore({
 
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
+			this.listenTo(Actions.get(Constants.ACTION_SET_ACTIVE_LOCATION), 'setActiveLocation');
 
 		},
 
 		getInitialState() {
 			return this.get();
+		},
+		
+		setActiveLocation(locationFeature) {
+			console.log("setting active location");
+			console.log(locationFeature);
+			var newState = Object.assign({}, this.get());
+			newState.activeLocation = locationFeature;
+			newState.showActiveLocation = true;
+			this.setData(newState);
 		},
 
 		updateLocations(data) {
