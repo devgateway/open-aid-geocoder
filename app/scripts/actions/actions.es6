@@ -5,7 +5,7 @@ import GeonamesClient from '../util/gazetteers/GeonamesClient.es6'
 import AjaxUtil from '../util/AjaxUtil.es6'
 import APIClient from '../util/APIClient.es6'
 
-import getGeoJsonShape from '../util/ShapesMapping.es6'
+import ShapesMapping from '../util/ShapesMapping.es6'
 
 let actionsDef = {}
 
@@ -65,7 +65,7 @@ actions[Constants.ACTION_SEARCH_LOCATIONS].listen(function(options) {
 
 /*Ajax calls for async actions */
 actions[Constants.ACTION_LOAD_SHAPE].listen(function(iso) {
-	getGeoJsonShape(iso).then((results) => actions[Constants.ACTION_LOAD_SHAPE].completed(results))
+	ShapesMapping.getGeoJsonShape(iso).then((results) => actions[Constants.ACTION_LOAD_SHAPE].completed(results))
 		.catch((message) => actions[Constants.ACTION_LOAD_SHAPE].failed(message));
 })
 
