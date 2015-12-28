@@ -39,21 +39,20 @@ class MapView extends React.Component {
     this.unsubscribe();
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.activeLocation && nextState.activeLocation != this.state.activeLocation) {
-		this.setActiveLocation(nextState.activeLocation);
-	}
-  }
-
 
   onMapUpdated(data) {
     this.setState(data);
+	if(this.state.activeLocation && this.state.showActiveLocation) {
+		this.setActiveLocation(this.state.activeLocation);
+		this.setState({showActiveLocation: false});
+	}
   }
 
   /*
     This is called by location onClick 
   */
   locationClick(e){  
+  	console.log(e);
     //e.targer.feature 
     //using geonames lat and lng instead of event latlng should be more precise.
     let countryInfo=this.queryFeatures(e.latlng,this.refs.countries.leafletElement);
@@ -72,10 +71,17 @@ class MapView extends React.Component {
   /* Pass on location click from location list window, make selected location active and show popup */
   setActiveLocation(location)
   {
-	 let countryInfo = this.queryFeatures([location.lng,location.lat], this.refs.countries.leafletElement);
-	 let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
-	 
-     Actions.invoke(Constants.ACTION_POPUP_INFO,{locationFeature:{properties:location},countryFeature, 'position':[location.lat,location.lng]}) 
+  	var latlngObj = {lat: parseFloat(location.lat), lng: parseFloat(location.lng)};
+	var featureObj = { geometry: {}, properties: location, type: "Feature" };
+	featureObj.geometry.coordinates = [ location.lng, location.lat ];
+	featureObj.geometry.type = "Point";
+	
+	let countryInfo = this.queryFeatures(latlngObj, this.refs.countries.leafletElement);
+  	let locationFeature = featureObj;
+    let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
+    const {latlng}=e;
+    //at this stage I have the location feature + country feature 
+    Actions.invoke(Constants.ACTION_POPUP_INFO,{ locationFeature, countryFeature, 'position':latlng}) ///Country shape should be loaded after loading project information	
   }
  
 
