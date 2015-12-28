@@ -29,7 +29,6 @@ const PopUpStore = createStore({
 			}
 		},
 		clickedLocationPosition: null
-
 	},
 	
 	mixins: [StoreMixins],
@@ -48,11 +47,8 @@ const PopUpStore = createStore({
 		},
 		
 		setActiveLocation(locationFeature) {
-			console.log("setting active location");
-			console.log(locationFeature);
 			var newState = Object.assign({}, this.get());
 			newState.activeLocation = locationFeature;
-			newState.showActiveLocation = true;
 			this.setData(newState);
 		},
 
@@ -78,7 +74,6 @@ const PopUpStore = createStore({
 		},
 
 		updatePopupInfo(params) {
-
 			const {
 				countryFeature, locationFeature, position
 			} = params;
