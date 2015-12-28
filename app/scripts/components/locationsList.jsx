@@ -52,16 +52,21 @@ class ListItems extends React.Component{
   componentWillUnmount() {}
 
   render() {
-    return (
-  <div className="list-group">
-
-    {
-      this.props.records.map((item) =>{
-
-        return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
-    }
-    </div>)
+  if(this.props.total == -1) {
+  	return (
+		<h4> No location results found. </h4>
+	  )
   }
+  else {
+    	return (
+		  <div className="list-group">
+    		{
+      			this.props.records.map((item) => {
+        			return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
+    			}
+    	  </div>)
+  	  	}	
+	}
 }
 
 /*

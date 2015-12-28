@@ -19,16 +19,17 @@ const LocationsGeoJsonStore = createStore({
 	},
 
 	process(data) {
-		let featureCollection=
-		new GeoJsonBuilder({
-			type: "Point",
-			coordinates: function() {
-				return [this.lng, this.lat]
-			}
-		}).build(data.get('records'));
-		
-		this.setData(featureCollection)
-
+		if(data.get('total') > 0) {
+			let featureCollection=
+			new GeoJsonBuilder({
+				type: "Point",
+				coordinates: function() {
+					return [this.lng, this.lat]
+				}
+			}).build(data.get('records'));
+			
+			this.setData(featureCollection)
+		}
 	}
 
 
