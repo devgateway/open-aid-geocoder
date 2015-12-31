@@ -1,7 +1,7 @@
 import AjaxUtil from './AjaxUtil.es6';
 
 let _mappings = [
-	{'name': 'Tozambique', 'iso': 'MOZ', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MOZ.json'},
+	{'name': 'Mozambique', 'iso': 'MOZ', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MOZ.json'},
 	{'name': 'Tanzania', 'iso': 'TZA', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TZA.json'}
 ]
 
@@ -29,7 +29,9 @@ export default class ShapesMapping {
 	}
 
 	static getShapeList () {
-		return _mappings;
+		return new Promise((resolve, reject) => {	
+			resolve(_mappings);
+		})
 	}
 
 }

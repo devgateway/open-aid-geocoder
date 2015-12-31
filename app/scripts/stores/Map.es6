@@ -6,6 +6,7 @@ import {List,Map,Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 
 import ProjectGeoJson from './ProjectGeo.es6';
+import ProjectStore from './Project.es6';
 import LocationsGeoJson from './LocationsGeo.es6';
 import CountryGeo from  './CountryGeo.es6';
 
@@ -19,7 +20,7 @@ const PopUpStore = createStore({
 			zoom: 3
 		},
 		layers: {
-			country: null,
+			countries: [],
 			locations: null,
 			geocoding: null
 		},
@@ -38,7 +39,7 @@ const PopUpStore = createStore({
 	init() {
 		this.listenTo(LocationsGeoJson, this.updateLocations);
 		this.listenTo(CountryGeo, this.updateCountry);
-
+		this.listenTo(ProjectStore, this.onProjectUpdate);
 		/*LISTEN PROJECT STORE */
 			this.listenTo(ProjectGeoJson, this.updateProjectLocations);
 
@@ -59,7 +60,7 @@ const PopUpStore = createStore({
 
 		updateCountry(data) {
 			var newState = Object.assign({}, this.get())
-			newState.layers.country = data;
+			newState.layers.country = data.countryLayer;
 			this.setData(newState);
 
 		},
@@ -70,9 +71,17 @@ const PopUpStore = createStore({
 			this.setData(newState);
 		},
 
+		onProjectUpdate(data) {
+			var newState = Object.assign({}, this.get())
+			newState.project = data.project.data;
+			this.setData(newState);
+ 			Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
+ 			if (data.project.data.country){
+				Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, data.project.data.country.iso3);
+	 		}
+ 	 	},
+
 		updatePopupDataEntry(params) {
-			
-			debugger;
 			this.setData(Object.assign({},this.get(),{popup:{'position':params.position,location:null}}));
 
 		},
@@ -90,7 +99,6 @@ const PopUpStore = createStore({
 			const {fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1} = locationFeature.properties;
 			
 			const geocoding= this.makeGeocodingObject({NAME_0, NAME_1, NAME_2, fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName});
-			debugger;
 			/*creates info window parameters */
 			this.setData(Object.assign({},this.get(),{popup:{'position':position,location:geocoding}}));
 		},
