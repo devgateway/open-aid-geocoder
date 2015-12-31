@@ -20,7 +20,7 @@ const PopUpStore = createStore({
 			zoom: 3
 		},
 		layers: {
-			countries: [],
+			country: [],
 			locations: null,
 			geocoding: null
 		},
@@ -42,7 +42,6 @@ const PopUpStore = createStore({
 		this.listenTo(ProjectStore, this.onProjectUpdate);
 		/*LISTEN PROJECT STORE */
 			this.listenTo(ProjectGeoJson, this.updateProjectLocations);
-
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
 

@@ -53,7 +53,9 @@ class LayerList extends React.Component{
         <ListGroup>
         {
           this.props.shapeList.map((item) =>{
-            return <Item key={item.iso} {...item}/>}
+            if (item.added){
+              return <Item key={item.iso} {...item}/>}
+            }
           )           
         }
         </ListGroup>
