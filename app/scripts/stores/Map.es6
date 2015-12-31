@@ -29,11 +29,11 @@ const PopUpStore = createStore({
 			data: {
 
 			}
-		}, 
-		clickedLocationPosition:null
+		},
+		clickedLocationPosition: null
 
 	},
-
+	
 	mixins: [StoreMixins],
 
 	init() {
@@ -62,7 +62,6 @@ const PopUpStore = createStore({
 			var newState = Object.assign({}, this.get())
 			newState.layers.country = data.countryLayer;
 			this.setData(newState);
-
 		},
 
 		updateProjectLocations(data) {
@@ -82,25 +81,35 @@ const PopUpStore = createStore({
  	 	},
 
 		updatePopupDataEntry(params) {
-			this.setData(Object.assign({},this.get(),{popup:{'position':params.position,location:null}}));
-
+			this.setData(Object.assign({}, this.get(), {
+				popup: {
+					'position': params.position,
+					location: null
+				}
+			}));
 		},
 
 		updatePopupInfo(params) {
 
-			const {countryFeature, locationFeature, position} = params;
 			if (!countryFeature) {
 				console.log("COUNTRY INFO IS EMPTY .....")
 			}
 			/*Country properties*/
-			const {CC_2, ENGTYPE_2, HASC_2, ID_0, ID_1, ID_2, ISO, NAME_0, NAME_1, NAME_2, NL_NAME_2, TYPE_2} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
-			
 			/*Geonames properties*/
-			const {fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1} = locationFeature.properties;
-			
-			const geocoding= this.makeGeocodingObject({NAME_0, NAME_1, NAME_2, fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName});
+			const {
+				fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1
+			} = locationFeature.properties;
+
+			const geocoding = this.makeGeocodingObject({
+				NAME_0, NAME_1, NAME_2, fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName
+			});
 			/*creates info window parameters */
-			this.setData(Object.assign({},this.get(),{popup:{'position':position,location:geocoding}}));
+			this.setData(Object.assign({}, this.get(), {
+				popup: {
+					'position': position,
+					location: geocoding
+				}
+			}));
 		},
 
 
@@ -142,7 +151,6 @@ const PopUpStore = createStore({
 				
 			}
 		}
-
 	});
 
 
