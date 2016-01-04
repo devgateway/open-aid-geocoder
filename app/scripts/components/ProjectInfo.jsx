@@ -1,10 +1,37 @@
 
 import React from 'react';
+import {Tabs, Tab}  from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import  * as Actions from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
 import ProjectStore from '../stores/Project.es6';
+
+
+/*
+  Renders a single Location 
+*/
+class Item extends React.Component{
+
+  constructor() {
+    super();
+  }
+
+   _showLocationPopup(){
+    Actions.invoke(Constants.ACTION_POPUP_INFO_FROM_LIST, {'isCoded': true, 'data': this.props});//TODO make data conversion for infowindow
+  }
+
+  render() {
+  	return (
+       	<div className="list-group-item">
+       		<a onClick={this._showLocationPopup.bind(this)}><h4 className="list-group-item-heading">{this.props.name}</h4></a>
+          	<p className="list-group-item-text">
+          		{this.props.description}
+       		</p>
+        </div>
+    )
+  }
+}
 
 /*
    This view renders the Project Information UI component
@@ -48,9 +75,24 @@ class ProjectInfo extends React.Component {
 			<div id="project-info">
 			  <div className="panel panel-info">
 				 <div className="panel-heading handle">{this.state.title}</div>
-				<div className="panel-body list">
-					  {this.state.long_description}
-				</div>
+				 <Tabs defaultActiveKey={1}>
+				    <Tab eventKey={1} title="Project Info">
+				    	<div className="panel-body list">
+							  {this.state.long_description}
+						</div>
+					</Tab>
+				    <Tab eventKey={2} title="Locations">
+				    	<div className="panel-body list">
+							{
+								this.state.locations?
+									this.state.locations.map((item) => {
+	        						return <Item key={item.id} {...item}/>})
+	        					: ""
+							}
+						</div>
+				    </Tab>
+				  </Tabs>
+				
 			  </div>
 			</div>
 		  </Draggable>
