@@ -5,6 +5,8 @@ import *  as Constants from '../constants/Contants.es6';
 import {List,Map,Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 
+import ProjectGeoJson from './ProjectGeo.es6';
+import ProjectStore from './Project.es6';
 import LocationsGeoJson from './LocationsGeo.es6';
 import CountryGeo from  './CountryGeo.es6';
 
@@ -18,7 +20,7 @@ const PopUpStore = createStore({
 			zoom: 3
 		},
 		layers: {
-			country: null,
+			country: [],
 			locations: null,
 			geocoding: null
 		},
@@ -33,9 +35,11 @@ const PopUpStore = createStore({
 	
 	mixins: [StoreMixins],
 
-	init() {
+		init() {
 			this.listenTo(LocationsGeoJson, this.updateLocations);
 			this.listenTo(CountryGeo, this.updateCountry);
+			this.listenTo(ProjectStore, this.onProjectUpdate);
+			this.listenTo(ProjectGeoJson, this.updateProjectLocations);
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
 			this.listenTo(Actions.get(Constants.ACTION_SET_ACTIVE_LOCATION), 'setActiveLocation');
@@ -60,9 +64,25 @@ const PopUpStore = createStore({
 
 		updateCountry(data) {
 			var newState = Object.assign({}, this.get())
-			newState.layers.country = data;
+			newState.layers.country = data.countryLayer;
 			this.setData(newState);
 		},
+
+		updateProjectLocations(data) {
+			var newState = Object.assign({}, this.get())
+			newState.geocoding = data.geojson;
+			this.setData(newState);
+		},
+
+		onProjectUpdate(data) {
+			var newState = Object.assign({}, this.get())
+			newState.project = data.project.data;
+			this.setData(newState);
+ 			Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
+ 			if (data.project.data.country){
+				Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, data.project.data.country.iso3);
+	 		}
+ 	 	},
 
 		updatePopupDataEntry(params) {
 			this.setData(Object.assign({}, this.get(), {
@@ -74,17 +94,13 @@ const PopUpStore = createStore({
 		},
 
 		updatePopupInfo(params) {
-			const {
-				countryFeature, locationFeature, position
-			} = params;
+
+			const {countryFeature, locationFeature, position} = params;
+
 			if (!countryFeature) {
 				console.log("COUNTRY INFO IS EMPTY .....")
 			}
 			/*Country properties*/
-			const {
-				CC_2, ENGTYPE_2, HASC_2, ID_0, ID_1, ID_2, ISO, NAME_0, NAME_1, NAME_2, NL_NAME_2, TYPE_2
-			} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
-
 			/*Geonames properties*/
 			const {
 				fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1
@@ -103,56 +119,43 @@ const PopUpStore = createStore({
 		},
 
 
-		makeGeocodingObject(params) {
-			let model = {
-				'name': params.name,
-				'id': params.geonameId,
-				'activityDescription': '',
+		makeGeocodingObject(params){
+			return {
+			
+						'name': params.name,
+						'id': params.geonameId,
+						'description': '',
+						'activityDescription': '',
+						'country': {
+							lvel:0,
+							name: params.NAME_0
+						},
+						'admin1': {
+							lvel:1,
+							name: params.NAME_1
+						},
+						'admin2': {
+							lvel:2,
+							name: params.NAME_2
+						},
 
-				'geometry': {
-					"type": "Point",
-					"coordinates": [params.lng, params.lat]
-				},
+						'geometry': {
+							"type": "Point",
+							"coordinates": [params.lng, params.lat]
+						},
 
-				'toponymName': params.toponymName,
-				'featureDesignation': {
-					code: params.fcode,
-					name: params.fcodeName
-				},
-				'type': 'location',
-				'status': 'NEW',
-				'locationClass': null, //{code:''m,name:''}
-				'exactness': null, // {{"code": "1", "name": "Exact"}
+						'toponymName': params.toponymName,
+						'featureDesignation': {
+							code: params.fcode,
+							name: params.fcodeName
+						},
+						'type':'location',
+						'status':'NEW',
+						'locationClass': null,
+						'exactness': null,
+					
+				
 			}
-
-			if (params.NAME_0) {
-				model = Object.assign(model, {
-					'country': {
-						code: params.ID_0,
-						name: params.NAME_0
-					}
-				});
-			}
-
-			if (params.NAME_1) {
-				model = Object.assign(model, {
-					'admin1': {
-						code: params.ID_1,
-						name: params.NAME_1
-					}
-				});
-			}
-
-			if (params.NAME_2) {
-				model = Object.assign(model, {
-					'admin2': {
-						code: params.ID_2,
-						name: params.NAME_2
-					}
-				});
-			}
-
-			return model;
 		}
 	});
 

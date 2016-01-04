@@ -1,0 +1,36 @@
+
+.layer-control-container{
+  width: 250px;
+  background-color: #fff;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  padding:0;
+  z-index: 10;
+}
+
+.show-layers-button{
+  background:#d2e5ee;
+  border: 1px solid #ccc;
+  padding: 3;
+  outline:none;
+  width:100px;
+  position:absolute;
+  bottom:0;
+  right: 0;
+  color: darken(#ccc, 5%);
+  font-size:13px;
+  &:hover{
+    background: #fff;
+  }
+}
+
+.layers-content{
+  width: 250px;
+  max-height:400px;
+  overflow-y: auto;
+  background-color: #fff;
+  position: absolute;
+  padding:6px 6px 4px 6px ;
+  border:1px solid;
+}

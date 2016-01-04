@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var _ = require('lodash');
 var Axios = require('axios');
 
-var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/OAGC-33/api/data/projects.json';
+var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/OAGC-47/api/data/projects.json';
 
 /**
 

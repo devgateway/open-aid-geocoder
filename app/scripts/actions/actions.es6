@@ -5,7 +5,7 @@ import GeonamesClient from '../util/gazetteers/GeonamesClient.es6'
 import AjaxUtil from '../util/AjaxUtil.es6'
 import APIClient from '../util/APIClient.es6'
 
-import getGeoJsonShape from '../util/ShapesMapping.es6'
+import ShapesMapping from '../util/ShapesMapping.es6'
 
 let actionsDef = {}
 
@@ -19,6 +19,15 @@ actionsDef[Constants.ACTION_LOAD_ALL_PROJECTS] = {
 	children: ["completed", "failed"]
 }
 actionsDef[Constants.ACTION_LOAD_SINGLE_PROJECT] = {
+	children: ["completed", "failed"]
+}
+actionsDef[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST] = {
+	children: ["completed", "failed"]
+}
+actionsDef[Constants.ACTION_ADD_COUNTRY_LAYER] = {
+	children: ["completed", "failed"]
+}
+actionsDef[Constants.ACTION_TOGGLE_LAYER_VISIBILITY] = {
 	children: ["completed", "failed"]
 }
 
@@ -65,7 +74,7 @@ actions[Constants.ACTION_SEARCH_LOCATIONS].listen(function(options) {
 
 /*Ajax calls for async actions */
 actions[Constants.ACTION_LOAD_SHAPE].listen(function(iso) {
-	getGeoJsonShape(iso).then((results) => actions[Constants.ACTION_LOAD_SHAPE].completed(results))
+	ShapesMapping.getGeoJsonShape(iso).then((results) => actions[Constants.ACTION_LOAD_SHAPE].completed(results, iso))
 		.catch((message) => actions[Constants.ACTION_LOAD_SHAPE].failed(message));
 })
 
@@ -82,6 +91,10 @@ actions[Constants.ACTION_LOAD_SINGLE_PROJECT].listen(function(id) {
 		.catch((message) => actions[Constants.ACTION_LOAD_SINGLE_PROJECT].failed(message));
 })
 
+actions[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST].listen(function() {
+	ShapesMapping.getShapeList().then((results) => actions[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST].completed(results))
+		.catch((message) => actions[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST].failed(message));
+})
 
 export {
 	get, invoke

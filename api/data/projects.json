@@ -14,66 +14,81 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112215624,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2118",
-                    "loc_adm1_name" : "Nampula",
-                    "loc_geo_name" : "Provincia de Nampula",
-                    "loc_geo_name_id" : 1033354,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2008/10/29/000076092_20081102150356/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To improve the business environment and enhance the competitiveness of targeted enterprises.",
-                    "loc_project_id" : 2430964,
-                    "loc_point" : {
-                        "lat" : -15.0000000000000000,
-                        "lon" : 39.0000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298273c"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            39.0000000000000000, 
-                            -15.0000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Nampula",
+                   "id": 112215624,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To improve the business environment and enhance the competitiveness of targeted enterprises.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2118,
+                      "name": "Nampula"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                         39.0000000000000000,
+                         -15.0000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112215625,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2114",
-                    "loc_adm1_name" : "Inhambane",
-                    "loc_geo_name" : "Provincia de Inhambane",
-                    "loc_geo_name_id" : 1045110,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2008/10/29/000076092_20081102150356/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To improve the business environment and enhance the competitiveness of targeted enterprises.",
-                    "loc_project_id" :2430964,
-                    "loc_point" : {
-                        "lat" : -23.0000000000000000,
-                        "lon" : 34.5000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298273c"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            34.5000000000000000, 
-                            -23.0000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Inhambane",
+                   "id": 112215625,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To improve the business environment and enhance the competitiveness of targeted enterprises.",
+                   "country": {  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1": {  
+                      "id": 2114,
+                      "name": "Inhambane"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                         34.5000000000000000, 
+                        -23.0000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness":{  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
+                
             ]
         }, 
         {
@@ -91,35 +106,42 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112211328,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2115",
-                    "loc_adm1_name" : "Manica",
-                    "loc_geo_name" : "Provincia de Manica",
-                    "loc_geo_name_id" : 1040947,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2009/08/20/000104615_20090825112504/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (a) increase the number and raise the quality of graduates at the undergraduate and graduate levels; and (b) strengthen the national research capacities to produce research outputs of relevance to the Country's strategic economic sectors",
-                    "loc_project_id" :2430895,
-                    "loc_point" : {
-                        "lat" : -19.0000000000000000,
-                        "lon" : 33.5000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e42982723"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            33.5000000000000000, 
-                            -19.0000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Manica",
+                   "id": 112211328,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To (a) increase the number and raise the quality of graduates at the undergraduate and graduate levels; and (b) strengthen the national research capacities to produce research outputs of relevance to the Country's strategic economic sectors",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2115,
+                      "name": "Manica"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        33.5000000000000000, 
+                        -19.0000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
@@ -138,95 +160,116 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112214977,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2112",
-                    "loc_adm1_name" : "Cabo Delgado",
-                    "loc_geo_name" : "Provincia de Cabo Delgado",
-                    "loc_geo_name_id" : 1051823,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2008/10/24/000076092_20081027144913/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (a) reduce child mortality; (b) reduce maternal mortality; (c) reduce the burden of malaria; (d) reduce the prevalence of tuberculosis; and (e) reduce inequity in the access to health services in Mozambique",
-                    "loc_project_id" : 2430871,
-                    "loc_point" : {
-                        "lat" : -12.5000000000000000,
-                        "lon" : 39.0000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e42982713"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            39.0000000000000000, 
-                            -12.5000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Cabo Delgado",
+                   "id": 112214977,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To (a) reduce child mortality; (b) reduce maternal mortality; (c) reduce the burden of malaria; (d) reduce the prevalence of tuberculosis; and (e) reduce inequity in the access to health services in Mozambique",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2112,
+                      "name": "Cabo Delgado"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        39.0000000000000000, 
+                        -12.5000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112214975,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2119",
-                    "loc_adm1_name" : "Niassa",
-                    "loc_geo_name" : "Provincia de Niassa",
-                    "loc_geo_name_id" : 1030006,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2008/10/24/000076092_20081027144913/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (a) reduce child mortality; (b) reduce maternal mortality; (c) reduce the burden of malaria; (d) reduce the prevalence of tuberculosis; and (e) reduce inequity in the access to health services in Mozambique",
-                    "loc_project_id" : 2430871,
-                    "loc_point" : {
-                        "lat" : -13.0000000000000000,
-                        "lon" : 37.0000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e42982713"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            37.0000000000000000, 
-                            -13.0000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Niassa",
+                   "id": 112214975,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To (a) reduce child mortality; (b) reduce maternal mortality; (c) reduce the burden of malaria; (d) reduce the prevalence of tuberculosis; and (e) reduce inequity in the access to health services in Mozambique",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2119,
+                      "name": "Niassa"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        37.0000000000000000, 
+                        -13.0000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112214976,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2118",
-                    "loc_adm1_name" : "Nampula",
-                    "loc_geo_name" : "Provincia de Nampula",
-                    "loc_geo_name_id" : 1033354,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2008/10/24/000076092_20081027144913/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (a) reduce child mortality; (b) reduce maternal mortality; (c) reduce the burden of malaria; (d) reduce the prevalence of tuberculosis; and (e) reduce inequity in the access to health services in Mozambique",
-                    "loc_project_id" : 2430871,
-                    "loc_point" : {
-                        "lat" : -15.0000000000000000,
-                        "lon" : 39.0000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e42982713"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            39.0000000000000000, 
-                            -15.0000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Nampula",
+                   "id": 112214976,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To (a) reduce child mortality; (b) reduce maternal mortality; (c) reduce the burden of malaria; (d) reduce the prevalence of tuberculosis; and (e) reduce inequity in the access to health services in Mozambique",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2118,
+                      "name": "Nampula"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        39.0000000000000000, 
+                        -15.0000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
@@ -245,101 +288,116 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112220819,
-                    "loc_precision" : "1.0",
-                    "loc_adm1" : "2116",
-                    "loc_adm1_name" : "Maputo",
-                    "loc_adm2" : "65252",
-                    "loc_adm2_name" : "Cidade de Matola",
-                    "loc_geo_name" : "Matola",
-                    "loc_geo_name_id" : 1039854,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The coordinates corresponds to an exact location, such as a populated place or a hill. The code is also used for locations that join a location which is a line (such as a road or railroad). Lines are not coded only the points that connect lines. All points that are mentioned in the source are coded.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -25.9622211456298830,
-                        "lon" : 32.4588890075683590
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.4588890075683590, 
-                            -25.9622211456298830
-                        ]
-                    }
+                {  
+                   "name": "Cidade de Matola",
+                   "id": 112220819,
+                   "description": "The coordinates corresponds to an exact location, such as a populated place or a hill. The code is also used for locations that join a location which is a line (such as a road or railroad). Lines are not coded only the points that connect lines. All points that are mentioned in the source are coded.",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2116,
+                      "name": "Maputo"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.4588890075683590, 
+                        -25.9622211456298830
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112220820,
-                    "loc_precision" : "1.0",
-                    "loc_adm1" : "2117",
-                    "loc_adm1_name" : "Maputo (city)",
-                    "loc_adm2" : "65254",
-                    "loc_adm2_name" : "Distrito Municipal 1",
-                    "loc_geo_name" : "Maputo",
-                    "loc_geo_name_id" : 1040652,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The coordinates corresponds to an exact location, such as a populated place or a hill. The code is also used for locations that join a location which is a line (such as a road or railroad). Lines are not coded only the points that connect lines. All points that are mentioned in the source are coded.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -25.9652786254882810,
-                        "lon" : 32.5891685485839840
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.5891685485839840, 
-                            -25.9652786254882810
-                        ]
-                    }
+                {  
+                   "name": "Maputo",
+                   "id": 112220820,
+                   "description": "The coordinates corresponds to an exact location, such as a populated place or a hill. The code is also used for locations that join a location which is a line (such as a road or railroad). Lines are not coded only the points that connect lines. All points that are mentioned in the source are coded.",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2117,
+                      "name": "Maputo (city)"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.5891685485839840, 
+                        -25.9652786254882810
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112220821,
-                    "loc_precision" : "3.0",
-                    "loc_adm1" : "2117",
-                    "loc_adm1_name" : "Maputo (city)",
-                    "loc_adm2" : "65253",
-                    "loc_adm2_name" : "Aeroporto",
-                    "loc_geo_name" : "Aeroporto",
-                    "loc_geo_name_id" : 7701205,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -25.9085693359375000,
-                        "lon" : 32.5804290771484370
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.5804290771484370, 
-                            -25.9085693359375000
-                        ]
-                    }
+                {  
+                   "name": "Aeroporto",
+                   "id": 112220821,
+                   "description": "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2117,
+                      "name": "Maputo (city)"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.5804290771484370, 
+                        -25.9085693359375000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
 
             ]
@@ -359,37 +417,42 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112220824,
-                    "loc_precision" : "3.0",
-                    "loc_adm1" : "2117",
-                    "loc_adm1_name" : "Maputo (city)",
-                    "loc_adm2" : "65256",
-                    "loc_adm2_name" : "Distrito Municipal 3",
-                    "loc_geo_name" : "Distrito Municipal 3",
-                    "loc_geo_name_id" : 7701208,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -25.9402599334716800,
-                        "lon" : 32.5956993103027340
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.5956993103027340, 
-                            -25.9402599334716800
-                        ]
-                    }
+                {  
+                   "name": "Distrito Municipal 3",
+                   "id": 112220824,
+                   "description": "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2117,
+                      "name": "Maputo (city)"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.5956993103027340, 
+                        -25.9402599334716800
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
@@ -408,69 +471,79 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112220825,
-                    "loc_precision" : "3.0",
-                    "loc_adm1" : "2117",
-                    "loc_adm1_name" : "Maputo (city)",
-                    "loc_adm2" : "65257",
-                    "loc_adm2_name" : "Distrito Municipal 4",
-                    "loc_geo_name" : "Distrito Municipal 4",
-                    "loc_geo_name_id" : 7701210,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -25.8853702545166020,
-                        "lon" : 32.6362495422363280
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.6362495422363280, 
-                            -25.8853702545166020
-                        ]
-                    }
+                {  
+                   "name": "Distrito Municipal 4",
+                   "id": 112220825,
+                   "description": "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2117,
+                      "name": "Maputo (city)"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.6362495422363280, 
+                        -25.8853702545166020
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112220822,
-                    "loc_precision" : "3.0",
-                    "loc_adm1" : "2117",
-                    "loc_adm1_name" : "Maputo (city)",
-                    "loc_adm2" : "65254",
-                    "loc_adm2_name" : "Distrito Municipal 1",
-                    "loc_geo_name" : "Distrito Municipal 1",
-                    "loc_geo_name_id" : 7701206,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -26.0371494293212890,
-                        "lon" : 32.5229492187500000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.5229492187500000, 
-                            -26.0371494293212890
-                        ]
-                    }
+                {  
+                   "name": "Distrito Municipal 1",
+                   "id": 112220822,
+                   "description": "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2117,
+                      "name": "Maputo (city)"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.5229492187500000, 
+                        -26.0371494293212890
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
@@ -489,69 +562,79 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112220823,
-                    "loc_precision" : "3.0",
-                    "loc_adm1" : "2117",
-                    "loc_adm1_name" : "Maputo (city)",
-                    "loc_adm2" : "65255",
-                    "loc_adm2_name" : "Distrito Municipal 2",
-                    "loc_geo_name" : "Distrito Municipal 2",
-                    "loc_geo_name_id" : 7701207,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -25.9435596466064450,
-                        "lon" : 32.5567588806152340
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.5567588806152340, 
-                            -25.9435596466064450
-                        ]
-                    }
+                {  
+                   "name": "Distrito Municipal 2",
+                   "id": 112220823,
+                   "description": "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2117,
+                      "name": "Maputo (city)"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.5567588806152340, 
+                        -25.9435596466064450
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112220826,
-                    "loc_precision" : "3.0",
-                    "loc_adm1" : "2117",
-                    "loc_adm1_name" : "Maputo (city)",
-                    "loc_adm2" : "65258",
-                    "loc_adm2_name" : "Distrito Municipal 5",
-                    "loc_geo_name" : "Distrito Municipal 5",
-                    "loc_geo_name_id" : 7701211,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2010/05/17/000262044_20100517104829/Rendered/PDF/Integrated0Saf1et010Appraisal0Stage.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
-                    "loc_project_id" : 2430459,
-                    "loc_point" : {
-                        "lat" : -25.8895797729492190,
-                        "lon" : 32.5634613037109370
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fe55e4b0c74e4298267b"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            32.5634613037109370, 
-                            -25.8895797729492190
-                        ]
-                    }
+                {  
+                   "name": "Distrito Municipal 5",
+                   "id": 112220826,
+                   "description": "The location is, or lies in, a second order administrative division (ADM2), such as a district, municipality or commune",
+                   "activityDescription": "To increase the coverage and quality of Maputo Municipality's services to its citizens by continuing to strengthen its institutional and financial capacities.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2117,
+                      "name": "Maputo (city)"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        32.5634613037109370, 
+                        -25.8895797729492190
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
@@ -570,99 +653,116 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112211421,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2122",
-                    "loc_adm1_name" : "Zambezia",
-                    "loc_geo_name" : "Provincia de Zambezia",
-                    "loc_geo_name_id" : 1024312,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2004/05/28/000104615_20040601103005/Rendered/PDF/ISDS0Sena0Line1al0Stage0May02702004.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
-                    "loc_project_id" : 2417857,
-                    "loc_point" : {
-                        "lat" : -17.0000000000000000,
-                        "lon" : 37.0000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fd93e4b0c74e4297bdd7"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            37.0000000000000000, 
-                            -17.0000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Zambezia",
+                   "id": 112211421,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2122,
+                      "name": "Zambezia"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        37.0000000000000000, 
+                        -17.0000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112211422,
-                    "loc_precision" : "1.0",
-                    "loc_adm1" : "2122",
-                    "loc_adm1_name" : "Zambezia",
-                    "loc_adm2" : "21957",
-                    "loc_adm2_name" : "Morrumbala",
-                    "loc_geo_name" : "Vila Nova da Fronteira",
-                    "loc_geo_name_id" : 1024681,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2004/05/28/000104615_20040601103005/Rendered/PDF/ISDS0Sena0Line1al0Stage0May02702004.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The coordinates corresponds to an exact location, such as a populated place or a hill. The code is also used for locations that join a location which is a line (such as a road or railroad). Lines are not coded only the points that connect lines. All points that are mentioned in the source are coded.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
-                    "loc_project_id" : 2417857,
-                    "loc_point" : {
-                        "lat" : -17.1333332061767580,
-                        "lon" : 36.2000007629394530
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fd93e4b0c74e4297bdd7"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            36.2000007629394530, 
-                            -17.1333332061767580
-                        ]
-                    }
+                {  
+                   "name": "Vila Nova da Fronteira",
+                   "id": 112211422,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2122,
+                      "name": "Zambezia"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        36.2000007629394530, 
+                        -17.1333332061767580
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112211423,
-                    "loc_precision" : "2.0",
-                    "loc_adm1" : "2121",
-                    "loc_adm1_name" : "Tete",
-                    "loc_adm2" : "21942",
-                    "loc_adm2_name" : "Moatize",
-                    "loc_geo_name" : "Moatize",
-                    "loc_geo_name_id" : 1024685,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2004/05/28/000104615_20040601103005/Rendered/PDF/ISDS0Sena0Line1al0Stage0May02702004.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is mentioned in the source as being near, in the area of, or up to 25 km away from an exact location. The coordinates refer to that adjacent, exact, location.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
-                    "loc_project_id" : 2417857,
-                    "loc_point" : {
-                        "lat" : -16.1152782440185550,
-                        "lon" : 33.7294425964355470
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fd93e4b0c74e4297bdd7"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            33.7294425964355470, 
-                            -16.1152782440185550
-                        ]
-                    }
+                {  
+                   "name": "Moatize",
+                   "id": 112211423,
+                   "description": "The location is mentioned in the source as being near, in the area of, or up to 25 km away from an exact location. The coordinates refer to that adjacent, exact, location.",
+                   "activityDescription": "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2121,
+                      "name": "Tete"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        33.7294425964355470, 
+                        -16.1152782440185550
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
@@ -681,37 +781,42 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112211424,
-                    "loc_precision" : "1.0",
-                    "loc_adm1" : "2120",
-                    "loc_adm1_name" : "Sofala",
-                    "loc_adm2" : "21927",
-                    "loc_adm2_name" : "Dondo",
-                    "loc_geo_name" : "Dondo",
-                    "loc_geo_name_id" : 1024696,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2004/05/28/000104615_20040601103005/Rendered/PDF/ISDS0Sena0Line1al0Stage0May02702004.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The coordinates corresponds to an exact location, such as a populated place or a hill. The code is also used for locations that join a location which is a line (such as a road or railroad). Lines are not coded only the points that connect lines. All points that are mentioned in the source are coded.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
-                    "loc_project_id" : 2417857,
-                    "loc_point" : {
-                        "lat" : -19.6094436645507810,
-                        "lon" : 34.7430572509765630
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fd93e4b0c74e4297bdd7"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            34.7430572509765630, 
-                            -19.6094436645507810
-                        ]
-                    }
+                {  
+                   "name": "Dondo",
+                   "id": 112211424,
+                   "description": "The coordinates corresponds to an exact location, such as a populated place or a hill. The code is also used for locations that join a location which is a line (such as a road or railroad). Lines are not coded only the points that connect lines. All points that are mentioned in the source are coded.",
+                   "activityDescription": "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2120,
+                      "name": "Sofala"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        34.7430572509765630, 
+                        -19.6094436645507810
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
@@ -730,67 +835,79 @@
                 "type_name" : "UNKNOWN"
             },
             "locations": [
-                {
-                    "loc_id" : 112211425,
-                    "loc_precision" : "2.0",
-                    "loc_adm1" : "2120",
-                    "loc_adm1_name" : "Sofala",
-                    "loc_adm2" : "21923",
-                    "loc_adm2_name" : "Caia",
-                    "loc_geo_name" : "Vila de Sena",
-                    "loc_geo_name_id" : 1024698,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2004/05/28/000104615_20040601103005/Rendered/PDF/ISDS0Sena0Line1al0Stage0May02702004.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is mentioned in the source as being near, in the area of, or up to 25 km away from an exact location. The coordinates refer to that adjacent, exact, location.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
-                    "loc_project_id" : 2417857,
-                    "loc_point" : {
-                        "lat" : -17.4416675567626950,
-                        "lon" : 35.0272216796875000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fd93e4b0c74e4297bdd7"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            35.0272216796875000, 
-                            -17.4416675567626950
-                        ]
-                    }
+                {  
+                   "name": "Vila de Sena",
+                   "id": 112211425,
+                   "description": "The location is mentioned in the source as being near, in the area of, or up to 25 km away from an exact location. The coordinates refer to that adjacent, exact, location.",
+                   "activityDescription": "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2120,
+                      "name": "Sofala"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        35.0272216796875000, 
+                        -17.4416675567626950
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 },
-                {
-                    "loc_id" : 112211426,
-                    "loc_precision" : "4.2",
-                    "loc_adm1" : "2121",
-                    "loc_adm1_name" : "Tete",
-                    "loc_geo_name" : "Provincia de Tete",
-                    "loc_geo_name_id" : 1026010,
-                    "loc_source_url" : "http://www-wds.worldbank.org/external/default/WDSContentServer/WDSP/IB/2004/05/28/000104615_20040601103005/Rendered/PDF/ISDS0Sena0Line1al0Stage0May02702004.pdf",
-                    "loc_source" : "ISDS",
-                    "loc_note" : "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
-                    "loc_location_type" : "",
-                    "loc_activity" : "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
-                    "loc_project_id" : 2417857,
-                    "loc_point" : {
-                        "lat" : -15.5000000000000000,
-                        "lon" : 33.0000000000000000
-                    },
-                    "loc_parent" : {
-                        "ref" : "project",
-                        "id" : "5269fd93e4b0c74e4297bdd7"
-                    },
-                    "rIndex" : false,
-                    "loc_geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [ 
-                            33.0000000000000000, 
-                            -15.5000000000000000
-                        ]
-                    }
+                {  
+                   "name": "Provincia de Tete",
+                   "id": 112211426,
+                   "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
+                   "activityDescription": "To (i) make cost effective and efficient transport available in the Zambezi valley to accelerate growth and reduce poverty in the sub-region; and (ii) increase international traffic through, and ensure the operational, managerial and financial sustainability of, the Beira Railway System.",
+                   "country":{  
+                      "ISO2": "MZ",
+                      "ISO3": "MOZ",
+                      "name": "Mozambique"
+                   },
+                   "admin1":{  
+                      "id": 2121,
+                      "name": "Tete"
+                   },
+                   "geometry": {  
+                      "type": "Point",
+                      "coordinates": [  
+                        33.0000000000000000, 
+                        -15.5000000000000000
+                      ]
+                   },
+                   "toponymName": null,
+                   "featureDesignation": {  
+                      "code": "PPL",
+                      "name": "populated place"
+                   },
+                   "type": "location",
+                   "status": "NEW",
+                   "locationClass": {  
+                      "code": "2",
+                      "name": "Populated Place"
+                   },
+                   "exactness": {  
+                      "code": "1",
+                      "name": "Exact"
+                   }
                 }
             ]
         }, 
