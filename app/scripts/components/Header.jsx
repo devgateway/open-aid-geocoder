@@ -1,7 +1,8 @@
 import React from 'react';
 import {Navbar,Nav,NavDropdown,MenuItem,NavBrand,NavItem}  from 'react-bootstrap';
 import {LocationsSearch} from './LocationsSearch.jsx';
-import { Link  } from 'react-router'
+import LayerSelectors from './map/CountryLayerSelector.jsx';
+import { Link  } from 'react-router';
  
  /**
   * 
@@ -32,7 +33,8 @@ export default class Header extends React.Component {
                   <li><a href="#">Link</a></li>
                   <li><a href="#">Link</a></li>
                 </ul>
-               <LocationsSearch/>
+                <LocationsSearch/>
+                <LayerSelectors/>
                 <ul className="nav navbar-nav navbar-right">
                     <NavDropdown eventKey={4} title="Options" id="nav-dropdown">
                     <MenuItem eventKey="4.2">Auto Zoom <input type="checkbox"/></MenuItem>
@@ -40,7 +42,7 @@ export default class Header extends React.Component {
                     <MenuItem eventKey="4.3"  href="#/fixed/map">Fixed Layout</MenuItem>
                     <MenuItem eventKey="4.5"  href="#/grid/map">Grid Layout</MenuItem>
                     <MenuItem divider />
-                    <MenuItem eventKey="4.5">Separated link</MenuItem>
+                    <MenuItem eventKey="4.5"></MenuItem>
                   </NavDropdown>
                  
                 </ul>

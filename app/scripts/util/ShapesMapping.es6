@@ -1,34 +1,37 @@
 import AjaxUtil from './AjaxUtil.es6';
 
-let _mappings = {
-	"MOZ": 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MOZ.json'
-}
+let _mappings = [
+	{'name': 'Mozambique', 'iso': 'MOZ', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MOZ.json'},
+	{'name': 'Tanzania', 'iso': 'TZA', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TZA.json'}
+]
 
 let util=AjaxUtil;
 
-/**
- * [description]
- * @param  {[type]} iso [description]
- * @return {[type]}     [description]
- */
-let getGeoJsonShape = (iso) => {
-	if (!_mappings[iso]) {
-		throw "Can't find shape mapping for iso code ${iso}"
-	} else {
+export default class ShapesMapping {
 
-		let url = _mappings[iso];
+	static getGeoJsonShape (iso) {
+		let url = _mappings.find(mapping => mapping.iso == iso).url;
+		if (!url) {
+			throw "Can't find shape mapping for iso code ${iso}"
+		} else {
 
-		return new Promise((resolve, reject) => {
-			
-			AjaxUtil.get(url)
-				.then((response) => {
-					resolve(response.data);
-				})
-				.catch((response) => {
-					reject( `got ${response.status}  ${response.statusText}`)
-				})
+			return new Promise((resolve, reject) => {
+				
+				AjaxUtil.get(url)
+					.then((response) => {
+						resolve(response.data);
+					})
+					.catch((response) => {
+						reject( `got ${response.status}  ${response.statusText}`)
+					})
+			})
+		}
+	}
+
+	static getShapeList () {
+		return new Promise((resolve, reject) => {	
+			resolve(_mappings);
 		})
 	}
-}
 
-export default getGeoJsonShape
+}

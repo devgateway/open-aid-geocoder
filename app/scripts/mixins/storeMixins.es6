@@ -15,7 +15,8 @@ const StoreMixins = {
 	},
 	
 	setData: function(newData) {
-		this.data = newData;
+		//this.data = newData;
+		this.data = Object.assign(this.data, newData);
 		this.emit();
 	},
 
