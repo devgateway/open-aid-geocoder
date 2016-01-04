@@ -5,7 +5,7 @@ import { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from 'react-bootstrap';
 
-import {Popup, Map, Marker, TileLayer,ZoomControl} from 'react-leaflet'; 
+import {L, Popup, Map, Marker, TileLayer,ZoomControl} from 'react-leaflet'; 
 
 import leafletPip from 'leaflet-pip';
 
@@ -40,6 +40,12 @@ class MapView extends React.Component {
     this.unsubscribe();
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.activeLocation && nextState.activeLocation != this.state.activeLocation) {
+		this.setActiveLocation(nextState.activeLocation);
+	}
+  }
+
 
   onMapUpdated(data) {
     this.setState(data);
@@ -63,6 +69,16 @@ class MapView extends React.Component {
   queryFeatures(latlng,layer){
    return leafletPip.pointInLayer(latlng, layer);
   }
+  
+  /* Pass on location click from location list window, make selected location active and show popup */
+  setActiveLocation(location)
+  {
+	 let countryInfo = this.queryFeatures([location.lng,location.lat], this.refs.countries.leafletElement);
+	 let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
+	 
+     Actions.invoke(Constants.ACTION_POPUP_INFO,{locationFeature:{properties:location},countryFeature, 'position':[location.lat,location.lng]}) 
+  }
+ 
 
   render() {
       return (

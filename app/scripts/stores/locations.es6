@@ -28,7 +28,12 @@ const LocationsStore = createStore({
 	},
 
 	done(rawData) {
-		this.setData(new Map({total:rawData.totalResultsCount,records:this.inmutateResults(rawData.geonames)}));
+		if(rawData.totalResultsCount > 0) {
+			this.setData(new Map({total:rawData.totalResultsCount,records:this.inmutateResults(rawData.geonames)}));
+		}
+		else {
+		 	this.setData(new Map({ total: -1, records: new List() }));
+		}
 	},
 
 	inmutateResults(results){

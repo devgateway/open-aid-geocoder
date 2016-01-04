@@ -1,7 +1,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Draggable from 'react-draggable';
 import LocationsStore from '../stores/Locations.es6';
+import * as Actions from '../actions/Actions.es6';
+import *  as Constants from '../constants/Contants.es6';
 
 /*
   Renders a single Location 
@@ -15,17 +18,22 @@ class Item extends React.Component{
   componentDidMount() { }
 
   componentWillUnmount() {}
+  
+  setActiveLocation(data) {
+	Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, data);	
+  }
 
   render() {
     return (
-       <a href="#" className="list-group-item">
-       <h4 className="list-group-item-heading">{this.props.name}</h4>
-       <p className="list-group-item-text">
-          {this.props.countryName}
+       <div className="location list-group-item" onClick={this.setActiveLocation.bind(this, this.props)}>
+       <h4 className="list-group-item-heading"><strong>{this.props.name}</strong>, {this.props.countryName}</h4>
+       <p className="list-group-item-text location-item">          
           {this.props.fclName}
+        </p>
+		<p className="list-group-item-text location-item">          
           {this.props.fcodeName}
         </p>
-        </a>
+        </div>
     )
   }
 }
@@ -44,16 +52,21 @@ class ListItems extends React.Component{
   componentWillUnmount() {}
 
   render() {
-    return (
-  <div className="list-group">
-
-    {
-      this.props.records.map((item) =>{
-
-        return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
-    }
-    </div>)
+  if(this.props.total == -1) {
+  	return (
+		<h4> No location results found. </h4>
+	  )
   }
+  else {
+    	return (
+		  <div className="list-group">
+    		{
+      			this.props.records.map((item) => {
+        			return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
+    			}
+    	  </div>)
+  	  	}	
+	}
 }
 
 /*
@@ -63,6 +76,7 @@ class LocationsList extends React.Component {
 
     constructor() {
       super();
+      debugger;
       this.store=LocationsStore;
       let data=(this.store.get())?this.store.get().toJS():[]
       this.state=data
@@ -84,16 +98,21 @@ class LocationsList extends React.Component {
 
     render() {
     return (
-       <div id="locations">
-        <div className="panel panel-info">
-           <div className="panel-heading">List of Locations</div>
-          <div className="panel-body list">
-            <ListItems {...this.state}/>
-          </div>
-        </div>
-      </div>
-
-        )
+		<Draggable
+			handle=".handle"
+			start={{x: 0, y: 0}}
+			grid={[25, 25]}
+			zIndex={100}>
+		    <div id="locations">
+			<div className="panel panel-info">
+			  <div className="panel-heading handle">List of Locations</div>
+			    <div className="panel-body list">
+			 	  <ListItems {...this.state}/>
+			    </div>
+			  </div>
+		    </div>
+		</Draggable>
+      )
   }
 }
 

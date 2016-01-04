@@ -13,6 +13,9 @@ export default  class GeonamesClient extends BaseClient{
 		if(this.options.country) {
 			Object.assign(result, { 'country': this.options.countryISO })
 		}
+		if(this.options.fuzzy) {
+			Object.assign(result, { 'fuzzy': window.FUZZY })
+		}
 		return result
 	}
 

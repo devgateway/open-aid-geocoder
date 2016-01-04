@@ -31,24 +31,29 @@ const PopUpStore = createStore({
 			}
 		},
 		clickedLocationPosition: null
-
 	},
 	
 	mixins: [StoreMixins],
 
-	init() {
-		this.listenTo(LocationsGeoJson, this.updateLocations);
-		this.listenTo(CountryGeo, this.updateCountry);
-		this.listenTo(ProjectStore, this.onProjectUpdate);
-		/*LISTEN PROJECT STORE */
+		init() {
+			this.listenTo(LocationsGeoJson, this.updateLocations);
+			this.listenTo(CountryGeo, this.updateCountry);
+			this.listenTo(ProjectStore, this.onProjectUpdate);
 			this.listenTo(ProjectGeoJson, this.updateProjectLocations);
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
+			this.listenTo(Actions.get(Constants.ACTION_SET_ACTIVE_LOCATION), 'setActiveLocation');
 
 		},
 
 		getInitialState() {
 			return this.get();
+		},
+		
+		setActiveLocation(locationFeature) {
+			var newState = Object.assign({}, this.get());
+			newState.activeLocation = locationFeature;
+			this.setData(newState);
 		},
 
 		updateLocations(data) {
@@ -89,6 +94,8 @@ const PopUpStore = createStore({
 		},
 
 		updatePopupInfo(params) {
+
+			const {countryFeature, locationFeature, position} = params;
 
 			if (!countryFeature) {
 				console.log("COUNTRY INFO IS EMPTY .....")
