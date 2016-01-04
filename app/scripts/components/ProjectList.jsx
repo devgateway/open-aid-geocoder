@@ -19,7 +19,7 @@ class ProjectLink extends React.Component {
 
   render() {
     //TODO:Extract URL into a variable
-    return (<ListGroupItem><Link to={"/fixed/map/" + this.props.id}>{this.props.title}</Link></ListGroupItem>       
+    return (<ListGroupItem bsStyle={this.props.locations? "success" : ""}><Link to={"/fixed/map/" + this.props.project_id}>{this.props.title}</Link></ListGroupItem>       
       )
   }
 }
@@ -65,7 +65,7 @@ class Projects extends React.Component {
                   <Col>
                     <ListGroup>
                       {this.state.projects.map((project) => { 
-                          return <ProjectLink key={project._id} id={(project.project_id).toString()} title={project.title}/>
+                          return <ProjectLink key={project._id} {...project}/>
                     })
                   }
                 </ListGroup>
