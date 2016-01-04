@@ -62,21 +62,19 @@ class MapView extends React.Component {
   queryFeatures(latlng,layer){
    return leafletPip.pointInLayer(latlng, layer);
   }
- 
-
 
   render() {
       return (
           <div>
             <Map {...this.state.map} ref="map">
               <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-                <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations}  autoZoom={true}></LocationsLayer>
-                <CountryLayer data={this.state.layers.country} autoZoom={true}  ref="countries"/>  
-                <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
-              </Map>
-            </div>
-        )
-        }
+              <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations}  autoZoom={true}></LocationsLayer>
+              <CountryLayer data={this.state.layers.country} autoZoom={true}  ref="countries"/>  
+              <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
+            </Map>
+          </div>
+      )
+  }
 }
 
 export default MapView;

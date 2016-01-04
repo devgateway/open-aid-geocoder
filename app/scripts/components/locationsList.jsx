@@ -2,6 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import LocationsStore from '../stores/Locations.es6';
+import * as Actions from '../actions/Actions.es6';
+import * as Constants from '../constants/Contants.es6';
 
 /*
   Renders a single Location 
@@ -16,16 +18,22 @@ class Item extends React.Component{
 
   componentWillUnmount() {}
 
+  _showLocationPopup(){
+    Actions.invoke(Constants.ACTION_POPUP_INFO_FROM_LIST, {'isCoded': false, 'data': this.props});
+    debugger;
+  }
+
   render() {
+    debugger;
     return (
-       <a href="#" className="list-group-item">
-       <h4 className="list-group-item-heading">{this.props.name}</h4>
-       <p className="list-group-item-text">
-          {this.props.countryName}
-          {this.props.fclName}
-          {this.props.fcodeName}
-        </p>
-        </a>
+        <span className="list-group-item">
+          <a onClick={this._showLocationPopup.bind(this)}><h4 className="list-group-item-heading">{this.props.name}</h4></a>
+          <p className="list-group-item-text">
+            {this.props.countryName}
+            {this.props.fclName}
+            {this.props.fcodeName}
+          </p>
+        </span>
     )
   }
 }

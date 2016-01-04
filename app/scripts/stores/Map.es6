@@ -38,6 +38,7 @@ const PopUpStore = createStore({
 			this.listenTo(LocationsGeoJson, this.updateLocations);
 			this.listenTo(CountryGeo, this.updateCountry);
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
+			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO_FROM_LIST), 'updatePopupInfoFromList');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
 
 		},
@@ -68,7 +69,7 @@ const PopUpStore = createStore({
 		},
 
 		updatePopupInfo(params) {
-
+			debugger;
 			const {
 				countryFeature, locationFeature, position
 			} = params;
@@ -93,6 +94,27 @@ const PopUpStore = createStore({
 				popup: {
 					'position': position,
 					location: geocoding
+				}
+			}));
+		},
+
+
+		updatePopupInfoFromList(params) {
+			let position = {};
+			let geocoding = {};
+			if (params.isCoded){
+				geocoding = params.data;
+				position = {lat: params.data.geometry.coordinates[1], lng: params.data.geometry.coordinates[0]};
+			} else {
+				geocoding = this.makeGeocodingObject(params);
+				position = {lat: params.lat, lng: params.lng};
+			}
+			
+			/*creates info window parameters */
+			this.setData(Object.assign({}, this.get(), {
+				popup: {
+					'position': position,
+					'location': geocoding
 				}
 			}));
 		},
