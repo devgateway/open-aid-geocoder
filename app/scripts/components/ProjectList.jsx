@@ -19,8 +19,11 @@ class ProjectLink extends React.Component {
 
   render() {
     //TODO:Extract URL into a variable
-    return (<ListGroupItem bsStyle={this.props.locations? "success" : ""}><Link to={"/fixed/map/" + this.props.project_id}>{this.props.title}</Link></ListGroupItem>       
-      )
+    if (this.props.locations){
+      return (<ListGroupItem bsStyle="success"><Link to={"/fixed/map/" + this.props.project_id}>{this.props.title}</Link></ListGroupItem>)
+    } else {
+      return (<ListGroupItem><Link to={"/fixed/map/" + this.props.project_id}>{this.props.title}</Link></ListGroupItem>)
+    }
   }
 }
 

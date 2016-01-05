@@ -40,7 +40,6 @@ let LocationsSearch = React.createClass({
         Actions.invoke(Constants.ACTION_SEARCH_LOCATIONS,this.state)
       },
 
-
       handleChange(e) {
         let fuzzy=(e.target.name=='fuzzy')?!this.state.fuzzy:this.state.fuzzy;
         let country=(e.target.name=='country')?!this.state.country:this.state.country;
@@ -77,7 +76,7 @@ let LocationsSearch = React.createClass({
                   
                       type="text" 
                       value={this.state.text} 
-                      placeholder="Enter text   to search" 
+                      placeholder="Enter text to search" 
                       bsStyle={this.validationState() } 
                       hasFeedback bsSize="small" 
                       ref="text" 

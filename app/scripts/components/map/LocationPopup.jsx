@@ -359,7 +359,7 @@ const LOCATION_PROTOTYPE={
               <div className="col-lg-12"> 
                 <div className="form-group">
                   <label  for="typeCode">Activity Description</label>
-                  <textarea   className="form-control" id="activityDescription" onChange={this.activityDescriptionChanged.bind(this)}></textarea>
+                  <textarea   className="form-control" id="activityDescription" value={this.props.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
                 </div>
               </div>
             </div>
