@@ -41,7 +41,6 @@ const PopUpStore = createStore({
 			this.listenTo(CountryGeo, this.updateCountry);
 
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
-			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO_FROM_LIST), 'updatePopupInfoFromList');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
 			this.listenTo(Actions.get(Constants.ACTION_SET_ACTIVE_LOCATION), 'setActiveLocation');
 
@@ -51,10 +50,27 @@ const PopUpStore = createStore({
 			return this.get();
 		},
 		
-		setActiveLocation(locationFeature) {
+		setActiveLocation(params) {
+			const {locationFeature, isCoded} = params;
 			var newState = Object.assign({}, this.get());
-			newState.activeLocation = locationFeature;
+			if (isCoded){
+				newState.activeLocation = this.getFeatureFromCoded(locationFeature);
+			} else {
+				newState.activeLocation = locationFeature;
+			}			
 			this.setData(newState);
+		},
+
+		getFeatureFromCoded(data) {
+			return {
+				'fcode': data.featureDesignation.code,
+				'fcodeName': data.featureDesignation.name,
+				'geonameId': data.id,
+				'lat': data.geometry.coordinates[1],
+				'lng': data.geometry.coordinates[0], 
+				'name': data.name,
+				'toponymName': data.toponymName
+			};
 		},
 
 		updateLocations(data) {
@@ -65,9 +81,19 @@ const PopUpStore = createStore({
 
 		updateCountry(data) {
 			var newState = Object.assign({}, this.get())
-			newState.layers.country = data;
+			newState.layers.country = data.countryLayer;
 			this.setData(newState);
 		},
+
+		onProjectUpdate(data) {
+			var newState = Object.assign({}, this.get())
+			newState.project = data.project.data;
+			this.setData(newState);
+ 			Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
+ 			if (data.project.data.country){
+				Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, data.project.data.country.iso3);
+	 		}
+ 	 	},
 
 		updatePopupDataEntry(params) {
 			this.setData(Object.assign({}, this.get(), {
@@ -76,6 +102,12 @@ const PopUpStore = createStore({
 					location: null
 				}
 			}));
+		},
+
+		updateProjectLocations(data) {
+			var newState = Object.assign({}, this.get())
+			newState.geocoding = data.geojson;
+			this.setData(newState);
 		},
 
 		updatePopupInfo(params) {
@@ -106,28 +138,6 @@ const PopUpStore = createStore({
 				}
 			}));
 		},
-
-
-		updatePopupInfoFromList(params) {
-			let position = {};
-			let geocoding = {};
-			if (params.isCoded){
-				geocoding = params.data;
-				position = {lat: params.data.geometry.coordinates[1], lng: params.data.geometry.coordinates[0]};
-			} else {
-				geocoding = this.makeGeocodingObject(params);
-				position = {lat: params.lat, lng: params.lng};
-			}
-			
-			/*creates info window parameters */
-			this.setData(Object.assign({}, this.get(), {
-				popup: {
-					'position': position,
-					'location': geocoding
-				}
-			}));
-		},
-
 
 		makeGeocodingObject(params) {
 			let model = {

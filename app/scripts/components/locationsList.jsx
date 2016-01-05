@@ -20,24 +20,20 @@ class Item extends React.Component{
   componentWillUnmount() {}
   
   setActiveLocation(data) {
-	Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, data);	
-  }
-
-  _showLocationPopup(){
-    Actions.invoke(Constants.ACTION_POPUP_INFO_FROM_LIST, {'isCoded': false, 'data': this.props});
-    debugger;
+    Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'locationFeature': data});	
   }
 
   render() {
     return (
-        <span className="list-group-item">
-          <a onClick={this._showLocationPopup.bind(this)}><h4 className="list-group-item-heading">{this.props.name}</h4></a>
-          <p className="list-group-item-text">
-            {this.props.countryName}
-            {this.props.fclName}
-            {this.props.fcodeName}
-          </p>
-        </span>
+       <div className="location list-group-item" onClick={this.setActiveLocation.bind(this, this.props)}>
+       <h4 className="list-group-item-heading"><strong>{this.props.name}</strong>, {this.props.countryName}</h4>
+       <p className="list-group-item-text location-item">          
+          {this.props.fclName}
+        </p>
+        <p className="list-group-item-text location-item">          
+          {this.props.fcodeName}
+        </p>
+        </div>
     )
   }
 }

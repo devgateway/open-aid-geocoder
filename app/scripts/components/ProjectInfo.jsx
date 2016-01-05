@@ -18,7 +18,7 @@ class Item extends React.Component{
   }
 
    _showLocationPopup(){
-    Actions.invoke(Constants.ACTION_POPUP_INFO_FROM_LIST, {'isCoded': true, 'data': this.props});//TODO make data conversion for infowindow
+    Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props});//TODO make data conversion for infowindow
   }
 
   render() {

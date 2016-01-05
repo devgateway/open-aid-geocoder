@@ -73,10 +73,9 @@ class MapView extends React.Component {
   /* Pass on location click from location list window, make selected location active and show popup */
   setActiveLocation(location)
   {
-	 let countryInfo = this.queryFeatures([location.lng,location.lat], this.refs.countries.leafletElement);
-	 let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
-	 
-     Actions.invoke(Constants.ACTION_POPUP_INFO,{locationFeature:{properties:location},countryFeature, 'position':[location.lat,location.lng]}) 
+    let countryInfo = this.queryFeatures([location.lng,location.lat], this.refs.country.leafletElement);
+	  let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
+	  Actions.invoke(Constants.ACTION_POPUP_INFO,{locationFeature:{properties:location},countryFeature, 'position':[location.lat,location.lng]}) 
   }
  
 
