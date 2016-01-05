@@ -23,7 +23,7 @@ export default class CountryLayer extends DynamicGeoJson {
   style() {
     return {
       radius: 8,
-      fillColor: "#F2AF33",
+      fillColor: "#b09464",
       color: "#000",
       weight: 1,
       opacity: 1,
@@ -38,7 +38,7 @@ export default class CountryLayer extends DynamicGeoJson {
   highlightStyle() {
     return {
       radius: 10,
-      fillColor: "#F25A33",
+      fillColor: "#e6ba73",
       color: "#000",
       weight: 2,
       opacity: 1,
@@ -52,7 +52,8 @@ export default class CountryLayer extends DynamicGeoJson {
    * @param  {[type]} layer   [description]
    * @return {[type]}         [description]
    */
-  onEachFeature(feature, layer) {
+  onEachFeature(feature, layer) { 
+    debugger;
     layer.on({
       mouseover: this.highlightFeature.bind(this),
       mouseout: this.resetHighlight.bind(this)});

@@ -76,7 +76,6 @@ class LocationsList extends React.Component {
 
     constructor() {
       super();
-      debugger;
       this.store=LocationsStore;
       let data=(this.store.get())?this.store.get().toJS():[]
       this.state=data

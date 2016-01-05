@@ -13,31 +13,15 @@ export default class LocationsLayer extends DynamicGeoJson {
       super();
     }
 
-    style() {
-      return {
-        radius: 8,
-        fillColor: "#CC6666",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-      };
-    }
-
-    highlightStyle() {
-      return {
-        radius: 10,
-        fillColor: "#CC6666",
-        color: "#000",
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.8
-      };
+   style() {
+ 
     }
 
 
     pointToLayer(feature, latlng) {
-      return L.circleMarker(latlng, this.style());
+      let  icon = L.divIcon({className: 'location-marker'});
+      let marker= L.marker(latlng,  {icon: icon});
+      return marker
     }
 
     onEachFeature(feature, layer) {

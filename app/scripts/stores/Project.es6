@@ -14,6 +14,7 @@ const SingleProjectStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT), 'loading');		
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).completed, 'completed');
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).failed, 'failed');
+		this.listenTo(Actions.get(Constants.ACTION_SAVE_LOCATION),'addGeocoding')
 	},
 
 	loading(){

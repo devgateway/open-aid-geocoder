@@ -86,8 +86,6 @@ export default class DataEntry extends React.Component {
   }
 
   validateField(value, elementId, validator) {
-    debugger;
-
       if (!validator) { //default validator
         validator = (val) => {
           return val != null

@@ -14,19 +14,22 @@ body{
 	height: 100%; 
 }
 
-
-
 .form-inline .form-group{
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
- .spacing{
-	 margin-left: 5px !important;
+.spacing{
+  margin-left: 5px !important;
 }
 
 
- 
+.leaflet-container {
+  height: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 #locations {
 	position: absolute;
 	left: 20px;
@@ -47,27 +50,27 @@ body{
 .handle {
 	cursor: move;
 }
- 
+
 .opacity-10 {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
   opacity: 0.1;
 }
- 
+
 .opacity-20 {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   opacity: 0.2;
 }
- 
+
 .opacity-50 {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
 }
- 
+
 .opaque {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
- 
+
 .transparent {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -82,22 +85,22 @@ body{
 
 
 .popup{
-    width:430px;
-    padding: 10px;
-    margin: 5px 0;
-    padding-right: 10px;
-    border: 1px solid #f0ad4e;
-    border-left-width: 5px;
-    border-radius: 3px;
+  width:430px;
+  padding: 10px;
+  margin: 5px 0;
+  padding-right: 10px;
+  border: 1px solid #f0ad4e;
+  border-left-width: 5px;
+  border-radius: 3px;
 
   button{
-      margin-right:15px;
+    margin-right:15px;
   }
 
-    h4{
-      color:#f0ad4e;
-    }
- 
+  h4{
+    color:#f0ad4e;
+  }
+
   p {
     margin: 2px;
     padding:2px;
@@ -105,63 +108,63 @@ body{
 }
 
 .dataEntry{
-    width:430px;
-    min-height: 200px;
-    padding: 10px;
-    margin: 5px 0;
-    padding-right: 10px;
-    border: 1px solid #5cb85c;
-    border-left-width: 5px;
-    border-radius: 3px;
-    
-   .form-control {
-      display: block;
-      width: 100%;
-      height: 25px;
-      padding: 3px 6px;
-      font-size: 11px;
-      line-height: 1.42857143;
-      color: #555;
-      background-color: #fff;
-      background-image: none;
-      border: 1px solid #ccc;
-      border-radius: 0px;
-      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-      -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-      -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  width:430px;
+  min-height: 200px;
+  padding: 10px;
+  margin: 5px 0;
+  padding-right: 10px;
+  border: 1px solid #5cb85c;
+  border-left-width: 5px;
+  border-radius: 3px;
 
-    }
+  .form-control {
+    display: block;
+    width: 100%;
+    height: 25px;
+    padding: 3px 6px;
+    font-size: 11px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+  }
   
   .big{
 
-       height: 26px;
-       font-size: 12px;
-      margin-bottom: 4px;
+   height: 26px;
+   font-size: 12px;
+   margin-bottom: 4px;
 
-    } 
-    .success{
-       color:#449d44
-    } 
-  
-  .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
-    background-color:#FFFFFF;
-  }
+ } 
+ .success{
+   color:#449d44
+ } 
 
-  button{
-      margin-right:15px;
-  }
-  
-  h4.danger{
-    color:d9534f;
-    font-size: 14px;
-  }
+ .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
+  background-color:#FFFFFF;
+}
 
-  p {
-    margin: 2px;
-    padding:2px;
-  }
+button{
+  margin-right:15px;
+}
+
+h4.danger{
+  color:d9534f;
+  font-size: 14px;
+}
+
+p {
+  margin: 2px;
+  padding:2px;
+}
 }
 
 

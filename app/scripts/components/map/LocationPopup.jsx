@@ -186,8 +186,6 @@ const LOCATION_PROTOTYPE={
   }
 
   validateField(value, elementId, validator) {
-    debugger;
-
       if (!validator) { //default validator
         validator = (val) => {
           return val != null
@@ -393,8 +391,7 @@ export default class LocationPopup extends React.Component {
   }
 
   turnDataEntryOn() {
-    debugger;
-    this.setState({
+   this.setState({
       'mode': 'DataEntry'
     })
   }
