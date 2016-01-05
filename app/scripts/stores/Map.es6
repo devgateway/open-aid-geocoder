@@ -7,8 +7,8 @@ import {StoreMixins} from '../mixins/StoreMixins.es6';
 
 import LocationsGeoJson from './LocationsGeo.es6';
 import CountryGeo from  './CountryGeo.es6';
-
-
+import ProjectStore from './Project.es6';
+import ProjectGeo  from './ProjectGeo.es6';
 /*This store should be renamed to geocoding and should actually manage the state of teh coding data  whic*/
 const PopUpStore = createStore({
 
@@ -34,10 +34,12 @@ const PopUpStore = createStore({
 	mixins: [StoreMixins],
 
 		init() {
+			
 			this.listenTo(ProjectStore, this.onProjectUpdate);
-			this.listenTo(ProjectGeoJson, this.updateProjectLocations);
+			this.listenTo(ProjectGeo, this.updateProjectLocations);
 			this.listenTo(LocationsGeoJson, this.updateLocations);
 			this.listenTo(CountryGeo, this.updateCountry);
+
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO_FROM_LIST), 'updatePopupInfoFromList');
 			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
@@ -77,16 +79,9 @@ const PopUpStore = createStore({
 		},
 
 		updatePopupInfo(params) {
-<<<<<<< HEAD
 
 			const {countryFeature, locationFeature, position} = params;
 
-=======
-			debugger;
-			const {
-				countryFeature, locationFeature, position
-			} = params;
->>>>>>> OAGC-49
 			if (!countryFeature) {
 				console.log("COUNTRY INFO IS EMPTY .....")
 			}
