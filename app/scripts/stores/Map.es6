@@ -53,7 +53,7 @@ const PopUpStore = createStore({
 		setActiveLocation(params) {
 			const {locationFeature, isCoded} = params;
 			var newState = Object.assign({}, this.get());
-			if (isCoded){
+			if (isCoded){ 
 				newState.activeLocation = this.getFeatureFromCoded(locationFeature);
 			} else {
 				newState.activeLocation = locationFeature;
@@ -69,7 +69,8 @@ const PopUpStore = createStore({
 				'lat': data.geometry.coordinates[1],
 				'lng': data.geometry.coordinates[0], 
 				'name': data.name,
-				'toponymName': data.toponymName
+				'toponymName': data.toponymName,
+				'activityDescription': data.activityDescription
 			};
 		},
 
@@ -124,7 +125,7 @@ const PopUpStore = createStore({
 
 			/*Geonames properties*/
 			const {
-				fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1
+				fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1, activityDescription
 			} = locationFeature.properties;
 
 			const geocoding = this.makeGeocodingObject({
@@ -143,7 +144,7 @@ const PopUpStore = createStore({
 			let model = {
 				'name': params.name,
 				'id': params.geonameId,
-				'activityDescription': '',
+				'activityDescription': params.activityDescription || '',
 
 				'geometry': {
 					"type": "Point",

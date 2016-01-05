@@ -2,7 +2,7 @@
 require('../../stylesheets/gridisgood.css')
 import React from 'react';
 import  Grid from '../util/lib/Grid.jsx';
-import LocationsList from './LocationsList.jsx';
+import ProjectInfo from './ProjectInfo.jsx';
 import MapView from './map/Map.jsx';
 /**
  * [render description]
@@ -28,7 +28,7 @@ let  GridLayout = React.createClass({
                     // Use either it or nested divs i.e. this.props.children
                     // buildFromArray={[{'row':0,'col':0,'rowspan':1,'colspan':3,'children':"1"}]}
                 >
-                    <div colspan={3} rowspan={5} row={0} col={0}>     <LocationsList/></div>
+                    <div colspan={3} rowspan={5} row={0} col={0}>     <ProjectInfo/></div>
                     <div colspan={12} rowspan={8} row={0} col={3}><MapView/></div>
                     
                 </Grid>

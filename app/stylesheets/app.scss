@@ -30,6 +30,15 @@ body{
         margin: 0 auto;
 }
 
+.location-list {
+  overflow: auto;
+  max-height: 400;
+}
+
+.show-location-button {
+  float: right;
+}
+  
 #locations {
 
 	position: absolute;
@@ -46,7 +55,7 @@ body{
 		background-color: #eee;
 	}
 	
-	.list-group-item {
+  .list-group-item {
 		padding: 10px;
 	}
 	
@@ -62,6 +71,7 @@ body{
 	left: 10px;
 	top: 80px;
 	width: 500px;
+  max-height: 600px;
 	z-index: 99;
 }
 

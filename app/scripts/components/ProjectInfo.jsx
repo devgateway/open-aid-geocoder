@@ -1,11 +1,12 @@
 
 import React from 'react';
-import {Tabs, Tab}  from 'react-bootstrap';
+import {Tabs, Tab, Button}  from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import  * as Actions from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
 import ProjectStore from '../stores/Project.es6';
+import LocationsList from './LocationsList.jsx';
 
 
 /*
@@ -24,7 +25,8 @@ class Item extends React.Component{
   render() {
   	return (
        	<div className="list-group-item">
-       		<a onClick={this._showLocationPopup.bind(this)}><h4 className="list-group-item-heading">{this.props.name}</h4></a>
+       		<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Show in map</Button>
+       		<a ><h4 className="list-group-item-heading">{this.props.name}</h4></a>
           	<p className="list-group-item-text">
           		{this.props.description}
        		</p>
@@ -69,7 +71,7 @@ class ProjectInfo extends React.Component {
     return (
 		<Draggable
 			handle=".handle"
-			start={{x: 0, y: 0}}
+			start={{x: 20, y: 0}}
 			grid={[25, 25]}
 			zIndex={100}>
 			<div id="project-info">
@@ -81,8 +83,8 @@ class ProjectInfo extends React.Component {
 							  {this.state.long_description}
 						</div>
 					</Tab>
-				    <Tab eventKey={2} title="Locations">
-				    	<div className="panel-body list">
+				    <Tab eventKey={2} title="Geocoding">
+				    	<div className="panel-body list location-list">
 							{
 								this.state.locations?
 									this.state.locations.map((item) => {
@@ -90,6 +92,9 @@ class ProjectInfo extends React.Component {
 	        					: ""
 							}
 						</div>
+				    </Tab>
+				    <Tab eventKey={3} title="Gazzetter Locations">
+				    	<LocationsList/>
 				    </Tab>
 				  </Tabs>
 				

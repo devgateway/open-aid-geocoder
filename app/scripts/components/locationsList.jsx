@@ -5,6 +5,7 @@ import Draggable from 'react-draggable';
 import LocationsStore from '../stores/Locations.es6';
 import * as Actions from '../actions/Actions.es6';
 import *  as Constants from '../constants/Contants.es6';
+import {Button}  from 'react-bootstrap';
 
 /*
   Renders a single Location 
@@ -25,14 +26,12 @@ class Item extends React.Component{
 
   render() {
     return (
-       <div className="location list-group-item" onClick={this.setActiveLocation.bind(this, this.props)}>
-       <h4 className="list-group-item-heading"><strong>{this.props.name}</strong>, {this.props.countryName}</h4>
-       <p className="list-group-item-text location-item">          
-          {this.props.fclName}
-        </p>
-        <p className="list-group-item-text location-item">          
-          {this.props.fcodeName}
-        </p>
+        <div className="list-group-item">
+          <Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this.setActiveLocation.bind(this, this.props)}>Show in map</Button>
+          <a><h4 className="list-group-item-heading">{this.props.name}</h4></a>
+          <h5><b>{this.props.countryName}</b></h5>
+          <p className="list-group-item-text">{this.props.fclName}</p>
+          <p className="list-group-item-text">{this.props.fcodeName}</p>
         </div>
     )
   }
@@ -52,21 +51,21 @@ class ListItems extends React.Component{
   componentWillUnmount() {}
 
   render() {
-  if(this.props.total == -1) {
-  	return (
-		<h4> No location results found. </h4>
-	  )
-  }
-  else {
+    if(!this.props.records || this.props.records.length == 0) {
     	return (
-		  <div className="list-group">
+  		  <h4> No location results found. </h4>
+  	  )
+    } else {
+    	return (
+  	    <div className="list-group location-list">
     		{
-      			this.props.records.map((item) => {
-        			return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
+      		this.props.records.map((item) => {
+        		return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
     			}
-    	  </div>)
-  	  	}	
-	}
+    	  </div>
+      )
+  	}	
+  }
 }
 
 /*
@@ -76,7 +75,6 @@ class LocationsList extends React.Component {
 
     constructor() {
       super();
-      debugger;
       this.store=LocationsStore;
       let data=(this.store.get())?this.store.get().toJS():[]
       this.state=data
@@ -98,21 +96,10 @@ class LocationsList extends React.Component {
 
     render() {
     return (
-		<Draggable
-			handle=".handle"
-			start={{x: 0, y: 0}}
-			grid={[25, 25]}
-			zIndex={100}>
-		    <div id="locations">
-			<div className="panel panel-info">
-			  <div className="panel-heading handle">List of Locations</div>
-			    <div className="panel-body list">
-			 	  <ListItems {...this.state}/>
-			    </div>
-			  </div>
-		    </div>
-		</Draggable>
-      )
+			<div className="panel-body list">
+	 	    <ListItems {...this.state}/>
+      </div>
+		)
   }
 }
 
