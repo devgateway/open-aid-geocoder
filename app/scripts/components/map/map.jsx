@@ -57,7 +57,7 @@ class MapView extends React.Component {
   locationClick(e){  
     //e.targer.feature 
     //using geonames lat and lng instead of event latlng should be more precise.
-    let countryInfo=this.queryFeatures(e.latlng,this.refs.countries.leafletElement);
+    let countryInfo=this.queryFeatures(e.latlng,this.refs.country.leafletElement);
     let locationFeature=e.target.feature
     let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
     const {latlng}=e;
