@@ -18,15 +18,15 @@ const ProjectGeoJsonStore = createStore({
 		this.listenTo(ProjectStore, this.process);
 	},
 
-	process(data) {
-		if (data.project.data.locations) {
+	process(project) {
+		if (project.locations) {
 			let featureCollection=
 			new GeoJsonBuilder({
 				type: "Point",
 				coordinates: function() {
 					return [this.geometry.coordinates[0], this.geometry.coordinates[1]]
 				}
-			}).build(data.project.data.locations);
+			}).build(project.locations);
 			this.setData({'geojson':featureCollection});
 		}
 	}

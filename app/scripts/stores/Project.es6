@@ -21,12 +21,25 @@ const SingleProjectStore = createStore({
 		console.log('Loading project...')
 	},
 
-	completed(project){
-		this.setData({ "project": project }); //TODO: use inmutable???
+	completed(response){
+		this.setData(response.data); 
 	},
 
 	failed(message){
 		console.error(`Error loading project: ${message}`)
+	},
+	
+
+	addGeocoding(geocoding){
+		let project=this.get();
+		let newState=Object.assign({},project);
+		let locations=newState.locations || []
+			locations.push(geocoding);
+
+		Object.assign(newState,{locations:locations});
+
+		this.setData(newState)
+		
 	}
 
 });

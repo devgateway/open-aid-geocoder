@@ -86,13 +86,13 @@ const PopUpStore = createStore({
 			this.setData(newState);
 		},
 
-		onProjectUpdate(data) {
+		onProjectUpdate(project) {
 			var newState = Object.assign({}, this.get())
-			newState.project = data.project.data;
+			newState.project = project;
 			this.setData(newState);
  			Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
- 			if (data.project.data.country){
-				Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, data.project.data.country.iso3);
+ 			if (project.country){
+				Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, project.country.iso3);
 	 		}
  	 	},
 

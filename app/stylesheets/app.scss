@@ -27,7 +27,7 @@ body{
   .geocoding-marker:hover{
     -webkit-transition: all 0.1s linear;
     box-shadow: 0 0 6px 5px rgba(255, 255, 255, 0.7), 0 0 0 6px rgba(255, 88, 1, 0.7), 0 0 0 12px rgba(242, 129, 0, 0.7); 
-
+    
   }
 
   .location-marker {
@@ -38,12 +38,22 @@ body{
     background-clip: padding-box;
     background-color: rgba(169, 171, 169, 0.8);
     box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgb(93, 92, 91), 0 0 0 8px rgba(130, 118, 105, 0.24);
+    padding-top: 10px;
+    .text{
+      position: relative;
+      height: 30px !important; 
+      width:30px !important;;
+      text-align: center;
+      color:#000;
+      font-size: 60%;
 
+    }
   }
 
   .location-marker:hover{
     -webkit-transition: all 0.1s linear; 
     box-shadow: 0 0 6px 5px rgba(255, 255, 255, 0.6), 0 0 0 6px rgb(93, 92, 91), 0 0 0 8px rgba(130, 118, 105, 0.24);
+    z-index: 100000000000 !important;
   }
 
 }
@@ -180,6 +190,27 @@ body{
     padding:2px;
   }
 }
+
+.popup.new{
+  border: 1px solid rgba(169, 171, 169, 0.8);
+  border-left-width: 5px;
+  border-radius: 3px;
+  
+
+
+  button{
+    margin-right:15px;
+  }
+  h4 {
+    color: rgba(169, 171, 169, 0.8);
+  }
+
+  p {
+    margin: 2px;
+    padding:2px;
+  }
+}
+
 
 .dataEntry{
   width:430px;

@@ -53,7 +53,6 @@ export default class CountryLayer extends DynamicGeoJson {
    * @return {[type]}         [description]
    */
   onEachFeature(feature, layer) { 
-    debugger;
     layer.on({
       mouseover: this.highlightFeature.bind(this),
       mouseout: this.resetHighlight.bind(this)});

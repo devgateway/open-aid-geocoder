@@ -39,8 +39,9 @@ const LOCATION_PROTOTYPE={
   render() {
 
     return (
-       <div className="popup">
-
+       
+    <div className={"popup "+this.props.status}>
+                     
 
       <h4>{this.props.name}</h4>
        <div className="row"> 
@@ -181,7 +182,7 @@ const LOCATION_PROTOTYPE={
   onSave() {
     let geocoding=this.validate()
     if (geocoding) {
-        Actions.invoke(Contants.ACTION_SAVE_LOCATION,geocoding)
+        Actions.invoke(Constants.ACTION_SAVE_LOCATION,geocoding)
     }
   }
 
@@ -239,9 +240,10 @@ const LOCATION_PROTOTYPE={
     }
 
     render() {
+
           if(this.state.confirmDelete){
            return (    
-                     <div className="dataEntry">
+                     <div className={"dataEntry "+this.props.status}>
                        <div className="row"> 
                         <div className="col-lg-12">
                          <h4 className="danger"> This location will be marked as deleted, are you sure to continue?</h4>  
@@ -359,7 +361,7 @@ const LOCATION_PROTOTYPE={
               <div className="col-lg-12"> 
                 <div className="form-group">
                   <label  for="typeCode">Activity Description</label>
-                  <textarea   className="form-control" id="activityDescription" value={this.props.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
+                  <textarea   className="form-control" id="activityDescription" value={this.state.geocoding.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
                 </div>
               </div>
             </div>

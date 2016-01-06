@@ -18,28 +18,48 @@ export default class LocationsLayer extends DynamicGeoJson {
     }
 
 
+     componentDidUpdate(prevProps) {
+      if(prevProps.data){
+        debugger;
+               console.log('componentDidUpdate prevProps.data-'+prevProps.data.features.length)
+           }
+
+     if (this.props.data){
+        debugger;
+        console.log('componentDidUpdate this.props.data -'+this.props.data.features.length)
+     }
+     
+
+     
+      const {data,map, ...props} = this.props;
+      if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
+        this._update();
+        if (props.autoZoom) {
+          map.fitBounds(this.leafletElement)
+        }
+      }
+      this.setStyleIfChanged(prevProps, this.props);
+    }
+
+
     pointToLayer(feature, latlng) {
-      let  icon = L.divIcon({className: 'location-marker'});
+
+      let  icon = L.divIcon({className: 'location-marker',html:`<div class="text">${feature.properties.fcode}</div>`});
       let marker= L.marker(latlng,  {icon: icon});
       return marker
     }
 
     onEachFeature(feature, layer) {
+   
       layer.on({
-        mouseover: this.highlightFeature.bind(this),
-        mouseout: this.resetHighlight.bind(this),
         click: this.onFeatureClick.bind(this)
       });
     }
 
-    resetHighlight(e) {
-      var layer = e.target;
-      var feature = e.target.feature;
-      layer.setStyle(this.style());
-    }
-
+   
 
     onFeatureClick(e) {
+
       const {data, map, ...props} = this.props;
       const position = e.latlng
       const {geometry, properties} = e.target.feature;
@@ -54,15 +74,6 @@ export default class LocationsLayer extends DynamicGeoJson {
       this.props.onFeatureClick?this.props.onFeatureClick(e):null;
     }
 
-
-    highlightFeature(e) {
-      var layer = e.target;
-      var feature = e.target.feature;
-      layer.setStyle(this.highlightStyle());
-      if (!L.Browser.ie && !L.Browser.opera) {
-        layer.bringToFront();
-      }
-    }
 
     /*
     render() {

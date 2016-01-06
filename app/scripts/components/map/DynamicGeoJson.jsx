@@ -59,6 +59,7 @@ export default  class DynamicGeoJson extends Path {
     Every time the component gets updated it checks if the geojson data has changed, if changed the layer should be re-created
     */
     componentDidUpdate(prevProps) {
+    
       const {data,map, ...props} = this.props;
       if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
         this._update();

@@ -18,7 +18,6 @@ import CountryLayer from './CountryLayer.jsx';
 import CountryLayersControl from './CountryLayersControl.jsx';
 
 import MapPopUp from './PopUp.jsx';
-import DataEntry from  './DataEntry.jsx';
 import LocationPopup from './LocationPopup.jsx'; 
 import MapStore from '../../stores/Map.es6';
 
@@ -55,6 +54,7 @@ class MapView extends React.Component {
     This is called by location onClick 
   */
   locationClick(e){  
+
     //e.targer.feature 
     //using geonames lat and lng instead of event latlng should be more precise.
     let countryInfo=this.queryFeatures(e.latlng,this.refs.country.leafletElement);
@@ -86,7 +86,7 @@ class MapView extends React.Component {
               <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
               <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations}  autoZoom={true}></LocationsLayer>
               <CountryLayer data={this.state.layers.country} autoZoom={false} ref="country"/>             
-              <CodingLocationLayer className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={true}></CodingLocationLayer>                
+              <CodingLocationLayer className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer>                
               <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
               <CountryLayersControl/>
             </Map>

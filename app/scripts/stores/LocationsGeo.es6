@@ -1,13 +1,13 @@
 import {createStore} from 'reflux';
-import {getAction} from '../actions/Actions.es6';
-import * as Constants from '../constants/Contants.es6';
+	import * as Constants from '../constants/Contants.es6';
 import {List, Map, Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 import LocationsStore from './Locations.es6';
 import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
+import * as Actions from '../actions/Actions.es6';
 
 
-const initialData = {'geojson':null};
+const initialData = {};
 
 const LocationsGeoJsonStore = createStore({
 
@@ -16,6 +16,7 @@ const LocationsGeoJsonStore = createStore({
 
 	init() {
 		this.listenTo(LocationsStore, this.process);
+		this.listenTo(Actions.get(Constants.ACTION_SAVE_LOCATION),'removeSavedLocation')
 	},
 
 	process(data) {
@@ -30,7 +31,17 @@ const LocationsGeoJsonStore = createStore({
 			
 			this.setData(featureCollection)
 		}
+	},
+
+	removeSavedLocation(location){
+		debugger;
+		let newGeoJson=Object.assign({},this.get())
+		let filteredFeatures=newGeoJson.features.map((it)=>{ if (it.properties.geonameId!=location.id){return it}})
+
+		let newData=Object.assign(newGeoJson,{'features':filteredFeatures})
+		this.setData(newData);
 	}
+
 
 
 });

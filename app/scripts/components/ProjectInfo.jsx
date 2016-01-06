@@ -47,7 +47,7 @@ class ProjectInfo extends React.Component {
 	componentWillMount() {
 	  this.loadProject(this.props.id);
 	  this.store = ProjectStore;
-	  let data = (this.store.get()) ? this.store.get() : [];
+	  let data = (this.store.get()) ? this.store.get() : {};
 	  this.state = data;		
 	}
 
@@ -63,8 +63,9 @@ class ProjectInfo extends React.Component {
 	  Actions.invoke(Constants.ACTION_LOAD_SINGLE_PROJECT, id);  
 	}
 	
-	onStoreChange(data){
-	  this.setState(data.project.data);
+	onStoreChange(project){
+		debugger;
+	  this.setState(project);
 	}
 
     render() {
@@ -72,7 +73,7 @@ class ProjectInfo extends React.Component {
 		<Draggable
 			handle=".handle"
 			start={{x: 20, y: 0}}
-			grid={[25, 25]}
+			grid={[1, 1]}
 			zIndex={100}>
 			<div id="project-info">
 			  <div className="panel panel-info">
