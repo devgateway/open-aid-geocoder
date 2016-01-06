@@ -26,12 +26,12 @@ const ShapesStore = createStore({
 	},
 
 	completed(shape, iso){
-		if (!this.data.countryShapes.find((it) => {return it.iso===iso})){
+		var newState = Object.assign({}, this.get());
+		if (!newState.countryShapes.find((it) => {return it.iso===iso})){
 			var data = {iso: iso, shape: shape};
-			var countryShapes = this.data.countryShapes;
-			countryShapes.push(data);
-			this.setData({countryShapes: countryShapes});
-			this.process({shapeList: this.data.shapeList});
+			newState.countryShapes.push(data);
+			this.setData(newState);
+			this.process({shapeList: newState.shapeList});
 			console.log('Country shape was loaded ');
 		}
 	},
@@ -41,21 +41,23 @@ const ShapesStore = createStore({
 	},
 
 	process(data) {
-		this.setData({shapeList: data.shapeList});
+		var newState = Object.assign({}, this.get());
+		Object.assign(newState, {'shapeList': data.shapeList});		
 		let layersVisible = data.shapeList.find((it) => {return it.added == true && it.visible == true}) || [];
 		var features = [];
-		if (this.data.countryShapes.length > 0){
+		if (newState.countryShapes.length > 0){
 			if (layersVisible.map){
 				features = features.concat(
 					layersVisible.map((layer) => {
-						return this.data.countryShapes.find((it) => {return it.iso===layer.iso}).shape.features;
+						return newState.countryShapes.find((it) => {return it.iso===layer.iso}).shape.features;
 		        	})
 		        ); 
 			} else {
-				features = this.data.countryShapes.find((it) => {return it.iso===layersVisible.iso}).shape.features;
+				features = newState.countryShapes.find((it) => {return it.iso===layersVisible.iso}).shape.features;
 			}
 		}
-        this.setData({countryLayer: {'type': 'FeatureCollection', 'features': features}});          
+		Object.assign(newState, {countryLayer: {'type': 'FeatureCollection', 'features': features}});
+        this.setData(newState);       
 	}
 });
 

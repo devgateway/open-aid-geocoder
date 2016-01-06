@@ -27,8 +27,9 @@ class Item extends React.Component{
        	<div className="list-group-item">
        		<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Show in map</Button>
        		<a ><h4 className="list-group-item-heading">{this.props.name}</h4></a>
+          	<h5><b>Activity Description: </b></h5>
           	<p className="list-group-item-text">
-          		{this.props.description}
+          		{this.props.activityDescription}
        		</p>
         </div>
     )
