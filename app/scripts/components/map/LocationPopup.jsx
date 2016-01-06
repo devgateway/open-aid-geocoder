@@ -213,7 +213,7 @@ const LOCATION_PROTOTYPE={
         'admin1': this.props.admin1,
         'admin2': this.props.admin2,
         'geometry': this.props.geometry,
-        'featureDesignation': this.featureDesignation,
+        'featureDesignation': this.props.featureDesignation,
         'type': this.props.type,
         'status': this.props.status
       });
