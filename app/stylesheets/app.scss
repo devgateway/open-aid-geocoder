@@ -12,6 +12,16 @@ body{
 
 	height: 100%; 
 
+   .text{
+      position: relative;
+      height: 30px !important; 
+      width:30px !important;;
+      text-align: center;
+      color:#000;
+      font-size: 60%;
+
+    }
+
   .geocoding-marker {
     height: 30px !important; 
     width:30px !important;
@@ -21,7 +31,7 @@ body{
     /* stops bg color from leaking outside the border: */
     background-color: rgba(253, 154, 0, 0.8);
     box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgba(255, 88, 1, 0.4), 0 0 0 8px rgba(242, 129, 0, 0.24); 
-
+    padding-top: 10px;
   }
 
   .geocoding-marker:hover{
@@ -39,15 +49,7 @@ body{
     background-color: rgba(169, 171, 169, 0.8);
     box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgb(93, 92, 91), 0 0 0 8px rgba(130, 118, 105, 0.24);
     padding-top: 10px;
-    .text{
-      position: relative;
-      height: 30px !important; 
-      width:30px !important;;
-      text-align: center;
-      color:#000;
-      font-size: 60%;
-
-    }
+   
   }
 
   .location-marker:hover{
