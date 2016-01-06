@@ -23,13 +23,45 @@ class Item extends React.Component{
   }
 
   render() {
+  	/*
+  	'id': params.geonameId,
+				'activityDescription': params.activityDescription || '',
+
+				'geometry': {
+					"type": "Point",
+					"coordinates": [params.lng, params.lat]
+				},
+
+				'toponymName': params.toponymName,
+				'featureDesignation': {
+					code: params.fcode,
+					name: params.fcodeName
+				},
+				'type': 'location',
+				'status': 'NEW',
+				'locationClass': null, //{code:''m,name:''}
+				'exactness': null, // {{"code": "1", "name": "Exact"}
+
+  	 */
   	return (
        	<div className="list-group-item">
        		<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Show in map</Button>
        		<a ><h4 className="list-group-item-heading">{this.props.name}</h4></a>
-          	<h5><b>Activity Description: </b></h5>
           	<p className="list-group-item-text">
+          		{this.props.featureDesignation.code} - {this.props.featureDesignation.name}
+       		</p>
+       		<p className="list-group-item-text">
           		{this.props.activityDescription}
+       		</p>
+       		<p className="list-group-item-text">
+          		{this.props.locationClass.name}
+       		</p>
+
+       		<p className="list-group-item-text">
+          		{this.props.exactness.name}
+       		</p>
+       		<p className="list-group-item-text">
+          		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
        		</p>
         </div>
     )

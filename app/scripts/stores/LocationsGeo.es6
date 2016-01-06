@@ -36,9 +36,10 @@ const LocationsGeoJsonStore = createStore({
 	removeSavedLocation(location){
 		debugger;
 		let newGeoJson=Object.assign({},this.get())
-		let filteredFeatures=newGeoJson.features.map((it)=>{ if (it.properties.geonameId!=location.id){return it}})
+		let filteredFeatures=newGeoJson.features.filter((it)=>{ if (it.properties.geonameId!=location.id){return it}})
 
 		let newData=Object.assign(newGeoJson,{'features':filteredFeatures})
+		debugger;
 		this.setData(newData);
 	}
 
