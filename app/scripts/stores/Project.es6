@@ -2,6 +2,7 @@ import {createStore} from 'reflux';
 import * as Actions from '../actions/Actions.es6';
 import *  as Constants from '../constants/Contants.es6';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
+import _ from 'lodash';
 
 const initialData = {};
 const SingleProjectStore = createStore({
@@ -47,7 +48,7 @@ const SingleProjectStore = createStore({
 		} else {
 			locations.push(geocoding);
 		}		
-		Object.assign(newState,{locations:locations});
+		Object.assign(newState,{'locations':locations});
 		this.setData(newState);
 		
 	},
@@ -57,7 +58,9 @@ const SingleProjectStore = createStore({
 		let newState=Object.assign({},project);
 		let locations=newState.locations || [];
 		let locNotDeleted = locations.filter((it) => {return it.status!='DELETED'});
-		Object.assign(newState,{locations:locNotDeleted});
+		let locNoStatus = []
+		locNotDeleted.map((it) => {locNoStatus.push(_.omit(it, 'status'));});
+		Object.assign(newState,{'locations': locNoStatus});
 		this.setData(newState);
 		Actions.invoke(Constants.ACTION_SAVE_PROJECT, newState);		
 	},

@@ -50,6 +50,12 @@ let LocationsSearch = React.createClass({
     this.setState(newState);
   },
 
+  handleKey(e) {
+    if(e.keyCode == 13){
+      this.doSearch();
+    }
+  },
+
   validationState() {
     console.log('Validations');
 
@@ -84,7 +90,8 @@ let LocationsSearch = React.createClass({
      ref="text" 
      groupClassName="group-class" 
      labelClassName="label-class" 
-     onChange={this.handleChange}/>
+     onChange={this.handleChange}
+     onKeyDown={this.handleKey}/>
      </div>
      <div className="form-group">
      <Button className="spacing" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
