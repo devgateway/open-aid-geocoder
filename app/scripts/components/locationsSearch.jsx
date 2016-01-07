@@ -72,7 +72,7 @@ let LocationsSearch = React.createClass({
           ) //TODO:this can be a child component is added here just for mocking purpose 
 
    return (
-     <form className="navbar-form navbar-left" role="search">
+     <div className="navbar-form navbar-left" role="search">
      <div className="form-group">
      <Input    
      
@@ -95,7 +95,7 @@ let LocationsSearch = React.createClass({
      <div className="form-group"> {' '}
      <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
      </div>
-     </form>)
+     </div>)
  }
 })
 

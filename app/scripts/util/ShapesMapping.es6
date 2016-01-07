@@ -1,8 +1,13 @@
 import AjaxUtil from './AjaxUtil.es6';
 
 let _mappings = [
-	{'name': 'Mozambique', 'iso': 'MOZ', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MOZ.json'},
-	{'name': 'Tanzania', 'iso': 'TZA', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TZA.json'}
+	{'name': 'Mozambique', 'iso': 'MOZ', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/MOZ.json'},
+	{'name': 'Tanzania', 'iso': 'TZA', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/TZA.json'}
+	{'name': 'Malawi', 'iso': 'MWI', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/MWI.json'}
+	{'name': 'Zambia', 'iso': 'ZMB', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/ZMB.json'}
+
+	
+
 ]
 
 let util=AjaxUtil;
