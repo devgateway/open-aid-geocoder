@@ -36,6 +36,10 @@ export default class Constants {
 
 	static ACTION_CLOSE_POPUP = 'ACTION_CLOSE_POPUP';
 
+	static ACTION_SUBMIT_GEOCODING = 'ACTION_SUBMIT_GEOCODING';
+
+	static ACTION_SAVE_PROJECT = 'ACTION_SAVE_PROJECT';
+
 	static LOCATION_CLASS_LIST = [{
 		"code": "1",
 		"name": "Administrative Region",

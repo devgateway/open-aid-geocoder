@@ -33,14 +33,12 @@ const LocationsGeoJsonStore = createStore({
 			}).build(data.get('records'));
 			
 			/*set data*/
-			debugger;
 			let newData=Object.assign(this.get(),{data:featureCollection,autoZoom:true});
 			this.setData(newData);
 		}
 	},
 
 	removeSavedLocation(location){
-		debugger;
 		let newState=Object.assign({},this.get())
 		let newGeoJson=newState.data;
 

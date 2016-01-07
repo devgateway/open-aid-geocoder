@@ -17,6 +17,7 @@ import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
 import CountryLayersControl from './CountryLayersControl.jsx';
 import DataEntryPopup from './DataEntryPopup.jsx';
+import SubmitGeocoding from './SubmitGeocoding.jsx';
 
 import MapPopUp from './PopUp.jsx';
 import LocationPopup from './LocationPopup.jsx'; 
@@ -63,7 +64,6 @@ class MapView extends React.Component {
     let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
     const {latlng}=e;
     //at this stage I have the location feature + country feature 
-    debugger;
     Actions.invoke(Constants.ACTION_POPUP_INFO,{ locationFeature, countryFeature, 'position':latlng}) 
   }
  
@@ -82,7 +82,6 @@ class MapView extends React.Component {
  
 
   render() {
-      debugger;
       return (
           <div>
 
@@ -94,6 +93,7 @@ class MapView extends React.Component {
               <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
               <CountryLayersControl/>
               <ZoomControl position="topright"/>
+              <SubmitGeocoding/>
              <DataEntryPopup/>
            
             </Map>
