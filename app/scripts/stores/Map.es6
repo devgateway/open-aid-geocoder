@@ -20,7 +20,7 @@ const PopUpStore = createStore({
 			zoomControl:false
 		},
 		layers: {
-			country: null,
+			countries: [],
 			locations: null,
 			geocoding: null
 		},
@@ -83,8 +83,9 @@ const PopUpStore = createStore({
 		},
 
 		updateCountry(data) {
+			debugger;
 			var newState = Object.assign({}, this.get())
-			newState.layers.country = data.countryLayer;
+			newState.layers.countries = data || [];
 			this.setData(newState);
 		},
 
@@ -92,14 +93,13 @@ const PopUpStore = createStore({
 			var newState = Object.assign({}, this.get())
 			newState.project = project;
 			this.setData(newState);
- 			Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
  			if (project.country){
-				Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, project.country.iso3);
+			//	Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, project.country.iso3);
 	 		}
  	 	},
 
 		closeInfoWindow(params) {
-			debugger;
+			
 			this.setData(Object.assign({}, this.get(), {
 				popup: {
 					'open':false

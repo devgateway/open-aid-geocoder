@@ -15,7 +15,8 @@ class LayerItem extends React.Component{
     super();
   }
 
-  componentDidMount() { }
+  componentDidMount() { 
+  }
 
   componentWillUnmount() {}
 
@@ -68,6 +69,7 @@ class CountryLayerSelector extends React.Component{
   }
 
   componentDidMount() {
+    Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
     this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
   }
 

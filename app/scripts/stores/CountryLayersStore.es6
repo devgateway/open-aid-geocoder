@@ -17,39 +17,37 @@ const CountryLayersStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_TOGGLE_LAYER_VISIBILITY), 'toggleLayerVisibility');
 	},
 
+	
 	loadLayerList(list){
 		var newState = Object.assign({}, this.get());
+		
 		Object.assign(newState, {shapeList: list});
+		
 		this.setData(newState);
-		if (this.data.layerToAdd){
-			this.addLayer(this.data.layerToAdd);
-		}
+		
 		console.log('Country shapes were loaded ');
 	},
 
+
+
 	addLayer(countryISO){
 		var newState = Object.assign({}, this.get());
-		if (this.data.shapeList.length==0){
-			Object.assign(newState, {'layerToAdd': countryISO});
-	    	this.setData(newState);
-	    	return;
-	    }
-	    var layers = newState.shapeList;
-	    var layerToAdd = layers.find((it) => {return it.iso===countryISO});
-	    Object.assign(layerToAdd, {'added': true});//add it
-	    Object.assign(layerToAdd, {'visible': true});//make it visible
-	    Object.assign(newState, {'shapeList': layers});
+		var selectedLayer = newState.shapeList.find((it) => {return it.iso===countryISO});
+	    Object.assign(selectedLayer, {'added': true,'visible': true});//add it
 	    this.setData(newState);
+
 	    Actions.invoke(Constants.ACTION_LOAD_SHAPE, countryISO);
+	
 	},
 
-	toggleLayerVisibility(data){
+	toggleLayerVisibility(data){/*
 		var newState = Object.assign({}, this.get());
 		var layers = newState.shapeList;
 	    var layerToUpdate = layers.find((it) => {return it.iso===data.iso});
 	    Object.assign(layerToUpdate, {visible: data.visible});//update visibility
 	    Object.assign(newState, {'shapeList': layers});
 	    this.setData(newState);
+	    */
 	},
 });
 

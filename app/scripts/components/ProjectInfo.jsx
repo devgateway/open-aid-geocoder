@@ -112,7 +112,7 @@ class ProjectInfo extends React.Component {
 	}
 	
 	onStoreChange(project){
-		debugger;
+		
 	  this.setState(project);
 	}
 

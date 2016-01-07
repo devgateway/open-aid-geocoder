@@ -296,7 +296,6 @@ class DataEntry extends React.Component{
   }
 
   componentDidMount() {
-    debugger;
     this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
   }
 
@@ -305,7 +304,6 @@ class DataEntry extends React.Component{
   }
 
   onStoreChange(storeData){
-    debugger;
     let newState=Object.assign(this.state, storeData);
     this.setState(newState);
   }
