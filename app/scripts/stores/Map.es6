@@ -127,15 +127,34 @@ const PopUpStore = createStore({
 			const {
 				fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1, activityDescription
 			} = locationFeature.properties;
-
-			const geocoding = this.makeGeocodingObject({
-				NAME_0, NAME_1, NAME_2, fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName
-			});
+			
+			if (locationFeature.properties.type == 'geocoding'){
+				var geocoding = this.makeGeocodingObject({
+					ID_0, ID_1, ID_2, NAME_0, NAME_1, NAME_2, 
+					fcode: locationFeature.properties.featureDesignation.code, 
+					fcodeName: locationFeature.properties.featureDesignation.name, 
+					geonameId: locationFeature.properties.id, 
+					lat: locationFeature.properties.geometry.coordinates[1],
+					lng: locationFeature.properties.geometry.coordinates[0], 
+					name: locationFeature.properties.name, 
+					toponymName: locationFeature.properties.toponymName,
+					type: locationFeature.properties.type,
+					locationClass: locationFeature.properties.locationClass,
+					exactness: locationFeature.properties.exactness,
+					activityDescription: locationFeature.properties.activityDescription
+				});	
+			} else {
+				var geocoding = this.makeGeocodingObject({
+					ID_0, ID_1, ID_2, NAME_0, NAME_1, NAME_2, 
+					fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName
+				});
+			}
+			
 			/*creates info window parameters */
 			this.setData(Object.assign({}, this.get(), {
 				popup: {
 					'position': position,
-					location: geocoding
+					'location': geocoding
 				}
 			}));
 		},
@@ -156,10 +175,10 @@ const PopUpStore = createStore({
 					code: params.fcode,
 					name: params.fcodeName
 				},
-				'type': 'location',
+				'type': params.type || 'location',
 				'status': 'NEW',
-				'locationClass': null, //{code:''m,name:''}
-				'exactness': null, // {{"code": "1", "name": "Exact"}
+				'locationClass': params.locationClass || null, //{code:''m,name:''}
+				'exactness': params.exactness || null, // {{"code": "1", "name": "Exact"}
 			}
 
 			if (params.NAME_0) {

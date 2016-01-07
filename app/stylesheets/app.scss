@@ -213,6 +213,10 @@ body{
   }
 }
 
+.dataEntryEdition {
+    @extend .dataEntry;
+    border: 1px solid #e0952c !important;
+  }
 
 .dataEntry{
   width:565px;
@@ -221,9 +225,10 @@ body{
   margin: 5px 0;
   padding-right: 10px;
   border: 1px solid #5cb85c;
-  border-left-width: 5px;
+  border-left-width: 5px !important;
   border-radius: 3px;
 
+  
   .form-control {
     display: block;
     width: 100%;

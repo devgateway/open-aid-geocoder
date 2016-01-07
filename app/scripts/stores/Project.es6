@@ -33,11 +33,15 @@ const SingleProjectStore = createStore({
 	addGeocoding(geocoding){
 		let project=this.get();
 		let newState=Object.assign({},project);
-		let locations=newState.locations || []
+		let locations=newState.locations || [];
+		Object.assign(geocoding, {'type': 'geocoding'});//set type to geocoding to indentify those locations coded
+		var locGeo = locations.find((it) => {return it.id===geocoding.id});
+		if (locGeo){
+			Object.assign(locGeo, geocoding);
+		} else {
 			locations.push(geocoding);
-
+		}		
 		Object.assign(newState,{locations:locations});
-
 		this.setData(newState)
 		
 	}

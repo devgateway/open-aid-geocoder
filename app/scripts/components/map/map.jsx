@@ -63,6 +63,7 @@ class MapView extends React.Component {
     let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
     const {latlng}=e;
     //at this stage I have the location feature + country feature 
+    debugger;
     Actions.invoke(Constants.ACTION_POPUP_INFO,{ locationFeature, countryFeature, 'position':latlng}) 
   }
  
@@ -81,6 +82,7 @@ class MapView extends React.Component {
  
 
   render() {
+      debugger;
       return (
           <div>
             <DataEntryPopup/>
