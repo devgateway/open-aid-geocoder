@@ -16,6 +16,7 @@ import CodingLocationLayer from './CodingLocationLayer.jsx';
 import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
 import CountryLayersControl from './CountryLayersControl.jsx';
+import DataEntryPopup from './DataEntryPopup.jsx';
 
 import MapPopUp from './PopUp.jsx';
 import LocationPopup from './LocationPopup.jsx'; 
@@ -82,6 +83,7 @@ class MapView extends React.Component {
   render() {
       return (
           <div>
+            <DataEntryPopup/>
             <Map {...this.state.map} ref="map">
               <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
               <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>

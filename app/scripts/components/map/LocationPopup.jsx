@@ -393,9 +393,9 @@ export default class LocationPopup extends React.Component {
   }
 
   turnDataEntryOn() {
-   this.setState({
-      'mode': 'DataEntry'
-    })
+    debugger;
+    Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props.location);
+    //this.setState({'mode': 'DataEntry'})
   }
 
   turnDataEntryOff() {

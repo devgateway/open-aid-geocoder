@@ -95,7 +95,6 @@ class CountryLayerSelector extends React.Component{
   }
 
   render() {
-    debugger;
     return (
         <div className="navbar-form navbar-left">
           <Button bsStyle='primary' bsSize="xsmall" onClick={this.open.bind(this)}>Add Country Layer</Button>

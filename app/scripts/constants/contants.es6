@@ -32,6 +32,8 @@ export default class Constants {
 
 	static ACTION_TOGGLE_LAYER_VISIBILITY = 'ACTION_TOGGLE_LAYER_VISIBILITY';
 
+	static ACTION_OPEN_DATAENTRY_POPUP = 'ACTION_OPEN_DATAENTRY_POPUP';
+
 	static LOCATION_CLASS_LIST = [{
 		"code": "1",
 		"name": "Administrative Region",
