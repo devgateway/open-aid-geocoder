@@ -330,15 +330,13 @@ class DataEntry extends React.Component{
   }
 
   render() {
-    debugger;
     return (
-      <div className="navbar-form navbar-left">
         <Modal {...this.props} show={this.state.showPopup} onHide={this.close}>
           <Modal.Body>
             <DataEntryContent {...this.state.location} onCancel={this.close.bind(this)}/>
           </Modal.Body>
         </Modal>
-      </div> 
+      
     )
   }
 }

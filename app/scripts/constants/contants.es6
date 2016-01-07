@@ -34,6 +34,8 @@ export default class Constants {
 
 	static ACTION_OPEN_DATAENTRY_POPUP = 'ACTION_OPEN_DATAENTRY_POPUP';
 
+	static ACTION_CLOSE_POPUP = 'ACTION_CLOSE_POPUP';
+
 	static LOCATION_CLASS_LIST = [{
 		"code": "1",
 		"name": "Administrative Region",

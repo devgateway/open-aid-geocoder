@@ -15,7 +15,9 @@ const PopUpStore = createStore({
 	initialData: {
 		map: {
 			center: [0.0, 0.0],
-			zoom: 3
+			zoom: 3,
+			boxZoom:true,
+			zoomControl:false
 		},
 		layers: {
 			country: null,
@@ -41,7 +43,7 @@ const PopUpStore = createStore({
 			this.listenTo(CountryGeo, this.updateCountry);
 
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
-			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
+			this.listenTo(Actions.get(Constants.ACTION_OPEN_DATAENTRY_POPUP), 'closeInfoWindow');
 			this.listenTo(Actions.get(Constants.ACTION_SET_ACTIVE_LOCATION), 'setActiveLocation');
 
 		},
@@ -96,11 +98,11 @@ const PopUpStore = createStore({
 	 		}
  	 	},
 
-		updatePopupDataEntry(params) {
+		closeInfoWindow(params) {
+			debugger;
 			this.setData(Object.assign({}, this.get(), {
 				popup: {
-					'position': params.position,
-					location: null
+					'open':false
 				}
 			}));
 		},
@@ -153,6 +155,7 @@ const PopUpStore = createStore({
 			/*creates info window parameters */
 			this.setData(Object.assign({}, this.get(), {
 				popup: {
+					'open':true,
 					'position': position,
 					'location': geocoding
 				}
