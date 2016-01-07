@@ -19,7 +19,7 @@ export default class LocationsLayer extends DynamicGeoJson {
 
 
   pointToLayer(feature, latlng) {
-      let  icon = L.divIcon({className: 'geocoding-marker',html:`<div class="text">${feature.properties.featureDesignation.code}</div>`});
+      let  icon = L.divIcon({iconSize: [30, 30],className: 'geocoding-marker',html:`<div class="text">${feature.properties.featureDesignation.code}</div>`});
       let marker= L.marker(latlng,  {icon: icon});
       return marker
     }

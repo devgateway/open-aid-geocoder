@@ -18,33 +18,10 @@ export default class LocationsLayer extends DynamicGeoJson {
     }
 
 
-     componentDidUpdate(prevProps) {
-      if(prevProps.data){
-        debugger;
-               console.log('componentDidUpdate prevProps.data-'+prevProps.data.features.length)
-           }
-
-     if (this.props.data){
-        debugger;
-        console.log('componentDidUpdate this.props.data -'+this.props.data.features.length)
-     }
-     
-
-     
-      const {data,map, ...props} = this.props;
-      if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
-        this._update();
-        if (props.autoZoom) {
-          map.fitBounds(this.leafletElement)
-        }
-      }
-      this.setStyleIfChanged(prevProps, this.props);
-    }
-
 
     pointToLayer(feature, latlng) {
 
-      let  icon = L.divIcon({className: 'location-marker',html:`<div class="text">${feature.properties.fcode}</div>`});
+      let  icon = L.divIcon({ iconSize: [30, 30],className: 'location-marker',html:`<div class="text">${feature.properties.fcode}</div>`});
       let marker= L.marker(latlng,  {icon: icon});
       return marker
     }

@@ -27,7 +27,7 @@ class Item extends React.Component{
   render() {
     return (
         <div className="list-group-item">
-          <Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this.setActiveLocation.bind(this, this.props)}>Show in map</Button>
+          <Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this.setActiveLocation.bind(this, this.props)}>Map it</Button>
           <a><h4 className="list-group-item-heading">{this.props.name}</h4></a>
           <h5><b>{this.props.countryName}</b></h5>
           <p className="list-group-item-text">{this.props.fclName}</p>

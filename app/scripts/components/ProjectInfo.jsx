@@ -45,8 +45,20 @@ class Item extends React.Component{
   	 */
   	return (
        	<div className="list-group-item">
-       		<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Show in map</Button>
-       		<a ><h4 className="list-group-item-heading">{this.props.name}</h4></a>
+       		
+       		<div className="row small pull-right">
+				
+       			<div className="col-lg-8">
+       				<Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Edit</Button>			
+       			</div>
+       			<div className="col-lg-4">
+       				<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Map it</Button>			
+       			</div>
+
+       		</div>
+       		
+       		<h4 className="list-group-item-heading">{this.props.name}</h4>
+
           	<p className="list-group-item-text">
           		{this.props.featureDesignation.code} - {this.props.featureDesignation.name}
        		</p>
@@ -63,6 +75,9 @@ class Item extends React.Component{
        		<p className="list-group-item-text">
           		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
        		</p>
+
+       		
+       		
         </div>
     )
   }
@@ -109,8 +124,12 @@ class ProjectInfo extends React.Component {
 			grid={[1, 1]}
 			zIndex={100}>
 			<div id="project-info">
-			  <div className="panel panel-info">
-				 <div className="panel-heading handle">{this.state.title}</div>
+			  <div className="panel panel-success">
+				 <div className="panel-heading  handle">
+				 <h4>
+				 	{this.state.title}
+				 </h4>
+				 </div>
 				 <Tabs defaultActiveKey={1}>
 				    <Tab eventKey={1} title="Project Info">
 				    	<div className="panel-body list">
