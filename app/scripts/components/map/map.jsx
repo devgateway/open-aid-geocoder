@@ -84,7 +84,7 @@ class MapView extends React.Component {
           <div>
             <Map {...this.state.map} ref="map">
               <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-              <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations}  autoZoom={true}></LocationsLayer>
+              <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
               <CountryLayer data={this.state.layers.country} autoZoom={false} ref="country"/>             
               <CodingLocationLayer className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer>                
               <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
