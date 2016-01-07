@@ -36,44 +36,37 @@ const LOCATION_PROTOTYPE={
     };
   }
 
+  componentWillMount (){
+    this.setState({'geocoding': this.props});
+  }
 
   locationClassChanged(e) {
     let locationClass = Constants.LOCATION_CLASS_LIST.find((item) => {
       if (item.code == e.target.value) return item;
     }) || null;
-    let newGeocoding = Object.assign(this.state.geocoding, {
-      locationClass: locationClass
-    });
-    this.setState(Object.assign(this.state, {
-      geocoding: newGeocoding
-    }));
-    this.validateField(this.state.geocoding.locationClass, 'locationClass')
-
+    let newGeocoding = Object.assign({}, this.state.geocoding);
+    Object.assign(newGeocoding, {'locationClass': locationClass});
+    this.setState({'geocoding': newGeocoding});
+    this.validateField(locationClass, 'locationClass');
   }
 
   exactnessChanged(e) {
     let exactness = Constants.EXACTNESS_LIST.find((item) => {
       if (item.code == e.target.value) return item;
     }) || null;
-    let newGeocoding = Object.assign(this.state.geocoding, {
-      exactness: exactness
-    });
-    this.setState(Object.assign(this.state, {
-      geocoding: newGeocoding
-    }));
-    this.validateField(this.state.geocoding.exactness, 'exactness')
+    let newGeocoding = Object.assign({}, this.state.geocoding);
+    Object.assign(newGeocoding, {'exactness': exactness});
+    this.setState({'geocoding': newGeocoding});
+    this.validateField(exactness, 'exactness');
   }
 
 
 
   activityDescriptionChanged(e) {
-    let newGeocoding = Object.assign(this.state.geocoding, {
-      activityDescription: e.target.value
-    });
-    this.setState(Object.assign(this.state, {
-      geocoding: newGeocoding
-    }));
-    this.validateField(this.state.geocoding.activityDescription, 'activityDescription')
+    let newGeocoding = Object.assign({}, this.state.geocoding);
+    Object.assign(newGeocoding, {'activityDescription': e.target.value});
+    this.setState({'geocoding': newGeocoding});
+    this.validateField(activityDescription, 'activityDescription');
   }
 
 
@@ -84,7 +77,11 @@ const LOCATION_PROTOTYPE={
   }
 
   doDelete() {
-    Actions.invoke(Constants.ACTION_DELETE_LOCATION, this.props.id)
+    //Actions.invoke(Constants.ACTION_DELETE_LOCATION, this.props.id)
+    this.setState(Object.assign(this.state, {
+      deleteConfirmed: true
+    }));
+    this.onSave(true);
   }
 
   cancelDelete() {
@@ -93,10 +90,15 @@ const LOCATION_PROTOTYPE={
     }))
   }
 
-  onSave() {
-    let geocoding=this.validate()
+  onSave(notValidate) {
+    var geocoding = this.validate(notValidate);
+    var status = this.props.type=='location'? "NEW" : this.state.deleteConfirmed? "DELETED" : "UPDATED";
+   
+    debugger;
+
+    Object.assign(geocoding, {'status': status});
     if (geocoding) {
-        Actions.invoke(Constants.ACTION_SAVE_LOCATION,geocoding)
+        Actions.invoke(Constants.ACTION_SAVE_LOCATION, geocoding);
     }
     this.onCancel();
   }
@@ -119,7 +121,7 @@ const LOCATION_PROTOTYPE={
       }
     }
 
-    validate() {
+    validate(notValidate) {
 
       let geocoding = Object.assign(this.state.geocoding, {
         name: this.props.name,
@@ -133,19 +135,20 @@ const LOCATION_PROTOTYPE={
         'status': this.props.status
       });
 
+      if (notValidate){
+        return geocoding;
+      }
+
       let validObject = (this.validateField(geocoding.exactness, 'exactness') &
         this.validateField(geocoding.locationClass, 'locationClass') &
         this.validateField(geocoding.activityDescription, 'activityDescription') &
         this.validateField(geocoding.admin1, 'admin1') &
         this.validateField(geocoding.admin2, 'admin2'));
+
       if (validObject) {
-
         return geocoding;
-
       } else {
-
         return null;
-
       }
 
     }
@@ -172,12 +175,14 @@ const LOCATION_PROTOTYPE={
           </div>
         )
       } else {
+        debugger;
+        var className = this.props.type=='location'? "dataEntry" : "dataEntryEdition"
         return (
-          <div className="dataEntry">
+          <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
             <div className="row"> 
               <div className="col-lg-12">
                 <label  for="admin1">Name</label>
-                <input type="text" className="form-control big success" id="name" placeholder="name" value={this.props.name} disabled/> 
+                <input type="text" className="form-control big" id="name" placeholder="name" value={this.props.name} disabled/> 
               </div>
             </div>
             <div className="row"> 
@@ -242,8 +247,8 @@ const LOCATION_PROTOTYPE={
               <div className="col-lg-6"> 
                 <div className="form-group">
                   <label  for="locationClass">Location Class</label>
-                  <select className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
-                   <option value="">Select</option>
+                  <select value={this.state.geocoding.locationClass? this.state.geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
+                   <option>Select</option>
                     {
                       Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
                     }
@@ -253,8 +258,8 @@ const LOCATION_PROTOTYPE={
               <div className="col-lg-6"> 
                 <div className="form-group">
                   <label  for="Exactness">Geographic Exactness </label>
-                  <select className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
-                    <option value="">Select</option>
+                  <select value={this.state.geocoding.exactness? this.state.geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
+                    <option>Select</option>
                     {
                       Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
                     }
@@ -274,8 +279,8 @@ const LOCATION_PROTOTYPE={
 
             <div className="row"> 
               <div className="col-lg-12"> 
-                <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>Save</button>
-                {(this.props.status!="NEW")?                <button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
+                <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
+                {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
                 <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
               </div>
             </div>

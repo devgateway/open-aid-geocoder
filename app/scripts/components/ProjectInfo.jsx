@@ -75,7 +75,10 @@ class Item extends React.Component{
        		<p className="list-group-item-text">
           		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
        		</p>
-
+       		<b><p className="list-group-item-text">
+          		{this.props.status}
+       		</p></b>
+       		
        		
        		
         </div>
