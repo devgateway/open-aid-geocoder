@@ -14,14 +14,22 @@ export default class MapPopUp extends Popup {
 	}
 
 	componentDidUpdate(prevProps) {
-		const {position} = this.props;
-		if (position !== prevProps.position) {
+		const {open,position,map} = this.props;
+		
+		if (open) {
 			this.leafletElement.setLatLng(position);
-			this.leafletElement.openOn(this.props.map)
+			this.leafletElement.openOn(map)
+		
+
+		}else{
+			map.closePopup();
 		}
+
 		if (this.leafletElement._isOpen) {
 			this.renderPopupContent();
 		}
+
+
 	}
 
 	renderPopupContent() {
