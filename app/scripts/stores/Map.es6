@@ -15,7 +15,9 @@ const PopUpStore = createStore({
 	initialData: {
 		map: {
 			center: [0.0, 0.0],
-			zoom: 3
+			zoom: 3,
+			boxZoom:true,
+			zoomControl:false
 		},
 		layers: {
 			country: null,
