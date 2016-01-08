@@ -22,6 +22,10 @@ class Item extends React.Component{
     Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props});//TODO make data conversion for infowindow
   }
 
+  _showDataEntryForm(){
+     Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props);
+  }
+
   render() {
 
   	return (
@@ -30,7 +34,7 @@ class Item extends React.Component{
        		<div className="row small pull-right">
 				
        			<div className="col-lg-8">
-       				<Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Edit</Button>			
+       				<Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showDataEntryForm.bind(this)}>Edit</Button>			
        			</div>
        			<div className="col-lg-4">
        				<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Map it</Button>			
