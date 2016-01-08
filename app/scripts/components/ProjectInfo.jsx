@@ -118,7 +118,7 @@ class ProjectInfo extends React.Component {
 				    	<div className="panel-body list">
 							  {this.state.long_description}
 
-               <p><label>Country</label> {this.state.country.name}</p>
+               <p><label>Country</label> {this.state.country?this.state.country.name:"N/A"}</p>
 						</div>
 					</Tab>
 				    <Tab eventKey={2} title="Geocoding">
