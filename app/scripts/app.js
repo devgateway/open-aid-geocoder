@@ -15,7 +15,7 @@ import FixedLayout from  './components/Fixed.jsx';
 /*Global constants */
 window.GEO_NAMES_SERVICE_USER_NAME = 'aiddata';
 window.APP_SETTINGS = new Settings();
-window.API_BASE_URL = 'http://localhost:3000';
+window.API_BASE_URL = 'http://geocoding.dgstg.org/projects';
 window.PROJECT_LIST_URL = `${window.API_BASE_URL}/projects`;
 window.PROJECT_URL = `${window.API_BASE_URL}/project`;
 window.FUZZY = 0.8;
