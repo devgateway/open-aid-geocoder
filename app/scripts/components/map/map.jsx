@@ -77,7 +77,7 @@ class MapView extends React.Component {
       
       group.eachLayer(function (layer) {
          let countryInfo= leafletPip.pointInLayer(latlng, layer);
-         if (countryInfo){
+         if (countryInfo && countryInfo.length > 0){
           countryInfos.push(countryInfo);
          }
       });

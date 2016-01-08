@@ -18,13 +18,12 @@ export default  class DynamicGeoJson extends Path {
   };
 
   componentWillMount() {
-    debugger;
+     
     super.componentWillMount();
     const {
       data, map, ...props
     } = this.props;
-    this.leafletElement = geoJson(data, props);
-
+    this._create()
   }
 
   _parent() {
@@ -36,7 +35,7 @@ export default  class DynamicGeoJson extends Path {
   }
 
   _create() {
-    debugger;
+    
     const {data, ...props} = this.props;
 
     /*if pointToLayer or onEachFeature are not set in props call to  the internal function w*/
@@ -61,7 +60,7 @@ export default  class DynamicGeoJson extends Path {
     Every time the component gets updated it checks if the geojson data has changed, if changed the layer should be re-created
     */
     componentDidUpdate(prevProps) {
-    debugger;
+    
       const {data,map, ...props} = this.props;
       if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
         this._update();

@@ -28,8 +28,11 @@ const SingleProjectStore = createStore({
 	},
 
 	completed(response){
-		debugger;
-		this.setData(response.data); 
+		let project=response.data;
+		if (project.country){
+			Actions.invoke(Constants.ACTION_LOAD_SHAPE,project.country.iso3)
+		}
+		this.setData(project); 
 	},
 
 	failed(message){

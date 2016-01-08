@@ -120,9 +120,11 @@ const PopUpStore = createStore({
 			if (!countryFeature) {
 				console.log("COUNTRY INFO IS EMPTY .....")
 			}
-			/*Country properties*/
+		
 			const {
-				CC_2, ENGTYPE_2, HASC_2, ID_0, ID_1, ID_2, ISO, NAME_0, NAME_1, NAME_2, NL_NAME_2, TYPE_2
+				CC_2, ENGTYPE_2, HASC_2, ID_0, ID_1, ID_2, ISO, NAME_0, NAME_1, NAME_2, NL_NAME_2, TYPE_2 , 
+				ADM1,ADM2,GAUL01,GAUL02,FAO_2ID,FAO_2,Country
+
 			} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
 
 			/*Geonames properties*/
@@ -146,8 +148,10 @@ const PopUpStore = createStore({
 					activityDescription: locationFeature.properties.activityDescription
 				});	
 			} else {
+
+					
 				var geocoding = this.makeGeocodingObject({
-					ID_0, ID_1, ID_2, NAME_0, NAME_1, NAME_2, 
+					ID_0:(ID_0||GAUL02), ID_1:(ID_1||GAUL01), ID_2:(ID_2||GAUL02), NAME_0:(NAME_0||Country), NAME_1:(NAME_1||ADM1), NAME_2:(NAME_2||ADM2), 
 					fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName
 				});
 			}

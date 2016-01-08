@@ -19,7 +19,9 @@ class SubmitGeocoding extends React.Component{
   render() {
     return (
       <div className='submit-container'>
-        <Button bsStyle='success' onClick={this.onSubmitCoding.bind(this)}>Submit Geocoding</Button>
+        
+        <Button bsStyle='warning'>Cancel</Button>
+        <Button bsStyle='success' className="pull-right" onClick={this.onSubmitCoding.bind(this)}>Submit</Button>
       </div>
     );
   }

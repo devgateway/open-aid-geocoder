@@ -14,6 +14,7 @@ const CountryLayersStore = createStore({
 		this.data=initialData;
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST).completed, 'loadLayerList');		
 		this.listenTo(Actions.get(Constants.ACTION_ADD_COUNTRY_LAYER), 'addLayer');
+		this.listenTo(Actions.get(Constants.ACTION_COUNTRY_LAYER_ADDED_TO_MAP), 'flagAdded');
 		this.listenTo(Actions.get(Constants.ACTION_TOGGLE_LAYER_VISIBILITY), 'toggleLayerVisibility');
 	},
 
@@ -25,7 +26,7 @@ const CountryLayersStore = createStore({
 		
 		this.setData(newState);
 		
-		console.log('Country shapes were loaded ');
+		
 	},
 
 
@@ -33,11 +34,21 @@ const CountryLayersStore = createStore({
 	addLayer(countryISO){
 		var newState = Object.assign({}, this.get());
 		var selectedLayer = newState.shapeList.find((it) => {return it.iso===countryISO});
-	    Object.assign(selectedLayer, {'added': true,'visible': true});//add it
+	    Object.assign(selectedLayer, {'visible': true,loading:true});//add it
 	    this.setData(newState);
-
 	    Actions.invoke(Constants.ACTION_LOAD_SHAPE, countryISO);
 	
+	},
+
+	flagAdded(iso){
+		debugger;
+		var newState = Object.assign({}, this.get());
+		
+		let layer=newState.shapeList.find((it)=>{return it.iso==iso})
+			layer.added=true;
+			layer.loading=false;
+			Object.assign(newState)
+			this.setData(newState);
 	},
 
 	toggleLayerVisibility(data){/*

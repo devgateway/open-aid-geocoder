@@ -1,9 +1,10 @@
 
 .layer-control-container{
+  display:none;
   width: 250px;
   background-color: #fff;
   position: absolute;
-  bottom: 35px;
+  bottom: 200px;
   right: 10px;
   padding:0;
   z-index: 10;
@@ -16,7 +17,7 @@
   outline:none;
   width:100px;
   position:absolute;
-  bottom:0;
+  bottom:150;
   right: 0;
   color: darken(#ccc, 5%);
   font-size:13px;

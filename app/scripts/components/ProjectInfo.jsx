@@ -23,26 +23,7 @@ class Item extends React.Component{
   }
 
   render() {
-  	/*
-  	'id': params.geonameId,
-				'activityDescription': params.activityDescription || '',
 
-				'geometry': {
-					"type": "Point",
-					"coordinates": [params.lng, params.lat]
-				},
-
-				'toponymName': params.toponymName,
-				'featureDesignation': {
-					code: params.fcode,
-					name: params.fcodeName
-				},
-				'type': 'location',
-				'status': 'NEW',
-				'locationClass': null, //{code:''m,name:''}
-				'exactness': null, // {{"code": "1", "name": "Exact"}
-
-  	 */
   	return (
        	<div className="list-group-item">
        		

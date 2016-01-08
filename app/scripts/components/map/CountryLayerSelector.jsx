@@ -27,7 +27,9 @@ class LayerItem extends React.Component{
   render() {
     return (
       <ListGroupItem>
-                {this.props.name} {this.props.added? <span className='pull-right'>Added</span> : <Button  bsStyle='primary' bsSize='small' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}>Add</Button>}
+                {this.props.name} 
+                {this.props.loading?<span>(Loading)</span>:null}
+                {this.props.added? <span className='pull-right'>Added</span> : <Button  bsStyle='primary' bsSize='small' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}>Add</Button>}
       </ListGroupItem>
     )
   }
@@ -59,6 +61,8 @@ class LayerList extends React.Component{
     )
   }
 }
+
+
 
 class CountryLayerSelector extends React.Component{ 
 

@@ -207,12 +207,14 @@ body{
 
 
 .submit-container{
-  width: 100px;
   position: absolute;
-  top: 20px;
-  right: 100px;
+  bottom: 30px;
+  right: 20px;
   padding:0;
-  z-index: 10;
+  z-index: 10000;
+  .btn{
+    margin: 3px;
+  }
 }
 
 .dataEntryEdition {

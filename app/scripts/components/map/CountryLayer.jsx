@@ -13,7 +13,7 @@ import Popup from './PopUp.jsx';
 export default class CountryLayer extends DynamicGeoJson {
 
   constructor() {
-    super();
+     super();
   }
 
   /**
@@ -21,14 +21,7 @@ export default class CountryLayer extends DynamicGeoJson {
    * @return {[type]} [description]
    */
   style() {
-    return {
-      radius: 8,
-      fillColor: "#b09464",
-      color: "#000",
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8
-    };
+    return this.props.style;
   }
 
   /**
@@ -53,7 +46,7 @@ export default class CountryLayer extends DynamicGeoJson {
    * @return {[type]}         [description]
    */
   onEachFeature(feature, layer) { 
-    debugger;
+    
     layer.on({
       mouseover: this.highlightFeature.bind(this),
       mouseout: this.resetHighlight.bind(this)});
