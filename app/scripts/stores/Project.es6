@@ -18,7 +18,7 @@ const SingleProjectStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_SAVE_LOCATION),'addGeocoding');
 		this.listenTo(Actions.get(Constants.ACTION_SUBMIT_GEOCODING),'submitGeocoding');
 		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT), 'loading');		
-		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT).completed, 'completed');
+		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT).completed, 'saveSuccess');
 		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT).failed, 'failed');
 		
 	},
@@ -68,6 +68,10 @@ const SingleProjectStore = createStore({
 		Actions.invoke(Constants.ACTION_SAVE_PROJECT, newState);		
 	},
 
+
+	saveSuccess(){
+		window.location.replace("/");//reloads list page
+	}
 });
 
 

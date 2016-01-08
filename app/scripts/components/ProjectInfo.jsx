@@ -127,7 +127,7 @@ class ProjectInfo extends React.Component {
 								this.state.locations?
 									this.state.locations.map((item) => {
 	        						return <Item key={item.id} {...item}/>})
-	        					: ""
+	        					: <h4> No Geocoding Data. </h4>
 							}
 						</div>
 				    </Tab>

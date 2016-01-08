@@ -160,20 +160,16 @@ const LOCATION_PROTOTYPE={
 
     render() {
       if(this.state.confirmDelete){
-        return (    
-          <div className={"dataEntry "+this.props.status}>
-            <div className="row"> 
-              <div className="col-lg-12">
-                <h4 className="danger"> This location will be marked as deleted, are you sure to continue?</h4>  
-              </div>
-            </div>
-            <div className="row"> 
-              <div className="col-lg-8 col-lg-offset-4" >
-                <button className="btn btn-sm btn-success" onClick={this.cancelDelete.bind(this)}>NO</button>
-                <button className="btn btn-sm btn-danger" onClick={this.doDelete.bind(this)}>YES</button>
-              </div>
-            </div>
+        return (
+          <div>    
+            <h4 className="list-group-item-heading">
+              This location will be marked as deleted, are you sure to continue?
+            </h4>
+            <hr/>
+            <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
+            <Button bsStyle='success' className="pull-right" onClick={this.doDelete.bind(this)}>Yes</Button>
           </div>
+
         )
       } else {
         var className = this.props.type=='location'? "dataEntry" : "dataEntryEdition"
