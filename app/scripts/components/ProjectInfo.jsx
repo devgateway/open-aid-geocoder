@@ -22,6 +22,10 @@ class Item extends React.Component{
     Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props});//TODO make data conversion for infowindow
   }
 
+  _showDataEntryForm(){
+     Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props);
+  }
+
   render() {
 
   	return (
@@ -30,7 +34,7 @@ class Item extends React.Component{
        		<div className="row small pull-right">
 				
        			<div className="col-lg-8">
-       				<Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Edit</Button>			
+       				<Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showDataEntryForm.bind(this)}>Edit</Button>			
        			</div>
        			<div className="col-lg-4">
        				<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Map it</Button>			
@@ -106,13 +110,15 @@ class ProjectInfo extends React.Component {
 			  <div className="panel panel-success">
 				 <div className="panel-heading  handle">
 				 <h4>
-				 	{this.state.title}
+				 	{this.state.project_id} - {this.state.title}
 				 </h4>
 				 </div>
 				 <Tabs defaultActiveKey={1}>
 				    <Tab eventKey={1} title="Project Info">
 				    	<div className="panel-body list">
 							  {this.state.long_description}
+
+               <p><label>Country</label> {this.state.country.name}</p>
 						</div>
 					</Tab>
 				    <Tab eventKey={2} title="Geocoding">

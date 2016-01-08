@@ -34,7 +34,9 @@ const CountryLayersStore = createStore({
 	addLayer(countryISO){
 		var newState = Object.assign({}, this.get());
 		var selectedLayer = newState.shapeList.find((it) => {return it.iso===countryISO});
+	
 	    Object.assign(selectedLayer, {'visible': true,loading:true});//add it
+	
 	    this.setData(newState);
 	    Actions.invoke(Constants.ACTION_LOAD_SHAPE, countryISO);
 	
