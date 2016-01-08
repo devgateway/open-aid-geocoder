@@ -30,7 +30,7 @@ const ShapesStore = createStore({
 		var newState = Object.assign({}, this.get());
 
 		if (!newState.countries.find((it) => {return it.iso===iso})){
-			var countryLayer = {data,iso,autoZoom:true,visible:true}; //set all layer metadata here
+			var countryLayer = {data,iso,autoZoom:true,visible:true, key:iso}; //set all layer metadata here
 			newState.countries.push(countryLayer)
 			this.setData(newState);
 		}
@@ -39,7 +39,7 @@ const ShapesStore = createStore({
 	failed(message){
 		console.error(`Ups got  ${message}`)
 	}
-	
+
 });
 
 

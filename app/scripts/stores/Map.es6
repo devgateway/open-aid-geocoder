@@ -83,9 +83,9 @@ const PopUpStore = createStore({
 		},
 
 		updateCountry(data) {
-			debugger;
+		
 			var newState = Object.assign({}, this.get())
-			newState.layers.countries = data || [];
+			newState.layers.countries = data.countries ;
 			this.setData(newState);
 		},
 

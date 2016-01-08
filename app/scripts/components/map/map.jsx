@@ -72,11 +72,15 @@ class MapView extends React.Component {
   queryFeatures(latlng,layer){
       
       let group=this.refs.country.leafletElement;
-      let countryInfo;
+      let countryInfos=[];
+      
       group.eachLayer(function (layer) {
-         countryInfo= leafletPip.pointInLayer(latlng, layer);
+         let countryInfo= leafletPip.pointInLayer(latlng, layer);
+         if (countryInfo){
+          countryInfos.push(countryInfo);
+         }
       });
-      return countryInfo; 
+      return countryInfos[0]; 
   }
   
   /* Pass on location click from location list window, make selected location active and show popup */
@@ -89,7 +93,7 @@ class MapView extends React.Component {
  
 
   render() {
-    debugger;
+
       return (
           <div>
 
@@ -101,7 +105,7 @@ class MapView extends React.Component {
               
               <LayerGroup ref="country">
               { this.state.layers.countries?
-                this.state.layers.countries.forEach( (country)=>{return <CountryLayer {...country}/>}):null
+                this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null
                
                }
               </LayerGroup>

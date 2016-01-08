@@ -94,8 +94,6 @@ const LOCATION_PROTOTYPE={
     var geocoding = this.validate(notValidate);
     var status = this.props.type=='location'? "NEW" : this.state.deleteConfirmed? "DELETED" : "UPDATED";
    
-    debugger;
-
     Object.assign(geocoding, {'status': status});
     if (geocoding) {
         Actions.invoke(Constants.ACTION_SAVE_LOCATION, geocoding);
@@ -175,7 +173,7 @@ const LOCATION_PROTOTYPE={
           </div>
         )
       } else {
-        debugger;
+        
         var className = this.props.type=='location'? "dataEntry" : "dataEntryEdition"
         return (
           <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
