@@ -7,7 +7,10 @@ import {GeoJsonBuilder} from '../util/GeojsonBuilder.es6';
 import * as Actions from '../actions/Actions.es6';
 
 
-const initialData = {};
+const initialData = {
+	autoZoom:true,
+	data:{}
+};
 
 const LocationsGeoJsonStore = createStore({
 
@@ -29,18 +32,24 @@ const LocationsGeoJsonStore = createStore({
 				}
 			}).build(data.get('records'));
 			
-			this.setData(featureCollection)
+			/*set data*/
+			
+			let newData=Object.assign(this.get(),{data:featureCollection,autoZoom:true});
+			this.setData(newData);
 		}
 	},
 
 	removeSavedLocation(location){
-		debugger;
-		let newGeoJson=Object.assign({},this.get())
-		let filteredFeatures=newGeoJson.features.filter((it)=>{ if (it.properties.geonameId!=location.id){return it}})
+		
+		let newState=Object.assign({},this.get())
+		let newGeoJson=newState.data;
 
-		let newData=Object.assign(newGeoJson,{'features':filteredFeatures})
-		debugger;
-		this.setData(newData);
+		let filteredFeatures=newGeoJson.features.filter((it)=>{ if (it.properties.geonameId!=location.id){return it}})
+			 newGeoJson=Object.assign(newGeoJson,{'features':filteredFeatures})
+			
+			 newState=Object.assign(newState,{data:newGeoJson,autoZoom:false});
+
+		this.setData(newState);
 	}
 
 

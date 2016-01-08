@@ -18,12 +18,12 @@ export default  class DynamicGeoJson extends Path {
   };
 
   componentWillMount() {
+     
     super.componentWillMount();
     const {
       data, map, ...props
     } = this.props;
-    this.leafletElement = geoJson(data, props);
-
+    this._create()
   }
 
   _parent() {
@@ -35,6 +35,7 @@ export default  class DynamicGeoJson extends Path {
   }
 
   _create() {
+    
     const {data, ...props} = this.props;
 
     /*if pointToLayer or onEachFeature are not set in props call to  the internal function w*/

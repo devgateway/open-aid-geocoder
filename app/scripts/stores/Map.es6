@@ -15,10 +15,12 @@ const PopUpStore = createStore({
 	initialData: {
 		map: {
 			center: [0.0, 0.0],
-			zoom: 3
+			zoom: 3,
+			boxZoom:true,
+			zoomControl:false
 		},
 		layers: {
-			country: null,
+			countries: [],
 			locations: null,
 			geocoding: null
 		},
@@ -41,7 +43,7 @@ const PopUpStore = createStore({
 			this.listenTo(CountryGeo, this.updateCountry);
 
 			this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
-			this.listenTo(Actions.get(Constants.ACTION_CODE_LOCATION), 'updatePopupDataEntry');
+			this.listenTo(Actions.get(Constants.ACTION_OPEN_DATAENTRY_POPUP), 'closeInfoWindow');
 			this.listenTo(Actions.get(Constants.ACTION_SET_ACTIVE_LOCATION), 'setActiveLocation');
 
 		},
@@ -81,8 +83,9 @@ const PopUpStore = createStore({
 		},
 
 		updateCountry(data) {
+		
 			var newState = Object.assign({}, this.get())
-			newState.layers.country = data.countryLayer;
+			newState.layers.countries = data.countries ;
 			this.setData(newState);
 		},
 
@@ -90,17 +93,16 @@ const PopUpStore = createStore({
 			var newState = Object.assign({}, this.get())
 			newState.project = project;
 			this.setData(newState);
- 			Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
  			if (project.country){
-				Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, project.country.iso3);
+			//	Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, project.country.iso3);
 	 		}
  	 	},
 
-		updatePopupDataEntry(params) {
+		closeInfoWindow(params) {
+			
 			this.setData(Object.assign({}, this.get(), {
 				popup: {
-					'position': params.position,
-					location: null
+					'open':false
 				}
 			}));
 		},
@@ -118,24 +120,48 @@ const PopUpStore = createStore({
 			if (!countryFeature) {
 				console.log("COUNTRY INFO IS EMPTY .....")
 			}
-			/*Country properties*/
+		
 			const {
-				CC_2, ENGTYPE_2, HASC_2, ID_0, ID_1, ID_2, ISO, NAME_0, NAME_1, NAME_2, NL_NAME_2, TYPE_2
+				CC_2, ENGTYPE_2, HASC_2, ID_0, ID_1, ID_2, ISO, NAME_0, NAME_1, NAME_2, NL_NAME_2, TYPE_2 , 
+				ADM1,ADM2,GAUL01,GAUL02,FAO_2ID,FAO_2,Country
+
 			} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
 
 			/*Geonames properties*/
 			const {
 				fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryName, adminCode1, adminName1, activityDescription
 			} = locationFeature.properties;
+			
+			if (locationFeature.properties.type == 'geocoding'){
+				var geocoding = this.makeGeocodingObject({
+					ID_0, ID_1, ID_2, NAME_0, NAME_1, NAME_2, 
+					fcode: locationFeature.properties.featureDesignation.code, 
+					fcodeName: locationFeature.properties.featureDesignation.name, 
+					geonameId: locationFeature.properties.id, 
+					lat: locationFeature.properties.geometry.coordinates[1],
+					lng: locationFeature.properties.geometry.coordinates[0], 
+					name: locationFeature.properties.name, 
+					toponymName: locationFeature.properties.toponymName,
+					type: locationFeature.properties.type,
+					locationClass: locationFeature.properties.locationClass,
+					exactness: locationFeature.properties.exactness,
+					activityDescription: locationFeature.properties.activityDescription
+				});	
+			} else {
 
-			const geocoding = this.makeGeocodingObject({
-				NAME_0, NAME_1, NAME_2, fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName
-			});
+					
+				var geocoding = this.makeGeocodingObject({
+					ID_0:(ID_0||GAUL02), ID_1:(ID_1||GAUL01), ID_2:(ID_2||GAUL02), NAME_0:(NAME_0||Country), NAME_1:(NAME_1||ADM1), NAME_2:(NAME_2||ADM2), 
+					fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName
+				});
+			}
+			
 			/*creates info window parameters */
 			this.setData(Object.assign({}, this.get(), {
 				popup: {
+					'open':true,
 					'position': position,
-					location: geocoding
+					'location': geocoding
 				}
 			}));
 		},
@@ -156,10 +182,10 @@ const PopUpStore = createStore({
 					code: params.fcode,
 					name: params.fcodeName
 				},
-				'type': 'location',
+				'type': params.type || 'location',
 				'status': 'NEW',
-				'locationClass': null, //{code:''m,name:''}
-				'exactness': null, // {{"code": "1", "name": "Exact"}
+				'locationClass': params.locationClass || null, //{code:''m,name:''}
+				'exactness': params.exactness || null, // {{"code": "1", "name": "Exact"}
 			}
 
 			if (params.NAME_0) {

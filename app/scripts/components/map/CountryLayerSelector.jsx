@@ -15,7 +15,8 @@ class LayerItem extends React.Component{
     super();
   }
 
-  componentDidMount() { }
+  componentDidMount() { 
+  }
 
   componentWillUnmount() {}
 
@@ -26,7 +27,9 @@ class LayerItem extends React.Component{
   render() {
     return (
       <ListGroupItem>
-                {this.props.name} {this.props.added? <span className='pull-right'>Added</span> : <Button  bsStyle='primary' bsSize='small' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}>Add</Button>}
+                {this.props.name} 
+                {this.props.loading?<span>(Loading)</span>:null}
+                {this.props.added? <span className='pull-right'>Added</span> : <Button  bsStyle='primary' bsSize='small' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}>Add</Button>}
       </ListGroupItem>
     )
   }
@@ -59,6 +62,8 @@ class LayerList extends React.Component{
   }
 }
 
+
+
 class CountryLayerSelector extends React.Component{ 
 
   constructor() {
@@ -68,6 +73,7 @@ class CountryLayerSelector extends React.Component{
   }
 
   componentDidMount() {
+    Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
     this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
   }
 
@@ -95,7 +101,6 @@ class CountryLayerSelector extends React.Component{
   }
 
   render() {
-    debugger;
     return (
         <div className="navbar-form navbar-left">
           <Button bsStyle='primary' bsSize="xsmall" onClick={this.open.bind(this)}>Add Country Layer</Button>

@@ -50,6 +50,12 @@ let LocationsSearch = React.createClass({
     this.setState(newState);
   },
 
+  handleKey(e) {
+    if(e.keyCode == 13){
+      this.doSearch();
+    }
+  },
+
   validationState() {
     console.log('Validations');
 
@@ -72,7 +78,7 @@ let LocationsSearch = React.createClass({
           ) //TODO:this can be a child component is added here just for mocking purpose 
 
    return (
-     <form className="navbar-form navbar-left" role="search">
+     <div className="navbar-form navbar-left" role="search">
      <div className="form-group">
      <Input    
      
@@ -84,7 +90,8 @@ let LocationsSearch = React.createClass({
      ref="text" 
      groupClassName="group-class" 
      labelClassName="label-class" 
-     onChange={this.handleChange}/>
+     onChange={this.handleChange}
+     onKeyDown={this.handleKey}/>
      </div>
      <div className="form-group">
      <Button className="spacing" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
@@ -95,7 +102,7 @@ let LocationsSearch = React.createClass({
      <div className="form-group"> {' '}
      <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
      </div>
-     </form>)
+     </div>)
  }
 })
 

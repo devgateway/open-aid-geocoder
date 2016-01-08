@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Tabs, Tab, Button}  from 'react-bootstrap';
+import {Tabs, Tab, Button, Label}  from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import  * as Actions from '../actions/Actions.es6';
@@ -22,31 +22,28 @@ class Item extends React.Component{
     Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props});//TODO make data conversion for infowindow
   }
 
+  _showDataEntryForm(){
+     Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props);
+  }
+
   render() {
-  	/*
-  	'id': params.geonameId,
-				'activityDescription': params.activityDescription || '',
 
-				'geometry': {
-					"type": "Point",
-					"coordinates": [params.lng, params.lat]
-				},
-
-				'toponymName': params.toponymName,
-				'featureDesignation': {
-					code: params.fcode,
-					name: params.fcodeName
-				},
-				'type': 'location',
-				'status': 'NEW',
-				'locationClass': null, //{code:''m,name:''}
-				'exactness': null, // {{"code": "1", "name": "Exact"}
-
-  	 */
   	return (
        	<div className="list-group-item">
-       		<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Show in map</Button>
-       		<a ><h4 className="list-group-item-heading">{this.props.name}</h4></a>
+       		
+       		<div className="row small pull-right">
+				
+       			<div className="col-lg-8">
+       				<Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showDataEntryForm.bind(this)}>Edit</Button>			
+       			</div>
+       			<div className="col-lg-4">
+       				<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Map it</Button>			
+       			</div>
+
+       		</div>
+       		
+       		<h4 className="list-group-item-heading">{this.props.name}</h4>
+
           	<p className="list-group-item-text">
           		{this.props.featureDesignation.code} - {this.props.featureDesignation.name}
        		</p>
@@ -63,6 +60,8 @@ class Item extends React.Component{
        		<p className="list-group-item-text">
           		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
        		</p>
+       		<Label bsStyle={this.props.status=='DELETED'? "danger" : this.props.status=='NEW'? "success" : "warning"}>{this.props.status}</Label>
+       		
         </div>
     )
   }
@@ -97,7 +96,6 @@ class ProjectInfo extends React.Component {
 	}
 	
 	onStoreChange(project){
-		debugger;
 	  this.setState(project);
 	}
 
@@ -109,8 +107,12 @@ class ProjectInfo extends React.Component {
 			grid={[1, 1]}
 			zIndex={100}>
 			<div id="project-info">
-			  <div className="panel panel-info">
-				 <div className="panel-heading handle">{this.state.title}</div>
+			  <div className="panel panel-success">
+				 <div className="panel-heading  handle">
+				 <h4>
+				 	{this.state.title}
+				 </h4>
+				 </div>
 				 <Tabs defaultActiveKey={1}>
 				    <Tab eventKey={1} title="Project Info">
 				    	<div className="panel-body list">

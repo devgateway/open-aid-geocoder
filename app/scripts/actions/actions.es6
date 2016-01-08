@@ -30,6 +30,9 @@ actionsDef[Constants.ACTION_ADD_COUNTRY_LAYER] = {
 actionsDef[Constants.ACTION_TOGGLE_LAYER_VISIBILITY] = {
 	children: ["completed", "failed"]
 }
+actionsDef[Constants.ACTION_SAVE_PROJECT] = {
+	children: ["completed", "failed"]
+}
 
 /*create async actions*/
 const actions = createActions(actionsDef);
@@ -74,6 +77,7 @@ actions[Constants.ACTION_SEARCH_LOCATIONS].listen(function(options) {
 
 /*Ajax calls for async actions */
 actions[Constants.ACTION_LOAD_SHAPE].listen(function(iso) {
+	debugger;
 	ShapesMapping.getGeoJsonShape(iso).then((results) => actions[Constants.ACTION_LOAD_SHAPE].completed(results, iso))
 		.catch((message) => actions[Constants.ACTION_LOAD_SHAPE].failed(message));
 })
@@ -89,6 +93,12 @@ actions[Constants.ACTION_LOAD_SINGLE_PROJECT].listen(function(id) {
 	APIClient.getProject(id)
 		.then((results) => actions[Constants.ACTION_LOAD_SINGLE_PROJECT].completed(results))
 		.catch((message) => actions[Constants.ACTION_LOAD_SINGLE_PROJECT].failed(message));
+})
+
+actions[Constants.ACTION_SAVE_PROJECT].listen(function(project) {
+	APIClient.saveProject(project)
+		.then((results) => actions[Constants.ACTION_SAVE_PROJECT].completed(results))
+		.catch((message) => actions[Constants.ACTION_SAVE_PROJECT].failed(message));
 })
 
 actions[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST].listen(function() {

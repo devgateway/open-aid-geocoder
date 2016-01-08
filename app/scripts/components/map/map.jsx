@@ -5,7 +5,7 @@ import { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from 'react-bootstrap';
 
-import {L, Popup, Map, Marker, TileLayer,ZoomControl} from 'react-leaflet'; 
+import {L, Popup, Map, Marker, TileLayer,ZoomControl,LayerGroup,ScaleControl} from 'react-leaflet'; 
 
 import leafletPip from 'leaflet-pip';
 
@@ -16,6 +16,8 @@ import CodingLocationLayer from './CodingLocationLayer.jsx';
 import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
 import CountryLayersControl from './CountryLayersControl.jsx';
+import DataEntryPopup from './DataEntryPopup.jsx';
+import SubmitGeocoding from './SubmitGeocoding.jsx';
 
 import MapPopUp from './PopUp.jsx';
 import LocationPopup from './LocationPopup.jsx'; 
@@ -53,13 +55,15 @@ class MapView extends React.Component {
   /*
     This is called by location onClick 
   */
-  locationClick(e){  
-
+  locationClick(e){
+    
     //e.targer.feature 
     //using geonames lat and lng instead of event latlng should be more precise.
-    let countryInfo=this.queryFeatures(e.latlng,this.refs.country.leafletElement);
-    let locationFeature=e.target.feature
+    let countryInfo=this.queryFeatures(e.latlng);
     let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
+   
+    let locationFeature=e.target.feature
+
     const {latlng}=e;
     //at this stage I have the location feature + country feature 
     Actions.invoke(Constants.ACTION_POPUP_INFO,{ locationFeature, countryFeature, 'position':latlng}) 
@@ -67,7 +71,17 @@ class MapView extends React.Component {
  
   /*Query features behind the point*/
   queryFeatures(latlng,layer){
-   return leafletPip.pointInLayer(latlng, layer);
+      
+      let group=this.refs.country.leafletElement;
+      let countryInfos=[];
+      
+      group.eachLayer(function (layer) {
+         let countryInfo= leafletPip.pointInLayer(latlng, layer);
+         if (countryInfo && countryInfo.length > 0){
+          countryInfos.push(countryInfo);
+         }
+      });
+      return countryInfos[0]; 
   }
   
   /* Pass on location click from location list window, make selected location active and show popup */
@@ -82,13 +96,28 @@ class MapView extends React.Component {
   render() {
       return (
           <div>
-            <Map {...this.state.map} ref="map">
+
+            <Map {...this.state.map}  ref="map">
               <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-              <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations}  autoZoom={true}></LocationsLayer>
-              <CountryLayer data={this.state.layers.country} autoZoom={false} ref="country"/>             
+              
+              <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
               <CodingLocationLayer className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer>                
+              
+              <LayerGroup ref="country">
+              { this.state.layers.countries?
+                this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null
+               
+               }
+              </LayerGroup>
+
+
               <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
               <CountryLayersControl/>
+              <ZoomControl position="topright"/>
+              <DataEntryPopup/>
+              <SubmitGeocoding/>
+
+           
             </Map>
           </div>
         )

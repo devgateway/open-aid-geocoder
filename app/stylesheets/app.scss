@@ -10,7 +10,7 @@ body{
 
 #map1{
 
-	height: 100%; 
+	height: 90%; 
 
    .text{
       position: relative;
@@ -168,6 +168,20 @@ body{
 }
 
 
+.popupNew{
+  @extend .popup;
+    border: 1px solid rgba(169, 171, 169, 0.8) !important;
+    h4 {
+      color: rgba(169, 171, 169, 0.8) !important;
+    }
+  }
+
+
+.popupCoded{
+  @extend .popup;
+    border: 1px solid #e0952c !important;
+  }
+
 .popup{
   width:430px;
   min-width: 200px;
@@ -175,11 +189,9 @@ body{
   margin: 5px 0;
   padding-right: 10px;
   border: 1px solid #f0ad4e;
-  border-left-width: 5px;
+  border-left-width: 5px !important;
   border-radius: 3px;
   
-
-
   button{
     margin-right:15px;
   }
@@ -193,37 +205,34 @@ body{
   }
 }
 
-.popup.new{
-  border: 1px solid rgba(169, 171, 169, 0.8);
-  border-left-width: 5px;
-  border-radius: 3px;
-  
 
-
-  button{
-    margin-right:15px;
-  }
-  h4 {
-    color: rgba(169, 171, 169, 0.8);
-  }
-
-  p {
-    margin: 2px;
-    padding:2px;
+.submit-container{
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  padding:0;
+  z-index: 10000;
+  .btn{
+    margin: 3px;
   }
 }
 
+.dataEntryEdition {
+    @extend .dataEntry;
+    border: 1px solid #e0952c !important;
+  }
 
 .dataEntry{
-  width:430px;
+  width:565px;
   min-height: 200px;
   padding: 10px;
   margin: 5px 0;
   padding-right: 10px;
   border: 1px solid #5cb85c;
-  border-left-width: 5px;
+  border-left-width: 5px !important;
   border-radius: 3px;
 
+  
   .form-control {
     display: block;
     width: 100%;
@@ -279,4 +288,10 @@ p {
   label{
     color:#a94442;
   }
+}
+
+
+.navbar{
+
+  margin-bottom:0px !important
 }
