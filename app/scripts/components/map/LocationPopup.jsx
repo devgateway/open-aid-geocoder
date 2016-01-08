@@ -40,7 +40,7 @@ const LOCATION_PROTOTYPE={
 
     return (
        
-    <div className={"popup "+this.props.status}>
+    <div className={this.props.type=='location'? "popupNew" : "popupCoded"}>
                      
 
       <h4>{this.props.name}</h4>
@@ -98,7 +98,11 @@ const LOCATION_PROTOTYPE={
 
         <div className="row"> 
           <div className="col-lg-12"> 
-            <button className="btn btn-sm btn-success pull-right" onClick={this.onPickLocation.bind(this)}>Pick this location</button>
+            <button 
+              className={this.props.type=='location'? "btn btn-sm btn-success pull-right" : "btn btn-sm btn-warning pull-right"} 
+              onClick={this.onPickLocation.bind(this)}>
+              {this.props.type=='location'? "Pick this location" : "Update this location"}
+            </button>
            </div>
         </div>
    
@@ -117,9 +121,7 @@ export default class LocationPopup extends React.Component {
   }
 
   turnDataEntryOn() {
-    
     Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props.location);
-
   }
 
 

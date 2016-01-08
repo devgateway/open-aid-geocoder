@@ -37,7 +37,7 @@ export default class ApiClient {
 	 * Save a project by project_id
 	 * @return {} project
 	 */
-	saveProject(project) {
+	static saveProject(project) {
 
 		let url = `${window.PROJECT_URL}/${project.project_id}`;
 

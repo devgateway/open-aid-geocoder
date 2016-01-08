@@ -2,6 +2,7 @@ import {createStore} from 'reflux';
 import * as Actions from '../actions/Actions.es6';
 import *  as Constants from '../constants/Contants.es6';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
+import _ from 'lodash';
 
 const initialData = {};
 const SingleProjectStore = createStore({
@@ -14,7 +15,12 @@ const SingleProjectStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT), 'loading');		
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).completed, 'completed');
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).failed, 'failed');
-		this.listenTo(Actions.get(Constants.ACTION_SAVE_LOCATION),'addGeocoding')
+		this.listenTo(Actions.get(Constants.ACTION_SAVE_LOCATION),'addGeocoding');
+		this.listenTo(Actions.get(Constants.ACTION_SUBMIT_GEOCODING),'submitGeocoding');
+		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT), 'loading');		
+		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT).completed, 'completed');
+		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT).failed, 'failed');
+		
 	},
 
 	loading(){
@@ -22,6 +28,7 @@ const SingleProjectStore = createStore({
 	},
 
 	completed(response){
+		debugger;
 		this.setData(response.data); 
 	},
 
@@ -41,10 +48,22 @@ const SingleProjectStore = createStore({
 		} else {
 			locations.push(geocoding);
 		}		
-		Object.assign(newState,{locations:locations});
-		this.setData(newState)
+		Object.assign(newState,{'locations':locations});
+		this.setData(newState);
 		
-	}
+	},
+
+	submitGeocoding(geocoding){
+		let project=this.get();
+		let newState=Object.assign({},project);
+		let locations=newState.locations || [];
+		let locNotDeleted = locations.filter((it) => {return it.status!='DELETED'});
+		let locNoStatus = []
+		locNotDeleted.map((it) => {locNoStatus.push(_.omit(it, 'status'));});
+		Object.assign(newState,{'locations': locNoStatus});
+		this.setData(newState);
+		Actions.invoke(Constants.ACTION_SAVE_PROJECT, newState);		
+	},
 
 });
 

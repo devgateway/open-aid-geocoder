@@ -17,6 +17,7 @@ import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
 import CountryLayersControl from './CountryLayersControl.jsx';
 import DataEntryPopup from './DataEntryPopup.jsx';
+import SubmitGeocoding from './SubmitGeocoding.jsx';
 
 import MapPopUp from './PopUp.jsx';
 import LocationPopup from './LocationPopup.jsx'; 
@@ -93,7 +94,6 @@ class MapView extends React.Component {
  
 
   render() {
-
       return (
           <div>
 
@@ -115,6 +115,8 @@ class MapView extends React.Component {
               <CountryLayersControl/>
               <ZoomControl position="topright"/>
               <DataEntryPopup/>
+              <SubmitGeocoding/>
+
            
             </Map>
           </div>

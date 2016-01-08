@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Tabs, Tab, Button}  from 'react-bootstrap';
+import {Tabs, Tab, Button, Label}  from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import  * as Actions from '../actions/Actions.es6';
@@ -75,11 +75,7 @@ class Item extends React.Component{
        		<p className="list-group-item-text">
           		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
        		</p>
-       		<b><p className="list-group-item-text">
-          		{this.props.status}
-       		</p></b>
-       		
-       		
+       		<Label bsStyle={this.props.status=='DELETED'? "danger" : this.props.status=='NEW'? "success" : "warning"}>{this.props.status}</Label>
        		
         </div>
     )
@@ -115,7 +111,6 @@ class ProjectInfo extends React.Component {
 	}
 	
 	onStoreChange(project){
-		
 	  this.setState(project);
 	}
 

@@ -64,9 +64,10 @@ const LOCATION_PROTOTYPE={
 
   activityDescriptionChanged(e) {
     let newGeocoding = Object.assign({}, this.state.geocoding);
-    Object.assign(newGeocoding, {'activityDescription': e.target.value});
+    let activityDescription =  e.target.value;
+    Object.assign(newGeocoding, {'activityDescription':activityDescription});
     this.setState({'geocoding': newGeocoding});
-    this.validateField(activityDescription, 'activityDescription');
+    this.validateField(activityDescription, 'activityDescription',(val) => {return (val!=null && val.length>0)});
   }
 
 
@@ -90,15 +91,17 @@ const LOCATION_PROTOTYPE={
     }))
   }
 
+
   onSave(notValidate) {
-    var geocoding = this.validate(notValidate);
-    var status = this.props.type=='location'? "NEW" : this.state.deleteConfirmed? "DELETED" : "UPDATED";
-   
-    Object.assign(geocoding, {'status': status});
-    if (geocoding) {
-        Actions.invoke(Constants.ACTION_SAVE_LOCATION, geocoding);
+    let geocoding = this.validate(notValidate);
+    if (geocoding){
+      let status = geocoding.type=='location'? "NEW" : this.state.deleteConfirmed? "DELETED" : "UPDATED";
+      let saveGeo =Object.assign({}, geocoding);
+      Object.assign(saveGeo, {'status': status});
+
+      Actions.invoke(Constants.ACTION_SAVE_LOCATION, saveGeo);
+      this.onCancel();
     }
-    this.onCancel();
   }
 
   validateField(value, elementId, validator) {
@@ -133,13 +136,13 @@ const LOCATION_PROTOTYPE={
         'status': this.props.status
       });
 
-      if (notValidate){
+      if (notValidate==true){
         return geocoding;
       }
 
       let validObject = (this.validateField(geocoding.exactness, 'exactness') &
         this.validateField(geocoding.locationClass, 'locationClass') &
-        this.validateField(geocoding.activityDescription, 'activityDescription') &
+        this.validateField(geocoding.activityDescription, 'activityDescription', (val) => {return (val!=null && val.length>0)}) &
         this.validateField(geocoding.admin1, 'admin1') &
         this.validateField(geocoding.admin2, 'admin2'));
 
@@ -173,7 +176,6 @@ const LOCATION_PROTOTYPE={
           </div>
         )
       } else {
-        
         var className = this.props.type=='location'? "dataEntry" : "dataEntryEdition"
         return (
           <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
