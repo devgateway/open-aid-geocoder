@@ -112,7 +112,6 @@ class MapView extends React.Component {
 
 
               <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
-              <CountryLayersControl/>
               <ZoomControl position="topright"/>
               <DataEntryPopup/>
               <SubmitGeocoding/>

@@ -110,13 +110,15 @@ class ProjectInfo extends React.Component {
 			  <div className="panel panel-success">
 				 <div className="panel-heading  handle">
 				 <h4>
-				 	{this.state.title}
+				 	{this.state.project_id} - {this.state.title}
 				 </h4>
 				 </div>
 				 <Tabs defaultActiveKey={1}>
 				    <Tab eventKey={1} title="Project Info">
 				    	<div className="panel-body list">
 							  {this.state.long_description}
+
+               <p><label>Country</label> {this.state.country?this.state.country.name:"N/A"}</p>
 						</div>
 					</Tab>
 				    <Tab eventKey={2} title="Geocoding">
@@ -125,7 +127,7 @@ class ProjectInfo extends React.Component {
 								this.state.locations?
 									this.state.locations.map((item) => {
 	        						return <Item key={item.id} {...item}/>})
-	        					: ""
+	        					: <h4> No Geocoding Data. </h4>
 							}
 						</div>
 				    </Tab>
