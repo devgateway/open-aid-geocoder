@@ -95,7 +95,11 @@ const LOCATION_PROTOTYPE={
   onSave(notValidate) {
     let geocoding = this.validate(notValidate);
     if (geocoding){
-      let status = geocoding.type=='location'? "NEW" : this.state.deleteConfirmed? "DELETED" : "UPDATED";
+      console.log(geocoding);
+      let prev_status = geocoding.status;
+      let status = geocoding.type=='location'? "NEW" : this.state.deleteConfirmed ? "DELETED" : "UPDATED";
+      if(prev_status == "NEW" && status == "DELETED") { status = "LOCATION"; }
+      if(prev_status == "NEW" && status == "UPDATED") { status = "NEW"; }
       let saveGeo =Object.assign({}, geocoding);
       Object.assign(saveGeo, {'status': status});
 
@@ -218,7 +222,7 @@ const LOCATION_PROTOTYPE={
               <div className="col-lg-4">
                 <div className="form-group">
                   <label  for="lat">Coordinates</label>
-                  <div>{this.props.geometry.coordinates.join(' ')}</div>
+                  <div>{this.props.geometry.coordinates.join(', ')}</div>
                 </div>
               </div>
             </div>
