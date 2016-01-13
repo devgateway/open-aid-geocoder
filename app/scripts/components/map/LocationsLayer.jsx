@@ -9,54 +9,30 @@ import Popup from './PopUp.jsx';
 
 export default class LocationsLayer extends DynamicGeoJson {
 
-    constructor() {
-      super();
-    }
-
-   style() {
- 
-    }
-
-
-
-    pointToLayer(feature, latlng) {
-
-      let  icon = L.divIcon({ iconSize: [30, 30],className: 'location-marker',html:`<div class="text">${feature.properties.fcode}</div>`});
-      let marker= L.marker(latlng,  {icon: icon});
-      return marker
-    }
-
-    onEachFeature(feature, layer) {
-   
-      layer.on({
-        click: this.onFeatureClick.bind(this)
-      });
-    }
-
-   
-
-    onFeatureClick(e) {
-
-      const {data, map, ...props} = this.props;
-      const position = e.latlng
-      const {geometry, properties} = e.target.feature;
-      
-
-     /* const extraData=(this.props.queryFeatures)?this.props.queryFeatures(e):null;
-      const fulldata={extraData,properties}  
-      //set state will rener the popoup
-      
-      this.setState({fulldata, geometry, position})
-    */
-      this.props.onFeatureClick?this.props.onFeatureClick(e):null;
-    }
-
-
-    /*
-    render() {
-      super.render()
-      const children = this.getClonedChildrenWithMap(this.state || {});
-      return <div style ={{display: 'none'}}> {children} </div>;
-    }*/
-
+  constructor() {
+    super();
   }
+
+  style() {}
+
+  pointToLayer(feature, latlng) {
+    let  icon = L.divIcon({ iconSize: [30, 30],className: 'location-marker',html:`<div class="text">${feature.properties.fcode}</div>`});
+    let marker= L.marker(latlng,  {icon: icon});
+    return marker
+  }
+
+  onEachFeature(feature, layer) {
+    layer.on({
+      click: this.onFeatureClick.bind(this)
+    });
+  }
+
+  onFeatureClick(e) {
+    const {data, map, ...props} = this.props;
+    const position = e.latlng
+    const {geometry, properties} = e.target.feature;
+    this.props.onFeatureClick?this.props.onFeatureClick(e):null;
+  }
+
+
+}

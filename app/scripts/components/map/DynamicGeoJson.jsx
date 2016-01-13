@@ -27,7 +27,7 @@ export default  class DynamicGeoJson extends Path {
   }
 
   _parent() {
-    return (this.props.layerGroup || this.props.map);
+    return (this.props.layerGroup || this.props.layerControl ||this.props.map);
   }
 
   _remove() {
@@ -35,10 +35,8 @@ export default  class DynamicGeoJson extends Path {
   }
 
   _create() {
-    
     const {data, ...props} = this.props;
-
-    /*if pointToLayer or onEachFeature are not set in props call to  the internal function w*/
+   /*if pointToLayer or onEachFeature are not set in props call to  the internal function w*/
     Object.assign(props, {
       'pointToLayer': this.pointToLayer.bind(this),
       'onEachFeature': this.onEachFeature.bind(this),
@@ -46,7 +44,8 @@ export default  class DynamicGeoJson extends Path {
     });
 
     this.leafletElement = geoJson(data, props);
-    this._parent().addLayer(this.leafletElement);
+      
+    this._parent().addLayer(this.leafletElement,this.props.name);
   }
 
   _update() {
@@ -60,7 +59,6 @@ export default  class DynamicGeoJson extends Path {
     Every time the component gets updated it checks if the geojson data has changed, if changed the layer should be re-created
     */
     componentDidUpdate(prevProps) {
-    
       const {data,map, ...props} = this.props;
       if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
         this._update();

@@ -77,7 +77,7 @@ actions[Constants.ACTION_SEARCH_LOCATIONS].listen(function(options) {
 
 /*Ajax calls for async actions */
 actions[Constants.ACTION_LOAD_SHAPE].listen(function(iso) {
-	debugger;
+	
 	ShapesMapping.getGeoJsonShape(iso).then((results) => actions[Constants.ACTION_LOAD_SHAPE].completed(results, iso))
 		.catch((message) => actions[Constants.ACTION_LOAD_SHAPE].failed(message));
 })
