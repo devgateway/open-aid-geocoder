@@ -1,6 +1,12 @@
 require('../stylesheets/app.scss');
+
+
 require('bootstrap/dist/css/bootstrap.css')
 require("babel-polyfill");
+
+require('../stylesheets/control.layers.minimap.css');
+
+
 
 import  Settings from  "./util/Settings.es6";
 import  * as Actions from './actions/Actions.es6'

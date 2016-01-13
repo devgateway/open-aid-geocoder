@@ -43,7 +43,7 @@ const CountryLayersStore = createStore({
 	},
 
 	flagAdded(iso){
-		debugger;
+		
 		var newState = Object.assign({}, this.get());
 		
 		let layer=newState.shapeList.find((it)=>{return it.iso==iso})
