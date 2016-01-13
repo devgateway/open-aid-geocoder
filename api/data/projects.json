@@ -1,7 +1,7 @@
 [ 
         {
             "project_id" : 635621,
-            "title" : "Mafambisse Sugar Rehabilitation",
+            "title" : "Mafambisse Sugar Rehabilitation Test",
             "long_description" : "The project aims at restoring and sustaining the productive capacity of the Mafambisse plantation and factory. The project is an essential element of the Government's Economic Rehabilitation Programme designed to increase the production of sugar for domestic consumption, generate savings in foreign exchange, and guarantee a livelihood for some 5000 employees and their dependents. The main components of the project are agricultural development; irrigation development and maintenance; general equipment, workshop, vehicles; rehabilitation of the factory; management and training; technical assistance and studies; and incremental working capital. Cofinancing was provided by the ADF, and the ADB loan will be used to finance 52.3 per cent of the foreign exchange cost of the project.",
             "country" : {
                 "_id" : 110593497,
@@ -15,7 +15,7 @@
             },
             "locations": [
                 {  
-                   "name": "Provincia de Nampula",
+                   "name": "Provincia de Nampula Test",
                    "id": 112215624,
                    "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
                    "activityDescription": "To improve the business environment and enhance the competitiveness of targeted enterprises.",
@@ -26,7 +26,7 @@
                    },
                    "admin1":{  
                       "id": 2118,
-                      "name": "Nampula"
+                      "name": "Nampula Test"
                    },
                    "geometry": {  
                       "type": "Point",
@@ -40,7 +40,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -52,7 +52,7 @@
                    }
                 },
                 {  
-                   "name": "Provincia de Inhambane",
+                   "name": "Provincia de Inhambane Test Test",
                    "id": 112215625,
                    "description": "The location is within a first order administrative division (ADM1), such as a province, state or governorate, but the location within the ADM1 is unknown.",
                    "activityDescription": "To improve the business environment and enhance the competitiveness of targeted enterprises.",
@@ -63,7 +63,7 @@
                    },
                    "admin1": {  
                       "id": 2114,
-                      "name": "Inhambane"
+                      "name": "Inhambane Test"
                    },
                    "geometry": {  
                       "type": "Point",
@@ -77,7 +77,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
