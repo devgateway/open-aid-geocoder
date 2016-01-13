@@ -36,7 +36,7 @@ class LayerGroup extends MapLayer {
   }
 
   onAddLayer(e){
-    this.props.layerControl.addLayer(e.layer,this.props.name);
+    //this.props.layerControl.addLayer(e.layer,this.props.name);
   }
 
   render() {
@@ -129,12 +129,13 @@ render() {
     <MiniMap collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
         <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
         <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
-        <LayerGroup name="Administrative Shapes" ref="country">
-           { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
-        </LayerGroup>
     
     </MiniMap>
 
+  
+         <LayerGroup name="Administrative Shapes" ref="country">
+           { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
+        </LayerGroup>
     
     
     <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
