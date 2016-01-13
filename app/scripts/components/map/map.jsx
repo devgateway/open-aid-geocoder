@@ -1,11 +1,11 @@
-require('leaflet/dist/leaflet.css')
+
 
 import React from 'react';
 import { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import {Button} from 'react-bootstrap';
 
-import {L, Popup, Map, Marker, TileLayer,ZoomControl,LayerGroup,ScaleControl} from 'react-leaflet'; 
+import {L, Popup, Map, Marker, TileLayer,ZoomControl,MapLayer,ScaleControl} from 'react-leaflet'; 
 
 import leafletPip from 'leaflet-pip';
 
@@ -22,6 +22,30 @@ import SubmitGeocoding from './SubmitGeocoding.jsx';
 import MapPopUp from './PopUp.jsx';
 import LocationPopup from './LocationPopup.jsx'; 
 import MapStore from '../../stores/Map.es6';
+import MiniMap from './MiniMap.jsx';
+
+import { featureGroup } from 'leaflet';
+
+class LayerGroup extends MapLayer {
+  componentWillMount() {
+    
+    super.componentWillMount();
+    this.leafletElement = featureGroup();
+
+    this.leafletElement.on('layeradd',this.onAddLayer.bind(this ))
+  }
+
+  onAddLayer(e){
+    this.props.layerControl.addLayer(e.layer,this.props.name);
+  }
+
+  render() {
+    return this.renderChildrenWithProps({
+      layerGroup: this.leafletElement,
+    });
+  }
+}
+
 
 
 
@@ -43,8 +67,8 @@ class MapView extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.activeLocation && nextState.activeLocation != this.state.activeLocation) {
-		this.setActiveLocation(nextState.activeLocation);
-	}
+      this.setActiveLocation(nextState.activeLocation);
+    }
   }
 
 
@@ -54,73 +78,74 @@ class MapView extends React.Component {
 
   /*
     This is called by location onClick 
-  */
-  locationClick(e){
-    
+    */
+    locationClick(e){
+      
     //e.targer.feature 
     //using geonames lat and lng instead of event latlng should be more precise.
     let countryInfo=this.queryFeatures(e.latlng);
     let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
-   
+    
     let locationFeature=e.target.feature
 
     const {latlng}=e;
     //at this stage I have the location feature + country feature 
     Actions.invoke(Constants.ACTION_POPUP_INFO,{ locationFeature, countryFeature, 'position':latlng}) 
   }
- 
+  
   /*Query features behind the point*/
   queryFeatures(latlng,layer){
-      
-      let group=this.refs.country.leafletElement;
-      let countryInfos=[];
-      
-      group.eachLayer(function (layer) {
-         let countryInfo= leafletPip.pointInLayer(latlng, layer);
-         if (countryInfo && countryInfo.length > 0){
-          countryInfos.push(countryInfo);
-         }
-      });
-      return countryInfos[0]; 
+    
+    let group=this.refs.country.leafletElement;
+    let countryInfos=[];
+    
+    group.eachLayer(function (layer) {
+     let countryInfo= leafletPip.pointInLayer(latlng, layer);
+     if (countryInfo && countryInfo.length > 0){
+      countryInfos.push(countryInfo);
+    }
+  });
+    return countryInfos[0]; 
   }
   
   /* Pass on location click from location list window, make selected location active and show popup */
   setActiveLocation(location)
   {
     let countryInfo = this.queryFeatures([location.lng,location.lat], this.refs.country.leafletElement);
-	  let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
-	  Actions.invoke(Constants.ACTION_POPUP_INFO,{locationFeature:{properties:location},countryFeature, 'position':[location.lat,location.lng]}) 
+    let countryFeature=(countryInfo && countryInfo.length >0)?countryInfo[0].feature:null;
+    Actions.invoke(Constants.ACTION_POPUP_INFO,{locationFeature:{properties:location},countryFeature, 'position':[location.lat,location.lng]}) 
   }
- 
+  
+/*
+                    
+*/                
 
-  render() {
-      return (
-          <div>
+render() {
+  return (
+    <div>
 
-            <Map {...this.state.map}  ref="map">
-              <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
-              
-              <LocationsLayer onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
-              <CodingLocationLayer className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer>                
-              
-              <LayerGroup ref="country">
-              { this.state.layers.countries?
-                this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null
-               
-               }
-              </LayerGroup>
+    <Map {...this.state.map}  ref="map">
+    
+    <MiniMap collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
+        <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
+        <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
+        <LayerGroup name="Administrative Shapes" ref="country">
+           { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
+        </LayerGroup>
+    
+    </MiniMap>
 
-
-              <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
-              <ZoomControl position="topright"/>
-              <DataEntryPopup/>
-              <SubmitGeocoding/>
-
-           
-            </Map>
-          </div>
-        )
-      }
+    
+    
+    <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
+    <ZoomControl position="topright"/>
+    <DataEntryPopup/>
+    <SubmitGeocoding/>
+    
+    </Map>
+    </div>
+    )
+}
 }
 
 export default MapView;

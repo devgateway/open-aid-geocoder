@@ -10,7 +10,7 @@ class SubmitGeocoding extends React.Component{
 
   constructor() {
     super();
-    debugger;
+    
     this.state = {'showModal': false};
   }
 
@@ -37,7 +37,7 @@ class SubmitGeocoding extends React.Component{
   }
 
   render() {
-    debugger;
+    
     return (
       <div className='submit-container'>
         <Modal  {...this.props} show={this.state.showModal} onHide={this.cancel}>
