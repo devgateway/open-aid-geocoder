@@ -162,6 +162,10 @@ const LOCATION_PROTOTYPE={
       this.props.onCancel ? this.props.onCancel() : null
     }
 
+    updateFromLayer(thing) {
+      
+    }
+
     render() {
       if(this.state.confirmDelete){
         return (
@@ -179,6 +183,11 @@ const LOCATION_PROTOTYPE={
         var className = this.props.type=='location'? "dataEntry" : "dataEntryEdition"
         return (
           <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
+          <div className="row"> 
+              <div className="col-lg-12"> 
+                <button className="btn btn-sm btn-primary pull-right" onClick={this.updateFromLayer.bind(this)}>Update From Layer</button>
+              </div>
+            </div>
             <div className="row"> 
               <div className="col-lg-12">
                 <label  for="admin1">Name</label>

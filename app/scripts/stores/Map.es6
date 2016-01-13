@@ -114,6 +114,7 @@ const PopUpStore = createStore({
 		},
 
 		updatePopupInfo(params) {
+			console.log(params);
 
 			const {countryFeature, locationFeature, position} = params;
 
