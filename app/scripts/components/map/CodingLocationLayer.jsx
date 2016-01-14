@@ -7,7 +7,7 @@ import DynamicGeoJson from './DynamicGeoJson.jsx';
 import { Map, popup } from 'leaflet';
 import Popup from './PopUp.jsx';
 
-export default class LocationsLayer extends DynamicGeoJson {
+export default class CodingLocationLayer extends DynamicGeoJson {
 
     constructor() {
       super();
@@ -19,7 +19,13 @@ export default class LocationsLayer extends DynamicGeoJson {
 
 
   pointToLayer(feature, latlng) {
-      let  icon = L.divIcon({iconSize: [30, 30],className: 'geocoding-marker',html:`<div class="text">${feature.properties.featureDesignation.code}</div>`});
+    console.log(feature);
+      let iconClass = feature.properties.status ? "geocoding-marker-" + feature.properties.status.toLowerCase() : "geocoding-marker-existing";
+      if(iconClass == "geocoding-marker-location") {
+        iconClass = "location-marker";
+      }
+      console.log(iconClass);
+      let  icon = L.divIcon({iconSize: [30, 30],className: iconClass, html:`<div class="text">${feature.properties.featureDesignation.code}</div>`});
       let marker= L.marker(latlng,  {icon: icon});
       return marker
     }

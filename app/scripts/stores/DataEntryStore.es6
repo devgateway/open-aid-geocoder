@@ -16,6 +16,7 @@ const DataEntryStore = createStore({
 	},
 
 	openPopup(location){
+		console.log(location);
 		var newState = Object.assign({}, this.get());
 		Object.assign(newState, {'location': location});//set the location to be used
 		Object.assign(newState, {'showPopup': true});//open the popup

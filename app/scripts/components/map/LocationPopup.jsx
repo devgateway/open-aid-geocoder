@@ -82,7 +82,7 @@ const LOCATION_PROTOTYPE={
           <div className="col-lg-4">
             <div className="form-group">
               <label  for="lat">Coordinates</label>
-              <div>{this.props.geometry.coordinates.join(' ')}</div>
+              <div>{this.props.geometry.coordinates.join(', ')}</div>
             </div>
           </div>
         </div>

@@ -145,6 +145,7 @@ const PopUpStore = createStore({
 					type: locationFeature.properties.type,
 					locationClass: locationFeature.properties.locationClass,
 					exactness: locationFeature.properties.exactness,
+					status: locationFeature.properties.status,
 					activityDescription: locationFeature.properties.activityDescription
 				});	
 			} else {
@@ -183,7 +184,7 @@ const PopUpStore = createStore({
 					name: params.fcodeName
 				},
 				'type': params.type || 'location',
-				'status': 'NEW',
+				'status': params.status || 'EXISTING',
 				'locationClass': params.locationClass || null, //{code:''m,name:''}
 				'exactness': params.exactness || null, // {{"code": "1", "name": "Exact"}
 			}
