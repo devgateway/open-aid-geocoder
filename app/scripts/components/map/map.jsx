@@ -31,12 +31,8 @@ class LayerGroup extends MapLayer {
     
     super.componentWillMount();
     this.leafletElement = featureGroup();
-
-    this.leafletElement.on('layeradd',this.onAddLayer.bind(this ))
-  }
-
-  onAddLayer(e){
-    //this.props.layerControl.addLayer(e.layer,this.props.name);
+    this.props.layerControl.addLayer(this.leafletElement ,this.props.name);
+    
   }
 
   render() {
@@ -45,8 +41,6 @@ class LayerGroup extends MapLayer {
     });
   }
 }
-
-
 
 
 class MapView extends React.Component {
@@ -122,20 +116,18 @@ class MapView extends React.Component {
 
 render() {
   return (
-    <div>
+    <div className="map">
 
-    <Map {...this.state.map}  ref="map">
+    <Map   {...this.state.map}  ref="map">
     
-    <MiniMap collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
-        <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
-        <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
+    <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
+    <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
+    <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
+    <LayerGroup name="Administrative Shapes" ref="country">
+    { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
+    </LayerGroup>
     
     </MiniMap>
-
-  
-         <LayerGroup name="Administrative Shapes" ref="country">
-           { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
-        </LayerGroup>
     
     
     <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>

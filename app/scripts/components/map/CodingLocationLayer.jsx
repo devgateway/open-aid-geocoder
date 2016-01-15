@@ -19,6 +19,7 @@ export default class CodingLocationLayer extends DynamicGeoJson {
 
 
   pointToLayer(feature, latlng) {
+    debugger;
     console.log(feature);
       let iconClass = feature.properties.status ? "geocoding-marker-" + feature.properties.status.toLowerCase() : "geocoding-marker-existing";
       if(iconClass == "geocoding-marker-location") {

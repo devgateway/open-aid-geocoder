@@ -15,7 +15,7 @@ export default class Header extends React.Component {
 
   render() {
     return (
-        <div>
+        <div className="header">
           <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">

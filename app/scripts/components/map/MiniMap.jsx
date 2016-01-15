@@ -269,6 +269,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		}
 
 		var map = this._map;
+	
 		map.whenReady(function () {
 			
 			minimap.setView(map.getCenter(), map.getZoom());

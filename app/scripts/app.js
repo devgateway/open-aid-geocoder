@@ -33,7 +33,7 @@ window.FUZZY = 0.8;
 class App extends React.Component {
  render() {
     return (
-      <div>
+      <div className="app">
           <Header/>
           {this.props.children}
       </div>
