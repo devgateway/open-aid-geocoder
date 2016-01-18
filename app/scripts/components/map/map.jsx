@@ -31,7 +31,8 @@ class LayerGroup extends MapLayer {
     
     super.componentWillMount();
     this.leafletElement = featureGroup();
-    this.props.layerControl.addLayer(this.leafletElement ,this.props.name);
+    debugger
+    this.props.layerControl.addLayer(this.leafletElement ,this.props.name,this.props.showInMinimaps);
     
   }
 
@@ -121,17 +122,17 @@ render() {
     <Map   {...this.state.map}  ref="map">
     
     <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
-    <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
-    <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
-    <LayerGroup name="Administrative Shapes" ref="country">
-    { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
-    </LayerGroup>
-    
+      <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
+      <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
+       <LayerGroup name="Administrative Shapes" ref="country" showInMinimaps={false}>
+         { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
+      </LayerGroup>
     </MiniMap>
     
+   
     
     <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
-    <ZoomControl position="topright"/>
+    <ZoomControl position="bottomright"/>
     <DataEntryPopup/>
     <SubmitGeocoding/>
     

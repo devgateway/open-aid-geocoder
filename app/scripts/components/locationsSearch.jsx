@@ -1,10 +1,14 @@
 import {Input,Button,Grid,Row,Col}  from 'react-bootstrap';
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react';
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
 import  * as Actions from '../actions/Actions.es6'
 import LocationsStore from '../stores/Locations.es6';
 import SingleProjectStore from '../stores/Project.es6';
 import * as Constants from '../constants/Contants.es6';
+import * as Intro from 'intro.js'
+
+
 
 
 let LocationsSearch = React.createClass({ 
@@ -65,6 +69,42 @@ let LocationsSearch = React.createClass({
 
   },
 
+
+  help() {
+    let node=ReactDOM.findDOMNode(this);
+    debugger;
+    let intro=Intro.introJs();
+    intro.setOptions({steps:[
+      {
+        element: node,
+        intro: "Enter a location name of an approximate name"
+      },
+
+      {
+        element: node.querySelector("input[name=fuzzy]"),
+        intro: 'Check fuzzy option to search by approximate name.',
+        position: 'left'
+      },
+      {
+        element: node.querySelector("input[name=country]"),
+        intro: 'Check country option to search locations within project country',
+
+      },
+      {
+        element: node.querySelector(".btn-search"),
+        intro: 'Click on search button to perform the search',
+
+      }
+
+
+      
+      ]});
+    intro.start()
+
+    
+
+  },
+
   render() {
    var selector=(  
      <ul   className="nav navbar-nav navbar-right">
@@ -80,6 +120,7 @@ let LocationsSearch = React.createClass({
    return (
      <div className="navbar-form navbar-left" role="search">
      <div className="form-group">
+     
      <Input    
      
      type="text" 
@@ -94,14 +135,19 @@ let LocationsSearch = React.createClass({
      onKeyDown={this.handleKey}/>
      </div>
      <div className="form-group">
-     <Button className="spacing" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
+     <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
      </div>
      <div className="form-group">
      <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> Fuzzy 
      </div>
      <div className="form-group"> {' '}
-     <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
+      <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
      </div>
+
+     <div className="form-group"> {' '}
+        <Button className="spacing" bsStyle="info" bsSize="xsmall" onClick={this.help}>Help</Button>
+     </div>
+
      </div>)
  }
 })

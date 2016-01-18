@@ -46,6 +46,8 @@
     "gulp-react": "^3.1.0",
     "gulp-util": "^3.0.7",
     "html-webpack-plugin": "^1.6.2",
+    "intro.js": "^1.1.1",
+    "leaflet-image": "^0.1.0",
     "node-sass": "^3.4.1",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",

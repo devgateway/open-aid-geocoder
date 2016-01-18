@@ -10,17 +10,17 @@ import Popup from './PopUp.jsx';
 /**
  * 
  */
-export default class CountryLayer extends DynamicGeoJson {
+ export default class CountryLayer extends DynamicGeoJson {
 
   constructor() {
-     super();
-  }
+   super();
+ }
 
   /**
    * [style description]
    * @return {[type]} [description]
    */
-  style() {
+   style() {
     return this.props.style;
   }
 
@@ -28,7 +28,7 @@ export default class CountryLayer extends DynamicGeoJson {
    * [highlightStyle description]
    * @return {[type]} [description]
    */
-  highlightStyle() {
+   highlightStyle() {
     return {
       radius: 10,
       fillColor: "#e6ba73",
@@ -39,44 +39,30 @@ export default class CountryLayer extends DynamicGeoJson {
     };
   }
 
-  /**
-   * [onEachFeature description]
-   * @param  {[type]} feature [description]
-   * @param  {[type]} layer   [description]
-   * @return {[type]}         [description]
-   */
-  onEachFeature(feature, layer) { 
-    
-    layer.on({
-      mouseover: this.highlightFeature.bind(this),
-      mouseout: this.resetHighlight.bind(this)});
-  }
 
-  /**
-   * [resetHighlight description]
-   * @param  {[type]} e [description]
-   * @return {[type]}   [description]
-   */
-  resetHighlight(e) {
-    
-    var layer = e.target;
-    var feature = e.target.feature;
-    layer.setStyle(this.style());
-  }
-
-
-  /**
-   * [highlightFeature description]
-   * @param  {[type]} e [description]
-   * @return {[type]}   [description]
-   */
   highlightFeature(e) {
     var layer = e.target;
     var feature = e.target.feature;
     layer.setStyle(this.highlightStyle());
     if (!L.Browser.ie && !L.Browser.opera) {
      // layer.bringToFront();
-    }
+   }
 
-  }
+ }
+
+ 
+ onEachFeature(feature, layer) { 
+  layer.on({
+    mouseover: this.highlightFeature.bind(this),
+    mouseout: this.resetHighlight.bind(this)});
+}
+
+
+resetHighlight(e) {
+  var layer = e.target;
+  var feature = e.target.feature;
+  layer.setStyle(this.style());
+}
+
+
 }
