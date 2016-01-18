@@ -18,7 +18,7 @@ export default  class DynamicGeoJson extends Path {
   };
 
   componentWillMount() {
-     
+    
     super.componentWillMount();
     const {
       data, map, ...props
@@ -53,6 +53,12 @@ export default  class DynamicGeoJson extends Path {
     this._create();
   }
 
+
+  componentWillUnmount() {
+    
+    super.componentWillUnmount();
+    (this.props.layerGroup || this.props.map).removeLayer(this.leafletElement);
+  }
 
 
     /*

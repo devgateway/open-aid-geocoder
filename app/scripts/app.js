@@ -1,10 +1,13 @@
-require('../stylesheets/app.scss');
-
 
 require('bootstrap/dist/css/bootstrap.css')
+require('intro.js/introjs.css');
+
+require('../stylesheets/app.scss');
+require('../stylesheets/control.layers.minimap.css');
+
+
 require("babel-polyfill");
 
-require('../stylesheets/control.layers.minimap.css');
 
 
 
@@ -17,7 +20,6 @@ import ProjectList  from './components/ProjectList.jsx'
 import Header  from './components/Header.jsx';
 import GridLayout from './components/Grid.jsx';
 import FixedLayout from  './components/Fixed.jsx';
-
 /*Global constants */
 window.GEO_NAMES_SERVICE_USER_NAME = 'aiddata';
 window.APP_SETTINGS = new Settings();
@@ -33,7 +35,7 @@ window.FUZZY = 0.8;
 class App extends React.Component {
  render() {
     return (
-      <div>
+        <div className="app">
           <Header/>
           {this.props.children}
       </div>

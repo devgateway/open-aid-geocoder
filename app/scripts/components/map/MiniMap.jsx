@@ -7,6 +7,7 @@ import {MapComponent} from 'react-leaflet';
 
 import * as Providers from 'leaflet-providers'; 
 
+import  * as leafletImage from 'leaflet-image'
 require('leaflet.sync');
 
 
@@ -156,7 +157,45 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		this._map.whenReady(this._onListScroll, this);
 	},
 
+
+	addOverlay: function (layer, name,showInMinimaps) {
+		this._addLayer(layer, name, true,showInMinimaps);
+		this._update();
+		return this;
+	},
+
+	_addLayer: function (layer, name, overlay,showInMinimaps) {
+		
+		var id = L.stamp(layer);
+
+		this._layers[id] = {
+			layer: layer,
+			name: name,
+			overlay: overlay,
+			showInMinimaps:showInMinimaps
+		};
+
+		if (this.options.autoZIndex && layer.setZIndex) {
+			this._lastZIndex++;
+			layer.setZIndex(this._lastZIndex);
+		}
+	},
+
+
 	_addItem: function (obj) {
+
+		if (obj.showInMinimaps!=false){
+			this._addMiniMap(obj)
+
+		}else{
+			this._addLayerControl(obj)
+		}
+
+
+	},
+
+
+	_addMiniMap:function(obj){
 		var container = obj.overlay ? this._overlaysList : this._baseLayersList;
 		var label = L.DomUtil.create('label', 'leaflet-minimap-container', container);
 		label._layerName = obj.name;
@@ -167,6 +206,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 			obj.layer,
 			obj.overlay
 			);
+
 
 		var span = L.DomUtil.create('span', 'leaflet-minimap-label', label);
 
@@ -194,6 +234,46 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		return label;
 	},
 
+
+	_addLayerControl:function(obj){
+	
+		var container = obj.overlay ? this._overlaysList : this._baseLayersList;
+	
+		var label = L.DomUtil.create('label', 'leaflet-minilayer-container');
+
+		 container.insertBefore(label,container.firstChild )
+		label._layerName = obj.name;
+
+		var checked = this._map.hasLayer(obj.layer);
+
+
+		var span = L.DomUtil.create('div', 'leaflet-minimap-label', label);
+
+		var comment = L.DomUtil.create('div', 'leaflet-minilayer-comment', label);
+			comment.innerHTML="(Preview no available)";
+		var input;
+		if (obj.overlay) {
+			input = document.createElement('input');
+			input.type = 'checkbox';
+			input.className = 'leaflet-control-layers-selector';
+			input.defaultChecked = checked;
+		} else {
+			input = this._createRadioElement('leaflet-base-layers', checked);
+		}
+
+
+		input.layerId = L.stamp(obj.layer);
+		span.appendChild(input);
+
+		L.DomEvent.on(input, 'click', this._onInputClick, this);
+
+		
+		var name = L.DomUtil.create('span', '', span);
+		name.innerHTML = ' ' + obj.name;
+
+		return label;
+	},
+
 	_onResize: function () {
 		var mapHeight = this._map.getContainer().clientHeight;
 		var controlHeight = this._container.clientHeight;
@@ -205,6 +285,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 	},
 
 	_onListScroll: function () {
+		debugger;
 		var minimaps = document.querySelectorAll('label[class="leaflet-minimap-container"]');
 		if (minimaps.length === 0) {
 			return;
@@ -219,32 +300,40 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 			var listHeight = container.clientHeight;
 			var scrollTop = container.scrollTop;
 
-			first = Math.floor(scrollTop / minimapHeight);
-			last = Math.ceil((scrollTop + listHeight) / minimapHeight);
+			var firstRow = Math.floor(scrollTop / minimapHeight);
+			var lastRow = Math.ceil((scrollTop + listHeight) / minimapHeight);
+			var mapsPerRow=Math.floor(container.clientWidth  / minimaps.item(0).clientWidth)
+			 first= firstRow * mapsPerRow //(3 number of map in row)
+			 last=lastRow * mapsPerRow //(3 number of map in row)
+			 console.log(first+'-----'+last);
 		}
 
 		for (var i = 0; i < minimaps.length; ++i) {
 			var minimap = minimaps[i].childNodes.item(0);
 			var map = minimap._miniMap;
-			var layer = map._layer;
+			if(map){
+				var layer = map._layer;
 
-			if (!layer) {
-				continue;
-			}
-
-			if (i >= first && i <= last) {
-				if (!map.hasLayer(layer)) {
-					layer.addTo(map);
+				if (!layer) {
+					continue;
 				}
-				map.invalidateSize();
-			} else if (map.hasLayer(layer)) {
-				map.removeLayer(layer);
+
+				if (i >= first && i <= last) {
+					if (!map.hasLayer(layer)) {
+						layer.addTo(map);
+					}
+					map.invalidateSize();
+				} else if (map.hasLayer(layer)) {
+					map.removeLayer(layer);
+				}
 			}
 		}
 	},
 
+
+
 	_createMinimap: function (mapContainer, originalLayer, isOverlay) {
-		
+
 		var minimap = mapContainer._miniMap = L.map(mapContainer, {
 			attributionControl: false,
 			zoomControl: false
@@ -258,7 +347,6 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
 		// create tilelayer, but do not add it to the map yet.
 		if (isOverlay && this.options.overlayBackgroundLayer) {
-			
 			// add a background for overlays if a background layer is defined.
 			minimap._layer = L.layerGroup([
 				cloneLayer(this.options.overlayBackgroundLayer),
@@ -269,6 +357,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		}
 
 		var map = this._map;
+
 		map.whenReady(function () {
 			
 			minimap.setView(map.getCenter(), map.getZoom());
@@ -297,7 +386,7 @@ export default class MiniMap extends React.Component {
 
 
 	componentWillMount() {
-		
+			/*TODO maybe this should not be here*/
 		var baselayers = {
 			'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
@@ -384,13 +473,14 @@ export default class MiniMap extends React.Component {
 	}	
 
 
-	addLayer(layer,name){
+	addLayer(layer,name,showInMinimaps){
 		
 		this.props.map.addLayer(layer);
-		this.layersControl.addOverlay(layer,name);	
-		}
+		this.layersControl.addOverlay(layer,name,showInMinimaps);	
+	}
 
 	removeLayer(layer){
+		
 		this.props.map.removeLayer(layer);
 		this.layersControl.removeLayer(layer);
 	}

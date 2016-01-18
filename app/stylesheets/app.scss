@@ -5,31 +5,47 @@ body{
 	font-size: $font-size;
 }
 
+.app{
+  height: 100%;
+}
 
 
-#map1{
+.header{
+  height: 50px;
+}
 
-	height: 90%; 
+.map{
 
-   .text{
-      position: relative;
-      height: 30px !important; 
-      width:30px !important;;
-      text-align: center;
-      color:#000;
-      font-size: 60%;
+  -webkit-border-radius: 30%;
+    border-radius: 30%;
 
-    }
+  >div {
+    height: calc(100% - 51px);
+    height: -webkit-calc(100% - 51px);
+    height: -moz-calc(100% - 51px);
+    height: calc(100% - 51px);
 
-    .location-marker {
-      height: 30px !important; 
-      width:30px !important;
-      -webkit-border-radius: 100%;
-      border-radius: 100%;
-      background-clip: padding-box;
-      background-color: rgba(169, 171, 169, 0.8);
-      box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgb(93, 92, 91), 0 0 0 8px rgba(130, 118, 105, 0.24);
-      padding-top: 10px;  
+  }; 
+
+  .text{
+    position: relative;
+    height: 30px !important; 
+    width:30px !important;;
+    text-align: center;
+    color:#000;
+    font-size: 60%;
+
+  }
+
+  .location-marker {
+    height: 30px !important; 
+    width:30px !important;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    background-clip: padding-box;
+    background-color: rgba(169, 171, 169, 0.8);
+    box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgb(93, 92, 91), 0 0 0 8px rgba(130, 118, 105, 0.24);
+    padding-top: 10px;  
   }
 
   .location-marker:hover{
@@ -48,7 +64,7 @@ body{
     background-color: rgba( 92, 184, 92, 0.8);
     box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgb(50, 205, 50), 0 0 0 8px rgba(34, 139, 34, 0.24);
     padding-top: 10px;
-   
+
   }
 
   .geocoding-marker-new:hover {
@@ -66,7 +82,7 @@ body{
     background-color: rgba(253, 154, 0, 0.8);
     box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgba(255, 88, 1, 0.4), 0 0 0 8px rgba(242, 129, 0, 0.24);
     padding-top: 10px;
-   
+
   }
 
   .geocoding-marker-updated:hover {
@@ -84,7 +100,7 @@ body{
     background-color: rgba(217, 83, 79, 0.8);
     box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgb(178, 34, 34), 0 0 0 8px rgba(255, 18, 5, 0.24);
     padding-top: 10px;
-   
+
   }
 
   .geocoding-marker-deleted:hover {
@@ -94,15 +110,16 @@ body{
   }
 
   .geocoding-marker-existing {
+
     height: 30px !important; 
     width:30px !important;
     -webkit-border-radius: 100%;
     border-radius: 100%;
     background-clip: padding-box;
     background-color: rgba(255, 255, 0, 0.8);
-    box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgba(238, 221, 130, 0.4), 0 0 0 8px rgba(255, 215, 0, 0.24);
-    padding-top: 10px;
-   
+    box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.6), 0 0 0 4px rgba(238, 221, 130, 0.4), 0 0 0 8px rgba(255, 215, 0, 0.24) !important;
+    padding-top: 11px !important;
+
   }
 
   .geocoding-marker-existing:hover{
@@ -141,7 +158,7 @@ body{
 .show-location-button {
   float: right;
 }
-  
+
 #locations {
 
 	position: absolute;
@@ -159,12 +176,12 @@ body{
 	}
 	
   .list-group-item {
-		padding: 10px;
-	}
-	
-	.location-item {
-		font-size: 0.9em;
-	}
+    padding: 10px;
+  }
+
+  .location-item {
+    font-size: 0.9em;
+  }
 }
 
 
@@ -175,7 +192,7 @@ body{
 	top: 80px;
 	width: 500px;
   max-height: 600px;
-	z-index: 99;
+  z-index: 99;
 }
 
 .handle {
@@ -223,17 +240,17 @@ body{
 
 .popupNew{
   @extend .popup;
-    border: 1px solid rgba(169, 171, 169, 0.8) !important;
-    h4 {
-      color: rgba(169, 171, 169, 0.8) !important;
-    }
+  border: 1px solid rgba(169, 171, 169, 0.8) !important;
+  h4 {
+    color: rgba(169, 171, 169, 0.8) !important;
   }
+}
 
 
 .popupCoded{
   @extend .popup;
-    border: 1px solid #e0952c !important;
-  }
+  border: 1px solid #e0952c !important;
+}
 
 .popup{
   width:430px;
@@ -262,7 +279,7 @@ body{
 .submit-container{
   position: absolute;
   bottom: 30px;
-  right: 20px;
+  right: 60px;
   padding:0;
   z-index: 10000;
   .btn{
@@ -271,9 +288,9 @@ body{
 }
 
 .dataEntryEdition {
-    @extend .dataEntry;
-    border: 1px solid #e0952c !important;
-  }
+  @extend .dataEntry;
+  border: 1px solid #e0952c !important;
+}
 
 .dataEntry{
   width:565px;
@@ -347,4 +364,36 @@ p {
 .navbar{
 
   margin-bottom:0px !important
+}
+
+
+.introjs-helperNumberLayer {
+    position: absolute;
+    visibility: visible;
+    top: -7px;
+    left: -22px;
+    z-index: 9999999999 !important;
+    /* padding: 2px; */
+    font-family: Arial, verdana, tahoma;
+    font-size: 10px;
+    /* font-weight: bold; */
+    color: white;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    background: #ff3019;
+    background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+    background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+    background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+    background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+    background: linear-gradient(to bottom, #ff3019 0%, #cf0404 100%);
+    width: 20px;
+    height: 20px;
+    line-height: 10px;
+    border: 2px solid white;
+    padding-top:3px;
+    border-radius: 50%;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135, strength=2, color=ff0000);
+    box-shadow: 0 2px 5px rgba(0,0,0,.4);
 }

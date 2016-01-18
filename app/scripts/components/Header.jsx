@@ -3,7 +3,8 @@ import {Navbar,Nav,NavDropdown,MenuItem,NavBrand,NavItem}  from 'react-bootstrap
 import {LocationsSearch} from './LocationsSearch.jsx';
 import LayerSelectors from './map/CountryLayerSelector.jsx';
 import { Link  } from 'react-router';
- 
+import AppIntro from './AppIntro.jsx';
+
  /**
   * 
   */
@@ -15,7 +16,7 @@ export default class Header extends React.Component {
 
   render() {
     return (
-        <div>
+        <div className="header">
           <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
@@ -31,10 +32,12 @@ export default class Header extends React.Component {
                 <ul className="nav navbar-nav">
                   <li className="active"><a href="#">Link <span className="sr-only">(current)</span></a></li>
                   <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
+                  <li><AppIntro/></li>
                 </ul>
+                
                 <LocationsSearch/>
                 <LayerSelectors/>
+
                 <ul className="nav navbar-nav navbar-right">
                     <NavDropdown eventKey={4} title="Options" id="nav-dropdown">
                     <MenuItem eventKey="4.2">Auto Zoom <input type="checkbox"/></MenuItem>
