@@ -218,6 +218,58 @@ const PopUpStore = createStore({
 			}
 
 			return model;
+		},
+
+		makeExistingGeocodingObject(params) {
+			let model = {
+				'name': params.name,
+				'id': params.geonameId,
+				'activityDescription': params.activityDescription || '',
+
+				'geometry': {
+					"type": "Point",
+					"coordinates": [params.lng, params.lat]
+				},
+
+				'toponymName': params.toponymName,
+				'featureDesignation': {
+					code: params.fcode,
+					name: params.fcodeName
+				},
+				'type': params.type || 'location',
+				'status': params.status || 'EXISTING',
+				'locationClass': params.locationClass || null, //{code:''m,name:''}
+				'exactness': params.exactness || null, // {{"code": "1", "name": "Exact"}
+			}
+
+			if (params.NAME_0) {
+				model = Object.assign(model, {
+					'country': {
+						code: params.ID_0,
+						name: params.NAME_0
+					}
+				});
+			}
+
+			if (params.NAME_1) {
+				model = Object.assign(model, {
+					'admin1': {
+						code: params.ID_1,
+						name: params.NAME_1
+					}
+				});
+			}
+
+			if (params.NAME_2) {
+				model = Object.assign(model, {
+					'admin2': {
+						code: params.ID_2,
+						name: params.NAME_2
+					}
+				});
+			}
+
+			return model;
 		}
 	});
 
