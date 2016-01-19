@@ -17,7 +17,7 @@ body{
 .map{
 
   -webkit-border-radius: 30%;
-    border-radius: 30%;
+  border-radius: 30%;
 
   >div {
     height: calc(100% - 51px);
@@ -368,32 +368,44 @@ p {
 
 
 .introjs-helperNumberLayer {
-    position: absolute;
-    visibility: visible;
-    top: -7px;
-    left: -22px;
-    z-index: 9999999999 !important;
-    /* padding: 2px; */
-    font-family: Arial, verdana, tahoma;
-    font-size: 10px;
-    /* font-weight: bold; */
-    color: white;
-    text-align: center;
-    text-shadow: 1px 1px 1px rgba(0,0,0,.3);
-    background: #ff3019;
-    background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
-    background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
-    background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
-    background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
-    background: linear-gradient(to bottom, #ff3019 0%, #cf0404 100%);
-    width: 20px;
-    height: 20px;
-    line-height: 10px;
-    border: 2px solid white;
-    padding-top:3px;
-    border-radius: 50%;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404', GradientType=0);
-    filter: progid:DXImageTransform.Microsoft.Shadow(direction=135, strength=2, color=ff0000);
-    box-shadow: 0 2px 5px rgba(0,0,0,.4);
+  position: absolute;
+  visibility: visible;
+  top: -7px;
+  left: -22px;
+  z-index: 9999999999 !important;
+  /* padding: 2px; */
+  font-family: Arial, verdana, tahoma;
+  font-size: 10px;
+  /* font-weight: bold; */
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  background: #ff3019;
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+  background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: linear-gradient(to bottom, #ff3019 0%, #cf0404 100%);
+  width: 20px;
+  height: 20px;
+  line-height: 10px;
+  border: 2px solid white;
+  padding-top:3px;
+  border-radius: 50%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.Shadow(direction=135, strength=2, color=ff0000);
+  box-shadow: 0 2px 5px rgba(0,0,0,.4);
+}
+
+
+
+.modal{
+  display:block;
+
+  .introjs-fixParent{
+   left: 0px !important;
+   top: 0px !important;
+   right: 0px !important;
+ }
 }

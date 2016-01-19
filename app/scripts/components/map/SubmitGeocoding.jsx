@@ -40,6 +40,8 @@ class SubmitGeocoding extends React.Component{
     //
     return (
       <div className='submit-container'>
+        <Button bsStyle='info' onClick={this.props.onHelpClick}>Help</Button>
+       
         <Modal  {...this.props} show={this.state.showModal} onHide={this.cancel}>
           <Modal.Body>
             <h4 className="list-group-item-heading">
@@ -53,6 +55,7 @@ class SubmitGeocoding extends React.Component{
         </Modal>        
         <Button bsStyle='warning' onClick={this.onCancelCoding.bind(this)}>Cancel</Button>
         <Button bsStyle='success' className="pull-right" onClick={this.openConfirm.bind(this)}>Submit</Button>
+         
       </div>
     );
   }

@@ -77,7 +77,7 @@ let LocationsSearch = React.createClass({
     intro.setOptions({steps:[
       {
         element: node,
-        intro: "Enter a location name of an approximate name"
+        intro: "Enter a location name or an approximate name"
       },
 
       {
