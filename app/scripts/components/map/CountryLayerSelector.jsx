@@ -102,11 +102,13 @@ class CountryLayerSelector extends React.Component{
 
   render() {
     return (
-        <div className="navbar-form navbar-left">
-          <Button bsStyle='primary' bsSize="xsmall" onClick={this.open.bind(this)}>Add Country Layer</Button>
-          <Modal  {...this.props} bsSize='large' show={this.state.showModal} onHide={this.close}>
+        <li>
+
+          <a href="javascript:void()" onClick={this.open.bind(this)}><i className="fa fa-cog"></i> Manage Country Shapes</a>
+          
+              <Modal  {...this.props} bsSize='large' show={this.state.showModal} onHide={this.close}>
             <Modal.Header>
-              <a className='close-dialog' href='#' onClick={this.close.bind(this)}><i className='fa fa-times-circle-o'></i></a>
+              <a className='close-dialog pull-right' href='#' onClick={this.close.bind(this)}><i className='fa fa-times-circle-o'></i></a>
               <Modal.Title><i className='fa fa-arrows-h'></i>Select Country Layer</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -116,7 +118,10 @@ class CountryLayerSelector extends React.Component{
               <Button className='pull-right' onClick={this.close.bind(this)}>Close</Button>
             </Modal.Footer>
           </Modal>
-        </div>
+      
+
+
+        </li>
     )
   }
 }

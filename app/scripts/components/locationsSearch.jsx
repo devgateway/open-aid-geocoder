@@ -12,7 +12,7 @@ import * as Intro from 'intro.js'
 
 
 let LocationsSearch = React.createClass({ 
-  
+
   getInitialState() {
     return {'fuzzy':false,'country':false,'text':''}
     this.onStoreChange = this.onStoreChange.bind(this);
@@ -118,38 +118,40 @@ let LocationsSearch = React.createClass({
           ) //TODO:this can be a child component is added here just for mocking purpose 
 
    return (
-     <div className="navbar-form navbar-left" role="search">
-     <div className="form-group">
-     
-     <Input    
-     
-     type="text" 
-     value={this.state.text} 
-     placeholder="Enter text to search" 
-     bsStyle={this.validationState() } 
-     hasFeedback bsSize="small" 
-     ref="text" 
-     groupClassName="group-class" 
-     labelClassName="label-class" 
-     onChange={this.handleChange}
-     onKeyDown={this.handleKey}/>
-     </div>
-     <div className="form-group">
-     <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
-     </div>
-     <div className="form-group">
-     <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> Fuzzy 
-     </div>
-     <div className="form-group"> {' '}
-      <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
-     </div>
+     <div className="navbar-form navbar-left small" role="search">
+       <div className="form-group">
+        <label className="small spacing" >Geonames Search</label> 
 
-     <div className="form-group"> {' '}
-        <Button className="spacing" bsStyle="info" bsSize="xsmall" onClick={this.help}>Help</Button>
-     </div>
+         <Input     type="text" value={this.state.text} 
+         placeholder="Enter text to search" 
+         bsStyle={this.validationState() } 
+         hasFeedback bsSize="small" 
+         ref="text" 
+         className="spacing"
+         groupClassName="group-class" 
+         labelClassName="label-class" 
+         onChange={this.handleChange}
+         onKeyDown={this.handleKey}/>
+       </div>
 
-     </div>)
- }
+       <div className="form-group small">
+         <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> Fuzzy 
+       </div>
+       <div className="form-group small"> {' '}
+         <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
+       </div>
+
+       <div className="form-group small">
+         <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
+       </div>
+
+       <div className="form-group small" > {' '}
+         <Button className="spacing help" bsStyle="info" bsSize="xsmall" onClick={this.help}><i className="fa fa-question-circle"></i></Button>
+       </div>
+
+     </div>
+     )
+}
 })
 
 export {LocationsSearch}

@@ -7,6 +7,7 @@ require('../stylesheets/control.layers.minimap.css');
 
 
 require("babel-polyfill");
+require('font-awesome/css/font-awesome.css');
 
 
 

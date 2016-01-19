@@ -414,7 +414,7 @@ class DataEntryContent extends React.Component {
 
           <div className="row"> 
           <div className="col-lg-12"> 
-          <button className="btn btn-sm btn-info pull-right" onClick={this.help.bind(this)}>Help</button>
+          <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
 
           <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
           {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}

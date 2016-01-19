@@ -409,3 +409,24 @@ p {
    right: 0px !important;
  }
 }
+
+
+
+.help {
+    font-size: 14px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    height: 22px !important;
+    width: 22px !important;
+      background-color: #0799b1;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+.dropdown-menu{
+  position:absolute;
+  z-index:1000000;
+}
