@@ -7,7 +7,7 @@ import  * as Actions from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
 import ProjectStore from '../stores/Project.es6';
 import LocationsList from './LocationsList.jsx';
-
+import * as Intro from 'intro.js';
 
 /*
   Renders a single Location 
@@ -100,6 +100,39 @@ class ProjectInfo extends React.Component {
 	  this.setState(project);
 	}
 
+  help() {
+    let node=ReactDOM.findDOMNode(this);
+    debugger;
+    let intro=Intro.introJs();
+    intro.setOptions({steps:[
+      {
+        element: node.querySelector('h4'),
+        intro: "Here you can see the project id and project title",
+        position:'bottom'
+      },
+        {
+        element: node.querySelectorAll('.nav-tabs li')[0],
+        intro: "This tab shows project realted information like description ",
+        position:'bottom'
+      },
+    {
+        element: node.querySelectorAll('.nav-tabs li')[1],
+        intro: "This tab shows locations belonging to project (existing or added in this session) ",
+        position:'bottom'
+      },
+
+       {
+        element: node.querySelectorAll('.nav-tabs li')[2],
+        intro: "This tab shows search results use this tab to see returned locations as a list ",
+        position:'bottom'
+      }
+      ]});
+    intro.start()
+
+    
+
+  }
+
     render() {
     return (
 		<Draggable
@@ -111,11 +144,11 @@ class ProjectInfo extends React.Component {
 			  <div className="panel panel-success">
 				 <div className="panel-heading  handle">
 				 <h4>
-				 	{this.state.project_id} - {this.state.title}
+				 	{this.state.project_id} - {this.state.title}   <Button className="spacing help pull-right" bsStyle="info" bsSize="xsmall" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></Button>
 				 </h4>
 				 </div>
 				 <Tabs defaultActiveKey={1}>
-				    <Tab eventKey={1} title="Project Info">
+				    <Tab className="project-info" eventKey={1} title="Project Info">
 				    	<div className="panel-body list">
 							  {this.state.long_description}
 
@@ -139,6 +172,7 @@ class ProjectInfo extends React.Component {
 				  </Tabs>
 				
 			  </div>
+
 			</div>
 		  </Draggable>
     )

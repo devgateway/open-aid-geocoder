@@ -1,14 +1,18 @@
 import {Input,Button,Grid,Row,Col}  from 'react-bootstrap';
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react';
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
 import  * as Actions from '../actions/Actions.es6'
 import LocationsStore from '../stores/Locations.es6';
 import SingleProjectStore from '../stores/Project.es6';
 import * as Constants from '../constants/Contants.es6';
+import * as Intro from 'intro.js'
+
+
 
 
 let LocationsSearch = React.createClass({ 
-  
+
   getInitialState() {
     return {'fuzzy':false,'country':false,'text':''}
     this.onStoreChange = this.onStoreChange.bind(this);
@@ -65,6 +69,42 @@ let LocationsSearch = React.createClass({
 
   },
 
+
+  help() {
+    let node=ReactDOM.findDOMNode(this);
+    debugger;
+    let intro=Intro.introJs();
+    intro.setOptions({steps:[
+      {
+        element: node,
+        intro: "Enter a location name or an approximate name"
+      },
+
+      {
+        element: node.querySelector("input[name=fuzzy]"),
+        intro: 'Check fuzzy option to search by approximate name.',
+        position: 'left'
+      },
+      {
+        element: node.querySelector("input[name=country]"),
+        intro: 'Check country option to search locations within project country',
+
+      },
+      {
+        element: node.querySelector(".btn-search"),
+        intro: 'Click on search button to perform the search',
+
+      }
+
+
+      
+      ]});
+    intro.start()
+
+    
+
+  },
+
   render() {
    var selector=(  
      <ul   className="nav navbar-nav navbar-right">
@@ -78,32 +118,40 @@ let LocationsSearch = React.createClass({
           ) //TODO:this can be a child component is added here just for mocking purpose 
 
    return (
-     <div className="navbar-form navbar-left" role="search">
-     <div className="form-group">
-     <Input    
-     
-     type="text" 
-     value={this.state.text} 
-     placeholder="Enter text to search" 
-     bsStyle={this.validationState() } 
-     hasFeedback bsSize="small" 
-     ref="text" 
-     groupClassName="group-class" 
-     labelClassName="label-class" 
-     onChange={this.handleChange}
-     onKeyDown={this.handleKey}/>
+     <div className="navbar-form navbar-left small" role="search">
+       <div className="form-group">
+        <label className="small spacing" >Geonames Search</label> 
+
+         <Input     type="text" value={this.state.text} 
+         placeholder="Enter text to search" 
+         bsStyle={this.validationState() } 
+         hasFeedback bsSize="small" 
+         ref="text" 
+         className="spacing"
+         groupClassName="group-class" 
+         labelClassName="label-class" 
+         onChange={this.handleChange}
+         onKeyDown={this.handleKey}/>
+       </div>
+
+       <div className="form-group small">
+         <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> Fuzzy 
+       </div>
+       <div className="form-group small"> {' '}
+         <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
+       </div>
+
+       <div className="form-group small">
+         <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
+       </div>
+
+       <div className="form-group small" > {' '}
+         <Button className="spacing help" bsStyle="info" bsSize="xsmall" onClick={this.help}><i className="fa fa-question-circle"></i></Button>
+       </div>
+
      </div>
-     <div className="form-group">
-     <Button className="spacing" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
-     </div>
-     <div className="form-group">
-     <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> Fuzzy 
-     </div>
-     <div className="form-group"> {' '}
-     <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
-     </div>
-     </div>)
- }
+     )
+}
 })
 
 export {LocationsSearch}

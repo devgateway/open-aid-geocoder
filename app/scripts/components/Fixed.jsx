@@ -22,7 +22,7 @@ class FixedLayout extends React.Component {
   render() {
    
     return (
-      <div className="fixed">
+      <div className="fixed main">
         
         <MapView/>
 		    
