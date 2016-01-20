@@ -2,8 +2,10 @@ var Datastore = require('nedb'), db = new Datastore();
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 var Axios = require('axios');
+var jsonfile = require('jsonfile')
 
-var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/OAGC-47/api/data/projects.json';
+
+var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/data_entry_updates/api/data/projects.json';
 
 /**
 
@@ -19,7 +21,10 @@ module.exports  = function routing(app){
         responseType: 'json',
         params: {}
     }).then(function(response) {
-        console.log('insert projects docs into nedb ---> total: '+response.data.length);
+        console.log('inserting projects docs into nedb ---> total: '+response.data.length);
+        jsonfile.writeFile('helloworld.json', response.data, {spaces: 2}, function (err) {
+          if (err) return console.log(err);
+        });
         db.insert(response.data, function (err, newDoc) {   // Callback is optional
          console.log('error: '+err);
         });

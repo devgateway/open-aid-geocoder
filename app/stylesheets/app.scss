@@ -237,19 +237,49 @@ body{
   }
 }
 
+$location: rgba(169, 171, 169, 0.8);
+$existing: rgba(255, 255, 0, 0.8);
+$new: rgba(92, 184, 92, 0.8);
+$updated: rgba(224, 149, 44, 0.8);
+$deleted: rgba(217, 83, 79, 0.8);
 
-.popupNew{
+.popup-location{
   @extend .popup;
-  border: 1px solid rgba(169, 171, 169, 0.8) !important;
+  border: 1px solid $location !important;
   h4 {
-    color: rgba(169, 171, 169, 0.8) !important;
+    color: $location !important;
   }
 }
 
-
-.popupCoded{
+.popup-existing {
   @extend .popup;
-  border: 1px solid #e0952c !important;
+  border: 1px solid $existing !important;
+  h4 {
+    color: $location !important;
+  } 
+}
+
+.popup-new{
+  @extend .popup;
+  border: 1px solid $new !important;
+  h4 {
+    color: $location !important;
+  }
+}
+
+.popup-updated {
+  @extend .popup;
+  h4 {
+    color: $location !important;
+  }
+}
+
+.popup-deleted {
+  @extend .popup;
+  border: 1px solid $deleted !important;
+  h4 {
+    color: $location !important;
+  }
 }
 
 .popup{

@@ -113,7 +113,7 @@ const PopUpStore = createStore({
 			this.setData(newState);
 		},
 
-		updatePopupInfo(params) {
+		updatePopupInfo(params) {		
 
 			const {countryFeature, locationFeature, position} = params;
 
@@ -133,7 +133,8 @@ const PopUpStore = createStore({
 			} = locationFeature.properties;
 			
 			if (locationFeature.properties.type == 'geocoding'){
-				var geocoding = this.makeGeocodingObject({
+				var geocoding = locationFeature.properties;	
+				geocoding.layer = this.makeGeocodingObject({
 					ID_0, ID_1, ID_2, NAME_0, NAME_1, NAME_2, 
 					fcode: locationFeature.properties.featureDesignation.code, 
 					fcodeName: locationFeature.properties.featureDesignation.name, 
@@ -147,16 +148,14 @@ const PopUpStore = createStore({
 					exactness: locationFeature.properties.exactness,
 					status: locationFeature.properties.status,
 					activityDescription: locationFeature.properties.activityDescription
-				});	
-			} else {
-
-					
+				});
+			} else {					
 				var geocoding = this.makeGeocodingObject({
 					ID_0:(ID_0||GAUL02), ID_1:(ID_1||GAUL01), ID_2:(ID_2||GAUL02), NAME_0:(NAME_0||Country), NAME_1:(NAME_1||ADM1), NAME_2:(NAME_2||ADM2), 
 					fclName, fcode, fcodeName, geonameId, lat, lng, name, toponymName
 				});
 			}
-			
+
 			/*creates info window parameters */
 			this.setData(Object.assign({}, this.get(), {
 				popup: {

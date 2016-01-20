@@ -27,6 +27,7 @@ class Item extends React.Component{
   }
 
   render() {
+    var status = this.props.status=="EXISTING" ? "" : this.props.status;
 
   	return (
        	<div className="list-group-item">
@@ -60,7 +61,7 @@ class Item extends React.Component{
        		<p className="list-group-item-text">
           		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
        		</p>
-       		<Label bsStyle={this.props.status=='DELETED'? "danger" : this.props.status=='NEW'? "success" : "warning"}>{this.props.status}</Label>
+       		   <Label bsStyle={status=='DELETED'? "danger" : status=='NEW'? "success" : "warning"}>{status}</Label>
        		
         </div>
     )
