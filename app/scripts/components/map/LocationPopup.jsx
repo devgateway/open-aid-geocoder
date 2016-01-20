@@ -37,10 +37,17 @@ const LOCATION_PROTOTYPE={
   }
 
   render() {
+    var cssClass;
+    if (this.props.type == 'location') {
+      cssClass = 'popup-location';
+    }
+    else {
+      cssClass = this.props.status ? "popup-" + this.props.status.toLowerCase() : "popup-existing";
+    }
 
     return (
        
-    <div className={this.props.type=='location'? "popupNew" : "popupCoded"}>
+    <div className={cssClass}>
                      
 
       <h4>{this.props.name}</h4>
@@ -99,11 +106,11 @@ const LOCATION_PROTOTYPE={
         <div className="row"> 
           <div className="col-lg-12"> 
             <button 
-              className={this.props.type=='location'? "btn btn-sm btn-success pull-right" : "btn btn-sm btn-warning pull-right"} 
+              className={this.props.type=='location'? "btn btn-sm btn-success pull-right" :"btn btn-sm btn-warning pull-right"} 
               onClick={this.onPickLocation.bind(this)}>
-              {this.props.type=='location'? "Pick this location" : "Update this location"}
+              {this.props.type=='location'? "Pick this location" : "Update"}
             </button>
-           </div>
+          </div>
         </div>
    
     </div>
