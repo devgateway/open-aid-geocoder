@@ -71,8 +71,6 @@ class DataEntryContent extends React.Component {
     this.validateField(exactness, 'exactness');
   }
 
-
-
   activityDescriptionChanged(e) {
     let newGeocoding = Object.assign({}, this.state.geocoding);
     let activityDescription = e.target.value;
@@ -87,6 +85,35 @@ class DataEntryContent extends React.Component {
     });
   }
 
+/*
+  admin1Changed(e) {
+    let newGeocoding = Object.assign({}, this.state.geocoding);
+    let admin1 = e.target.value;
+    Object.assign(newGeocoding, {
+      'admin1': admin1
+    });
+    this.setState({
+      'geocoding': newGeocoding
+    });
+    this.validateField(admin1, 'admin1', (val) => {
+      return (val != null && val.length > 0)
+    });
+  }
+
+  admin2Changed(e) {
+    let newGeocoding = Object.assign({}, this.state.geocoding);
+    let admin2 = e.target.value;
+    Object.assign(newGeocoding, {
+      'admin1': admin2
+    });
+    this.setState({
+      'geocoding': newGeocoding
+    });
+    this.validateField(admin2, 'admin2', (val) => {
+      return (val != null && val.length > 0)
+    });
+  }
+  */
 
   onDelete() {
     this.setState(Object.assign(this.state, {
@@ -112,7 +139,6 @@ class DataEntryContent extends React.Component {
     onSave(notValidate) {
       let geocoding = this.validate(notValidate);
       if (geocoding) {
-        console.log(geocoding);
         let prev_status = geocoding.status;
         let status = geocoding.type == 'location' ? "NEW" : this.state.deleteConfirmed ? "DELETED" : "UPDATED";
         if (prev_status == "NEW" && status == "DELETED") {
@@ -260,8 +286,8 @@ class DataEntryContent extends React.Component {
     }
 
     validate(notValidate) {
-
-      let geocoding = Object.assign(this.state.geocoding, {
+      let newGeocoding = Object.assign({}, this.state.geocoding);
+      Object.assign(newGeocoding, {
         name: this.props.name,
         'id': this.props.id,
         'country': this.props.country,
@@ -274,19 +300,19 @@ class DataEntryContent extends React.Component {
       });
 
       if (notValidate == true) {
-        return geocoding;
+        return newGeocoding;
       }
 
-      let validObject = (this.validateField(geocoding.exactness, 'exactness') &
-        this.validateField(geocoding.locationClass, 'locationClass') &
-        this.validateField(geocoding.activityDescription, 'activityDescription', (val) => {
+      let validObject = (this.validateField(newGeocoding.exactness, 'exactness') &
+        this.validateField(newGeocoding.locationClass, 'locationClass') &
+        this.validateField(newGeocoding.activityDescription, 'activityDescription', (val) => {
           return (val != null && val.length > 0)
         }) &
-        this.validateField(geocoding.admin1, 'admin1') &
-        this.validateField(geocoding.admin2, 'admin2'));
+        this.validateField(newGeocoding.admin1, 'admin1') &
+        this.validateField(newGeocoding.admin2, 'admin2'));
 
       if (validObject) {
-        return geocoding;
+        return newGeocoding;
       } else {
         return null;
       }
@@ -297,8 +323,8 @@ class DataEntryContent extends React.Component {
       this.props.onCancel ? this.props.onCancel() : null
     }
 
-    updateFromLayer(thing) {
-      
+    updateFromLayer() {
+      Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props.layer);
     }
 
     render() {
@@ -306,7 +332,7 @@ class DataEntryContent extends React.Component {
         return (
           <div>    
           <h4 className="list-group-item-heading">
-          This location will be marked as deleted, are you sure to continue?
+          This location will be marked as deleted, are you sure you want to continue?
           </h4>
           <hr/>
           <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
@@ -318,6 +344,11 @@ class DataEntryContent extends React.Component {
         var className = this.props.type=='location'? "dataEntry" : "dataEntryEdition"
         return (
           <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
+          <div className="row"> 
+              <div className="col-lg-12"> 
+                <button className="btn btn-sm btn-primary pull-right" onClick={this.updateFromLayer.bind(this)}>Update From Layer</button>
+              </div>
+            </div>
           <div className="row"> 
           <div className="col-lg-12">
           <label  for="admin1">Name</label>
