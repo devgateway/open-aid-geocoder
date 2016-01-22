@@ -31,7 +31,6 @@ class LayerGroup extends MapLayer {
 
     super.componentWillMount();
     this.leafletElement = featureGroup();
-    debugger
     this.props.layerControl.addLayer(this.leafletElement ,this.props.name,this.props.showInMinimaps);
     
   }
@@ -124,7 +123,7 @@ class MapView extends React.Component {
 
   help() {
     let node = ReactDOM.findDOMNode(this);
-    debugger;
+    
     let intro = Intro.introJs();
     intro.setOptions({
       steps: [{

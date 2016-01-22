@@ -7,7 +7,7 @@ import LocationsStore from '../stores/Locations.es6';
 import SingleProjectStore from '../stores/Project.es6';
 import * as Constants from '../constants/Contants.es6';
 import * as Intro from 'intro.js'
-
+import Message from './Message.jsx'
 
 
 
@@ -72,7 +72,7 @@ let LocationsSearch = React.createClass({
 
   help() {
     let node=ReactDOM.findDOMNode(this);
-    debugger;
+    
     let intro=Intro.introJs();
     intro.setOptions({steps:[
       {
@@ -120,10 +120,12 @@ let LocationsSearch = React.createClass({
    return (
      <div className="navbar-form navbar-left small" role="search">
        <div className="form-group">
-        <label className="small spacing" >Geonames Search</label> 
+       
+        <label className="small spacing" ><Message k="header.search.label"/></label> 
 
+       
          <Input     type="text" value={this.state.text} 
-         placeholder="Enter text to search" 
+         placeholder={Message.t("header.search.holder")} 
          bsStyle={this.validationState() } 
          hasFeedback bsSize="small" 
          ref="text" 
@@ -135,14 +137,19 @@ let LocationsSearch = React.createClass({
        </div>
 
        <div className="form-group small">
-         <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> Fuzzy 
+         <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> 
+         <Message k="header.search.fuzzy"/>
        </div>
        <div className="form-group small"> {' '}
-         <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> Country
+         <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> 
+           <Message k="header.search.country"/>
+       
        </div>
 
        <div className="form-group small">
-         <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>Search</Button>
+         <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>
+           <Message k="header.search.submit"/>
+         </Button>
        </div>
 
        <div className="form-group small" > {' '}

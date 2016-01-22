@@ -102,7 +102,7 @@ class ProjectInfo extends React.Component {
 
   help() {
     let node=ReactDOM.findDOMNode(this);
-    debugger;
+    
     let intro=Intro.introJs();
     intro.setOptions({steps:[
       {

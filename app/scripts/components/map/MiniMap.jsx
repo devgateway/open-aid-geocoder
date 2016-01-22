@@ -285,7 +285,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 	},
 
 	_onListScroll: function () {
-		debugger;
+		
 		var minimaps = document.querySelectorAll('label[class="leaflet-minimap-container"]');
 		if (minimaps.length === 0) {
 			return;

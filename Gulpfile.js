@@ -63,7 +63,7 @@ gulp.task("server", function(callback) {
     
   }));
 
-  var publicPath = path.resolve(__dirname, 'assets/');
+  var publicPath = path.resolve(__dirname, 'app/');
   app.use(express.static(publicPath));
 
   app.use(require('webpack-hot-middleware')(devCompiler));
