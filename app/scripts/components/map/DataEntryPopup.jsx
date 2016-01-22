@@ -135,7 +135,7 @@ class DataEntryContent extends React.Component {
 
     help() {
       let node = ReactDOM.findDOMNode(this);
-      debugger;
+      
       let intro = Intro.introJs();
 
       let steps=[
