@@ -35,21 +35,30 @@ module.exports = {
 
 
   module: {
-    loaders: [{
-      test: /\.(js|jsx|es6)$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'app')
-    }, {
-      test: /\.jpe?g$|\.gif$|\.eot$|\.png$|\.svg$|\.woff$|\.woff2$|\.ttf$|\.wav$|\.mp3$/,
-      loader: "file"
-    }, {
-      test: /\.css$|\.scss$/,
-      //test: /\.scss$/,  //  /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/
-      loader: ExtractTextPlugin.extract(
-        'style', // backup loader when not building .css file
-        'css!sass' // loaders to preprocess CSS
-      )
-    }]
+  loaders: [{
+        test: /\.(js|jsx|es6)$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'app')
+      },
+
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+      }, {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
+      }, 
+      {
+        test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.wav$|\.mp3$/,
+        loader: "file"
+      }, {
+        test: /\.css$|\.scss$/,
+        loader: ExtractTextPlugin.extract(
+          'style', // backup loader when not building .css file
+          'css!sass' // loaders to preprocess CSS
+        )
+      }
+    ]
   },
   resolve: {
     extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"]
