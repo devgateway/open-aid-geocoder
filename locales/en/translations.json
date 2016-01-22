@@ -1,0 +1,16 @@
+{
+	"header": {
+		"branding": "Open Aid Geocodier",
+		"search": {
+			"holder": "Enter text to search",
+			"label": "Search locations",
+			"fuzzy": "Fuzzy",
+			"country": "Country",
+			"submit": "Search"
+
+		},
+		"options": {
+			"label": "Options"
+		}
+	}
+}
