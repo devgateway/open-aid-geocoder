@@ -23,9 +23,14 @@ export default class BaseClient {
 
 
 	find(options) {
-		return this.get(this.url, this.getParams()).then(this.results.bind(this))
+		return this.get(this.searchURL, this.getParams(true)).then(this.results.bind(this))
 	}
 
+	findByGeonameID(options) {
+		return this.get(this.getURL, this.getParams(false)).then(this.results.bind(this))
+	}
+
+	
 	/*This method should be imeplemented fro each service (geonames, esri geocoding, google geoco*/
 	results(response) {
 		return new Promise((resolve, reject) => {
@@ -37,12 +42,8 @@ export default class BaseClient {
 		})
 	}
 
-	
-
-	getParams() {
-		return this.paginate(this.parseQuery());
+	getParams(paginate) {
+		return paginate? this.paginate(this.parseQuery()) : this.parseQuery();
 	}
-
-
 
 }

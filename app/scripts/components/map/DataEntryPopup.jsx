@@ -236,8 +236,12 @@ class DataEntryContent extends React.Component {
         element:node.querySelector('.btn-warning'),
         intro: 'Click here to candel the edition',
         position: 'left'
+      },
+      {
+        element:node.querySelector('.btn-primary'),
+        intro: 'Click here to update the info from Geonames service',
+        position: 'rigth' 
       }
-
 
 
       ];
@@ -323,141 +327,136 @@ class DataEntryContent extends React.Component {
       this.props.onCancel ? this.props.onCancel() : null
     }
 
-    updateFromLayer() {
-      Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props.layer);
+    updateFromGeonames() {
+      Actions.invoke(Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID, {'geonameID': this.props.id});
     }
 
     render() {
       if(this.state.confirmDelete){
         return (
           <div>    
-          <h4 className="list-group-item-heading">
-          This location will be marked as deleted, are you sure you want to continue?
-          </h4>
-          <hr/>
-          <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
-          <Button bsStyle='success' className="pull-right" onClick={this.doDelete.bind(this)}>Yes</Button>
+            <h4 className="list-group-item-heading">
+              This location will be marked as deleted, are you sure you want to continue?
+            </h4>
+            <hr/>
+            <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
+            <Button bsStyle='success' className="pull-right" onClick={this.doDelete.bind(this)}>Yes</Button>
           </div>
-
           )
       } else {
-        var className = this.props.type=='location'? "dataEntry" : "dataEntryEdition"
         return (
-          <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
+        <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
           <div className="row"> 
-              <div className="col-lg-12"> 
-                <button className="btn btn-sm btn-primary pull-right" onClick={this.updateFromLayer.bind(this)}>Update From Layer</button>
+            <div className="col-lg-12">
+              <label  for="admin1">Name</label>
+              <input type="text" className="form-control big" id="name" placeholder="name" value={this.props.name} disabled/> 
+            </div>
+          </div>
+          <div className="row"> 
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  for="country,">Country</label>
+                <input type="text" className="form-control" id="country" placeholder="NA" value={this.props.country?this.props.country.name:''} disabled/>
               </div>
             </div>
-          <div className="row"> 
-          <div className="col-lg-12">
-          <label  for="admin1">Name</label>
-          <input type="text" className="form-control big" id="name" placeholder="name" value={this.props.name} disabled/> 
-          </div>
-          </div>
-          <div className="row"> 
-          <div className="col-lg-4">
-          <div className="form-group">
-          <label  for="country,">Country</label>
-          <input type="text" className="form-control" id="country" placeholder="NA" value={this.props.country?this.props.country.name:''} disabled/>
-          </div>
-          </div>
-          <div className="col-lg-4">
-          <div className="form-group">
-          <label  for="admin1">First ADM</label>
-          <input type="text" className="form-control" id="admin1" placeholder="NA" value={this.props.admin1?this.props.admin1.name:''} disabled/>
-          </div>
-          </div>
-          <div className="col-lg-4">
-          <div className="form-group">
-          <label  for="admin2">Second ADM</label>
-          <input type="text" className="form-control" id="admin2" placeholder="NA" value={this.props.admin2?this.props.admin2.name:''} disabled/>
-          </div>
-          </div>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  for="admin1">First ADM</label>
+                <input type="text" className="form-control" id="admin1" placeholder="NA" value={this.props.admin1?this.props.admin1.name:''} disabled/>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  for="admin2">Second ADM</label>
+                <input type="text" className="form-control" id="admin2" placeholder="NA" value={this.props.admin2?this.props.admin2.name:''} disabled/>
+              </div>
+            </div>
           </div>
 
           <div className="row">
-          <div className="col-lg-4">
-          <div className="form-group">
-          <label  for="id">Identifier</label>
-          <input type="text" className="form-control" id="id" placeholder="id" value={this.props.id} disabled/>
-          </div>
-          </div>
-          <div className="col-lg-4">
-          <div className="form-group">
-          <label  for="geometry.type">Type</label>
-          <input type="text" className="form-control" id="geometryType"  placeholder="" value={this.props.geometry.type} disabled/>
-          </div>
-          </div>
-          <div className="col-lg-4">
-          <div className="form-group" id="coordinates">
-          <label  for="lat">Coordinates</label>
-          <div>{this.props.geometry.coordinates.join(', ')}</div>
-          </div>
-          </div>
-          </div>
-
-          <div className="row"> 
-          <div className="col-lg-12">
-          <div className="form-group">
-          <label  for="typeCode">Feature Designation</label>
-          <div className="row" id="featureDesignationContainer">
-          <div className="col-lg-3">
-          <input type="text" className="form-control" id="featureDesignation"  value={this.props.featureDesignation.code} disabled/>
-          </div>
-          <div className="col-lg-9"> 
-          <input type="text" className="form-control" id="featureDesignationName"  value={this.props.featureDesignation.name} disabled/>
-          </div>
-          </div>
-          </div>
-          </div>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  for="id">Identifier</label>
+                <input type="text" className="form-control" id="id" placeholder="id" value={this.props.id} disabled/>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  for="geometry.type">Type</label>
+                <input type="text" className="form-control" id="geometryType"  placeholder="" value={this.props.geometry.type} disabled/>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="form-group" id="coordinates">
+                <label  for="lat">Coordinates</label>
+                <div>{this.props.geometry.coordinates.join(', ')}</div>
+              </div>
+            </div>
           </div>
 
           <div className="row"> 
-          <div className="col-lg-6"> 
-          <div className="form-group" >
-          <label  for="locationClass">Location Class</label>
-          <select value={this.state.geocoding.locationClass? this.state.geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
-          <option>Select</option>
-          {
-            Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-          }
-          </select>
-          </div>
-          </div>
-          <div className="col-lg-6"> 
-          <div className="form-group">
-          <label  for="Exactness">Geographic Exactness </label>
-          <select value={this.state.geocoding.exactness? this.state.geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
-          <option>Select</option>
-          {
-            Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-          }
-          </select>
-          </div>
-          </div>
+            <div className="col-lg-12">
+              <div className="form-group">
+                <label  for="typeCode">Feature Designation</label>
+                <div className="row" id="featureDesignationContainer">
+                  <div className="col-lg-3">
+                    <input type="text" className="form-control" id="featureDesignation"  value={this.props.featureDesignation.code} disabled/>
+                  </div>
+                  <div className="col-lg-9"> 
+                    <input type="text" className="form-control" id="featureDesignationName"  value={this.props.featureDesignation.name} disabled/>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="row"> 
-          <div className="col-lg-12"> 
-          <div className="form-group">
-          <label  for="typeCode">Activity Description</label>
-          <textarea   className="form-control" id="activityDescription" value={this.state.geocoding.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
-          </div>
-          </div>
+            <div className="col-lg-6"> 
+              <div className="form-group" >
+                <label  for="locationClass">Location Class</label>
+                <select value={this.state.geocoding.locationClass? this.state.geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
+                <option>Select</option>
+                {
+                  Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+                }
+                </select>
+              </div>
+            </div>
+            <div className="col-lg-6"> 
+              <div className="form-group">
+                <label  for="Exactness">Geographic Exactness </label>
+                <select value={this.state.geocoding.exactness? this.state.geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
+                <option>Select</option>
+                {
+                  Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+                }
+                </select>
+              </div>
+            </div>
           </div>
 
           <div className="row"> 
-          <div className="col-lg-12"> 
-          <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
+            <div className="col-lg-12"> 
+              <div className="form-group">
+                <label  for="typeCode">Activity Description</label>
+                <textarea   className="form-control" id="activityDescription" value={this.state.geocoding.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
+              </div>
+            </div>
+          </div>
 
-          <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
-          {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
-          <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
+          <div className="row"> 
+            <div className="col-lg-12"> 
+              <button className="btn btn-primary pull-left" title='Update data from Geonames service' onClick={this.updateFromGeonames.bind(this)}>
+                <span className="fa fa-refresh"></span>
+              </button>
+              <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
+              <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
+              {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
+              <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
+            </div>
           </div>
-          </div>
-          </div>
-          );
+        </div>
+        );
       }//end else
     }
   }
