@@ -14,7 +14,10 @@ const CountryLayersStore = createStore({
 		this.data=initialData;
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST).completed, 'loadLayerList');		
 		this.listenTo(Actions.get(Constants.ACTION_ADD_COUNTRY_LAYER), 'addLayer');
+		this.listenTo(Actions.get(Constants.ACTION_REMOVE_COUNTRY_LAYER), 'removeLayer');
 		this.listenTo(Actions.get(Constants.ACTION_COUNTRY_LAYER_ADDED_TO_MAP), 'flagAdded');
+		this.listenTo(Actions.get(Constants.ACTION_COUNTRY_LAYER_REMOVED_FROM_MAP), 'flagRemoved');
+		
 		this.listenTo(Actions.get(Constants.ACTION_TOGGLE_LAYER_VISIBILITY), 'toggleLayerVisibility');
 	},
 
@@ -42,12 +45,29 @@ const CountryLayersStore = createStore({
 	
 	},
 
+	removeLayer(countryISO){
+		//
+		   Actions.invoke(Constants.ACTION_UNLOAD_SHAPE, countryISO);
+	
+	},
+
 	flagAdded(iso){
 		
 		var newState = Object.assign({}, this.get());
 		
 		let layer=newState.shapeList.find((it)=>{return it.iso==iso})
 			layer.added=true;
+			layer.loading=false;
+			Object.assign(newState)
+			this.setData(newState);
+	},
+
+flagRemoved(iso){
+		
+		var newState = Object.assign({}, this.get());
+		
+		let layer=newState.shapeList.find((it)=>{return it.iso==iso})
+			layer.added=false;
 			layer.loading=false;
 			Object.assign(newState)
 			this.setData(newState);

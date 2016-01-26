@@ -17,7 +17,8 @@ const ShapesStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SHAPE), 'loading');		
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SHAPE).completed, 'completed');
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SHAPE).failed, 'failed');
-		
+	    this.listenTo(Actions.get(Constants.ACTION_UNLOAD_SHAPE), 'remove');
+			
 	},
 
 
@@ -35,6 +36,15 @@ const ShapesStore = createStore({
 			Actions.invoke(Constants.ACTION_COUNTRY_LAYER_ADDED_TO_MAP,iso)
 		}
 	},
+
+	remove(iso){
+		var newState = Object.assign({}, this.get());
+			let countries=newState.countries.filter((it)=>{return it.iso!=iso})
+			newState=Object.assign(newState,{countries:countries});
+			this.setData(newState);
+			Actions.invoke(Constants.ACTION_COUNTRY_LAYER_REMOVED_FROM_MAP,iso)
+	},
+
 
 	failed(message){
 		console.error(`Ups got  ${message}`)

@@ -15,7 +15,7 @@ import * as Constants from '../../constants/Contants.es6';
 import CodingLocationLayer from './CodingLocationLayer.jsx';
 import LocationsLayer  from './LocationsLayer.jsx';
 import CountryLayer from './CountryLayer.jsx';
-import CountryLayersControl from './CountryLayersControl.jsx';
+
 import DataEntryPopup from './DataEntryPopup.jsx';
 import SubmitGeocoding from './SubmitGeocoding.jsx';
 
@@ -25,6 +25,8 @@ import MapStore from '../../stores/Map.es6';
 import MiniMap from './MiniMap.jsx';
 import * as Intro from 'intro.js'
 import { featureGroup } from 'leaflet';
+import CountryLayerSelector from './CountryLayerSelector.jsx'
+import Control from './Control.jsx';
 
 class LayerGroup extends MapLayer {
   componentWillMount() {
@@ -175,10 +177,17 @@ class MapView extends React.Component {
             </LayerGroup>
           </MiniMap>
 
+          <Control position="topright">
+            <CountryLayerSelector/>
+          </Control>
           <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
+          
           <ZoomControl position="bottomright"/>
+          
           <DataEntryPopup/>
+          
           <SubmitGeocoding onHelpClick={this.help.bind(this)}/>
+
         </Map>
       </div>
       )
