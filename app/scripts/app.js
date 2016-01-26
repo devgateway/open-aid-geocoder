@@ -20,7 +20,15 @@ import XHR from 'i18next-xhr-backend';
 /*Global constants */
 window.GEO_NAMES_SERVICE_USER_NAME = 'aiddata';
 window.APP_SETTINGS = new Settings();
-window.API_BASE_URL = 'http://localhost:3000';
+
+if (document.location.hostname=='localhost'){
+  window.API_BASE_URL = 'http://localhost:3000';
+  window.LOCALES_PATH='/locales/{{lng}}/{{ns}}.json'
+}else{
+
+window.API_BASE_URL = 'http://geocoding.dgstg.org';
+  window.LOCALES_PATH='locales/{{lng}}/{{ns}}.json'
+}
 window.PROJECT_LIST_URL = `${window.API_BASE_URL}/projects`;
 window.PROJECT_URL = `${window.API_BASE_URL}/project`;
 window.FUZZY = 0.8;
@@ -62,7 +70,7 @@ i18next.use(XHR).init({
   "defaultNS": "translations",
   "fallbackNS": "common",
   "backend": {
-    "loadPath": "/locales/{{lng}}/{{ns}}.json"
+    "loadPath": window.LOCALES_PATH
   }
 }, (err, t) =>{
   
