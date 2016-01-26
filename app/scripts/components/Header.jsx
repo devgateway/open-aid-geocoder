@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navbar,Nav,NavDropdown,MenuItem,NavBrand,NavItem}  from 'react-bootstrap';
 import {LocationsSearch} from './LocationsSearch.jsx';
-import LayerSelectors from './map/CountryLayerSelector.jsx';
+
 import { Link  } from 'react-router';
 import AppIntro from './AppIntro.jsx';
 import Message from './Message.jsx';
@@ -55,17 +55,16 @@ render() {
     
 
     <ul className="nav navbar-nav navbar-right ">
-    <NavDropdown eventKey={4} title={Message.t('header.options.label')} id="nav-dropdown">
-    <LayerSelectors/>
-    <li>
-    <p>
-    <i className="fa fa-cog"></i> Language 
-    <select  value={this.state.lan} name="lan" className="pull-right" onChange={this.changeLan}>
-    <option value="en">English</option>
-    <option value="es">Espa&ntilde;ol</option>
-    </select>
-    </p>
-    </li>
+     <NavDropdown eventKey={4} title={Message.t('header.options.label')} id="nav-dropdown">
+       <li>
+        <p>
+        <i className="fa fa-cog"></i> Language 
+         <select  value={this.state.lan} name="lan" className="pull-right" onChange={this.changeLan}>
+        <option value="en">English</option>
+        <option value="es">Espa&ntilde;ol</option>
+      </select>
+        </p>
+      </li>
     <MenuItem eventKey="4.2"><i className="fa fa-cog"></i> Auto Zoom <input type="checkbox"/></MenuItem>
     <MenuItem eventKey="4.2"><i className="fa fa-cog"></i> Auto Clean Locations <i className="fa fa-check"></i></MenuItem>
     </NavDropdown>

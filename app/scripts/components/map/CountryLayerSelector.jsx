@@ -24,12 +24,19 @@ class LayerItem extends React.Component{
     Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, e.target.value);
   }
 
+  _removeLayer(e){
+    Actions.invoke(Constants.ACTION_REMOVE_COUNTRY_LAYER, e.target.value);
+  }
+
   render() {
     return (
       <ListGroupItem>
                 {this.props.name} 
-                {this.props.loading?<span>(Loading)</span>:null}
-                {this.props.added? <span className='pull-right'>Added</span> : <Button  bsStyle='primary' bsSize='small' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}>Add</Button>}
+                {this.props.loading?<kbd className="pull-right">(Loading)</kbd>:  (this.props.added)? 
+                  <Button  bsStyle='warning' bsSize='xsmall' className='pull-right' onClick={this._removeLayer.bind(this)} value={this.props.iso}>Remove</Button>
+                : <Button  bsStyle='info' bsSize='xsmall' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}>Add</Button>
+              }
+
       </ListGroupItem>
     )
   }
@@ -102,11 +109,10 @@ class CountryLayerSelector extends React.Component{
 
   render() {
     return (
-        <li>
+        <div className="leaflet-control leaflet-control-layers leaflet-control-layers-minimap leaflet-control">
 
-          <a href="javascript:void()" onClick={this.open.bind(this)}><i className="fa fa-cog"></i> Manage Country Shapes</a>
-          
-              <Modal  {...this.props} bsSize='large' show={this.state.showModal} onHide={this.close}>
+        <div className="leaflet-control-layers-toggle" title="Manage Country Layers" onClick={this.open.bind(this)}></div>
+          <Modal  {...this.props} bsSize='large' show={this.state.showModal} onHide={this.close}>
             <Modal.Header>
               <a className='close-dialog pull-right' href='#' onClick={this.close.bind(this)}><i className='fa fa-times-circle-o'></i></a>
               <Modal.Title><i className='fa fa-arrows-h'></i>Select Country Layer</Modal.Title>
@@ -121,10 +127,25 @@ class CountryLayerSelector extends React.Component{
       
 
 
-        </li>
+        </div>
     )
   }
 }
+
+
+
+class MapControl extends React.Component{
+
+  componentDidMount(){
+
+  }
+
+  render(){
+
+  }
+} 
+
+
 
 export default CountryLayerSelector
 
