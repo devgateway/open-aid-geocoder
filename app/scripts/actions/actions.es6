@@ -12,6 +12,9 @@ let actionsDef = {}
 actionsDef[Constants.ACTION_SEARCH_LOCATIONS] = {
 	children: ["completed", "failed"]
 }
+actionsDef[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID] = {
+	children: ["completed", "failed"]
+}
 actionsDef[Constants.ACTION_LOAD_SHAPE] = {
 	children: ["completed", "failed"]
 }
@@ -73,6 +76,11 @@ actions[Constants.ACTION_SEARCH_LOCATIONS].listen(function(options) {
 		.catch((message) => actions[Constants.ACTION_SEARCH_LOCATIONS].failed(message));
 })
 
+actions[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID].listen(function(options) {
+	new GeonamesClient(options)
+		.findByGeonameID().then((results) => actions[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID].completed(results))
+		.catch((message) => actions[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID].failed(message));
+})
 
 
 /*Ajax calls for async actions */

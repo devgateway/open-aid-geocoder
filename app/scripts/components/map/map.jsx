@@ -165,25 +165,21 @@ class MapView extends React.Component {
   render() {
     return (
       <div className="map">
+        <Map   {...this.state.map}  ref="map">
 
-      <Map   {...this.state.map}  ref="map">
+          <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
+            <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
+            <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
+            <LayerGroup name="Administrative Shapes" ref="country" showInMinimaps={false}>
+              { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
+            </LayerGroup>
+          </MiniMap>
 
-      <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
-      <LocationsLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  data={this.state.layers.locations?this.state.layers.locations.data:null}  autoZoom={this.state.layers.locations?this.state.layers.locations.autoZoom:null}></LocationsLayer>
-      <CodingLocationLayer name="Geocoding" className="geocoding" onFeatureClick={this.locationClick.bind(this)}  data={this.state.geocoding} autoZoom={false}></CodingLocationLayer> 
-      <LayerGroup name="Administrative Shapes" ref="country" showInMinimaps={false}>
-      { this.state.layers.countries?this.state.layers.countries.map( (country)=>{return <CountryLayer {...country}/>}):null}
-      </LayerGroup>
-      </MiniMap>
-
-
-
-      <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
-      <ZoomControl position="bottomright"/>
-      <DataEntryPopup/>
-      <SubmitGeocoding onHelpClick={this.help.bind(this)}/>
-
-      </Map>
+          <MapPopUp maxWidth="850" {...this.state.popup}><LocationPopup/></MapPopUp>
+          <ZoomControl position="bottomright"/>
+          <DataEntryPopup/>
+          <SubmitGeocoding onHelpClick={this.help.bind(this)}/>
+        </Map>
       </div>
       )
 }
