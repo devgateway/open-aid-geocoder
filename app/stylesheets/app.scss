@@ -155,6 +155,13 @@ body{
   max-height: 400;
 }
 
+.gazetteer-locations{
+   select{
+    text-transform: capitalize;
+   }
+}
+
+
 .show-location-button {
   float: right;
 }

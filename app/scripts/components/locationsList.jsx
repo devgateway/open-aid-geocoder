@@ -15,11 +15,6 @@ class Item extends React.Component{
   constructor() {
     super();
   }
-
-  componentDidMount() { }
-
-  componentWillUnmount() {}
-  
   setActiveLocation(data) {
     Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'locationFeature': data});	
   }
@@ -45,11 +40,6 @@ class ListItems extends React.Component{
   constructor() {
     super();
   }
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
   render() {
     if(!this.props.records || this.props.records.length == 0) {
     	return (
@@ -73,32 +63,47 @@ class ListItems extends React.Component{
 */
 class LocationsList extends React.Component {
 
-    constructor() {
-      super();
-      this.store=LocationsStore;
-      let data=(this.store.get())?this.store.get().toJS():[]
-      this.state=data
-    }
+  constructor() {
+    super();
+    this.store = LocationsStore;
+    let data = (this.store.get()) ? this.store.get().toJS() : []
+    this.state = data
+  }
 
-    componentDidMount() {
+  componentDidMount() {
 
-     this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
-  
-    }
+    this.unsuscribe = this.store.listen(this.onStoreChange.bind(this));
 
-    componentWillUnmount() {
-      this.unsuscribe()
-    }
+  }
 
-    onStoreChange(data){
-      this.setState(data.toJS())
-    }
+  componentWillUnmount() {
+    this.unsuscribe()
+  }
 
+  onStoreChange(data) {
+    this.setState(data.toJS())
+  }
+
+  typefilter(e) {
+    Actions.invoke(Constants.ACTION_FILTER_BY_TYPE,e.target.value)
+  }
     render() {
+
     return (
-			<div className="panel-body list">
-	 	    <ListItems {...this.state}/>
-      </div>
+            <div className="gazetteer-locations panel-body list ">
+              <div className="form small">
+                <div className="form-group">
+                  <div><label>Type filter</label></div>
+                  <div>  
+                    <select name="typeFilter" onChange={this.typefilter.bind(this)} value={this.state.typefilter}>
+                    <option value='ALL'>All Types</option> 
+                    {this.state.types.map((t)=>{return <option key={t.code} value={t.code}>{t.name}</option>})}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <ListItems {...this.state}/>
+            </div>
 		)
   }
 }

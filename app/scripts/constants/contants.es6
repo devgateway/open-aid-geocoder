@@ -53,7 +53,11 @@ export default class Constants {
 
 	static ACTION_SAVE_PROJECT = 'ACTION_SAVE_PROJECT';
 
-	static ACTION_CHANGE_LANGUAGE="ACTION_CHANGE_LANGUAGE"
+	static ACTION_CHANGE_LANGUAGE="ACTION_CHANGE_LANGUAGE";
+
+	static ACTION_FILTER_BY_TYPE="ACTION_FILTER_BY_TYPE";
+
+
 	static LOCATION_CLASS_LIST = [{
 		"code": "1",
 		"name": "Administrative Region",

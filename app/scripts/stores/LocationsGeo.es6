@@ -23,6 +23,7 @@ const LocationsGeoJsonStore = createStore({
 	},
 
 	process(data) {
+		
 		if(data.get('total') > 0) {
 			let featureCollection=
 			new GeoJsonBuilder({
