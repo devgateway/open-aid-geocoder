@@ -24,7 +24,7 @@ class MapControl extends React.Component{
     }
 
     ReactDOM.render(this.props.children, container);
-    debugger;
+    
   }
 
   render(){

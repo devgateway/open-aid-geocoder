@@ -32,7 +32,7 @@ const LocationsStore = createStore({
 
 	done(rawData) {
 		if(rawData.totalResultsCount > 0) {
-			debugger;
+			
 			let types=rawData.geonames.map( (a) =>{return {code:a.fcode,name:a.fcodeName}})  
 
 			let uniqueTypes=types.filter((value, index, self) => {

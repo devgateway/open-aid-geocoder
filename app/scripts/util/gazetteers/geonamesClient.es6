@@ -26,7 +26,7 @@ export default  class GeonamesClient extends BaseClient{
 	}
 
 	paginate(params={}){
-		return Object.assign(params, {startRow:0,maxRows:100})
+		return Object.assign(params, {startRow:0,maxRows:100,style:'full',orderby:'relevance',lang:'en'})
 	}
 
 	parseResponse(response){

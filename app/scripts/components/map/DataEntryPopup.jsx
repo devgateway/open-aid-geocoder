@@ -5,27 +5,13 @@ import ShapesMapping from '../../util/ShapesMapping.es6';
 import DataEntryStore from '../../stores/DataEntryStore.es6';
 import  * as Actions from '../../actions/Actions.es6'
 import * as Constants from '../../constants/Contants.es6';
-import * as Intro from 'intro.js'
+import DataEntryHelp from '../../help/DataEntry.es6';
 import ReactDOM from 'react-dom';
 
-const LOCATION_PROTOTYPE={
-  'name':null,
-  'id':null,
-  'description': null,
-  'activityDescription': null,
-  'country': null,
-  'admin1': null,
-  'admin2': null,
-  'geometry': null,
-  'featureDesignation': null,
-  'type':'location',
-  'status':'',
-  'locationClass':null, 
-  'exactness': null, 
-}
+
 
 /*Popup Data Entry*/
-class DataEntryContent extends React.Component {
+class DataEntryContent extends DataEntryHelp {
 
   static propTypes = {};
 
@@ -33,14 +19,18 @@ class DataEntryContent extends React.Component {
     super(props);
     this.state = {
       showDeleteDialog: false,
-      geocoding: Object.assign({}, LOCATION_PROTOTYPE)
+      geocoding: {},
+      useShape:true
     };
   }
 
   componentWillMount() {
     this.setState({
-      'geocoding': this.props
+      'geocoding': this.props,
+      'useShape':(this.props.adminCodes.shape!=null && this.props.type!='geocoding')
     });
+
+    
   }
 
   locationClassChanged(e) {
@@ -85,35 +75,6 @@ class DataEntryContent extends React.Component {
     });
   }
 
-/*
-  admin1Changed(e) {
-    let newGeocoding = Object.assign({}, this.state.geocoding);
-    let admin1 = e.target.value;
-    Object.assign(newGeocoding, {
-      'admin1': admin1
-    });
-    this.setState({
-      'geocoding': newGeocoding
-    });
-    this.validateField(admin1, 'admin1', (val) => {
-      return (val != null && val.length > 0)
-    });
-  }
-
-  admin2Changed(e) {
-    let newGeocoding = Object.assign({}, this.state.geocoding);
-    let admin2 = e.target.value;
-    Object.assign(newGeocoding, {
-      'admin1': admin2
-    });
-    this.setState({
-      'geocoding': newGeocoding
-    });
-    this.validateField(admin2, 'admin2', (val) => {
-      return (val != null && val.length > 0)
-    });
-  }
-  */
 
   onDelete() {
     this.setState(Object.assign(this.state, {
@@ -135,10 +96,14 @@ class DataEntryContent extends React.Component {
       }))
     }
 
+    onSave(){
+      this.save(false)
+    }
 
-    onSave(notValidate) {
-      let geocoding = this.validate(notValidate);
-      if (geocoding) {
+    save(skipValidation){      
+      let geocoding = this.buildGecoding(this.state.geocoding);
+      let valid=(skipValidation)? true: this.validate(geocoding);
+      if (valid) {
         let prev_status = geocoding.status;
         let status = geocoding.type == 'location' ? "NEW" : this.state.deleteConfirmed ? "DELETED" : "UPDATED";
         if (prev_status == "NEW" && status == "DELETED") {
@@ -148,130 +113,69 @@ class DataEntryContent extends React.Component {
           status = "NEW";
         }
         let saveGeo = Object.assign({}, geocoding);
-        Object.assign(saveGeo, {
-          'status': status
-        });
-
+        Object.assign(saveGeo, {'status': status});
         Actions.invoke(Constants.ACTION_SAVE_LOCATION, saveGeo);
         this.onCancel();
+      } 
+    }
+
+
+    /**
+     * Create final geocoding object 
+     * @return {[type]} [description]
+     */
+     buildGecoding(source) {
+      var newGeocoding={};
+      Object.assign(newGeocoding, {
+        name: source.name,
+        'id': source.id,
+        'geometry': source.geometry,
+        'description':source.description,
+        'featureDesignation': source.featureDesignation,
+        'type': source.type,
+        'status': source.status,
+        'activityDescription':source.activityDescription,
+        'locationClass':source.locationClass,
+        'exactness':source.exactness,
+
+      });
+
+      if (this.state.useShape) {
+        Object.assign(newGeocoding, {
+          'country': source.adminCodes.shape.country,
+          'admin1': source.adminCodes.shape.admin1,
+          'admin2': source.adminCodes.shape.admin2,
+        })
+      }else{
+        Object.assign(newGeocoding, {
+          'country': source.adminCodes.geonames.country,
+          'admin1': source.adminCodes.geonames.admin1,
+          'admin2': source.adminCodes.geonames.admin2,
+        })
       }
+      return newGeocoding;
+    }
+
+    /**
+     * Validate the new geocoding object
+     */
+
+     validate(newGeocoding) {
+      return (
+        this.validateField(newGeocoding.exactness, 'exactness') & 
+        this.validateField(newGeocoding.locationClass, 'locationClass') &
+        this.validateField(newGeocoding.activityDescription, 'activityDescription', (val) => {return (val != null && val.length > 0)} ) &
+        this.validateField(newGeocoding.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) & 
+        this.validateField(newGeocoding.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
+        this.validateField(newGeocoding.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
+        );
+
     }
 
 
 
-    help() {
-      let node = ReactDOM.findDOMNode(this);
-      
-      let intro = Intro.introJs();
+    validateField(value, elementId, validator) {
 
-      let steps=[
-
-      {
-        element:node.querySelector('#name'),
-        intro: "The location name is gathered from the gazetteer location and is not editable",
-        position: 'left'
-      },
-      {
-        element:node.querySelector('#country'),
-        intro: "Country info is gathered from the gazetteer location and  is not editable",
-        position: 'left'
-      },
-      {
-        element:node.querySelector('#admin1'),
-        intro: "Admininistrative division level one is gathered from country shape layer,and is not editable ",
-        position: 'left'
-      },
-      {
-        element:node.querySelector('#admin2'),
-        intro: "Admininistrative division level two is gathered  from the country shape layer and is not editable ",
-        position: 'left'
-      },
-      {
-        element:node.querySelector('#id'),
-        intro: "The location id  is gathered from the gazetteer location and is not editable",
-        position: 'left'
-      },
-      
-      {
-        element:node.querySelector('#geometryType'),
-        intro: "The geometry type is point by default whe coding locations returned by the gazetteer",
-        position: 'left'
-      },
-
-      {
-        element:node.querySelector('#coordinates'),
-        intro: "The geogprahicaly corddinates are expressed as latitude,longitude and gathered form the gazetteer location ",
-        position: 'left'
-      },
-      {
-        element:node.querySelector('#featureDesignationContainer'),
-        intro: 'Feature designation is gathered from the gazetteer location and is not editable,  more information about this field can be found here <br><a class="small" href="http://www.geonames.org/export/codes.html">http://www.geonames.org/export/codes.html</a> ',
-        position: 'left'
-      },
-      {
-        element:node.querySelector('#locationClass'),
-        intro: 'Location classs should be manually enterd and it defines whether the location  refers to  a structure, a populated place (e.g. city or village), an administrative division, or another topological feature (e.g. river, nature reserve),  pleae visit  <br><a class="small" href="http://iatistandard.org/201/activity-standard/iati-activities/iati-activity/location/location-class/">http://iatistandard.org/201/activity-standard/iati-activities/iati-activity/location/location-class/</a> ',
-        position: 'left'
-      },
-
-      {
-        element:node.querySelector('#exactness'),
-        intro: 'Exactness should be entered manually and it defines whether the location represents the most distinct point reasonably possible for this type of activity or is an approximation due to lack of more detailed information. <br><a class="small" href="http://iatistandard.org/201/activity-standard/iati-activities/iati-activity/location/exactness/">http://iatistandard.org/201/activity-standard/iati-activities/iati-activity/location/exactness/</a> ',
-        position: 'left'
-      },
-
-      {
-        element:node.querySelector('#activityDescription'),
-        intro: 'A free input text  <br><a class="small" href="http://iatistandard.org/201/activity-standard/iati-activities/iati-activity/location/exactness/">http://iatistandard.org/201/activity-standard/iati-activities/iati-activity/location/exactness/</a> ',
-        position: 'left'
-      },
-
-      {
-        element:node.querySelector('.btn-success'),
-        intro: 'Click here to save or update the location',
-        position: 'left'
-      }
-      ,
-      {
-        element:node.querySelector('.btn-warning'),
-        intro: 'Click here to candel the edition',
-        position: 'left'
-      },
-      {
-        element:node.querySelector('.btn-primary'),
-        intro: 'Click here to update the info from Geonames service',
-        position: 'rigth' 
-      }
-
-
-      ];
-
-
-
-      if (this.props.type!='location'){
-
-       steps.push({
-        element:node.querySelector('.btn-danger'),
-        intro: 'Click here to delete de location',
-        position: 'left'
-      });
-
-
-     }
-
-     steps.push(      {
-        element:node.querySelector('.btn-info'),
-        intro: 'Click here to show this help',
-        position: 'left'
-      })
-
-
-
-     intro.setOptions({steps: steps});
-     intro.start()
-   }
-
-   validateField(value, elementId, validator) {
       if (!validator) { //default validator
         validator = (val) => {
           return val != null
@@ -289,40 +193,7 @@ class DataEntryContent extends React.Component {
       }
     }
 
-    validate(notValidate) {
-      let newGeocoding = Object.assign({}, this.state.geocoding);
-      Object.assign(newGeocoding, {
-        name: this.props.name,
-        'id': this.props.id,
-        'country': this.props.country,
-        'admin1': this.props.admin1,
-        'admin2': this.props.admin2,
-        'geometry': this.props.geometry,
-        'featureDesignation': this.props.featureDesignation,
-        'type': this.props.type,
-        'status': this.props.status
-      });
-
-      if (notValidate == true) {
-        return newGeocoding;
-      }
-
-      let validObject = (this.validateField(newGeocoding.exactness, 'exactness') &
-        this.validateField(newGeocoding.locationClass, 'locationClass') &
-        this.validateField(newGeocoding.activityDescription, 'activityDescription', (val) => {
-          return (val != null && val.length > 0)
-        }) &
-        this.validateField(newGeocoding.admin1, 'admin1') &
-        this.validateField(newGeocoding.admin2, 'admin2'));
-
-      if (validObject) {
-        return newGeocoding;
-      } else {
-        return null;
-      }
-
-    }
-
+    /*end field*/
     onCancel() {
       this.props.onCancel ? this.props.onCancel() : null
     }
@@ -331,139 +202,195 @@ class DataEntryContent extends React.Component {
       Actions.invoke(Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID, {'geonameID': this.props.id});
     }
 
-    render() {
-      if(this.state.confirmDelete){
-        return (
-          <div>    
-            <h4 className="list-group-item-heading">
-              This location will be marked as deleted, are you sure you want to continue?
-            </h4>
-            <hr/>
-            <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
-            <Button bsStyle='success' className="pull-right" onClick={this.doDelete.bind(this)}>Yes</Button>
-          </div>
-          )
-      } else {
-        return (
-        <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
-          <div className="row"> 
-            <div className="col-lg-12">
-              <label  for="admin1">Name</label>
-              <input type="text" className="form-control big" id="name" placeholder="name" value={this.props.name} disabled/> 
-            </div>
-          </div>
-          <div className="row"> 
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label  for="country,">Country</label>
-                <input type="text" className="form-control" id="country" placeholder="NA" value={this.props.country?this.props.country.name:''} disabled/>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label  for="admin1">First ADM</label>
-                <input type="text" className="form-control" id="admin1" placeholder="NA" value={this.props.admin1?this.props.admin1.name:''} disabled/>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label  for="admin2">Second ADM</label>
-                <input type="text" className="form-control" id="admin2" placeholder="NA" value={this.props.admin2?this.props.admin2.name:''} disabled/>
-              </div>
-            </div>
-          </div>
+    toggle(){
+      debugger;
+      let newState=Object.assign({},this.state);
+      
+      Object.assign(newState,{'useShape':(!this.state.useShape)});
+      
+      let holder;
+      if (this.props.type!='geocoding'){
+        holder=(newState.useShape)?this.props.adminCodes.shape:this.props.adminCodes.geonames;
+      }else{
+       holder=(newState.useShape)?this.props.adminCodes.shape:this.props;
 
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label  for="id">Identifier</label>
-                <input type="text" className="form-control" id="id" placeholder="id" value={this.props.id} disabled/>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label  for="geometry.type">Type</label>
-                <input type="text" className="form-control" id="geometryType"  placeholder="" value={this.props.geometry.type} disabled/>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group" id="coordinates">
-                <label  for="lat">Coordinates</label>
-                <div>{this.props.geometry.coordinates.join(', ')}</div>
-              </div>
-            </div>
-          </div>
+     }
+     debugger;
+     this.validateField(holder.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) & 
+     this.validateField(holder.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
+     this.validateField(holder.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
+     this.setState(newState);  
+   }
 
-          <div className="row"> 
-            <div className="col-lg-12">
-              <div className="form-group">
-                <label  for="typeCode">Feature Designation</label>
-                <div className="row" id="featureDesignationContainer">
-                  <div className="col-lg-3">
-                    <input type="text" className="form-control" id="featureDesignation"  value={this.props.featureDesignation.code} disabled/>
-                  </div>
-                  <div className="col-lg-9"> 
-                    <input type="text" className="form-control" id="featureDesignationName"  value={this.props.featureDesignation.name} disabled/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+   render() {
+    debugger;
+    let country,admin1,admin2 ,comment;
+    if (this.state.useShape){
+      if (this.props.adminCodes.shape){
+        country=this.props.adminCodes.shape.country.name;
+        admin1=this.props.adminCodes.shape.admin1.name;
+        admin2=this.props.adminCodes.shape.admin2.name;
+      }
+      comment="Using shape values";
+    } else {
+      if (this.props.type=='geocoding'){
+        country=this.props.country.name;
+        admin1=this.props.admin1.name;
+        admin2=this.props.admin2.name;
+        comment="Using stored values";
+      }else if (this.props.adminCodes.geonames){
+       country=this.props.adminCodes.geonames.country.name;
+       admin1=this.props.adminCodes.geonames.admin1.name;
+       admin2=this.props.adminCodes.geonames.admin2.name;
+       comment="Using gazetter values";
+     }
+   }
 
-          <div className="row"> 
-            <div className="col-lg-6"> 
-              <div className="form-group" >
-                <label  for="locationClass">Location Class</label>
-                <select value={this.state.geocoding.locationClass? this.state.geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
-                <option>Select</option>
-                {
-                  Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-                }
-                </select>
-              </div>
-            </div>
-            <div className="col-lg-6"> 
-              <div className="form-group">
-                <label  for="Exactness">Geographic Exactness </label>
-                <select value={this.state.geocoding.exactness? this.state.geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
-                <option>Select</option>
-                {
-                  Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-                }
-                </select>
-              </div>
-            </div>
-          </div>
+   /**/
 
-          <div className="row"> 
-            <div className="col-lg-12"> 
-              <div className="form-group">
-                <label  for="typeCode">Activity Description</label>
-                <textarea   className="form-control" id="activityDescription" value={this.state.geocoding.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
-              </div>
-            </div>
-          </div>
+   if(this.state.confirmDelete){
+    return (
+      <div>    
+      <h4 className="list-group-item-heading">
+      This location will be marked as deleted, are you sure you want to continue?
+      </h4>
+      <hr/>
+      <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
+      <Button bsStyle='success' className="pull-right" onClick={this.doDelete.bind(this)}>Yes</Button>
+      </div>
+      )
+  } else {
+    return (
+      <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
+      <div className="row"> 
 
-          <div className="row"> 
-            <div className="col-lg-12"> 
-              <button className="btn btn-primary pull-left" title='Update data from Geonames service' onClick={this.updateFromGeonames.bind(this)}>
-                <span className="fa fa-refresh"></span>
-              </button>
-              <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
-              <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
-              {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
-              <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
-            </div>
-          </div>
-        </div>
-        );
+      <div className="col-lg-12">
+      <label  for="admin1">Name</label>
+      <input type="text" className="form-control big" id="name" placeholder="name" value={this.props.name} disabled/> 
+      </div>
+      </div>
+      <div className="row"> 
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label  for="country,">Country</label>
+      <input type="text" className="form-control" id="country" placeholder="NA" value={country || ''} disabled/>
+      </div>
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label  for="admin1">First ADM</label>
+      <input type="text" className="form-control" id="admin1" placeholder="NA" value={admin1 || ''} disabled/>
+      </div>
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label  for="admin2">Second ADM</label>
+      <input type="text" className="form-control" id="admin2" placeholder="NA" value={admin2 || ''} disabled/>
+      </div>
+      </div>
+
+      {
+        (this.props.type=='geocoding')?
+        <div className="small mini">* {comment} <button className="btn btn-xs btn-info pull-right toggler" onClick={this.toggle.bind(this)}>{this.state.useShape?'Use Stored':'Use Shapes'}</button></div>
+        :
+        <div className="small mini">* {comment} <button className="btn btn-xs btn-info pull-right toggler" onClick={this.toggle.bind(this)}>{this.state.useShape?'Use Gazetter':'Use Shapes'}</button></div>
+      }
+      </div>
+
+
+
+      <div className="row">
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label  for="id">Identifier</label>
+      <input type="text" className="form-control" id="id" placeholder="id" value={this.props.id} disabled/>
+      </div>
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label  for="geometry.type">Type</label>
+      <input type="text" className="form-control" id="geometryType"  placeholder="" value={this.props.geometry.type} disabled/>
+      </div>
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group" id="coordinates">
+      <label  for="lat">Coordinates</label>
+      <div>{this.props.geometry.coordinates.join(', ')}</div>
+      </div>
+      </div>
+      </div>
+
+      <div className="row"> 
+      <div className="col-lg-12">
+      <div className="form-group">
+      <label  for="typeCode">Feature Designation</label>
+      <div className="row" id="featureDesignationContainer">
+      <div className="col-lg-3">
+      <input type="text" className="form-control" id="featureDesignation"  value={this.props.featureDesignation.code} disabled/>
+      </div>
+      <div className="col-lg-9"> 
+      <input type="text" className="form-control" id="featureDesignationName"  value={this.props.featureDesignation.name} disabled/>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+      <div className="row"> 
+      <div className="col-lg-6"> 
+      <div className="form-group" >
+      <label  for="locationClass">Location Class</label>
+      <select value={this.state.geocoding.locationClass? this.state.geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
+      <option>Select</option>
+      {
+        Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+      }
+      </select>
+      </div>
+      </div>
+      <div className="col-lg-6"> 
+      <div className="form-group">
+      <label  for="Exactness">Geographic Exactness </label>
+      <select value={this.state.geocoding.exactness? this.state.geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
+      <option>Select</option>
+      {
+        Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+      }
+      </select>
+      </div>
+      </div>
+      </div>
+
+      <div className="row"> 
+      <div className="col-lg-12"> 
+      <div className="form-group">
+      <label  for="typeCode">Activity Description</label>
+      <textarea   className="form-control" id="activityDescription" value={this.state.geocoding.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
+      </div>
+      </div>
+      </div>
+
+      <div className="row"> 
+      <div className="col-lg-12"> 
+      <button className="btn btn-primary pull-left" title='Update data from Geonames service' onClick={this.updateFromGeonames.bind(this)}>
+      <span className="fa fa-refresh"></span>
+      </button>
+      <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
+      <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
+      {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
+      <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
+      </div>
+      </div>
+
+      </div>
+      );
       }//end else
     }
   }
 
-/*
-  Renders a  List of Country Layers  
-  */
+
+
+  /*Data Entry Main Container*/
   class DataEntry extends React.Component{
     constructor() {
       super();
@@ -505,11 +432,9 @@ class DataEntryContent extends React.Component {
       <DataEntryContent {...this.state.location} onCancel={this.close.bind(this)}/>
       </Modal.Body>
       </Modal>
-      
       )
   }
 }
-
 
 
 export default DataEntry
