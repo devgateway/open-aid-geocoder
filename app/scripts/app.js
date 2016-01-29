@@ -31,7 +31,7 @@ window.API_BASE_URL = 'http://geocoding.dgstg.org';
 }
 window.PROJECT_LIST_URL = `${window.API_BASE_URL}/projects`;
 window.PROJECT_URL = `${window.API_BASE_URL}/project`;
-window.FUZZY = 1;
+window.FUZZY = 0;
 
 
 /**
