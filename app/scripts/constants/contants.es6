@@ -57,6 +57,8 @@ export default class Constants {
 
 	static ACTION_FILTER_BY_TYPE="ACTION_FILTER_BY_TYPE";
 
+	static ACTION_CLEAN_MAP_STORE="ACTION_CLEAN_MAP_STORE";
+
 
 	static LOCATION_CLASS_LIST = [{
 		"code": "1",

@@ -41,6 +41,9 @@ const PopUpStore = createStore({
 
 			}
 		},
+		project: null,
+		activeLocation: null,
+		geocoding: null,
 		clickedLocationPosition: null
 	},
 
@@ -55,7 +58,12 @@ const PopUpStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 		this.listenTo(Actions.get(Constants.ACTION_OPEN_DATAENTRY_POPUP), 'closeInfoWindow');
 		this.listenTo(Actions.get(Constants.ACTION_SET_ACTIVE_LOCATION), 'setActiveLocation');
+		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');
+	},
 
+	cleanStore() {
+		debugger; 
+    	this.setData(this.initialData);
 	},
 
 	getInitialState() {
@@ -126,6 +134,7 @@ const PopUpStore = createStore({
 	},
 
 	updateProjectLocations(data) {
+		debugger;
 		var newState = Object.assign({}, this.get())
 		newState.geocoding = data.geojson;
 		this.setData(newState);

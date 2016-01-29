@@ -28,6 +28,8 @@ const ProjectGeoJsonStore = createStore({
 				}
 			}).build(project.locations);
 			this.setData({'geojson':featureCollection});
+		} else {
+			this.setData({'geojson':null});	
 		}
 	}
 
