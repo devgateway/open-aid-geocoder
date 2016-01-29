@@ -1,16 +1,43 @@
 {
 	"header": {
-		"branding": "Open Aid Geocodier",
+		"branding": "Open Aid Geocoder",
 		"search": {
 			"holder": "Enter text to search",
 			"label": "Search locations",
 			"fuzzy": "Fuzzy",
 			"country": "Country",
 			"submit": "Search"
-
 		},
 		"options": {
 			"label": "Options"
+		}
+	},
+
+	"help": {
+		"header": {
+			"textinput": "Type a location name in this search box",
+			"fuzzycheck": "Select the \"Fuzzy\" checkbox to perform an approximate name search",
+			"countrycheck": "Select the \"Country\" checkbox to search for locations only within the country the project is located in",
+			"searchbtn": "Click the Search button to perform the search"
+		},
+		"main": {
+			"panel_title": "Project ID and title of the current project",
+			"panel_project": "Shows related project information for the current project",
+			"panel_geocoding": "Shows all existing and recently added geocoded locations for the current project",
+			"panel_locations": "Shows location search results",
+			"map": "Map shows existing (green) and recently added (yellow) geocoded locations for the current project, as well as search results (grey)",
+			"layercontrol": "Click on this icon to manage layers and basemaps",
+			"zoomcontrol": "Use the zoom controls to zoom the map in or out",
+			"cancelbtn": "Click on cancel to return to the project list",
+			"submitbtn": "Click on submit button to save your changes"
+		},
+		"dataentry": {
+			"locationname": "The data for the following fields is automatically generated from the gazetteer and not editable by the user",
+			"locationclass": "Location class defines whether the location is a populated place (e.g. city or village), administrative division, or another topological feature (e.g. river or mountain)",
+			"exactness": "Exactness defines whether the location represents the most distinct point reasonably possible for this type of activity or if it is an approximation due to lack of more detailed data",
+			"savebtn": "Click here to save or update the location",
+			"cancelbtn": "Click here to cancel",
+			"deletebtn": "Click here to delete the location"
 		}
 	}
 }
