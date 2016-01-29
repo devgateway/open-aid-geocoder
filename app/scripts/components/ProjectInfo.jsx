@@ -7,7 +7,7 @@ import  * as Actions from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
 import ProjectStore from '../stores/Project.es6';
 import LocationsList from './LocationsList.jsx';
-import * as Intro from 'intro.js';
+import ProjectInfoHelp from '../help/ProjectInfo.es6';
 
 /*
   Renders a single Location 
@@ -71,7 +71,7 @@ class Item extends React.Component{
 /*
    This view renders the Project Information UI component
 */
-class ProjectInfo extends React.Component {
+class ProjectInfo extends ProjectInfoHelp {
 
     constructor() {
       super();
@@ -100,38 +100,6 @@ class ProjectInfo extends React.Component {
 	  this.setState(project);
 	}
 
-  help() {
-    let node=ReactDOM.findDOMNode(this);
-    
-    let intro=Intro.introJs();
-    intro.setOptions({steps:[
-      {
-        element: node.querySelector('h4'),
-        intro: "Here you can see the project id and project title",
-        position:'bottom'
-      },
-        {
-        element: node.querySelectorAll('.nav-tabs li')[0],
-        intro: "This tab shows project realted information like description ",
-        position:'bottom'
-      },
-    {
-        element: node.querySelectorAll('.nav-tabs li')[1],
-        intro: "This tab shows locations belonging to project (existing or added in this session) ",
-        position:'bottom'
-      },
-
-       {
-        element: node.querySelectorAll('.nav-tabs li')[2],
-        intro: "This tab shows search results use this tab to see returned locations as a list ",
-        position:'bottom'
-      }
-      ]});
-    intro.start()
-
-    
-
-  }
 
     render() {
     return (
