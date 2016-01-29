@@ -18,7 +18,7 @@ actionsDef[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID] = {
 actionsDef[Constants.ACTION_LOAD_SHAPE] = {
 	children: ["completed", "failed"]
 }
-actionsDef[Constants.ACTION_LOAD_ALL_PROJECTS] = {
+actionsDef[Constants.ACTION_FIND_PROJECTS] = {
 	children: ["completed", "failed"]
 }
 actionsDef[Constants.ACTION_LOAD_SINGLE_PROJECT] = {
@@ -91,10 +91,10 @@ actions[Constants.ACTION_LOAD_SHAPE].listen(function(iso) {
 })
 
 /* Load  projects asynchronously */
-actions[Constants.ACTION_LOAD_ALL_PROJECTS].listen(function() {
-	APIClient.getProjectList()
-		.then((results) => actions[Constants.ACTION_LOAD_ALL_PROJECTS].completed(results))
-		.catch((message) => actions[Constants.ACTION_LOAD_ALL_PROJECTS].failed(message));
+actions[Constants.ACTION_FIND_PROJECTS].listen(function(params) {
+	APIClient.getProjectList(params)
+		.then((results) => actions[Constants.ACTION_FIND_PROJECTS].completed(results))
+		.catch((message) => actions[Constants.ACTION_FIND_PROJECTS].failed(message));
 })
 
 actions[Constants.ACTION_LOAD_SINGLE_PROJECT].listen(function(id) {

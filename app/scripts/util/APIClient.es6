@@ -5,9 +5,9 @@ export default class ApiClient {
 	 * Get all projects fron mock data
 	 * @return {[array]}     an array with all projects
 	 */
-	static getProjectList() {
+	static getProjectList(params) {
 		return new Promise((resolve, reject) => {
-			AjaxUtil.get(window.PROJECT_LIST_URL)
+			AjaxUtil.get(window.PROJECT_LIST_URL,params)
 				.then((response) => {
 					resolve(response.data);
 				})

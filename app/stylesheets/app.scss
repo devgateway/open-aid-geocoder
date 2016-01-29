@@ -130,17 +130,19 @@ body{
 
 }
 
-
-
-
-
 .form-inline .form-group{
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .spacing{
   margin-left: 5px !important;
+}
+
+.spacingLg{
+  margin-left: 10px !important;
+  padding:5px;
+
 }
 
 
@@ -490,4 +492,11 @@ p {
     button{
       font-size:80%;
     }
+}
+
+
+.centerd{
+  padding:0px 0px 0px 0px;
+  text-align: center;
+
 }

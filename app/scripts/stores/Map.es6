@@ -132,12 +132,8 @@ const PopUpStore = createStore({
 	},
 
 	updatePopupInfo(properties) {
-		const {
-			countryFeature, locationFeature, position
-		} = properties;
-		const {
-			ID_0, ID_1, GAUL01, ID_2, GAUL02, NAME_0, Country, NAME_1, ADM1, NAME_2, ADM2
-		} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
+		const {countryFeature, locationFeature, position} = properties;
+		const {ID_0, ID_1, GAUL01, ID_2, GAUL02, NAME_0, Country, NAME_1, ADM1, NAME_2, ADM2} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
 		const {
 			fclName, adminCode1, adminCode2, adminId1, adminId2, adminName1, adminName2, adminName3, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryId, countryName, activityDescription
 		} = locationFeature.properties;
@@ -151,16 +147,13 @@ const PopUpStore = createStore({
 			...locationFeature.properties
 		};
 
-
 		if (locationFeature.properties.type == 'geocoding') {
 			var geocoding = locationFeature.properties;
-			this.addAdminCodes(geocoding, params)
+			this.addAdminCodes(geocoding, params);
 		} else {
 			var geocoding = this.makeGeocodingObject(params);
 			this.addAdminCodes(geocoding, params);
-
 		}
-
 		/*creates info window parameters */
 		this.setData(Object.assign({}, this.get(), {
 			popup: {
@@ -170,7 +163,6 @@ const PopUpStore = createStore({
 			}
 		}));
 	},
-
 
 	makeGeocodingObject(params) {
 		let model = {
@@ -192,11 +184,7 @@ const PopUpStore = createStore({
 			'locationClass': params.locationClass || null, //{code:''m,name:''}
 			'exactness': params.exactness || null, // {{"code": "1", "name": "Exact"}
 
-
 		}
-
-
-
 		return model;
 	},
 

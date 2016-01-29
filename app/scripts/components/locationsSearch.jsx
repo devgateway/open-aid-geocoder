@@ -74,10 +74,11 @@ let LocationsSearch = React.createClass({
     let node=ReactDOM.findDOMNode(this);
     
     let intro=Intro.introJs();
+
     intro.setOptions({steps:[
       {
         element: node,
-        intro: "Enter a location name or an approximate name"
+        intro: "Entteaer a location name or an approximate name"
       },
 
       {
@@ -100,9 +101,6 @@ let LocationsSearch = React.createClass({
       
       ]});
     intro.start()
-
-    
-
   },
 
   render() {
@@ -124,7 +122,7 @@ let LocationsSearch = React.createClass({
         <label className="small spacing" ><Message k="header.search.label"/></label> 
 
        
-         <Input     type="text" value={this.state.text} 
+         <Input  type="text" value={this.state.text} 
          placeholder={Message.t("header.search.holder")} 
          bsStyle={this.validationState() } 
          hasFeedback bsSize="small" 
@@ -142,6 +140,7 @@ let LocationsSearch = React.createClass({
        </div>
        <div className="form-group small"> {' '}
          <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> 
+           
            <Message k="header.search.country"/>
        
        </div>
