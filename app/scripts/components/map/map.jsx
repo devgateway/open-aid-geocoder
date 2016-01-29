@@ -58,6 +58,7 @@ class MapView extends React.Component {
   }
 
   componentWillUnmount() {
+    Actions.invoke(Constants.ACTION_CLEAN_MAP_STORE);
     this.unsubscribe();
   }
 
