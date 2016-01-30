@@ -15,6 +15,9 @@ actionsDef[Constants.ACTION_SEARCH_LOCATIONS] = {
 actionsDef[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID] = {
 	children: ["completed", "failed"]
 }
+actionsDef[Constants.ACTION_UPDATE_ADM_FROM_GEONAMES] = {
+	children: ["completed", "failed"]
+}
 actionsDef[Constants.ACTION_LOAD_SHAPE] = {
 	children: ["completed", "failed"]
 }
@@ -80,6 +83,12 @@ actions[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID].listen(function(options) 
 	new GeonamesClient(options)
 		.findByGeonameID().then((results) => actions[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID].completed(results))
 		.catch((message) => actions[Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID].failed(message));
+})
+
+actions[Constants.ACTION_UPDATE_ADM_FROM_GEONAMES].listen(function(options) {
+	new GeonamesClient(options)
+		.findByGeonameID().then((results) => actions[Constants.ACTION_UPDATE_ADM_FROM_GEONAMES].completed(results))
+		.catch((message) => actions[Constants.ACTION_UPDATE_ADM_FROM_GEONAMES].failed(message));
 })
 
 

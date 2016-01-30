@@ -201,6 +201,7 @@ const PopUpStore = createStore({
 	},
 
 	addAdminCodes(model, params) {
+		debugger;
 		var adminCodes = {
 			geonames: {
 				'country': {
