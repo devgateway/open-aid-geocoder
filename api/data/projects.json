@@ -132,7 +132,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -186,7 +186,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -223,7 +223,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -260,7 +260,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -314,7 +314,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -351,7 +351,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -388,7 +388,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -443,7 +443,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -497,7 +497,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -534,7 +534,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -588,7 +588,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -625,7 +625,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -679,7 +679,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -716,7 +716,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -753,7 +753,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -807,7 +807,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -861,7 +861,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",
@@ -898,7 +898,7 @@
                       "code": "PPL",
                       "name": "populated place"
                    },
-                   "type": "location",
+                   "type": "geocoding",
                    "status": "NEW",
                    "locationClass": {  
                       "code": "2",

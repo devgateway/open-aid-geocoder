@@ -22,7 +22,7 @@ window.GEO_NAMES_SERVICE_USER_NAME = 'aiddata';
 window.APP_SETTINGS = new Settings();
 
 if (document.location.hostname=='localhost'){
-  window.API_BASE_URL = 'http://geocoding.dgstg.org';
+  window.API_BASE_URL = 'http://localhost:3000';
   window.LOCALES_PATH='/locales/{{lng}}/{{ns}}.json'
 }else{
 

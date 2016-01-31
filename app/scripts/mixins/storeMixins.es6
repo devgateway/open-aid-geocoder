@@ -14,9 +14,11 @@ const StoreMixins = {
 		this.data = this.initialData;
 	},
 	
-	setData: function(newData) {
+	setData: function(newData,silent) {
 		this.data = newData;
-		this.emit();
+		if (silent!=true){
+			this.emit();
+		}
 	},
 
 	get: function() {

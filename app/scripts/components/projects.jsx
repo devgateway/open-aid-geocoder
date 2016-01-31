@@ -51,7 +51,7 @@ class Projects extends React.Component {
   }
   
   loadProjects() {
-  	Actions.invoke(Constants.Project.ACTION_LOAD_ALL_PROJECTS);  
+  	Actions.invoke(Constants.Project.ACTION_FIND_PROJECTS);  
   }
   
   onStoreChange(data){
