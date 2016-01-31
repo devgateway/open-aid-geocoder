@@ -6,7 +6,7 @@ var Axios = require('axios');
 var jsonfile = require('jsonfile')
 
 
-var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/data_entry_updates/api/data/projects.json';
+var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/api/data/projects.json';
 
 /**
  
