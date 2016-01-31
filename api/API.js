@@ -22,15 +22,13 @@ var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/ope
         responseType: 'json',
         params: {}
     }).then(function(response) {
+
         console.log('inserting projects docs into nedb ---> total: ' + response.data.length);
-        jsonfile.writeFile('helloworld.json', response.data, {
-            spaces: 2
-        }, function(err) {
-            if (err) return console.log(err);
-        });
+
         db.insert(response.data, function(err, newDoc) { // Callback is optional
             console.log('error: ' + err);
         });
+        
     }).catch(function(response) {
         console.log('fail!');
     });
@@ -55,7 +53,7 @@ var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/ope
         var findParams={};
         if (t){
             findParams['title']={$regex: new RegExp(t,"i")};
-           // findParams['long_description']={$regex: new RegExp(t,"i")};
+            findParams['project_id']={$regex: new RegExp(t,"i")};
         }
         if (withLoc && withLoc=='yes'){
             findParams['locations']={ $exists: true }
