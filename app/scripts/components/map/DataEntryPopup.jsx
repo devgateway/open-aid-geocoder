@@ -18,16 +18,18 @@ class DataEntryContent extends DataEntryHelp {
   constructor(props) {
     super(props);
     this.state = {
+      loadingAdminGeonames: false,
+      loadingGeonames: false,
       showDeleteDialog: false,
       geocoding: {},
-      useShape:true
+      admSource: this.props.type=='geocoding'? 'saved' : 'shapes'
     };
   }
 
   componentWillMount() {
     this.setState({
       'geocoding': this.props,
-      'useShape':(this.props.adminCodes.shape!=null && this.props.type!='geocoding')
+      'admSource': this.props.type=='geocoding'? 'saved' : 'shapes'
     });
 
     
@@ -87,7 +89,7 @@ class DataEntryContent extends DataEntryHelp {
       this.setState(Object.assign(this.state, {
         deleteConfirmed: true
       }));
-      this.onSave(true);
+      this.save(true);
     }
 
     cancelDelete() {
@@ -140,19 +142,25 @@ class DataEntryContent extends DataEntryHelp {
 
       });
 
-      if (this.state.useShape) {
-        Object.assign(newGeocoding, {
-          'country': source.adminCodes.shape.country,
-          'admin1': source.adminCodes.shape.admin1,
-          'admin2': source.adminCodes.shape.admin2,
-        })
-      }else{
-        Object.assign(newGeocoding, {
-          'country': source.adminCodes.geonames.country,
-          'admin1': source.adminCodes.geonames.admin1,
-          'admin2': source.adminCodes.geonames.admin2,
-        })
+      switch(this.state.admSource) {
+        case 'saved':          
+          break;
+        case 'shapes':
+          Object.assign(newGeocoding, {
+            'country': source.adminCodes.shape.country,
+            'admin1': source.adminCodes.shape.admin1,
+            'admin2': source.adminCodes.shape.admin2,
+          });
+          break;
+        case 'geonames':
+          Object.assign(newGeocoding, {
+            'country': source.adminCodes.geonames.country,
+            'admin1': source.adminCodes.geonames.admin1,
+            'admin2': source.adminCodes.geonames.admin2,
+          });
+          break;
       }
+      
       return newGeocoding;
     }
 
@@ -165,9 +173,9 @@ class DataEntryContent extends DataEntryHelp {
         this.validateField(newGeocoding.exactness, 'exactness') & 
         this.validateField(newGeocoding.locationClass, 'locationClass') &
         this.validateField(newGeocoding.activityDescription, 'activityDescription', (val) => {return (val != null && val.length > 0)} ) &
-        this.validateField(newGeocoding.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) & 
-        this.validateField(newGeocoding.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
-        this.validateField(newGeocoding.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
+        this.validateField(newGeocoding.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) //& 
+        //this.validateField(newGeocoding.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
+        //this.validateField(newGeocoding.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
         );
 
     }
@@ -200,52 +208,55 @@ class DataEntryContent extends DataEntryHelp {
 
     updateFromGeonames() {
       Actions.invoke(Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID, {'geonameID': this.props.id});
+      let newState=Object.assign({},this.state);
+      Object.assign(newState,{'admSource': 'geonames', 'loadingGeonames': true});
+      this.setState(newState); 
     }
 
-    toggle(){
-      debugger;
+    toggle(e){
       let newState=Object.assign({},this.state);
-      
-      Object.assign(newState,{'useShape':(!this.state.useShape)});
-      
+      let newSource =  e.target.value;
+      Object.assign(newState,{'admSource': e.target.value});
       let holder;
-      if (this.props.type!='geocoding'){
-        holder=(newState.useShape)?this.props.adminCodes.shape:this.props.adminCodes.geonames;
-      }else{
-       holder=(newState.useShape)?this.props.adminCodes.shape:this.props;
-
-     }
-     debugger;
-     this.validateField(holder.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) & 
-     this.validateField(holder.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
-     this.validateField(holder.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
-     this.setState(newState);  
+      switch(newSource) {
+        case 'saved':  
+          holder = this.props;      
+          break;
+        case 'shapes':
+          holder = this.props.adminCodes.shape;
+          break;
+        case 'geonames':
+          Object.assign(newState, {'loadingAdminGeonames': true});
+          Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.id});
+          holder=this.props.adminCodes.geonames;
+          break;
+      }
+      //this.validateField(holder.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) & 
+      //this.validateField(holder.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
+      //this.validateField(holder.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
+      this.setState(newState);  
    }
 
    render() {
     debugger;
     let country,admin1,admin2 ,comment;
-    if (this.state.useShape){
-      if (this.props.adminCodes.shape){
+    switch(this.state.admSource) {
+      case 'saved':  
+        country=this.props.country.name;
+        admin1=this.props.admin1.name;
+        admin2=this.props.admin2.name;      
+        break;
+      case 'shapes':
         country=this.props.adminCodes.shape.country.name;
         admin1=this.props.adminCodes.shape.admin1.name;
         admin2=this.props.adminCodes.shape.admin2.name;
-      }
-      comment="Using shape values";
-    } else {
-      if (this.props.type=='geocoding'){
-        country=this.props.country.name;
-        admin1=this.props.admin1.name;
-        admin2=this.props.admin2.name;
-        comment="Using stored values";
-      }else if (this.props.adminCodes.geonames){
-       country=this.props.adminCodes.geonames.country.name;
-       admin1=this.props.adminCodes.geonames.admin1.name;
-       admin2=this.props.adminCodes.geonames.admin2.name;
-       comment="Using gazetter values";
-     }
-   }
-
+        break;
+      case 'geonames':
+        country=this.props.adminCodes.geonames.country.name;
+        admin1=this.props.adminCodes.geonames.admin1.name;
+        admin2=this.props.adminCodes.geonames.admin2.name;
+        break;
+    }
    /**/
 
    if(this.state.confirmDelete){
@@ -261,125 +272,133 @@ class DataEntryContent extends DataEntryHelp {
       )
   } else {
     return (
-      <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
-      <div className="row"> 
+          <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
+            <div className="row"> 
 
-      <div className="col-lg-12">
-      <label  for="admin1">Name</label>
-      <input type="text" className="form-control big" id="name" placeholder="name" value={this.props.name} disabled/> 
-      </div>
-      </div>
-      <div className="row"> 
-      <div className="col-lg-4">
-      <div className="form-group">
-      <label  for="country,">Country</label>
-      <input type="text" className="form-control" id="country" placeholder="NA" value={country || ''} disabled/>
-      </div>
-      </div>
-      <div className="col-lg-4">
-      <div className="form-group">
-      <label  for="admin1">First ADM</label>
-      <input type="text" className="form-control" id="admin1" placeholder="NA" value={admin1 || ''} disabled/>
-      </div>
-      </div>
-      <div className="col-lg-4">
-      <div className="form-group">
-      <label  for="admin2">Second ADM</label>
-      <input type="text" className="form-control" id="admin2" placeholder="NA" value={admin2 || ''} disabled/>
-      </div>
-      </div>
+              <div className="col-lg-12">
+                <label  for="admin1">Name</label>
+                <input type="text" className="form-control big" id="name" placeholder="name" value={this.props.name} disabled/> 
+              </div>
+            </div>
+            <div className="row"> 
+              <div className="col-lg-4">
+                <div className="form-group">
+                  <label  for="country,">Country</label>
+                  <input type="text" className="form-control" id="country" placeholder="NA" value={country || ''} disabled/>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="form-group">
+                  <label  for="admin1">First ADM</label>
+                  <input type="text" className="form-control" id="admin1" placeholder="NA" value={admin1 || ''} disabled/>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="form-group">
+                  <label  for="admin2">Second ADM</label>
+                  <input type="text" className="form-control" id="admin2" placeholder="NA" value={admin2 || ''} disabled/>
+                </div>
+              </div>
+          </div>
 
-      {
-        (this.props.type=='geocoding')?
-        <div className="small mini">* {comment} <button className="btn btn-xs btn-info pull-right toggler" onClick={this.toggle.bind(this)}>{this.state.useShape?'Use Stored':'Use Shapes'}</button></div>
-        :
-        <div className="small mini">* {comment} <button className="btn btn-xs btn-info pull-right toggler" onClick={this.toggle.bind(this)}>{this.state.useShape?'Use Gazetter':'Use Shapes'}</button></div>
-      }
-      </div>
+          <div className="row small mini"> 
+            <div className="col-lg-4">
+              Use Admin Division from:
+            </div>
+            <div className="col-lg-8">
+              {(this.props.type=='geocoding')?
+                <button className={this.state.admSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggle.bind(this)}> Stored </button>
+              : null }
+              <button className={this.state.admSource=='shapes'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shapes' onClick={this.toggle.bind(this)}> Shapes </button>
+              <button className={this.state.admSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggle.bind(this)}> Geonames </button>
+               {(!this.props.adminCodes.geonames.country.name && this.state.loadingAdminGeonames)?
+                <i className="fa fa-spinner fa-spin"></i>
+                : null }
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  for="id">Identifier</label>
+                <input type="text" className="form-control" id="id" placeholder="id" value={this.props.id} disabled/>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  for="geometry.type">Type</label>
+                <input type="text" className="form-control" id="geometryType"  placeholder="" value={this.props.geometry.type} disabled/>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="form-group" id="coordinates">
+                <label  for="lat">Coordinates</label>
+                <div>{this.props.geometry.coordinates.join(', ')}</div>
+              </div>
+            </div>
+          </div>
 
+          <div className="row"> 
+            <div className="col-lg-12">
+              <div className="form-group">
+                <label  for="typeCode">Feature Designation</label>
+                <div className="row" id="featureDesignationContainer">
+                  <div className="col-lg-3">
+                    <input type="text" className="form-control" id="featureDesignation"  value={this.props.featureDesignation.code} disabled/>
+                  </div>
+                  <div className="col-lg-9"> 
+                    <input type="text" className="form-control" id="featureDesignationName"  value={this.props.featureDesignation.name} disabled/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-
-      <div className="row">
-      <div className="col-lg-4">
-      <div className="form-group">
-      <label  for="id">Identifier</label>
-      <input type="text" className="form-control" id="id" placeholder="id" value={this.props.id} disabled/>
-      </div>
-      </div>
-      <div className="col-lg-4">
-      <div className="form-group">
-      <label  for="geometry.type">Type</label>
-      <input type="text" className="form-control" id="geometryType"  placeholder="" value={this.props.geometry.type} disabled/>
-      </div>
-      </div>
-      <div className="col-lg-4">
-      <div className="form-group" id="coordinates">
-      <label  for="lat">Coordinates</label>
-      <div>{this.props.geometry.coordinates.join(', ')}</div>
-      </div>
-      </div>
-      </div>
-
-      <div className="row"> 
-      <div className="col-lg-12">
-      <div className="form-group">
-      <label  for="typeCode">Feature Designation</label>
-      <div className="row" id="featureDesignationContainer">
-      <div className="col-lg-3">
-      <input type="text" className="form-control" id="featureDesignation"  value={this.props.featureDesignation.code} disabled/>
-      </div>
-      <div className="col-lg-9"> 
-      <input type="text" className="form-control" id="featureDesignationName"  value={this.props.featureDesignation.name} disabled/>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-
-      <div className="row"> 
-      <div className="col-lg-6"> 
-      <div className="form-group" >
-      <label  for="locationClass">Location Class</label>
-      <select value={this.state.geocoding.locationClass? this.state.geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
-      <option>Select</option>
-      {
-        Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-      }
-      </select>
-      </div>
-      </div>
-      <div className="col-lg-6"> 
-      <div className="form-group">
-      <label  for="Exactness">Geographic Exactness </label>
-      <select value={this.state.geocoding.exactness? this.state.geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
-      <option>Select</option>
-      {
-        Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-      }
-      </select>
-      </div>
-      </div>
-      </div>
-
-      <div className="row"> 
-      <div className="col-lg-12"> 
-      <div className="form-group">
-      <label  for="typeCode">Activity Description</label>
-      <textarea   className="form-control" id="activityDescription" value={this.state.geocoding.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
-      </div>
-      </div>
+          <div className="row"> 
+            <div className="col-lg-6"> 
+              <div className="form-group" >
+                <label  for="locationClass">Location Class</label>
+                <select value={this.state.geocoding.locationClass? this.state.geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.locationClassChanged.bind(this)}>
+                  <option>Select</option>
+                  {
+                  Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+                }
+              </select>
+            </div>
+          </div>
+          <div className="col-lg-6"> 
+            <div className="form-group">
+              <label  for="Exactness">Geographic Exactness </label>
+              <select value={this.state.geocoding.exactness? this.state.geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.exactnessChanged.bind(this)}>
+                <option>Select</option>
+                {
+                Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+              }
+            </select>
+          </div>
+        </div>
       </div>
 
       <div className="row"> 
-      <div className="col-lg-12"> 
-      <button className="btn btn-primary pull-left" title='Update data from Geonames service' onClick={this.updateFromGeonames.bind(this)}>
-      <span className="fa fa-refresh"></span>
-      </button>
-      <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
-      <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
-      {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
-      <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
+        <div className="col-lg-12"> 
+          <div className="form-group">
+            <label  for="typeCode">Activity Description</label>
+            <textarea   className="form-control" id="activityDescription" value={this.state.geocoding.activityDescription} onChange={this.activityDescriptionChanged.bind(this)}></textarea>
+          </div>
+        </div>
       </div>
+
+      <div className="row"> 
+        <div className="col-lg-12"> 
+          <button className="btn btn-primary pull-left" title='Update data from Geonames service' onClick={this.updateFromGeonames.bind(this)}>
+            {(!this.props.adminCodes.geonames.country.name && this.state.loadingGeonames)?
+              <span className="fa fa-refresh fa-spin"></span>
+            :  <span className="fa fa-refresh"></span> }
+          </button>
+          <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
+          <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
+          {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
+          <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
+        </div>
       </div>
 
       </div>
