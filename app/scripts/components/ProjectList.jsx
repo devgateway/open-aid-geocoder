@@ -58,7 +58,7 @@ class ProjectList extends React.Component {
   }
 
   validationState() {
-    debugger;
+    
     let length = this.state.params.t?this.state.params.t.length:0;
     if (length > 3) return 'success';
     else if (length > 0) return 'warning';

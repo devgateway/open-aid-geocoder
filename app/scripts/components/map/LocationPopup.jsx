@@ -37,7 +37,7 @@ class InfoView extends React.Component {
   }
 
   render() {
-    debugger;
+    
 
     var cssClass;
     if (this.props.type == 'location') {
@@ -67,8 +67,8 @@ class InfoView extends React.Component {
     else{
       //it is geocoding
       country=this.props.country.name;
-      admin1=this.props.admin1.name;
-      admin2=this.props.admin2.name;
+      admin1=this.props.admin1?this.props.admin1.name:null;
+      admin2=this.props.admin2?this.props.admin1.name:null;
       comment="Using stored values";
     }
 

@@ -62,7 +62,7 @@ const PopUpStore = createStore({
 	},
 
 	cleanStore() {
-		debugger; 
+		 
     	this.setData(this.initialData);
 	},
 
@@ -134,7 +134,7 @@ const PopUpStore = createStore({
 	},
 
 	updateProjectLocations(data) {
-		debugger;
+		
 		var newState = Object.assign({}, this.get())
 		newState.geocoding = data.geojson;
 		this.setData(newState);
@@ -198,7 +198,7 @@ const PopUpStore = createStore({
 	},
 
 	addAdminCodes(model, params) {
-		debugger;
+		
 		var adminCodes = {
 			geonames: {
 				'country': {

@@ -24,7 +24,7 @@ const SingleProjectStore = createStore({
 	},
 
 	cleanStore() {
-		debugger; 
+		 
     	this.setData(this.initialData);
 	},
 

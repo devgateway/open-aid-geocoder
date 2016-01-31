@@ -238,13 +238,13 @@ class DataEntryContent extends DataEntryHelp {
    }
 
    render() {
-    debugger;
+    
     let country,admin1,admin2 ,comment;
     switch(this.state.admSource) {
       case 'saved':  
         country=this.props.country.name;
-        admin1=this.props.admin1.name;
-        admin2=this.props.admin2.name;      
+        admin1=this.props.admin1?this.props.admin1.name:null;
+        admin2=this.props.admin2?this.props.admin2.name:null;      
         break;
       case 'shapes':
         country=this.props.adminCodes.shape.country.name;
