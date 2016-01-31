@@ -78,28 +78,23 @@ let LocationsSearch = React.createClass({
     intro.setOptions({steps:[
       {
         element: node,
-        intro: "Entteaer a location name or an approximate name"
+        intro: Message.t("help.header.textinput")
       },
 
       {
         element: node.querySelector("input[name=fuzzy]"),
-        intro: 'Check fuzzy option to search by approximate name.',
+        intro: Message.t("help.header.fuzzycheck"),
         position: 'left'
       },
       {
         element: node.querySelector("input[name=country]"),
-        intro: 'Check country option to search locations within project country',
-
+        intro: Message.t("help.header.countrycheck")
       },
       {
         element: node.querySelector(".btn-search"),
-        intro: 'Click on search button to perform the search',
-
-      }
-
-
-      
-      ]});
+        intro: Message.t("help.header.searchbtn")
+      }      
+    ]});
     intro.start()
   },
 

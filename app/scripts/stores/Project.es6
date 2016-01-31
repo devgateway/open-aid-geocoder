@@ -20,7 +20,12 @@ const SingleProjectStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT), 'loading');		
 		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT).completed, 'saveSuccess');
 		this.listenTo(Actions.get(Constants.ACTION_SAVE_PROJECT).failed, 'failed');
-		
+		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');
+	},
+
+	cleanStore() {
+		debugger; 
+    	this.setData(this.initialData);
 	},
 
 	loading(){
@@ -70,7 +75,8 @@ const SingleProjectStore = createStore({
 
 
 	saveSuccess(){
-		window.location.replace("/");//reloads list page
+		window.history.back();
+    	window.location.reload();
 	}
 });
 

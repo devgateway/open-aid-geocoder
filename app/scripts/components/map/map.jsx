@@ -23,10 +23,11 @@ import MapPopUp from './PopUp.jsx';
 import LocationPopup from './LocationPopup.jsx'; 
 import MapStore from '../../stores/Map.es6';
 import MiniMap from './MiniMap.jsx';
-import * as Intro from 'intro.js'
 import { featureGroup } from 'leaflet';
 import CountryLayerSelector from './CountryLayerSelector.jsx'
 import Control from './Control.jsx';
+import MapHelp from '../../help/Map.es6';
+
 
 class LayerGroup extends MapLayer {
   componentWillMount() {
@@ -45,7 +46,7 @@ class LayerGroup extends MapLayer {
 }
 
 
-class MapView extends React.Component {
+class MapView extends MapHelp {
 
   constructor() {
     super();
@@ -58,6 +59,7 @@ class MapView extends React.Component {
   }
 
   componentWillUnmount() {
+    Actions.invoke(Constants.ACTION_CLEAN_MAP_STORE);
     this.unsubscribe();
   }
 
@@ -119,49 +121,6 @@ class MapView extends React.Component {
       countryFeature,
       'position': [location.lat, location.lng]
     })
-  }
-
-
-
-  help() {
-    let node = ReactDOM.findDOMNode(this);
-    
-    let intro = Intro.introJs();
-    intro.setOptions({
-      steps: [{
-         intro: "Use the map to visualize the geographic position of the locations"
-      },
-
-      {
-        element: node.querySelector(".leaflet-control-layers "),
-        intro: "Click on layer control icons to manage layer and basemaps visibility options"
-      }
-      ,
-
-      {
-        element: node.querySelector(".leaflet-control-zoom"),
-        intro: "Use the zoom control to zoom in or zoom out the map",
-         position:'left'
-      }
-            ,
-
-      {
-        element: node.querySelector(".btn-warning"),
-        intro: "Click on cancel to return back to the project list",
-         position:'left'
-      }
-   ,
-
-      {
-        element: node.querySelector(".btn-success"),
-        intro: "Click on submit button to save your changes",
-        position:'left'
-      }
-
-
-      ]
-    });
-    intro.start()
   }
 
   render() {
