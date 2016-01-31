@@ -1,3 +1,4 @@
+//TODO: this file needs a big refactoring (TODO ADDED By @sdimunzio 31 01 2016)
 import React from 'react';
 import { PropTypes } from 'react';
 import ReactDOM from 'react-dom';

@@ -1,4 +1,10 @@
 {
+	
+	"projects":{
+		 "projectsCount": "{{count}} project found",
+      	"projectsCount_plural": "{{count}} projects found"
+	},
+
 	"header": {
 		"branding": "Open Aid Geocoder",
 		"search": {

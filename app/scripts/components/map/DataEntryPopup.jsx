@@ -301,19 +301,18 @@ class DataEntryContent extends DataEntryHelp {
               </div>
           </div>
 
-          <div className="row small mini"> 
-            <div className="col-lg-4">
+          <div className="row small mini "> 
+            
+            <div className="col-lg-12">
+              <div className="pull-right bottom-line">
               Use Admin Division from:
+              {(this.props.type=='geocoding')?<button className={this.state.admSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggle.bind(this)}> Stored </button>: null }
+              
+              <button className={this.state.admSource=='shapes'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shapes' onClick={this.toggle.bind(this)}>Shapes </button> 
+              
+              <button className={this.state.admSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggle.bind(this)}>Geonames </button>
+               {(!this.props.adminCodes.geonames.country.name && this.state.loadingAdminGeonames)?<i className="fa fa-spinner fa-spin"></i>: null }
             </div>
-            <div className="col-lg-8">
-              {(this.props.type=='geocoding')?
-                <button className={this.state.admSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggle.bind(this)}> Stored </button>
-              : null }
-              <button className={this.state.admSource=='shapes'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shapes' onClick={this.toggle.bind(this)}> Shapes </button>
-              <button className={this.state.admSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggle.bind(this)}> Geonames </button>
-               {(!this.props.adminCodes.geonames.country.name && this.state.loadingAdminGeonames)?
-                <i className="fa fa-spinner fa-spin"></i>
-                : null }
             </div>
           </div>
           <div className="row">
@@ -330,7 +329,7 @@ class DataEntryContent extends DataEntryHelp {
               </div>
             </div>
             <div className="col-lg-4">
-              <div className="form-group" id="coordinates">
+              <div className="form-group small" id="coordinates">
                 <label  for="lat">Coordinates</label>
                 <div>{this.props.geometry.coordinates.join(', ')}</div>
               </div>
@@ -389,7 +388,7 @@ class DataEntryContent extends DataEntryHelp {
 
       <div className="row"> 
         <div className="col-lg-12"> 
-          <button className="btn btn-primary pull-left" title='Update data from Geonames service' onClick={this.updateFromGeonames.bind(this)}>
+          <button className="btn btn-sm btn-default pull-left" title='Update data from Geonames service' onClick={this.updateFromGeonames.bind(this)}>
             {(!this.props.adminCodes.geonames.country.name && this.state.loadingGeonames)?
               <span className="fa fa-refresh fa-spin"></span>
             :  <span className="fa fa-refresh"></span> }

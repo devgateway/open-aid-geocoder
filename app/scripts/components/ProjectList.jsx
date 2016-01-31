@@ -6,24 +6,24 @@ import { Link  } from 'react-router';
 import  * as Actions from '../actions/Actions.es6';
 import * as Constants from '../constants/Contants.es6';
 import Projects from '../stores/Projects.es6';
+import Message from './Message.jsx';
+/* Renders a quick project info view */
 
-
-
-/* Renders a link to a specific project */
-class ProjectLink extends React.Component {
+class ProjecyInfo extends React.Component {
   constructor() {
     super();
   }
-
   render() {
-    
       return (
         <div className={(this.props.locations && this.props.locations.length>0)?"bs-callout bs-callout-success":"bs-callout bs-callout-info"}>
                       <div className="text-vertical">{this.props.project_id}</div>
-                      <h4>{this.props.title} </h4>
-                      <p>{this.props.long_description}</p>
+                      <h4><Link to={"/fixed/map/" + this.props.project_id}>{this.props.title}</Link> </h4>
+                      <p>{this.props.long_description}
+                         <div className="pull-right vertical-spacing"> <Link to={"/fixed/map/" + this.props.project_id}>Geocode Project</Link></div>
+                        <br/>
+                      </p>
                        
-                       <p className="pull-right"> <Link to={"/fixed/map/" + this.props.project_id}>Open</Link></p>
+                       
                 </div>
               
             )
@@ -104,7 +104,7 @@ class ProjectList extends React.Component {
                     value={this.state.value}
                     placeholder="Enter text to search"
                     label="Search"
-                    bsStyle={this.validationState()}
+                   // bsStyle={this.validationState()}
                     hasFeedback
                     ref="input"
                     groupClassName="group-class"
@@ -115,25 +115,24 @@ class ProjectList extends React.Component {
                 <Row className="small">
                   <Col lg={12}>
                     <div className="form form-inline pull-rigth">
-                      <div className="form-group">
                         <label>
-                         Geocoding fiter 
+                         Filter  projects  
                         </label>
-                      </div>
-
+                      
+                      
                       <div className="form-group spacingLg">
-                        <Input type="radio" name="withLoc" label="Ignore" value="none" checked={this.state.params.withLoc =='none'}  onChange={this.handleChange.bind(this)}/>
-                      </div>
-
-
-                      <div className="form-group spacingLg">
-                        <Input type="radio" name="withLoc" label="Having" value="yes" checked={this.state.params.withLoc =='yes'}  onChange={this.handleChange.bind(this)}/>
+                        <Input type="radio" name="withLoc" label="Having Locations" value="yes" checked={this.state.params.withLoc =='yes'}  onChange={this.handleChange.bind(this)}/>
                       </div>
 
 
                       <div className="form-group spacingLg">
-                        <Input type="radio" name="withLoc" label="Not having "value="no" checked={this.state.params.withLoc =='no'}  onChange={this.handleChange.bind(this)}/>
+                        <Input type="radio" name="withLoc" label="Not having Location"value="no" checked={this.state.params.withLoc =='no'}  onChange={this.handleChange.bind(this)}/>
                       </div>
+
+                      <div className="form-group spacingLg">
+                        <Input type="radio" name="withLoc" label="Any of them" value="none" checked={this.state.params.withLoc =='none'}  onChange={this.handleChange.bind(this)}/>
+                      </div>
+
 
                     </div>
                   </Col>
@@ -141,8 +140,10 @@ class ProjectList extends React.Component {
                 <Row>
                   <Col lg={12}>
                     <ListGroup>
+                    <h4><Message k="projects.projectsCount" count={this.state.data.count}/></h4> 
+
                       {this.state.data.projects?this.state.data.projects.map((project) => { 
-                      return <ProjectLink key={project._id} {...project}/>
+                      return <ProjecyInfo key={project._id} {...project}/>
                     }):null
                   }
                 </ListGroup>

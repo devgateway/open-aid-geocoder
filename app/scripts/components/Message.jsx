@@ -22,7 +22,7 @@ export default class Message extends React.Component {
 
 
 	render(){
-		let w=i18next.t(this.props.k);
+		let w=i18next.t(this.props.k,this.props);
 		
 		return <span className={this.props.className}>{w}</span>		
 	}
