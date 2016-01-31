@@ -41,7 +41,6 @@
                       "name": "populated place"
                    },
                    "type": "geocoding",
-                   "status": "EXISTING",
                    "locationClass": {  
                       "code": "2",
                       "name": "Populated Place"
@@ -78,7 +77,6 @@
                       "name": "populated place"
                    },
                    "type": "geocoding",
-                   "status": "EXISTING",
                    "locationClass": {  
                       "code": "2",
                       "name": "Populated Place"
