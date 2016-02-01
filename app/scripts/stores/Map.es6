@@ -155,7 +155,7 @@ const PopUpStore = createStore({
 			NAME_2: (NAME_2 || ADM2),
 			...locationFeature.properties
 		};
-
+		debugger;
 		if (locationFeature.properties.type == 'geocoding') {
 			var geocoding = locationFeature.properties;
 			this.addAdminCodes(geocoding, params);

@@ -143,7 +143,12 @@ class DataEntryContent extends DataEntryHelp {
       });
 
       switch(this.state.admSource) {
-        case 'saved':          
+        case 'saved':  
+          Object.assign(newGeocoding, {
+            'country': source.country,
+            'admin1': source.admin1,
+            'admin2': source.admin2,
+          });        
           break;
         case 'shapes':
           Object.assign(newGeocoding, {
@@ -169,6 +174,7 @@ class DataEntryContent extends DataEntryHelp {
      */
 
      validate(newGeocoding) {
+      debugger;
       return (
         this.validateField(newGeocoding.exactness, 'exactness') & 
         this.validateField(newGeocoding.locationClass, 'locationClass') &
