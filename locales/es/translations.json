@@ -1,0 +1,16 @@
+{
+	"header": {
+		"branding": "Geocoder Abierto",
+		"search": {
+			"holder": "Ingerese el texto a buscar",
+			"label": "Buscar Locations",
+			"fuzzy": "Aproximado",
+			"country": "País",
+			"submit": "Buscar"
+
+		},
+		"options": {
+			"label": "Opciones"
+		}
+	}
+}
