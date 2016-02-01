@@ -62,7 +62,11 @@ const Projects = createStore({
 	},
 
 	setParam(param) {
-		let newState = this.cloneState({page:1,params:{skip:0,limit:10}}); //reset pagination since it will be a new result
+		debugger;
+		let oldParams=Object.assign({page:1,params:{skip:0,limit:10}},this.get().params);
+
+		let newState = this.cloneState({params:oldParams}); //reset pagination since it will be a new result
+		
 		Object.assign(newState.params, param);
 		this.setData(newState);
 		Actions.invoke(Constants.ACTION_FIND_PROJECTS, newState.params);

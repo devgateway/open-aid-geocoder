@@ -51,10 +51,11 @@ var INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/ope
         sortParam[sort] = order;
 
         var findParams={};
+       
         if (t){
-            findParams['title']={$regex: new RegExp(t,"i")};
-            findParams['project_id']={$regex: new RegExp(t,"i")};
+ 		    findParams['title']={$regex: new RegExp(t,"i")};
         }
+
         if (withLoc && withLoc=='yes'){
             findParams['locations']={ $exists: true }
         }
