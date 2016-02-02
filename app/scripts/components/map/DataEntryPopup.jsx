@@ -4,7 +4,7 @@ import { Link  } from 'react-router';
 import ShapesMapping from '../../util/ShapesMapping.es6';
 import DataEntryStore from '../../stores/DataEntryStore.es6';
 import  * as Actions from '../../actions/Actions.es6'
-import * as Constants from '../../constants/Contants.es6';
+import Constants from '../../constants/Contants.es6';
 import DataEntryHelp from '../../help/DataEntry.es6';
 import ReactDOM from 'react-dom';
 

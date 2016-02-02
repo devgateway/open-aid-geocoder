@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Modal,Button} from 'react-bootstrap';
 import * as Actions from '../../actions/Actions.es6';
-import * as Constants from '../../constants/Contants.es6';
+import Constants from '../../constants/Contants.es6';
 
 
 const LOCATION_PROTOTYPE={
@@ -26,7 +26,6 @@ const LOCATION_PROTOTYPE={
 /*Popup info*/
 
 class InfoView extends React.Component {
-  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -161,7 +160,6 @@ class InfoView extends React.Component {
 
 export default class LocationPopup extends React.Component {
 
-  static propTypes = {}
 
   constructor(props) {
     super(props);

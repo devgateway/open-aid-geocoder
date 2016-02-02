@@ -4,7 +4,7 @@ import {Tabs, Tab, Button, Label}  from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import  * as Actions from '../actions/Actions.es6';
-import * as Constants from '../constants/Contants.es6';
+import Constants from '../constants/Contants.es6';
 import ProjectStore from '../stores/Project.es6';
 import LocationsList from './LocationsList.jsx';
 import ProjectInfoHelp from '../help/ProjectInfo.es6';

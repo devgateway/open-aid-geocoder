@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
 import LocationsStore from '../stores/Locations.es6';
 import * as Actions from '../actions/Actions.es6';
-import *  as Constants from '../constants/Contants.es6';
+import Constants from '../constants/Contants.es6';
 import {Button}  from 'react-bootstrap';
 
   /*

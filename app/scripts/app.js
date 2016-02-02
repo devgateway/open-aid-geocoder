@@ -6,6 +6,10 @@ require('../stylesheets/control.layers.minimap.css');
 require("babel-polyfill");
 require('font-awesome/css/font-awesome.css');
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 import  Settings from  "./util/Settings.es6";
 import  * as Actions from './actions/Actions.es6'
 import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
@@ -17,12 +21,16 @@ import GridLayout from './components/Grid.jsx';
 import FixedLayout from  './components/Fixed.jsx';
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
+
+
+import { hashHistory } from 'react-router'
+
 /*Global constants */
 window.GEO_NAMES_SERVICE_USER_NAME = 'aiddata';
 window.APP_SETTINGS = new Settings();
 
 if (document.location.hostname=='localhost'){
-  window.API_BASE_URL = 'http://localhost:3000';
+  window.API_BASE_URL = 'http://localhost:3001';
   window.LOCALES_PATH='/locales/{{lng}}/{{ns}}.json'
 }else{
 
@@ -32,7 +40,6 @@ window.API_BASE_URL = 'http://geocoding.dgstg.org';
 window.PROJECT_LIST_URL = `${window.API_BASE_URL}/projects`;
 window.PROJECT_URL = `${window.API_BASE_URL}/project`;
 window.FUZZY = 0;
-
 
 /**
  * Root view
@@ -76,7 +83,7 @@ i18next.use(XHR).init({
   
 
   render((
-    <Router>
+    <Router history={hashHistory} >
     <Route path="/" component={ProjectList}>
     <IndexRoute component={ProjectList} />
     </Route>

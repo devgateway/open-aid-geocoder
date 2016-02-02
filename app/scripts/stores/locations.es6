@@ -1,7 +1,7 @@
 import {createStore} from 'reflux';
 
 import * as Actions from '../actions/Actions.es6';
-import *  as Constants from '../constants/Contants.es6';
+import Constants from '../constants/Contants.es6';
 import {List,Map,Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 

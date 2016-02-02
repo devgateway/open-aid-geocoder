@@ -3,7 +3,7 @@ import {
 }
 from 'reflux';
 import * as Actions from '../actions/Actions.es6';
-import * as Constants from '../constants/Contants.es6';
+import  Constants from '../constants/Contants.es6';
 import {
 	StoreMixins
 }
@@ -62,7 +62,7 @@ const Projects = createStore({
 	},
 
 	setParam(param) {
-		debugger;
+		
 		let oldParams=Object.assign({page:1,params:{skip:0,limit:10}},this.get().params);
 
 		let newState = this.cloneState({params:oldParams}); //reset pagination since it will be a new result

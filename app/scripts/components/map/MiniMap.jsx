@@ -7,8 +7,6 @@ import {Button} from 'react-bootstrap';
 import {MapComponent} from 'react-leaflet'; 
 
 import * as Providers from 'leaflet-providers'; 
-
-import  * as leafletImage from 'leaflet-image'
 require('leaflet.sync');
 
 

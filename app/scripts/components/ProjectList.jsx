@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {ListGroup,ListGroupItem,Pagination,Grid,Row,Col,Input,Button}  from 'react-bootstrap';
 import { Link  } from 'react-router';
 import  * as Actions from '../actions/Actions.es6';
-import * as Constants from '../constants/Contants.es6';
+import Constants from '../constants/Contants.es6';
 import Projects from '../stores/Projects.es6';
 import Message from './Message.jsx';
 /* Renders a quick project info view */
@@ -85,6 +85,7 @@ class ProjectList extends React.Component {
   }
 
   render() {
+    debugger;
     return (
               <Grid>
                 <Row>
@@ -103,7 +104,7 @@ class ProjectList extends React.Component {
                     name="t"
                     value={this.state.value}
                     placeholder="Enter text to search"
-                    label="Search"
+                    label="Text search"
                    // bsStyle={this.validationState()}
                     hasFeedback
                     ref="input"
@@ -116,7 +117,7 @@ class ProjectList extends React.Component {
                   <Col lg={12}>
                     <div className="form form-inline pull-rigth">
                         <label>
-                         Filter  projects  
+                         Geocoding Filter  
                         </label>
                       
                       

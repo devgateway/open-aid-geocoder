@@ -10,7 +10,7 @@ import {L, Popup, Map, Marker, TileLayer,ZoomControl,MapLayer,ScaleControl} from
 import leafletPip from 'leaflet-pip';
 
 import * as Actions from '../../actions/Actions.es6';
-import * as Constants from '../../constants/Contants.es6';
+import Constants from '../../constants/Contants.es6';
 
 import CodingLocationLayer from './CodingLocationLayer.jsx';
 import LocationsLayer  from './LocationsLayer.jsx';

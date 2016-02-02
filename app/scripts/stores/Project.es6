@@ -1,8 +1,8 @@
 import {createStore} from 'reflux';
 import * as Actions from '../actions/Actions.es6';
-import *  as Constants from '../constants/Contants.es6';
+import  Constants from '../constants/Contants.es6';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
-import _ from 'lodash';
+import _ from 'lodash'; //TODO: rewview if we can use an es6 method instead of lodash
 
 const initialData = {};
 const SingleProjectStore = createStore({
@@ -11,6 +11,8 @@ const SingleProjectStore = createStore({
 	mixins: [StoreMixins],
 
 	init() {
+		
+		console.log(Constants.ACTION_LOAD_SINGLE_PROJECT);
 		this.data=initialData;
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT), 'loading');		
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).completed, 'completed');

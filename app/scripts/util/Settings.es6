@@ -1,4 +1,4 @@
-import * as Constants from '../constants/Contants.es6' 
+import Constants from '../constants/Contants.es6' 
 
 export default class Settings {
 

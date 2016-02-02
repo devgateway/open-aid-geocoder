@@ -24,10 +24,10 @@ module.exports = {
       include: path.join(__dirname, 'app')
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/font-woff'
+      loader: 'url-loader?limit=10000&mimetype=application/font-woff'
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
     }, {
       test: /\.css$/,
       loader: "style-loader!css-loader"
@@ -36,18 +36,21 @@ module.exports = {
       loader: "url-loader?limit=100000"
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/octet-stream'
+      loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file'
+      loader: 'file-loader'
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=image/svg+xml'
+      loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
     }]
   },
   resolve: {
     alias: {
-      'react': path.join(__dirname, 'node_modules', 'react')
+      'react': path.join(__dirname, 'node_modules', 'react'),
+      'i18next': 'i18next/lib/index.js',
+      'i18next-xhr-backend':'i18next-xhr-backend/lib/index.js'
+      
     },
     extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx",".es6"]
   }

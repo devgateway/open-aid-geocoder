@@ -4,7 +4,7 @@ import {LocationsSearch} from './LocationsSearch.jsx';
 import { Link  } from 'react-router';
 import Message from './Message.jsx';
 import * as Actions from '../actions/Actions.es6';
-import * as Constants from '../constants/Contants.es6';
+import Constants from '../constants/Contants.es6';
 import LanStore from '../stores/LanStore.es6';
 
 export default class Header extends React.Component {

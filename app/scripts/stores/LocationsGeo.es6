@@ -1,5 +1,5 @@
 import {createStore} from 'reflux';
-	import * as Constants from '../constants/Contants.es6';
+	import Constants from '../constants/Contants.es6';
 import {List, Map, Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 import LocationsStore from './Locations.es6';

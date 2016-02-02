@@ -3,7 +3,7 @@ import React from 'react';
 import {Button, Modal}  from 'react-bootstrap';
 import { Link  } from 'react-router';
 import  * as Actions from '../../actions/Actions.es6'
-import * as Constants from '../../constants/Contants.es6';
+import Constants from '../../constants/Contants.es6';
 
 
 class SubmitGeocoding extends React.Component{ 

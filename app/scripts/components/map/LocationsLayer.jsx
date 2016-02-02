@@ -2,7 +2,7 @@
 import React from 'react';
 import { Children, PropTypes } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import * as Constants from '../../constants/Contants.es6';
+import Constants from '../../constants/Contants.es6';
 import DynamicGeoJson from './DynamicGeoJson.jsx';
 import { Map, popup } from 'leaflet';
 import Popup from './PopUp.jsx';
