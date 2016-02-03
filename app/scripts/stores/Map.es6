@@ -76,24 +76,14 @@ const PopUpStore = createStore({
 		} = params;
 		var newState = Object.assign({}, this.get());
 		if (isCoded) {
-			newState.activeLocation = this.getFeatureFromCoded(locationFeature);
+			var lf = Object.assign({}, locationFeature);
+			Object.assign(lf, {'lat': lf.geometry.coordinates[1]});
+			Object.assign(lf, {'lng': lf.geometry.coordinates[0]});
+			newState.activeLocation = lf;
 		} else {
 			newState.activeLocation = locationFeature;
 		}
 		this.setData(newState);
-	},
-
-	getFeatureFromCoded(data) {
-		return {
-			'fcode': data.featureDesignation.code,
-			'fcodeName': data.featureDesignation.name,
-			'geonameId': data.id,
-			'lat': data.geometry.coordinates[1],
-			'lng': data.geometry.coordinates[0],
-			'name': data.name,
-			'toponymName': data.toponymName,
-			'activityDescription': data.activityDescription
-		};
 	},
 
 	updateLocations(data) {
@@ -110,7 +100,6 @@ const PopUpStore = createStore({
 	},
 
 	updateCountry(data) {
-
 		var newState = Object.assign({}, this.get())
 		newState.layers.countries = data.countries;
 		this.setData(newState);
@@ -120,9 +109,6 @@ const PopUpStore = createStore({
 		var newState = Object.assign({}, this.get())
 		newState.project = project;
 		this.setData(newState);
-		if (project.country) {
-			//	Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, project.country.iso3);
-		}
 	},
 
 	closeInfoWindow(params) {
@@ -155,7 +141,6 @@ const PopUpStore = createStore({
 			NAME_2: (NAME_2 || ADM2),
 			...locationFeature.properties
 		};
-		debugger;
 		if (locationFeature.properties.type == 'geocoding') {
 			var geocoding = locationFeature.properties;
 			this.addAdminCodes(geocoding, params);
@@ -231,6 +216,15 @@ const PopUpStore = createStore({
 						code: params.ID_2,
 						name: params.NAME_2
 					}
+				}
+			})
+		}
+		if (model.rollbackData) {
+			Object.assign(adminCodes, {
+				saved: {
+					'country': model.rollbackData.country,
+					'admin1': model.rollbackData.admin1,
+					'admin2': model.rollbackData.admin2
 				}
 			})
 		}

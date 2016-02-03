@@ -27,6 +27,10 @@ const ProjectGeoJsonStore = createStore({
 					return [this.geometry.coordinates[0], this.geometry.coordinates[1]]
 				}
 			}).build(project.locations);
+			featureCollection.features.forEach((record) => {
+				let rollbackData = project.locationsBackup.find((it)=>{return it.id==record.properties.id});
+				Object.assign(record.properties, {'rollbackData': rollbackData});//duplicates the values into same object for rollback purposes
+			}.bind(this));
 			this.setData({'geojson':featureCollection});
 		} else {
 			this.setData({'geojson':null});	

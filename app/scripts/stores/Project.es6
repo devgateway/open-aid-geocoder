@@ -37,6 +37,7 @@ const SingleProjectStore = createStore({
 		if (project.country){
 			Actions.invoke(Constants.ACTION_LOAD_SHAPE,project.country.iso3)
 		}
+		Object.assign(project, {'locationsBackup': _.cloneDeep(project.locations)});//add a copy of the locations for rollback purposes
 		this.setData(project); 
 	},
 
@@ -67,14 +68,14 @@ const SingleProjectStore = createStore({
 		let locations=newState.locations || [];
 		let locNotDeleted = locations.filter((it) => {return it.status!='DELETED'});
 		let locNoStatus = []
-		locNotDeleted.map((it) => {locNoStatus.push(_.omit(it, 'status'));});
+		locNotDeleted.map((it) => {locNoStatus.push(_.omit(it, ['status','adminSource']));});
 		Object.assign(newState,{'locations': locNoStatus});
 		this.setData(newState);
 		Actions.invoke(Constants.ACTION_SAVE_PROJECT, newState);		
 	},
 
 
-	saveSuccess(){
+	saveSuccess(){ 
 		window.history.back();
     	window.location.reload();
 	}
