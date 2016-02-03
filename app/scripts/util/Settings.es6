@@ -1,28 +1,29 @@
 import Constants from '../constants/Contants.es6'
 
 let _instance;
-export default class Settings {
+export
+default class Settings {
 
 	constructor() {
-		
 
-		this.env =(document.location.host.indexOf('localhost')>-1?'development':'production');
+
+		this.env = (document.location.host.indexOf('localhost') > -1 ? 'development' : 'production');
 
 
 		/*Default settings, this json can be loaded from an external url*/
 		this.settings = {
-			MAP: {
-				AUTO_ZOOM: true,
-				AUTO_REMOVE_LOCATIONS: true,
+			'MAP': {
+				'AUTO_ZOOM': true,
+				'AUTO_REMOVE_LOCATIONS': true,
 			},
 
-			SEARCH: {
-				GEO_NAMES_SERVICE_USER_NAME: 'aiddata',
-				FUZZY_LEVEL: 0
+			'SEARCH': {
+				'GEO_NAMES_SERVICE_USER_NAME': 'aiddata',
+				'FUZZY_LEVEL': 0
 			},
 
-			API: {
-				API_BASE_URL: {
+			'API': {
+				'API_BASE_URL': {
 					'development': 'http://localhost:3001',
 					'production': 'http://geocoding.dgstg.org',
 				},
@@ -33,19 +34,35 @@ export default class Settings {
 
 			},
 
-			I18N: {
-				LOCALES_PATH: {
-					development: '/locales/{{lng}}/{{ns}}.json',
-					production: 'locales/{{lng}}/{{ns}}.json'
-				},
-				DEAULT_LNG: 'en',
-				FALLBACK_LNG: 'en',
-				DEAULT_NS: 'translations',
-				FALLBACK_NS: 'common'
-			}
+			'I18N': {
 
-		};
-	}
+				'OPTIONS': {
+					'development': {
+						'lng': 'en',
+						'fallbackLng': 'en',
+						'ns': ['translations'],
+						'defaultNS': 'translations',
+						'fallbackNS': 'common',
+						'backend': {
+							'loadPath': '/locales/{{lng}}/{{ns}}.json'
+						}
+					},
+
+					'production': {
+						'lng': 'en',
+						'fallbackLng': 'en',
+						'ns': ['translations'],
+						'defaultNS': 'translations',
+						'fallbackNS': 'common',
+						'backend': {
+							'loadPath': 'locales/{{lng}}/{{ns}}.json'
+						}
+					}
+					}
+
+				}
+			};
+		}
 
 
 
@@ -61,9 +78,9 @@ export default class Settings {
 		let item = mod[name];
 
 		if (item instanceof Object) {
-			
+
 			return item[this.env]; //return env based settin
-		}else{
+		} else {
 			return item;
 		}
 	}

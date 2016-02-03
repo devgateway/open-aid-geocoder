@@ -1,5 +1,4 @@
-
-
+/*webpack require directives*/
 require('bootstrap/dist/css/bootstrap.css')
 require('intro.js/introjs.css');
 require('../stylesheets/app.scss');
@@ -7,13 +6,13 @@ require('../stylesheets/control.layers.minimap.css');
 require("babel-polyfill");
 require('font-awesome/css/font-awesome.css');
 
-
+/*es6 imports*/
 
 import  Settings from  "./util/Settings.es6";
-import  * as Actions from './actions/Actions.es6'
 import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
 import React from 'react';
 import { render } from 'react-dom';
+
 import ProjectList  from './components/ProjectList.jsx'
 import Header  from './components/Header.jsx';
 import GridLayout from './components/Grid.jsx';
@@ -51,20 +50,11 @@ class NoMatch extends React.Component{
 }
 
 
-
-i18next.use(XHR).init({
-    'lng': settings.get('I18N','DEAULT_LNG'),
-    "fallbackLng": settings.get('I18N','FALLBACK_LNG'),
-    "ns": [
-      settings.get('I18N','DEAULT_NS')
-    ],
-    "defaultNS":   settings.get('I18N','DEAULT_NS'),
-    "fallbackNS":  settings.get('I18N','FALLBACK_NS'),
-    "backend": {
-      "loadPath": settings.get('I18N','LOCALES_PATH')
-    }
-  }, (err, t) => {
+const options = settings.get('I18N', 'OPTIONS');
   
+
+i18next.use(XHR).init(options, (err, t) => {
+    //if a locale was loaded 
 
   render((
     <Router history={hashHistory} >
