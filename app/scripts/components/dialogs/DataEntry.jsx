@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom';
 
 
 /*Popup Data Entry*/
-class DataEntryContent extends DataEntryHelp {
+class DataEntryContent extends React.Component {
 
   static propTypes = {};
 
@@ -393,7 +393,7 @@ class DataEntryContent extends DataEntryHelp {
               <span className="fa fa-refresh fa-spin"></span>
             :  <span className="fa fa-refresh"></span> }
           </button>
-          <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
+          <DataEntryHelp />
           <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
           {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
           <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>

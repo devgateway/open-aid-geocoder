@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Intro from 'intro.js'
+import Help from './Help.jsx'
 import Message from '../components/Message.jsx'
 
-export default class DataEntryHelp extends React.Component{
+export default class DataEntryHelp extends Help{
  
   help() {
      
-      let node = ReactDOM.findDOMNode(this);
+      let node = this.getDomObject();
+      debugger;
       let intro = Intro.introJs();
       let steps=[
 
@@ -39,18 +41,13 @@ export default class DataEntryHelp extends React.Component{
       }
       ];
 
-
-
       if (this.props.type!='location') {
        steps.push({
         element:node.querySelector('.btn-danger'),
         intro: Message.t("help.dataentry.deletebtn"),
         position: 'left'
       });
-
-
      }
-
 
      intro.setOptions({steps: steps});
      intro.start()
