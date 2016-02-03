@@ -75,7 +75,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
 		if (this.options.collapsed) {
 			if (!L.Browser.android) {
-				L.DomEvent.on(container, 'click', this._expand, this)
+				L.DomEvent.on(container, 'click', this._expand, this);
 				//.on(container, 'mouseout', this._collapse, this);
 			}
 			var link = this._layersLink = L.DomUtil.create('div', className + '-toggle', container);
@@ -100,13 +100,13 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		}
 
 		var title = L.DomUtil.create('div', 'leaflet-minimap-title', form);
-		title.innerHTML = ' Overlays' 
+		title.innerHTML = ' Overlays'; 
 
 		this._overlaysList = L.DomUtil.create('div', className + '-overlays', form);
 		this._separator = L.DomUtil.create('div', className + '-separator', form);
 
-		var title = L.DomUtil.create('div', 'leaflet-minimap-title', form);
-		title.innerHTML = ' Base Layers' 
+		title = L.DomUtil.create('div', 'leaflet-minimap-title', form);
+		title.innerHTML = ' Base Layers' ;
 
 		
 		this._baseLayersList = L.DomUtil.create('div', className + '-base', form);
@@ -183,11 +183,11 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
 	_addItem: function (obj) {
 
-		if (obj.showInMinimaps!=false){
-			this._addMiniMap(obj)
+		if (obj.showInMinimaps!==false){
+			this._addMiniMap(obj);
 
 		}else{
-			this._addLayerControl(obj)
+			this._addLayerControl(obj);
 		}
 
 
@@ -235,12 +235,12 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
 
 	_addLayerControl:function(obj){
-	
+
 		var container = obj.overlay ? this._overlaysList : this._baseLayersList;
-	
+
 		var label = L.DomUtil.create('label', 'leaflet-minilayer-container');
 
-		 container.insertBefore(label,container.firstChild )
+		container.insertBefore(label,container.firstChild);
 		label._layerName = obj.name;
 
 		var checked = this._map.hasLayer(obj.layer);
@@ -249,7 +249,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		var span = L.DomUtil.create('div', 'leaflet-minimap-label', label);
 
 		var comment = L.DomUtil.create('div', 'leaflet-minilayer-comment', label);
-			comment.innerHTML='(Preview no available)';
+		comment.innerHTML='(Preview no available)';
 		var input;
 		if (obj.overlay) {
 			input = document.createElement('input');
@@ -301,42 +301,42 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
 			var firstRow = Math.floor(scrollTop / minimapHeight);
 			var lastRow = Math.ceil((scrollTop + listHeight) / minimapHeight);
-			var mapsPerRow=Math.floor(container.clientWidth  / minimaps.item(0).clientWidth)
-			 first= firstRow * mapsPerRow //(3 number of map in row)
-			 last=lastRow * mapsPerRow //(3 number of map in row)
+			var mapsPerRow=Math.floor(container.clientWidth  / minimaps.item(0).clientWidth);
+			 first= firstRow * mapsPerRow; //(3 number of map in row)
+			 last=lastRow * mapsPerRow; //(3 number of map in row)
 			 console.log(first+'-----'+last);
-		}
+			}
 
-		for (var i = 0; i < minimaps.length; ++i) {
-			var minimap = minimaps[i].childNodes.item(0);
-			var map = minimap._miniMap;
-			if(map){
-				var layer = map._layer;
+			for (var i = 0; i < minimaps.length; ++i) {
+				var minimap = minimaps[i].childNodes.item(0);
+				var map = minimap._miniMap;
+				if(map){
+					var layer = map._layer;
 
-				if (!layer) {
-					continue;
-				}
-
-				if (i >= first && i <= last) {
-					if (!map.hasLayer(layer)) {
-						layer.addTo(map);
+					if (!layer) {
+						continue;
 					}
-					map.invalidateSize();
-				} else if (map.hasLayer(layer)) {
-					map.removeLayer(layer);
+
+					if (i >= first && i <= last) {
+						if (!map.hasLayer(layer)) {
+							layer.addTo(map);
+						}
+						map.invalidateSize();
+					} else if (map.hasLayer(layer)) {
+						map.removeLayer(layer);
+					}
 				}
 			}
-		}
-	},
+		},
 
 
 
-	_createMinimap: function (mapContainer, originalLayer, isOverlay) {
+		_createMinimap: function (mapContainer, originalLayer, isOverlay) {
 
-		var minimap = mapContainer._miniMap = L.map(mapContainer, {
-			attributionControl: false,
-			zoomControl: false
-		});
+			var minimap = mapContainer._miniMap = L.map(mapContainer, {
+				attributionControl: false,
+				zoomControl: false
+			});
 
 		// disable interaction.
 		minimap.dragging.disable();
@@ -385,7 +385,7 @@ export default class MiniMap extends React.Component {
 
 
 	componentWillMount() {
-			/*TODO maybe this should not be here*/
+		/*TODO maybe this should not be here*/
 		var baselayers = {
 			'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
@@ -473,7 +473,7 @@ export default class MiniMap extends React.Component {
 
 
 	addLayer(layer,name,showInMinimaps){
-	
+
 		this.props.map.addLayer(layer);
 		this.layersControl.addOverlay(layer,name,showInMinimaps);	
 	}
@@ -495,7 +495,7 @@ export default class MiniMap extends React.Component {
 
 	renderChildrenWithProps(props) {
 		const children = this.getClonedChildrenWithMap(props);
-		return <div style={{display: 'none'}}>{children}</div>;
+		return (<div style={{display: 'none'}}>{children}</div>);
 	}
 
 	render(){

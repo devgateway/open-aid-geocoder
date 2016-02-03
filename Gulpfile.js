@@ -18,8 +18,8 @@ prodConfig = Object.create(webpackProdConfig),
 browser = os.platform() === 'linux' ? 'google-chrome' : (os.platform() === 'darwin' ? 'google chrome' : (os.platform() === 'win32' ? 'chrome' : 'firefox')),
 devCompiler = webpack(devConfig),
 prodCompiler = webpack(prodConfig),
-eslint = require('gulp-eslint');
-
+eslint = require('gulp-eslint'),
+ jshint = require('gulp-jshint');
 
 gulp.task("default", ["open-dev"]);
 gulp.task("build-prod", ["set-prod-node-env", "build:webpack-prod"]);
@@ -135,10 +135,10 @@ gulp.task("deploy", ["gh_pages"]);
     // So, it's best to have gulp ignore the directory as well.
     // Also, Be sure to return the stream from the task;
     // Otherwise, the task may end before the stream has finished.
-    return gulp.src(['./app/**/*.*','!node_modules/**'])
+    return gulp.src(['./app/**/*.js','./app/**/*.jsx','./app/**/*.es6','!node_modules/**'])
         // eslint() attaches the lint output to the "eslint" property
         // of the file object so it can be used by other modules.
-        .pipe(eslint({es6:true}))
+        .pipe(eslint({es6:true,browser:true,maxerr: 20,curly:true,eqeqeq:true}))
         // eslint.format() outputs the lint results to the console.
         // Alternatively use eslint.formatEach() (see Docs).
         .pipe(eslint.format())
@@ -146,3 +146,11 @@ gulp.task("deploy", ["gh_pages"]);
         // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
       });
+
+
+
+ gulp.task('hint', function() {
+  return gulp.src('./app/**/*.*')
+    .pipe(jshint({esversion:6}))
+    .pipe(jshint.reporter('default', { verbose: true }));
+});

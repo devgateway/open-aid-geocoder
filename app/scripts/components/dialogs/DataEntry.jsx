@@ -3,7 +3,7 @@ import {ListGroup, ListGroupItem, Button, Modal, Grid, Col, Table, Row, Paginati
 import { Link  } from 'react-router';
 import ShapesMapping from '../../util/ShapesMapping.es6';
 import DataEntryStore from '../../stores/DataEntryStore.es6';
-import  * as Actions from '../../actions/Actions.es6'
+import  * as Actions from '../../actions/Actions.es6';
 import Constants from '../../constants/Contants.es6';
 import DataEntryHelp from '../../help/DataEntry.es6';
 import ReactDOM from 'react-dom';
@@ -13,7 +13,6 @@ import ReactDOM from 'react-dom';
 /*Popup Data Entry*/
 class DataEntryContent extends DataEntryHelp {
 
-  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -73,15 +72,13 @@ class DataEntryContent extends DataEntryHelp {
       'geocoding': newGeocoding
     });
     this.validateField(activityDescription, 'activityDescription', (val) => {
-      return (val != null && val.length > 0)
+      return (val !=== null && val.length > 0);
     });
   }
 
 
   onDelete() {
-    this.setState(Object.assign(this.state, {
-      confirmDelete: true
-    }))
+    this.setState(Object.assign(this.state, {confirmDelete: true}));
   }
 
   doDelete() {
@@ -95,11 +92,11 @@ class DataEntryContent extends DataEntryHelp {
     cancelDelete() {
       this.setState(Object.assign(this.state, {
         confirmDelete: false
-      }))
+      }));
     }
 
     onSave(){
-      this.save(false)
+      this.save(false);
     }
 
     save(skipValidation){      
@@ -172,10 +169,8 @@ class DataEntryContent extends DataEntryHelp {
       return (
         this.validateField(newGeocoding.exactness, 'exactness') & 
         this.validateField(newGeocoding.locationClass, 'locationClass') &
-        this.validateField(newGeocoding.activityDescription, 'activityDescription', (val) => {return (val != null && val.length > 0)} ) &
-        this.validateField(newGeocoding.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) //& 
-        //this.validateField(newGeocoding.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
-        //this.validateField(newGeocoding.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
+        this.validateField(newGeocoding.activityDescription, 'activityDescription', (val) => {return (val !== null && val.length > 0);} ) &
+        this.validateField(newGeocoding.country, 'country',(val) => {return (val !== null && val.code!==null && val.name!==null);} ) //& 
         );
 
     }
@@ -186,7 +181,7 @@ class DataEntryContent extends DataEntryHelp {
 
       if (!validator) { //default validator
         validator = (val) => {
-          return val != null
+          return val !== null
         }; //validator should return true if object is valid or false if object si not valid
       }
 
@@ -395,7 +390,7 @@ class DataEntryContent extends DataEntryHelp {
           </button>
           <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
           <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? 'Save' : 'Update'}</button>
-          {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
+          {(this.props.type!=='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
           <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
         </div>
       </div>

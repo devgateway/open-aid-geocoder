@@ -16,7 +16,7 @@ export default class MapPopUp extends Popup {
 		
 		if (open) {
 			this.leafletElement.setLatLng(position);
-			this.leafletElement.openOn(map)
+			this.leafletElement.openOn(map);
 		
 
 		}else{
@@ -37,7 +37,7 @@ export default class MapPopUp extends Popup {
 				React.cloneElement(Children.only(this.props.children), this.props) ,
 				this.leafletElement._contentNode
 			);
-			console.log(this.leafletElement._contentNode.offsetWidth)
+			console.log(this.leafletElement._contentNode.offsetWidth);
 
 			this.leafletElement._updateLayout();
 			this.leafletElement._updatePosition();

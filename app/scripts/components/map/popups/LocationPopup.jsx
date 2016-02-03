@@ -1,4 +1,4 @@
-require('leaflet/dist/leaflet.css')
+require('leaflet/dist/leaflet.css');
 import { PropTypes } from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -21,7 +21,7 @@ const LOCATION_PROTOTYPE={
   'status':'',
   'locationClass':null, 
   'exactness': null, 
-}
+};
 
 /*Popup info*/
 
@@ -32,7 +32,7 @@ class InfoView extends React.Component {
   }
 
   onPickLocation(){
-    this.props.onPickLocation?this.props.onPickLocation():null
+    this.props.onPickLocation?this.props.onPickLocation():null;
   }
 
   render() {

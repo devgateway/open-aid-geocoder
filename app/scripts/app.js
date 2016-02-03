@@ -1,5 +1,5 @@
 /*webpack require directives*/
-require('bootstrap/dist/css/bootstrap.css')
+require('bootstrap/dist/css/bootstrap.css');
 require('intro.js/introjs.css');
 require('../stylesheets/app.scss');
 require('../stylesheets/control.layers.minimap.css');
@@ -8,19 +8,19 @@ require('font-awesome/css/font-awesome.css');
 
 import React from 'react';
 import  Settings from  './util/Settings.es6';
-import { Router, Route ,Redirect,IndexRoute ,hashHistory} from 'react-router'
+import { Router, Route ,Redirect,IndexRoute ,hashHistory} from 'react-router';
 
 import { render } from 'react-dom';
 
 /*Layout elements*/
 import Header  from './components/Header.jsx';
-import ProjectList  from './components/project/ProjectList.jsx'
+import ProjectList  from './components/project/ProjectList.jsx';
 import MapComponent from  './components/map/MapComponent.jsx';
 
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
 
-let settings=Settings.getInstace()
+let settings=Settings.getInstace();
 
 /**
  * Root view
