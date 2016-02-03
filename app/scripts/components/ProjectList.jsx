@@ -85,7 +85,7 @@ class ProjectList extends React.Component {
   }
 
   render() {
-    debugger;
+    
     return (
               <Grid>
                 <Row>

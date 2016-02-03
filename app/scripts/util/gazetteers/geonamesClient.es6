@@ -1,4 +1,6 @@
 import BaseClient from './baseClient.es6'
+import Settings from '../Settings.es6'
+const settings=Settings.getInstace();
 
 export default  class GeonamesClient extends BaseClient{
 	constructor(options){
@@ -9,7 +11,7 @@ export default  class GeonamesClient extends BaseClient{
 	}
 
 	parseQuery(params={}){
-		let result = {username:GEO_NAMES_SERVICE_USER_NAME,type:'json'};
+		let result = {username:settings.get('SEARCH','GEO_NAMES_SERVICE_USER_NAME'),type:'json'};
 		if (this.options.text){
 			Object.assign(result, {'q':this.options.text}); 
 		}
@@ -20,7 +22,7 @@ export default  class GeonamesClient extends BaseClient{
 			Object.assign(result, { 'country': this.options.countryISO })
 		}
 		if(this.options.fuzzy) {
-			Object.assign(result, { 'fuzzy': window.FUZZY })
+			Object.assign(result, { 'fuzzy': settings.get('SEARCH','FUZZY_LEVEL')})
 		}
 		return result
 	}

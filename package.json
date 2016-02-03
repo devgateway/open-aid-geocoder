@@ -6,7 +6,6 @@
     "clean": "rimraf dist",
     "build:webpack": "webpack --config webpack.config.dev.js",
     "build": "npm run clean && npm run build:webpack",
-    "start": "node server.js",
     "lint": "eslint app"
   },
   "repository": {

@@ -1,4 +1,5 @@
 
+
 require('bootstrap/dist/css/bootstrap.css')
 require('intro.js/introjs.css');
 require('../stylesheets/app.scss');
@@ -6,9 +7,7 @@ require('../stylesheets/control.layers.minimap.css');
 require("babel-polyfill");
 require('font-awesome/css/font-awesome.css');
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+
 
 import  Settings from  "./util/Settings.es6";
 import  * as Actions from './actions/Actions.es6'
@@ -21,25 +20,11 @@ import GridLayout from './components/Grid.jsx';
 import FixedLayout from  './components/Fixed.jsx';
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
-
-
 import { hashHistory } from 'react-router'
 
-/*Global constants */
-window.GEO_NAMES_SERVICE_USER_NAME = 'aiddata';
-window.APP_SETTINGS = new Settings();
+console.log(window.ENV);
 
-if (document.location.hostname=='localhost'){
-  window.API_BASE_URL = 'http://localhost:3001';
-  window.LOCALES_PATH='/locales/{{lng}}/{{ns}}.json'
-}else{
-
-window.API_BASE_URL = 'http://geocoding.dgstg.org';
-  window.LOCALES_PATH='locales/{{lng}}/{{ns}}.json'
-}
-window.PROJECT_LIST_URL = `${window.API_BASE_URL}/projects`;
-window.PROJECT_URL = `${window.API_BASE_URL}/project`;
-window.FUZZY = 0;
+let settings=Settings.getInstace()
 
 /**
  * Root view
@@ -68,18 +53,17 @@ class NoMatch extends React.Component{
 
 
 i18next.use(XHR).init({
-  lng: 'en',
-  "debug": true,
-  "fallbackLng": "en",
-  "ns": [
-  "translations"
-  ],
-  "defaultNS": "translations",
-  "fallbackNS": "common",
-  "backend": {
-    "loadPath": window.LOCALES_PATH
-  }
-}, (err, t) =>{
+    'lng': settings.get('I18N','DEAULT_LNG'),
+    "fallbackLng": settings.get('I18N','FALLBACK_LNG'),
+    "ns": [
+      settings.get('I18N','DEAULT_NS')
+    ],
+    "defaultNS":   settings.get('I18N','DEAULT_NS'),
+    "fallbackNS":  settings.get('I18N','FALLBACK_NS'),
+    "backend": {
+      "loadPath": settings.get('I18N','LOCALES_PATH')
+    }
+  }, (err, t) => {
   
 
   render((

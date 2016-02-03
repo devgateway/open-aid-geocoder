@@ -5,7 +5,6 @@ const Datastore = require('nedb'),
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const Axios = require('axios');
-
 const port = 3001;
 
 server.connection({
@@ -85,9 +84,6 @@ server.route({
 
 
 
-
-
-
 server.route({
     method: 'PUT',
     path: '/project/{id}',
@@ -121,7 +117,7 @@ Axios.get(INITIAL_PROJECT_LIST_URL, {
                 if (err) {
                     throw err;
                 }
-                console.log('API running at port:', server.info.uri);
+                console.log('API running listening on', server.info.uri);
             });
 
         }
