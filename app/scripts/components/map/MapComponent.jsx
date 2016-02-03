@@ -120,16 +120,17 @@ export default class MapView extends MapHelp {
 
           <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
             
-           <LayerGroup name="Administrative Shapes" ref="country" showInMinimaps={false}>
-               { this.state.layers.countries?this.state.layers.countries.map( (country)=>{
+           <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
+               {
+                this.state.layers.countries?this.state.layers.countries.map( (country)=>{
                 return   <CountryLayer {...country}/>
                 }):null}
             </LayerGroup>
-          
-            <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
-           <GeocodingLayer name="Geocoding"  onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/> 
-          
 
+            <GeocodingLayer name="Geocoding"  onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/> 
+        
+            <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
+          
           </MiniMap>
           
           
@@ -138,10 +139,7 @@ export default class MapView extends MapHelp {
           </Control>
           
 
-          <Control position="bottomright">
-            <SubmitGeocoding onHelpClick={this.help.bind(this)}/>
-          </Control>
-
+          <SubmitGeocoding onHelpClick={this.help.bind(this)}/>
            <ZoomControl position="bottomright"/>
 
           <MapPopUp maxWidth="850" {...this.state.popup}>

@@ -15,11 +15,11 @@ class ProjecyInfo extends React.Component {
   }
   render() {
       return (
-        <div className={(this.props.locations && this.props.locations.length>0)?"bs-callout bs-callout-success":"bs-callout bs-callout-info"}>
+        <div className={(this.props.locations && this.props.locations.length>0)?'bs-callout bs-callout-success':'bs-callout bs-callout-info'}>
                       <div className="text-vertical">{this.props.project_id}</div>
-                      <h4><Link to={"map/"+this.props.project_id}>{this.props.title}</Link> </h4>
+                      <h4><Link to={'map/'+this.props.project_id}>{this.props.title}</Link> </h4>
                       <p>{this.props.long_description}
-                         <div className="pull-right vertical-spacing"> <Link to={"/fixed/map/" + this.props.project_id}>Geocode Project</Link></div>
+                         <div className="pull-right vertical-spacing"> <Link to={'/fixed/map/' + this.props.project_id}>Geocode Project</Link></div>
                         <br/>
                       </p>
                 </div>

@@ -3,11 +3,11 @@ require('bootstrap/dist/css/bootstrap.css')
 require('intro.js/introjs.css');
 require('../stylesheets/app.scss');
 require('../stylesheets/control.layers.minimap.css');
-require("babel-polyfill");
+require('babel-polyfill');
 require('font-awesome/css/font-awesome.css');
 
 import React from 'react';
-import  Settings from  "./util/Settings.es6";
+import  Settings from  './util/Settings.es6';
 import { Router, Route ,Redirect,IndexRoute ,hashHistory} from 'react-router'
 
 import { render } from 'react-dom';

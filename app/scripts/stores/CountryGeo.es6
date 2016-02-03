@@ -29,7 +29,7 @@ const ShapesStore = createStore({
 	completed(data, iso){	
 		var newState = Object.assign({}, this.get());
 		if (!newState.countries.find((it) => {return it.iso===iso})){
-			var countryLayer = {data , iso, autoZoom:true,visible:true, key:iso,style: {radius: 8,fillColor: '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),color: "#000",weight: 1,opacity: 1,fillOpacity: 0.8}}; //set all layer metadata here
+			var countryLayer = {data , iso, autoZoom:true,visible:true, key:iso,style: {radius: 8,fillColor: '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),color: '#000',weight: 1,opacity: 1,fillOpacity: 0.8}}; //set all layer metadata here
 			newState.countries.push(countryLayer)
 			this.setData(newState);
 			Actions.invoke(Constants.ACTION_COUNTRY_LAYER_ADDED_TO_MAP,iso)

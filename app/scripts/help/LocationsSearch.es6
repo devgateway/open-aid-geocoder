@@ -11,21 +11,21 @@ export default class LocationsSearchHelp extends React.Component {
     intro.setOptions({steps:[
       {
         element: node,
-        intro: Message.t("help.header.textinput")
+        intro: Message.t('help.header.textinput')
       },
 
       {
-        element: node.querySelector("input[name=fuzzy]"),
-        intro: Message.t("help.header.fuzzycheck"),
+        element: node.querySelector('input[name=fuzzy]'),
+        intro: Message.t('help.header.fuzzycheck'),
         position: 'left'
       },
       {
-        element: node.querySelector("input[name=country]"),
-        intro: Message.t("help.header.countrycheck"),
+        element: node.querySelector('input[name=country]'),
+        intro: Message.t('help.header.countrycheck'),
       },
       {
-        element: node.querySelector(".btn-search"),
-        intro: Message.t("help.header.searchbtn"),
+        element: node.querySelector('.btn-search'),
+        intro: Message.t('help.header.searchbtn'),
       }      
     ]});
     intro.start()

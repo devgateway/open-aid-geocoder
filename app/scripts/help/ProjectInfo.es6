@@ -13,22 +13,22 @@ export default class ProjectInfoHelp extends React.Component{
     intro.setOptions({steps:[
       {
         element: node.querySelector('h4'),
-        intro: Message.t("help.main.panel_title"),
+        intro: Message.t('help.main.panel_title'),
         position:'bottom'
       },
         {
         element: node.querySelectorAll('.nav-tabs li')[0],
-        intro: Message.t("help.main.panel_project"),
+        intro: Message.t('help.main.panel_project'),
         position:'bottom'
       },
       {
         element: node.querySelectorAll('.nav-tabs li')[1],
-        intro: Message.t("help.main.panel_geocoding"),
+        intro: Message.t('help.main.panel_geocoding'),
         position:'bottom'
       },
       {
         element: node.querySelectorAll('.nav-tabs li')[2],
-        intro: Message.t("help.main.panel_locations"),
+        intro: Message.t('help.main.panel_locations'),
         position:'bottom'
       }
     ]});

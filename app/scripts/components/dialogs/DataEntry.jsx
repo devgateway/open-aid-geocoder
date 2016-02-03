@@ -107,12 +107,12 @@ class DataEntryContent extends DataEntryHelp {
       let valid=(skipValidation)? true: this.validate(geocoding);
       if (valid) {
         let prev_status = geocoding.status;
-        let status = geocoding.type == 'location' ? "NEW" : this.state.deleteConfirmed ? "DELETED" : "UPDATED";
-        if (prev_status == "NEW" && status == "DELETED") {
-          status = "LOCATION";
+        let status = geocoding.type == 'location' ? 'NEW' : this.state.deleteConfirmed ? 'DELETED' : 'UPDATED';
+        if (prev_status == 'NEW' && status == 'DELETED') {
+          status = 'LOCATION';
         }
-        if (prev_status == "NEW" && status == "UPDATED") {
-          status = "NEW";
+        if (prev_status == 'NEW' && status == 'UPDATED') {
+          status = 'NEW';
         }
         let saveGeo = Object.assign({}, geocoding);
         Object.assign(saveGeo, {'status': status});
@@ -262,7 +262,7 @@ class DataEntryContent extends DataEntryHelp {
    if(this.state.confirmDelete){
     return (
       <div>    
-      <h4 className="list-group-item-heading">
+      <h4 className='list-group-item-heading'>
       This location will be marked as deleted, are you sure you want to continue?
       </h4>
       <hr/>
@@ -272,7 +272,7 @@ class DataEntryContent extends DataEntryHelp {
       )
   } else {
     return (
-          <div className={this.props.type=='location'? "dataEntry" : "dataEntryEdition"}>
+          <div className={this.props.type=='location'? 'dataEntry' : 'dataEntryEdition'}>
             <div className="row"> 
 
               <div className="col-lg-12">
@@ -306,11 +306,11 @@ class DataEntryContent extends DataEntryHelp {
             <div className="col-lg-12">
               <div className="pull-right bottom-line">
               Use Admin Division from:
-              {(this.props.type=='geocoding')?<button className={this.state.admSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggle.bind(this)}> Stored </button>: null }
+              {(this.props.type=='geocoding')?<button className={this.state.admSource=='saved'? 'btn btn-xs btn-success' : 'btn btn-xs btn-default'} value='saved' onClick={this.toggle.bind(this)}> Stored </button>: null }
               
-              <button className={this.state.admSource=='shapes'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shapes' onClick={this.toggle.bind(this)}>Shapes </button> 
+              <button className={this.state.admSource=='shapes'? 'btn btn-xs btn-success' : 'btn btn-xs btn-default'} value='shapes' onClick={this.toggle.bind(this)}>Shapes </button> 
               
-              <button className={this.state.admSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggle.bind(this)}>Geonames </button>
+              <button className={this.state.admSource=='geonames'? 'btn btn-xs btn-success' : 'btn btn-xs btn-default'} value='geonames' onClick={this.toggle.bind(this)}>Geonames </button>
                {(!this.props.adminCodes.geonames.country.name && this.state.loadingAdminGeonames)?<i className="fa fa-spinner fa-spin"></i>: null }
             </div>
             </div>
@@ -394,7 +394,7 @@ class DataEntryContent extends DataEntryHelp {
             :  <span className="fa fa-refresh"></span> }
           </button>
           <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
-          <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? "Save" : "Update"}</button>
+          <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{this.props.type=='location'? 'Save' : 'Update'}</button>
           {(this.props.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}>Delete</button>:null}
           <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}>Cancel</button>
         </div>

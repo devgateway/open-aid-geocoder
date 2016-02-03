@@ -13,28 +13,28 @@ export default class DataEntryHelp extends React.Component{
 
       {
         element:node.querySelector('#name'),
-        intro: Message.t("help.dataentry.locationname"),
+        intro: Message.t('help.dataentry.locationname'),
         position: 'left'
       },
       {
         element:node.querySelector('#locationClass'),
-        intro: Message.t("help.dataentry.locationclass"),
+        intro: Message.t('help.dataentry.locationclass'),
         position: 'left'
       },
       {
         element:node.querySelector('#exactness'),
-        intro: Message.t("help.dataentry.exactness"),
+        intro: Message.t('help.dataentry.exactness'),
         position: 'left'
       },
       {
         element:node.querySelector('.btn-success'),
-        intro: Message.t("help.dataentry.savebtn"),
+        intro: Message.t('help.dataentry.savebtn'),
         position: 'left'
       }
       ,
       {
         element:node.querySelector('.btn-warning'),
-        intro: Message.t("help.dataentry.cancelbtn"),
+        intro: Message.t('help.dataentry.cancelbtn'),
         position: 'left'
       }
       ];
@@ -44,7 +44,7 @@ export default class DataEntryHelp extends React.Component{
       if (this.props.type!='location') {
        steps.push({
         element:node.querySelector('.btn-danger'),
-        intro: Message.t("help.dataentry.deletebtn"),
+        intro: Message.t('help.dataentry.deletebtn'),
         position: 'left'
       });
 

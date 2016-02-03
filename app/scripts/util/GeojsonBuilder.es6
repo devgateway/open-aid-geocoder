@@ -5,7 +5,7 @@ class FeatureCollection {
 	 * @return {[type]}          [description]
 	 */
 	 constructor(features=[]) {
-	 	Object.assign(this, {type: "FeatureCollection",features})
+	 	Object.assign(this, {type: 'FeatureCollection',features});
 	 }
 
 	/**
@@ -27,10 +27,10 @@ class FeatureCollection {
 	 */
 	 constructor(geometry, properties) {
 	 	Object.assign(this, {
-	 		type: "Feature",
+	 		type: 'Feature',
 	 		geometry: geometry,
 	 		properties: properties
-	 	})
+	 	});
 	 }
 	}
 
@@ -45,7 +45,7 @@ class FeatureCollection {
 	 	Object.assign(this, {
 	 		type: type,
 	 		coordinates: coordinates
-	 	})
+	 	});
 	 }
 	}
 
@@ -66,15 +66,15 @@ class FeatureCollection {
 	 */
 	 build(list) {
 	 	if (!list || !list.forEach) {
-	 		throw new Error("Object doesn't support property or method 'forEach");
+	 		throw new Error('Object doesn\'t support property or method forEach');
 	 	}
 
-	 	let featureCollection = new FeatureCollection()
+	 	let featureCollection = new FeatureCollection();
 	 	
 	 	list.forEach((record) => {
 			let coordinates = this.options.coordinates.bind(record)(); // extract coordinates 
 			featureCollection.addFeature(new Feature(new Geometry(this.options.type, coordinates), record)); //record is passed as properites in order to have al loriginal properties available 
-		})
+		});
 
 	 	return featureCollection;
 	 }
@@ -83,4 +83,4 @@ class FeatureCollection {
 
 	}
 
-	export {GeoJsonBuilder}
+	export {GeoJsonBuilder};

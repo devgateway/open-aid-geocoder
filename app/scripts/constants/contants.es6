@@ -1,8 +1,9 @@
+
 export default class Constants {
 
-	static AUTO_ZOOM = "AUTO_ZOOM";
+	static AUTO_ZOOM = 'AUTO_ZOOM';
 
-	static AUTO_REMOVE_LOCATIONS: "AUTO_REMOVE_LOCATIONS";
+	static AUTO_REMOVE_LOCATIONS: 'AUTO_REMOVE_LOCATIONS';
 
 	static ACTION_SEARCH_LOCATIONS = 'ACTION_SEARCH_LOCATIONS';
 
@@ -55,49 +56,49 @@ export default class Constants {
 
 	static ACTION_SAVE_PROJECT = 'ACTION_SAVE_PROJECT';
 
-	static ACTION_CHANGE_LANGUAGE="ACTION_CHANGE_LANGUAGE";
+	static ACTION_CHANGE_LANGUAGE='ACTION_CHANGE_LANGUAGE';
 
-	static ACTION_FILTER_BY_TYPE="ACTION_FILTER_BY_TYPE";
+	static ACTION_FILTER_BY_TYPE='ACTION_FILTER_BY_TYPE';
 
-	static ACTION_FIND_PROJECTS_UPDATE_PAGE = "ACTION_FIND_PROJECTS_SET_PAGE";
+	static ACTION_FIND_PROJECTS_UPDATE_PAGE = 'ACTION_FIND_PROJECTS_SET_PAGE';
 	
-	static ACTION_FIND_PROJECTS_SET_PARAM = "ACTION_FIND_PROJECTS_SET_PARAM";
+	static ACTION_FIND_PROJECTS_SET_PARAM = 'ACTION_FIND_PROJECTS_SET_PARAM';
 	
-	static ACTION_CLEAN_MAP_STORE="ACTION_CLEAN_MAP_STORE";
+	static ACTION_CLEAN_MAP_STORE='ACTION_CLEAN_MAP_STORE';
 
 
 	static LOCATION_CLASS_LIST = [{
-		"code": "1",
-		"name": "Administrative Region",
-		"language": "en",
-		"description": "The designated geographic location is an administrative region (state, county, province, district, municipality etc.)"
+		'code': '1',
+		'name': 'Administrative Region',
+		'language': 'en',
+		'description': 'The designated geographic location is an administrative region (state, county, province, district, municipality etc.)'
 	}, {
-		"code": "2",
-		"name": "Populated Place",
-		"language": "en",
-		"description": "The designated geographic location is a populated place (town, village, farm etc.)"
+		'code': '2',
+		'name': 'Populated Place',
+		'language': 'en',
+		'description': 'The designated geographic location is a populated place (town, village, farm etc.)'
 	}, {
-		"code": "3",
-		"name": "Structure",
-		"language": "en",
-		"description": "The designated geopgraphic location is a structure (such as a school or a clinic)"
+		'code': '3',
+		'name': 'Structure',
+		'language': 'en',
+		'description': 'The designated geopgraphic location is a structure (such as a school or a clinic)'
 	}, {
-		"code": "4",
-		"name": "Other Topographical Feature",
-		"language": "en",
-		"description": "The designated geographic location is a topographical feature, such as a mountain, a river, a forest"
+		'code': '4',
+		'name': 'Other Topographical Feature',
+		'language': 'en',
+		'description': 'The designated geographic location is a topographical feature, such as a mountain, a river, a forest'
 	}];
 
 	static EXACTNESS_LIST = [{
-		"code": "1",
-		"name": "Exact",
-		"language": "en",
-		"description": "The designated geographic location is exact"
+		'code': '1',
+		'name': 'Exact',
+		'language': 'en',
+		'description': 'The designated geographic location is exact'
 	}, {
-		"code": "2",
-		"name": "Approximate",
-		"language": "en",
-		"description": "The designated geographic location is approximate"
+		'code': '2',
+		'name': 'Approximate',
+		'language': 'en',
+		'description': 'The designated geographic location is approximate'
 	}];
 
 }

@@ -27,7 +27,7 @@ class Item extends React.Component{
   }
 
   render() {
-    var status = this.props.status=="EXISTING" ? "" : this.props.status;
+    var status = this.props.status=='EXISTING' ? '' : this.props.status;
 
   	return (
        	<div className="list-group-item">
@@ -61,7 +61,7 @@ class Item extends React.Component{
        		<p className="list-group-item-text">
           		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
        		</p>
-       		   <Label bsStyle={status=='DELETED'? "danger" : status=='NEW'? "success" : "warning"}>{status}</Label>
+       		   <Label bsStyle={status=='DELETED'? 'danger' : status=='NEW'? 'success' : 'warning'}>{status}</Label>
        		
         </div>
     )
@@ -120,7 +120,7 @@ class ProjectInfo extends ProjectInfoHelp {
 				    	<div className="panel-body list">
 							  {this.state.long_description}
 
-               <p><label>Country</label> {this.state.country?this.state.country.name:"N/A"}</p>
+               <p><label>Country</label> {this.state.country?this.state.country.name:'N/A'}</p>
 						</div>
 					</Tab>
 				    <Tab eventKey={2} title="Geocoding">
@@ -128,7 +128,7 @@ class ProjectInfo extends ProjectInfoHelp {
 							{
 								this.state.locations?
 									this.state.locations.map((item) => {
-                    if(item.status != "LOCATION") 
+                    if(item.status != 'LOCATION') 
 	        						return <Item key={item.id} {...item}/>})
 	        					: <h4> No Geocoding Data. </h4>
 							}
