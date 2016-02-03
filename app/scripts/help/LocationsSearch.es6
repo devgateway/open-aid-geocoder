@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Intro from 'intro.js'
+import Help from './Help.jsx'
+import Message from '../components/Message.jsx'
 
-export default class LocationsSearchHelp extends React.Component {
+export default class LocationsSearchHelp extends Help {
 
   help() {
-    let node=ReactDOM.findDOMNode(this);
-    
+    let node = this.getDomObject();
     let intro=Intro.introJs();
     intro.setOptions({steps:[
       {
-        element: node,
+        element: node.querySelector('input[type=text]'),
         intro: Message.t('help.header.textinput')
       },
 

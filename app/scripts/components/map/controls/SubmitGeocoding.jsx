@@ -4,7 +4,7 @@ import {Button, Modal}  from 'react-bootstrap';
 import { Link  } from 'react-router';
 import  * as Actions from '../../../actions/Actions.es6'
 import Constants from '../../../constants/Contants.es6';
-
+import MapHelp from '../../../help/Map.es6';
 
 class SubmitGeocoding extends React.Component{ 
 
@@ -52,8 +52,7 @@ class SubmitGeocoding extends React.Component{
             <Button bsStyle='success' className="pull-right" onClick={this.onSubmitCoding.bind(this)}>Yes</Button>
           </Modal.Body>
         </Modal>        
-        <Button className="help spacing pull-right" bsStyle='info' onClick={this.props.onHelpClick}><i className="fa fa-question-circle"></i></Button>
-       
+        <MapHelp parentId="mapContainer"/>
         <Button bsStyle='warning' className="pull-right" onClick={this.onCancelCoding.bind(this)}>Cancel</Button>
         <Button bsStyle='success' className="pull-right" onClick={this.openConfirm.bind(this)}>Submit</Button>
     

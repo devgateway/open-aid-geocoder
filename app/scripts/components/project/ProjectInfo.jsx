@@ -71,7 +71,7 @@ class Item extends React.Component{
 /*
    This view renders the Project Information UI component
 */
-class ProjectInfo extends ProjectInfoHelp {
+class ProjectInfo extends React.Component {
 
     constructor() {
       super();
@@ -112,7 +112,8 @@ class ProjectInfo extends ProjectInfoHelp {
 			  <div className="panel panel-success">
 				 <div className="panel-heading  handle">
 				 <h4>
-				 	{this.state.project_id} - {this.state.title}   <Button className="spacing help pull-right" bsStyle="info" bsSize="xsmall" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></Button>
+				 	{this.state.project_id} - {this.state.title}   
+          <ProjectInfoHelp parentId="project-info"/>
 				 </h4>
 				 </div>
 				 <Tabs defaultActiveKey={1}>

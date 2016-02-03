@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Intro from 'intro.js'
+import Help from './Help.jsx'
 import Message from '../components/Message.jsx'
 
-export default class ProjectInfoHelp extends React.Component{
+export default class ProjectInfoHelp extends Help{
  
   
   help() {
-    let node=ReactDOM.findDOMNode(this);
-    
+    let node = this.getDomObject();
     let intro=Intro.introJs();
     intro.setOptions({steps:[
       {
