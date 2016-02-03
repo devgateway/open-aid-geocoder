@@ -1,10 +1,9 @@
 import React from 'react';
 import {ListGroup, ListGroupItem, Button, Modal, Grid, Col, Table, Row, Pagination}  from 'react-bootstrap';
-import { Link  } from 'react-router';
-import ShapesMapping from '../../util/ShapesMapping.es6';
-import CountryLayersStore from '../../stores/CountryLayersStore.es6';
-import  * as Actions from '../../actions/Actions.es6'
-import Constants from '../../constants/Contants.es6';
+
+import CountryLayersStore from '../../../stores/CountryLayersStore.es6';
+import  * as Actions from '../../../actions/Actions.es6'
+import Constants from '../../../constants/Contants.es6';
 
 /*
   Renders a single Item 

@@ -1,22 +1,20 @@
 
 import React from 'react';
-import { Children, PropTypes } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import Constants from '../../constants/Contants.es6';
-import DynamicGeoJson from './DynamicGeoJson.jsx';
-import { Map, popup } from 'leaflet';
-import Popup from './PopUp.jsx';
+import { PropTypes } from 'react';
+import GeoJsonLayer from './GeoJsonLayer.jsx';
 
-export default class LocationsLayer extends DynamicGeoJson {
+export default class GazetteerLayer extends GeoJsonLayer {
 
   constructor() {
     super();
   }
 
-  style() {}
+  style() {
+    //styles are applied by css for this layer 
+  }
 
   pointToLayer(feature, latlng) {
-    let  icon = L.divIcon({ iconSize: [30, 30],className: 'location-marker',html:`<div class="text">${feature.properties.fcode}</div>`});
+    let  icon = L.divIcon({ iconSize: [30, 30], className: 'location-marker', html:`<div class="text">${feature.properties.fcode}</div>`}); //TODO:this  can be managed by a child view of the layer
     let marker= L.marker(latlng,  {icon: icon});
     return marker
   }

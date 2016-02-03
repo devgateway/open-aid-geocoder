@@ -3,8 +3,8 @@ import { PropTypes } from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Modal,Button} from 'react-bootstrap';
-import * as Actions from '../../actions/Actions.es6';
-import Constants from '../../constants/Contants.es6';
+import * as Actions from '../../../actions/Actions.es6';
+import Constants from '../../../constants/Contants.es6';
 
 
 const LOCATION_PROTOTYPE={

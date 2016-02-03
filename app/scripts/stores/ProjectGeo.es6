@@ -27,10 +27,11 @@ const ProjectGeoJsonStore = createStore({
 					return [this.geometry.coordinates[0], this.geometry.coordinates[1]]
 				}
 			}).build(project.locations);
-			this.setData({'geojson':featureCollection});
+			let newData=Object.assign(this.get(),{data:featureCollection,autoZoom:false, date:new Date()});
 		} else {
-			this.setData({'geojson':null});	
+			let newData=Object.assign(this.get(),{data:null,autoZoom:false,date:new Date()});
 		}
+
 	}
 
 });

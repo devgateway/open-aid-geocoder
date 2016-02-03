@@ -6,22 +6,19 @@ require('../stylesheets/control.layers.minimap.css');
 require("babel-polyfill");
 require('font-awesome/css/font-awesome.css');
 
-/*es6 imports*/
-
-import  Settings from  "./util/Settings.es6";
-import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
 import React from 'react';
+import  Settings from  "./util/Settings.es6";
+import { Router, Route ,Redirect,IndexRoute ,hashHistory} from 'react-router'
+
 import { render } from 'react-dom';
 
-import ProjectList  from './components/ProjectList.jsx'
+/*Layout elements*/
 import Header  from './components/Header.jsx';
-import GridLayout from './components/Grid.jsx';
-import FixedLayout from  './components/Fixed.jsx';
+import ProjectList  from './components/project/ProjectList.jsx'
+import MapComponent from  './components/map/MapComponent.jsx';
+
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
-import { hashHistory } from 'react-router'
-
-console.log(window.ENV);
 
 let settings=Settings.getInstace()
 
@@ -32,8 +29,8 @@ let settings=Settings.getInstace()
    render() {
     return (
       <div className="app">
-      <Header/>
-      {this.props.children}
+        <Header/>
+        {this.props.children}
       </div>
       )
   }
@@ -51,32 +48,29 @@ class NoMatch extends React.Component{
 
 
 const options = settings.get('I18N', 'OPTIONS');
-  
+
 
 i18next.use(XHR).init(options, (err, t) => {
     //if a locale was loaded 
 
-  render((
-    <Router history={hashHistory} >
-    <Route path="/" component={ProjectList}>
-    <IndexRoute component={ProjectList} />
-    </Route>
+    render((
+      <Router history={hashHistory} >
 
-    <Route path="/grid" component={App}>
-    <Route path="map" component={GridLayout}/>
-    </Route>
+      <Route path="/" component={ProjectList}>
+      <IndexRoute component={ProjectList} />
+      </Route>
 
-    <Route path="/fixed" component={App}>
-    <Route path="map/:projectID" component={FixedLayout}/>
-    </Route>
-    
-    <Route path="*" component={NoMatch}/>
+      <Route path="/map" component={App}>
+      <Route path="/map/:projectID" component={MapComponent}/>
+      </Route>
 
-    </Router>
-    ), document.getElementById('root'))
+      <Route path="*" component={NoMatch}/>
+
+      </Router>
+      ), document.getElementById('root'))
 
 
-});
+  });
 
 
 

@@ -2,16 +2,16 @@ import {Input,Button,Grid,Row,Col}  from 'react-bootstrap';
 import React from 'react';
 import ReactDOM from 'react';
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
-import  * as Actions from '../actions/Actions.es6'
-import LocationsStore from '../stores/Locations.es6';
-import SingleProjectStore from '../stores/Project.es6';
-import Constants from '../constants/Contants.es6';
+import  * as Actions from '../../actions/Actions.es6'
+import LocationsStore from '../../stores/Locations.es6';
+import SingleProjectStore from '../../stores/Project.es6';
+import Constants from '../../constants/Contants.es6';
 import * as Intro from 'intro.js'
-import Message from './Message.jsx'
+import Message from '../Message.jsx'
 
 
 
-let LocationsSearch = React.createClass({ 
+const GazetteerSearch = React.createClass({ 
 
   getInitialState() {
     return {'fuzzy':false,'country':false,'text':''}
@@ -155,4 +155,4 @@ let LocationsSearch = React.createClass({
 }
 })
 
-export {LocationsSearch}
+export default GazetteerSearch

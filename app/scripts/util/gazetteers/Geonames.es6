@@ -1,8 +1,8 @@
-import BaseClient from './baseClient.es6'
+import GazetteerClient from './GazetteerClient.es6'
 import Settings from '../Settings.es6'
 const settings=Settings.getInstace();
 
-export default  class GeonamesClient extends BaseClient{
+export default  class Geonames extends GazetteerClient{
 	constructor(options){
 		super();
 		this.options=options;

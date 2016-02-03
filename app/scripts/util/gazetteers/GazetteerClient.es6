@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-export default class BaseClient {
+export default class GazetteerClient {
 	constructor(options) {
 
 	}

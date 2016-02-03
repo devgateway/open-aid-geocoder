@@ -1,5 +1,5 @@
 import AjaxUtil from './AjaxUtil.es6';
-
+//TODO: this can be moved to Settings;
 let _mappings = [
 	{'name': 'Mozambique', 'iso': 'MOZ', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/MOZ.json'},
 	{'name': 'Tanzania', 'iso': 'TZA', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/TZA.json'},

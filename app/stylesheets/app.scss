@@ -516,4 +516,19 @@ p {
         }
 }
 
-
+$spCol: #000;
+.sp-circle {
+  border: 4px rgba($spCol,0.25) solid;
+  border-top: 4px rgba($spCol,1) solid;
+  border-radius: 50%;
+  -webkit-animation: spCircRot .6s infinite linear;
+  animation: spCircRot .6s infinite linear;
+}
+@-webkit-keyframes spCircRot {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(359deg); }
+}
+@keyframes spCircRot {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}

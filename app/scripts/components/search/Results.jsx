@@ -1,10 +1,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Draggable from 'react-draggable';
-import LocationsStore from '../stores/Locations.es6';
-import * as Actions from '../actions/Actions.es6';
-import Constants from '../constants/Contants.es6';
+
+import LocationsStore from '../../stores/Locations.es6';
+import * as Actions from '../../actions/Actions.es6';
+import Constants from '../../constants/Contants.es6';
 import {Button}  from 'react-bootstrap';
 
   /*
@@ -62,7 +62,7 @@ import {Button}  from 'react-bootstrap';
   /*
    This view renders  the Gazzetter Results 
    */
-   class LocationsList extends React.Component {
+   class Results extends React.Component {
 
     constructor() {
       super();
@@ -111,4 +111,4 @@ import {Button}  from 'react-bootstrap';
   }
 
 
-export default LocationsList  //TODO: rename maybe 
+export default Results //TODO: rename maybe 

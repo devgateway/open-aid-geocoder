@@ -52,8 +52,10 @@ const PopUpStore = createStore({
 	init() {
 
 		this.listenTo(ProjectStore, this.onProjectUpdate);
-		this.listenTo(ProjectGeo, this.updateProjectLocations);
-		this.listenTo(LocationsGeoJson, this.updateLocations);
+		
+		this.listenTo(ProjectGeo, this.updateGeocodingLayer);
+		this.listenTo(LocationsGeoJson, this.updateGazetteerLayer);
+
 		this.listenTo(CountryGeo, this.updateCountry);
 		this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 		this.listenTo(Actions.get(Constants.ACTION_OPEN_DATAENTRY_POPUP), 'closeInfoWindow');
@@ -62,8 +64,8 @@ const PopUpStore = createStore({
 	},
 
 	cleanStore() {
-		 
-    	this.setData(this.initialData);
+
+		this.setData(this.initialData);
 	},
 
 	getInitialState() {
@@ -96,18 +98,7 @@ const PopUpStore = createStore({
 		};
 	},
 
-	updateLocations(data) {
-		var newState = Object.assign({}, this.get())
-		newState.layers.locations = data;
-
-		Object.assign(newState, {
-			popup: {
-				'open': false
-			}
-		});
-
-		this.setData(newState);
-	},
+	
 
 	updateCountry(data) {
 
@@ -133,11 +124,35 @@ const PopUpStore = createStore({
 		}));
 	},
 
-	updateProjectLocations(data) {
-		
+
+
+	updateGazetteerLayer(data) {
 		var newState = Object.assign({}, this.get())
-		newState.geocoding = data.geojson;
+		newState.layers.locations = data;
+
+		Object.assign(newState, {
+			popup: {
+				'open': false
+			}
+		});
+
 		this.setData(newState);
+	},
+
+
+	updateGeocodingLayer(data) {
+		var newState = Object.assign({}, this.get())
+		newState.layers.geocoding = data;
+
+		Object.assign(newState, {
+			popup: {
+				'open': false
+			}
+		});
+
+		this.setData(newState);
+
+
 	},
 
 	updatePopupInfo(properties) {

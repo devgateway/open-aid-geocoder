@@ -3,10 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {ListGroup,ListGroupItem,Pagination,Grid,Row,Col,Input,Button}  from 'react-bootstrap';
 import { Link  } from 'react-router';
-import  * as Actions from '../actions/Actions.es6';
-import Constants from '../constants/Contants.es6';
-import Projects from '../stores/Projects.es6';
-import Message from './Message.jsx';
+import  * as Actions from '../../actions/Actions.es6';
+import Constants from '../../constants/Contants.es6';
+import Projects from '../../stores/Projects.es6';
+import Message from './../Message.jsx';
 /* Renders a quick project info view */
 
 class ProjecyInfo extends React.Component {
@@ -17,20 +17,16 @@ class ProjecyInfo extends React.Component {
       return (
         <div className={(this.props.locations && this.props.locations.length>0)?"bs-callout bs-callout-success":"bs-callout bs-callout-info"}>
                       <div className="text-vertical">{this.props.project_id}</div>
-                      <h4><Link to={"/fixed/map/" + this.props.project_id}>{this.props.title}</Link> </h4>
+                      <h4><Link to={"map/"+this.props.project_id}>{this.props.title}</Link> </h4>
                       <p>{this.props.long_description}
                          <div className="pull-right vertical-spacing"> <Link to={"/fixed/map/" + this.props.project_id}>Geocode Project</Link></div>
                         <br/>
                       </p>
-                       
-                       
                 </div>
-              
             )
-    
-
       }
 }
+
 
 class ProjectList extends React.Component {
 

@@ -473,7 +473,7 @@ export default class MiniMap extends React.Component {
 
 
 	addLayer(layer,name,showInMinimaps){
-		
+	
 		this.props.map.addLayer(layer);
 		this.layersControl.addOverlay(layer,name,showInMinimaps);	
 	}

@@ -2,9 +2,7 @@ import React from 'react';
 import { Children, PropTypes } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { Map, popup } from 'leaflet';
-import { MapComponent,Popup } from 'react-leaflet';
-import {Button} from 'react-bootstrap';
-
+import { Popup } from 'react-leaflet';
 
 export default class MapPopUp extends Popup {
 
