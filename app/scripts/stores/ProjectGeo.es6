@@ -19,6 +19,7 @@ const ProjectGeoJsonStore = createStore({
 	},
 
 	process(project) {
+		let newData;
 		if (project.locations) {
 			let featureCollection=
 			new GeoJsonBuilder({
@@ -27,11 +28,12 @@ const ProjectGeoJsonStore = createStore({
 					return [this.geometry.coordinates[0], this.geometry.coordinates[1]]
 				}
 			}).build(project.locations);
-			let newData=Object.assign(this.get(),{data:featureCollection,autoZoom:false, date:new Date()});
+			newData=Object.assign(this.get(),{data:featureCollection,autoZoom:false, date:new Date()});
 		} else {
-			let newData=Object.assign(this.get(),{data:null,autoZoom:false,date:new Date()});
+			 newData=Object.assign(this.get(),{data:null,autoZoom:false,date:new Date()});
 		}
 
+		this.setData(newData);
 	}
 
 });

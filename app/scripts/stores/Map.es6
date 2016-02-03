@@ -150,6 +150,7 @@ const PopUpStore = createStore({
 			}
 		});
 
+		debugger;
 		this.setData(newState);
 
 

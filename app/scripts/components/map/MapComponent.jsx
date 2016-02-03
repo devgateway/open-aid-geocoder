@@ -120,16 +120,14 @@ export default class MapView extends MapHelp {
 
           <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
             
-             
-            <LayerGroup name="Administrative Shapes" ref="country" showInMinimaps={false}>
+           <LayerGroup name="Administrative Shapes" ref="country" showInMinimaps={false}>
                { this.state.layers.countries?this.state.layers.countries.map( (country)=>{
                 return   <CountryLayer {...country}/>
                 }):null}
             </LayerGroup>
           
-           <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
-
-            <GeocodingLayer name="Geocoding"  onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/> 
+            <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
+           <GeocodingLayer name="Geocoding"  onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/> 
           
 
           </MiniMap>
