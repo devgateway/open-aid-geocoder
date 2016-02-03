@@ -17,7 +17,7 @@ export default class ShapesMapping {
 	static getGeoJsonShape (iso) {
 		let url = _mappings.find(mapping => mapping.iso == iso).url;
 		if (!url) {
-			throw "Can't find shape mapping for iso code ${iso}"
+			throw  `Can\'t find shape mapping for iso code ${iso}`
 		} else {
 
 			return new Promise((resolve, reject) => {

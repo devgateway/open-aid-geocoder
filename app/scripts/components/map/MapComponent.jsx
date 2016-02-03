@@ -22,7 +22,6 @@ import SubmitGeocoding from './controls/SubmitGeocoding.jsx';
 import MiniMap from './controls/MiniMap.jsx';
 import CountryLayerSelector from './controls/CountryLayerSelector.jsx'
 import ProjectInfo from '../project/ProjectInfo.jsx';
-import MapHelp from '../../help/Map.es6';
 
 /*Popups*/
 import MapPopUp from './popups/PopUp.jsx';
@@ -37,7 +36,7 @@ import MapStore from '../../stores/Map.es6';
 
 
 
-export default class MapView extends MapHelp {
+export default class MapView extends React.Component {
 
   constructor() {
     super();
@@ -113,36 +112,33 @@ export default class MapView extends MapHelp {
      
     return (
 
-      <div>
+      <div id="mapContainer">
        <div className="map">
       
         <Map   {...this.state.map}  ref="map">
 
           <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
             
-           <LayerGroup name="Administrative Shapes" ref="country" showInMinimaps={false}>
-               { this.state.layers.countries?this.state.layers.countries.map( (country)=>{
+           <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
+               {
+                this.state.layers.countries?this.state.layers.countries.map( (country)=>{
                 return   <CountryLayer {...country}/>
                 }):null}
             </LayerGroup>
-          
-            <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
-           <GeocodingLayer name="Geocoding"  onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/> 
-          
 
+            <GeocodingLayer name="Geocoding"  onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/> 
+        
+            <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
+          
           </MiniMap>
           
           
-           <Control position="topright">
+          <Control position="topright">
             <CountryLayerSelector/>
           </Control>
           
-
-          <Control position="bottomright">
-            <SubmitGeocoding onHelpClick={this.help.bind(this)}/>
-          </Control>
-
-           <ZoomControl position="bottomright"/>
+          <SubmitGeocoding/>
+          <ZoomControl position="bottomright"/>
 
           <MapPopUp maxWidth="850" {...this.state.popup}>
               <LocationPopup/>

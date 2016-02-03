@@ -9,14 +9,14 @@ export default class GeocodingLayer extends GeoJsonLayer {
 
 
   pointToLayer(feature, latlng) {
-     let iconClass = feature.properties.status ? "geocoding-marker-" + feature.properties.status.toLowerCase() : "geocoding-marker-existing";
-    if (iconClass == "geocoding-marker-location") {
-      iconClass = "location-marker";
+     let iconClass = feature.properties.status ? 'geocoding-marker-' + feature.properties.status.toLowerCase() : 'geocoding-marker-existing';
+    if (iconClass == 'geocoding-marker-location') {
+      iconClass = 'location-marker';
     }
     let icon = L.divIcon({
       iconSize: [30, 30],
       className: iconClass,
-      html: `<div class="text">${feature.properties.featureDesignation.code}</div>`
+      html: `<div class='text'>${feature.properties.featureDesignation.code}</div>`
     });
     let marker = L.marker(latlng, {
       icon: icon
@@ -32,10 +32,8 @@ export default class GeocodingLayer extends GeoJsonLayer {
 
   onFeatureClick(e) {
     if (this.props.onFeatureClick) {
-      this.props.onFeatureClick(e)
+      this.props.onFeatureClick(e);
     }
   }
-
-
 
 }

@@ -6,6 +6,7 @@ import Message from '../components/Message.jsx'
 export default class Help extends React.Component{
  
     getDomObject(){
+      debugger;
       return this.checkParentById(ReactDOM.findDOMNode(this), this.props.parentId);
     }
 
@@ -13,7 +14,7 @@ export default class Help extends React.Component{
       if (obj.parentElement.id == id){
         return obj.parentElement;
       } else {
-        return checkParentById(obj.parentElement, id);
+        return this.checkParentById(obj.parentElement, id);
       }
     } 
 

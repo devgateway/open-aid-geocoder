@@ -23,7 +23,7 @@ const ProjectGeoJsonStore = createStore({
 		if (project.locations) {
 			let featureCollection=
 			new GeoJsonBuilder({
-				type: "Point",
+				type: 'Point',
 				coordinates: function() {
 					return [this.geometry.coordinates[0], this.geometry.coordinates[1]]
 				}

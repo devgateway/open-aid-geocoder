@@ -39,19 +39,26 @@ import React from 'react';
         this._parent().removeLayer(this.leafletElement);
       }
 
-      
+      _add(){
+        this._parent().addLayer(this.leafletElement,this.props.name);
+      }
+
       _create() {
         const {data, ...props} = this.props;
         /*if pointToLayer or onEachFeature are not set in props call to  the internal function w*/
         Object.assign(props, {
           'pointToLayer': this.pointToLayer.bind(this),
           'onEachFeature': this.onEachFeature.bind(this),
-          "style": this.style.bind(this)
+          'style': this.style.bind(this)
         });
 
         this.leafletElement = geoJson(data, props);
-        
-        this._parent().addLayer(this.leafletElement,this.props.name);
+        this._add();
+
+        if (this.props.alwaysOnTop){
+          this.leafletElement.bringToFront();
+        }
+
       }
 
       _update() {

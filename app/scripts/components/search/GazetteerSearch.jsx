@@ -8,8 +8,7 @@ import SingleProjectStore from '../../stores/Project.es6';
 import Constants from '../../constants/Contants.es6';
 import * as Intro from 'intro.js'
 import Message from '../Message.jsx'
-
-
+import SearchHelp from '../../help/LocationsSearch.es6';
 
 const GazetteerSearch = React.createClass({ 
 
@@ -69,35 +68,6 @@ const GazetteerSearch = React.createClass({
 
   },
 
-
-  help() {
-    let node=ReactDOM.findDOMNode(this);
-    
-    let intro=Intro.introJs();
-
-    intro.setOptions({steps:[
-      {
-        element: node,
-        intro: Message.t("help.header.textinput")
-      },
-
-      {
-        element: node.querySelector("input[name=fuzzy]"),
-        intro: Message.t("help.header.fuzzycheck"),
-        position: 'left'
-      },
-      {
-        element: node.querySelector("input[name=country]"),
-        intro: Message.t("help.header.countrycheck")
-      },
-      {
-        element: node.querySelector(".btn-search"),
-        intro: Message.t("help.header.searchbtn")
-      }      
-    ]});
-    intro.start()
-  },
-
   render() {
    var selector=(  
      <ul   className="nav navbar-nav navbar-right">
@@ -111,14 +81,14 @@ const GazetteerSearch = React.createClass({
           ) //TODO:this can be a child component is added here just for mocking purpose 
 
    return (
-     <div className="navbar-form navbar-left small" role="search">
+     <div id="searchContainer" className="navbar-form navbar-left small" role="search">
        <div className="form-group">
        
         <label className="small spacing" ><Message k="header.search.label"/></label> 
 
        
          <Input  type="text" value={this.state.text} 
-         placeholder={Message.t("header.search.holder")} 
+         placeholder={Message.t('header.search.holder')} 
          bsStyle={this.validationState() } 
          hasFeedback bsSize="small" 
          ref="text" 
@@ -147,7 +117,7 @@ const GazetteerSearch = React.createClass({
        </div>
 
        <div className="form-group small" > {' '}
-         <Button className="spacing help" bsStyle="info" bsSize="xsmall" onClick={this.help}><i className="fa fa-question-circle"></i></Button>
+          <SearchHelp parentId="searchContainer"/>
        </div>
 
      </div>

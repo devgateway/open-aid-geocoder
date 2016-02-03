@@ -249,7 +249,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		var span = L.DomUtil.create('div', 'leaflet-minimap-label', label);
 
 		var comment = L.DomUtil.create('div', 'leaflet-minilayer-comment', label);
-			comment.innerHTML="(Preview no available)";
+			comment.innerHTML='(Preview no available)';
 		var input;
 		if (obj.overlay) {
 			input = document.createElement('input');

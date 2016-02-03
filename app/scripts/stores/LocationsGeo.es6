@@ -27,7 +27,7 @@ const LocationsGeoJsonStore = createStore({
 		if(data.get('total') > 0) {
 			let featureCollection=
 			new GeoJsonBuilder({
-				type: "Point",
+				type: 'Point',
 				coordinates: function() {
 					return [this.lng, this.lat]
 				}

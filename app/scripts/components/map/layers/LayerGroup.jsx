@@ -7,7 +7,10 @@ export default class LayerGroup extends MapLayer {
 	componentWillMount() {
 		super.componentWillMount();
 		this.leafletElement = featureGroup();
-		//this.props.layerControl.addLayer(this.leafletElement ,this.props.name,this.props.showInMinimaps);
+		//Add this group to layer control
+		if(this.props.layerControl){
+			this.props.layerControl.addLayer(this.leafletElement ,this.props.name,this.props.showAsMiniMap);
+		}
 
 	}
 

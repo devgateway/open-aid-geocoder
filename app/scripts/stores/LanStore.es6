@@ -4,7 +4,7 @@ import  Constants from '../constants/Contants.es6';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 import i18next from 'i18next';
 
-const initialData = {lan:"en"}; //
+const initialData = {lan:'en'}; //
 const LanStore = createStore({
 
 	initialData: initialData,
@@ -20,7 +20,7 @@ const LanStore = createStore({
 			if (err) {
 				console.log(err);
 			}else{
-				this.setData({"lan":lan})
+				this.setData({'lan':lan})
 			}
 		});
 		;
