@@ -79,7 +79,6 @@ import React from 'react';
        const {data,map, ...props} = this.props;
 
         if (this.props.data != prevProps.data) { //we should do a better work to detect data changes 
-         debugger;
          this._update();
        }
 

@@ -47,7 +47,7 @@ export default class ApiClient {
 	 */
 	static saveProject(project) {
 
-		let url = `${PROJECT_END_POINT}/${project.project_id}`;
+		let url = `${API_BASE_URL}/${PROJECT_END_POINT}/${project.project_id}`;
 
 		return new Promise((resolve, reject) => {
 			AjaxUtil.put(url, project)

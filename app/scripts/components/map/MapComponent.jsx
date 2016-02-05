@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { PropTypes } from 'react';
 
@@ -57,6 +55,9 @@ export default class MapView extends React.Component {
     if (nextState.activeLocation && nextState.activeLocation != this.state.activeLocation) {
       this.setActiveLocation(nextState.activeLocation);
     }
+    if (nextState.activeDataentry && nextState.activeDataentry != this.state.activeDataentry) {
+      this.setActiveLocation(nextState.activeDataentry, true);
+    }
   }
 
   onMapUpdated(data) {
@@ -67,11 +68,9 @@ export default class MapView extends React.Component {
     This is called by location onClick 
     */
   locationClick(e) {
-    //e.targer.feature 
     //using geonames lat and lng instead of event latlng should be more precise.
     let countryInfo = this.queryFeatures(e.latlng);
     let countryFeature = (countryInfo && countryInfo.length > 0) ? countryInfo[0].feature : null;
-
     let locationFeature = e.target.feature
     const {latlng} = e;
     //at this stage I have the location feature + country feature 
@@ -96,7 +95,7 @@ export default class MapView extends React.Component {
   }
 
   /* Pass on location click from location list window, make selected location active and show popup */
-  setActiveLocation(location) {
+  setActiveLocation(location, showDataEntry) {
     let countryInfo = this.queryFeatures([location.lng, location.lat], this.refs.country.leafletElement);
     let countryFeature = (countryInfo && countryInfo.length > 0) ? countryInfo[0].feature : null;
     Actions.invoke(Constants.ACTION_POPUP_INFO, {
@@ -104,7 +103,8 @@ export default class MapView extends React.Component {
         properties: location
       },
       countryFeature,
-      'position': [location.lat, location.lng]
+      'position': [location.lat, location.lng],
+      'showDataEntry': showDataEntry
     })
   }
 

@@ -17,60 +17,50 @@ const CountryLayersStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_REMOVE_COUNTRY_LAYER), 'removeLayer');
 		this.listenTo(Actions.get(Constants.ACTION_COUNTRY_LAYER_ADDED_TO_MAP), 'flagAdded');
 		this.listenTo(Actions.get(Constants.ACTION_COUNTRY_LAYER_REMOVED_FROM_MAP), 'flagRemoved');
-		
+		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');
 		this.listenTo(Actions.get(Constants.ACTION_TOGGLE_LAYER_VISIBILITY), 'toggleLayerVisibility');
 	},
 
+	cleanStore() {		 
+    	this.setData(this.initialData);
+	},
 	
 	loadLayerList(list){
 		var newState = Object.assign({}, this.get());
-		
 		Object.assign(newState, {shapeList: list});
-		
-		this.setData(newState);
-		
-		
+		this.setData(newState);	
 	},
-
-
 
 	addLayer(countryISO){
 		var newState = Object.assign({}, this.get());
 		var selectedLayer = newState.shapeList.find((it) => {return it.iso===countryISO});
-	
 	    Object.assign(selectedLayer, {'visible': true,loading:true});//add it
-	
 	    this.setData(newState);
 	    Actions.invoke(Constants.ACTION_LOAD_SHAPE, countryISO);
 	
 	},
 
 	removeLayer(countryISO){
-		//
-		   Actions.invoke(Constants.ACTION_UNLOAD_SHAPE, countryISO);
+		Actions.invoke(Constants.ACTION_UNLOAD_SHAPE, countryISO);
 	
 	},
 
 	flagAdded(iso){
-		
 		var newState = Object.assign({}, this.get());
-		
 		let layer=newState.shapeList.find((it)=>{return it.iso==iso})
-			layer.added=true;
-			layer.loading=false;
-			Object.assign(newState)
-			this.setData(newState);
+		layer.added=true;
+		layer.loading=false;
+		Object.assign(newState)
+		this.setData(newState);
 	},
 
-flagRemoved(iso){
-		
-		var newState = Object.assign({}, this.get());
-		
+	flagRemoved(iso){		
+		var newState = Object.assign({}, this.get());		
 		let layer=newState.shapeList.find((it)=>{return it.iso==iso})
-			layer.added=false;
-			layer.loading=false;
-			Object.assign(newState)
-			this.setData(newState);
+		layer.added=false;
+		layer.loading=false;
+		Object.assign(newState)
+		this.setData(newState);
 	},
 
 	toggleLayerVisibility(data){/*

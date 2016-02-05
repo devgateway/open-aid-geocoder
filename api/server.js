@@ -88,13 +88,12 @@ server.route({
     method: 'PUT',
     path: '/project/{id}',
     handler: function(request, reply) {
-        delete req.body._id;
+        delete request.payload._id;
         db.update({
             'project_id': parseInt(request.params.id)
-        }, req.body, {}, function(err, numReplaced) {
-            res.json(req.body);
+        }, request.payload, {}, function(err, numReplaced) {
+            reply(request.payload);
         });
-
     }
 });
 
@@ -126,38 +125,3 @@ Axios.get(INITIAL_PROJECT_LIST_URL, {
 }).catch(function(response) {
     console.log('fail!');
 });
-
-
-/*
-
- module.exports = function routing(app) {
-
-  
-
-    app.use(bodyParser.json());
-
-
-    app.get('/projects', function(req, res) {
-      
-
-});
-
-    app.get('/project/:id', function(req, res) {
-        db.findOne({
-            project_id: parseInt(req.params.id)
-        }, function(err, project) {
-            res.json(project);
-        });
-    });
-
-    app.put('/project/:id', function(req, res) {
-        delete req.body._id;
-        db.update({
-            'project_id': parseInt(req.params.id)
-        }, req.body, {}, function(err, numReplaced) {
-            res.json(req.body);
-        });
-    });
-
-}
-*/

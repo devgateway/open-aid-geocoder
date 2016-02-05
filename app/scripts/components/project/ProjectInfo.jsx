@@ -23,7 +23,8 @@ class Item extends React.Component{
   }
 
   _showDataEntryForm(){
-     Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props);
+    Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props, 'activeDataentry': true});
+    //Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, this.props);
   }
 
   render() {

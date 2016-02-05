@@ -32,11 +32,10 @@ const LocationsGeoJsonStore = createStore({
 					return [this.lng, this.lat]
 				}
 			}).build(data.get('records'));
-			
-			/*set data*/
-			
 			let newData=Object.assign(this.get(),{data:featureCollection,autoZoom:true});
 			this.setData(newData);
+		} else {
+			this.setData({});
 		}
 	},
 
@@ -52,11 +51,6 @@ const LocationsGeoJsonStore = createStore({
 
 		this.setData(newState);
 	}
-
-
-
 });
-
-
 
 export default	LocationsGeoJsonStore
