@@ -76,7 +76,7 @@ import ProjectInfoHelp from '../../help/ProjectInfo.es6';
 
     constructor() {
       super();
-      this.state={expanded:false};
+      this.state={expanded:true};
     }
 
     componentWillMount() {
@@ -99,42 +99,41 @@ import ProjectInfoHelp from '../../help/ProjectInfo.es6';
      this.setState(newState);
    }
 
-
-   render() {
-
-    return (    
-      <div className="leaflet-control leaflet-control-layers leaflet-control-layers-countries leaflet-control">
-        {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Info Panel"></div>:null} 
-      </div>
-      )
-   
-
-    }
+   toggle(){
+    let newState=Object.assign({},this.state);
+    Object.assign(newState,{expanded:!newState.expanded})
+    this.setState(newState);
   }
 
 
-/*
-        <div id="project-info">
+  render() {
+
+    return (    
+      <div className="leaflet-control leaflet-control-layers leaflet-control-layers-countries leaflet-control">
+      {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Info Panel" onClick={this.toggle.bind(this)}></div>:
+      <div id="project-info">
         <div className="panel panel-success">
          <div className="panel-heading  handle">
          <h4>
-          {this.state.project_id} - {this.state.title}   
+          {this.state.project.project_id} - {this.state.project.title}   
           <ProjectInfoHelp parentId="project-info"/>
          </h4>
+          <a className='close-dialog pull-right' href="javascript:void()" onClick={this.toggle.bind(this)}><i className='fa fa-times-circle-o'></i></a>
+        
          </div>
          <Tabs defaultActiveKey={1}>
             <Tab className="project-info" eventKey={1} title="Project Info">
               <div className="panel-body list">
-                {this.state.long_description}
+                {this.state.project.long_description}
 
-               <p><label>Country</label> {this.state.country?this.state.country.name:'N/A'}</p>
+               <p><label>Country</label> {this.state.project.country?this.state.project.country.name:'N/A'}</p>
             </div>
           </Tab>
             <Tab eventKey={2} title="Geocoding">
               <div className="panel-body list location-list">
               {
-                this.state.locations?
-                  this.state.locations.map((item) => {
+                this.state.project.locations?
+                  this.state.project.locations.map((item) => {
                     if(item.status != 'LOCATION') 
                       return <Item key={item.id} {...item}/>})
                     : <h4> No Geocoding Data. </h4>
@@ -148,5 +147,12 @@ import ProjectInfoHelp from '../../help/ProjectInfo.es6';
         
         </div>
 
-        </div>*/
+        </div>} 
+      </div>
+      )
+
+
+  }
+}
+
         export default ProjectInfo 
