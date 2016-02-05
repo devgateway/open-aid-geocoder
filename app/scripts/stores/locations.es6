@@ -20,7 +20,11 @@ const LocationsStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATIONS).completed, 'done');
 		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATIONS).failed, 'failed');
 		this.listenTo(Actions.get(Constants.ACTION_FILTER_BY_TYPE), 'filter');
-		
+		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');
+	},
+
+	cleanStore() {		 
+    	this.setData(this.initialData);
 	},
 
 	getInitialState: function() {

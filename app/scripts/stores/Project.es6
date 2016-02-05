@@ -25,8 +25,7 @@ const SingleProjectStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');
 	},
 
-	cleanStore() {
-		 
+	cleanStore() {		 
     	this.setData(this.initialData);
 	},
 

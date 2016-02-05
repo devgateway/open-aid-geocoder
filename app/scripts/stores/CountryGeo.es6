@@ -18,7 +18,11 @@ const ShapesStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SHAPE).completed, 'completed');
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SHAPE).failed, 'failed');
 	    this.listenTo(Actions.get(Constants.ACTION_UNLOAD_SHAPE), 'remove');
-			
+		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');		
+	},
+
+	cleanStore() {
+		this.setData(this.initialData);
 	},
 
 	loading(){

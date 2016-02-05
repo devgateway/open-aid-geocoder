@@ -20,12 +20,6 @@ class DataEntryContent extends React.Component {
     this.state = {};
   }
 
-  componentWillMount() {
-    //if (this.props.geocoding.adminSource=='geonames'){
-    //  Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.geocoding.id});
-    //}
-  }
-
   codingValueChanged(e) {
     this.changeCodingValue(e.target.name, e.target.value);
   }

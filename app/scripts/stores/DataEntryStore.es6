@@ -31,6 +31,10 @@ const DataEntryStore = createStore({
 	openPopup(location){
 		var newState = Object.assign({}, this.get());
 		let adminSource = location.adminSource || (location.type=='geocoding'? 'saved' : location.adminCodes.shape? 'shape' : 'geonames');		
+		//adminSource if it is not set, it will be set by default to:
+		// 'saved' if it is an already coded location
+		// 'shape' if it is a new location and have values from shapes
+		// 'geonames' if it is a new location and it doesn't have values from shapes
 		Object.assign(location, {'adminSource': adminSource});
 		Object.assign(newState, {'geocoding': location});//set the location to be used
 		Object.assign(newState, {'showPopup': true});//open the popup

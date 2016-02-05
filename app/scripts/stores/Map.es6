@@ -65,7 +65,6 @@ const PopUpStore = createStore({
 	},
 
 	cleanStore() {
-
 		this.setData(this.initialData);
 	},
 

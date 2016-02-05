@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { PropTypes } from 'react';
 
@@ -70,11 +68,9 @@ export default class MapView extends React.Component {
     This is called by location onClick 
     */
   locationClick(e) {
-    //e.targer.feature 
     //using geonames lat and lng instead of event latlng should be more precise.
     let countryInfo = this.queryFeatures(e.latlng);
     let countryFeature = (countryInfo && countryInfo.length > 0) ? countryInfo[0].feature : null;
-
     let locationFeature = e.target.feature
     const {latlng} = e;
     //at this stage I have the location feature + country feature 
