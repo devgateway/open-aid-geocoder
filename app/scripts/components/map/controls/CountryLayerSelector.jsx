@@ -1,6 +1,6 @@
 import React from 'react';
 import {ListGroup, ListGroupItem, Button, Modal, Grid, Col, Table, Row, Pagination}  from 'react-bootstrap';
-
+import Message from '../../Message.jsx'
 import CountryLayersStore from '../../../stores/CountryLayersStore.es6';
 import  * as Actions from '../../../actions/Actions.es6'
 import Constants from '../../../constants/Contants.es6';
@@ -30,12 +30,12 @@ class LayerItem extends React.Component{
   render() {
     return (
       <ListGroupItem>
-                {this.props.name} 
-                {this.props.loading?<kbd className="pull-right">(Loading)</kbd>:  (this.props.added)? 
-                  <Button  bsStyle='warning' bsSize='xsmall' className='pull-right' onClick={this._removeLayer.bind(this)} value={this.props.iso}>Remove</Button>
-                : <Button  bsStyle='info' bsSize='xsmall' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}>Add</Button>
-              }
-
+        {this.props.name} 
+        {this.props.loading?
+          <kbd className="pull-right"><Message k="layerselector.loading"/></kbd>:  (this.props.added)? 
+          <Button  bsStyle='warning' bsSize='xsmall' className='pull-right' onClick={this._removeLayer.bind(this)} value={this.props.iso}><Message k="layerselector.remove"/></Button>
+        : <Button  bsStyle='info' bsSize='xsmall' className='pull-right' onClick={this._addLayer.bind(this)} value={this.props.iso}><Message k="layerselector.add"/></Button>
+        }
       </ListGroupItem>
     )
   }
