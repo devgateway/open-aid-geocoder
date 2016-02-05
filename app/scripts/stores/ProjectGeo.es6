@@ -28,9 +28,13 @@ const ProjectGeoJsonStore = createStore({
 					return [this.geometry.coordinates[0], this.geometry.coordinates[1]]
 				}
 			}).build(project.locations);
+			featureCollection.features.forEach((record) => {
+				let rollbackData = project.locationsBackup? project.locationsBackup.find((it)=>{return it.id==record.properties.id}) : null;
+				Object.assign(record.properties, {'rollbackData': rollbackData});//duplicates the values into same object for rollback purposes
+			});
 			newData=Object.assign(this.get(),{data:featureCollection,autoZoom:false, date:new Date()});
 		} else {
-			 newData=Object.assign(this.get(),{data:null,autoZoom:false,date:new Date()});
+			newData=Object.assign(this.get(),{data:null,autoZoom:false,date:new Date()});
 		}
 
 		this.setData(newData);
