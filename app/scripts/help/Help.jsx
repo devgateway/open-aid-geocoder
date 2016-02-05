@@ -6,7 +6,6 @@ import Message from '../components/Message.jsx'
 export default class Help extends React.Component{
  
     getDomObject(){
-      debugger;
       return this.checkParentById(ReactDOM.findDOMNode(this), this.props.parentId);
     }
 
@@ -20,7 +19,7 @@ export default class Help extends React.Component{
 
     render(){
       return (
-        <button className="btn btn-sm btn-info pull-right help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></button>
+        <div className="help" onClick={this.help.bind(this)}><i className="fa fa-question-circle"></i></div>
       );
     }
 }

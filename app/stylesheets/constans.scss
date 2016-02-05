@@ -1,4 +1,16 @@
-$font-size: 12pt;
-$default-color: #000;
-$light-color: lighten($default-color, 20%);
-$dark-color: darken($default-color, 20%);
+
+$black:000000;
+$darkGray:#666666;
+$green:#669933;
+$bigSize: 16px;
+
+$big:12px;
+$regular:10px;
+$small:9px;
+
+@mixin fontDefault($size,$color){
+  	font-family: 'Open Sans', sans-serif;
+  	color:$color;
+  	size:$size
+
+}

@@ -1,10 +1,11 @@
 /*webpack require directives*/
 require('bootstrap/dist/css/bootstrap.css');
+require('font-awesome/css/font-awesome.css');
 require('intro.js/introjs.css');
-require('../stylesheets/app.scss');
 require('../stylesheets/control.layers.minimap.css');
 require('babel-polyfill');
-require('font-awesome/css/font-awesome.css');
+
+require('../stylesheets/main.scss');
 
 import React from 'react';
 import  Settings from  './util/Settings.es6';

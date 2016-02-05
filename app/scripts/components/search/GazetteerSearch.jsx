@@ -1,4 +1,4 @@
-import {Input,Button,Grid,Row,Col}  from 'react-bootstrap';
+import {Input,Button}  from 'react-bootstrap';
 import React from 'react';
 import ReactDOM from 'react';
 import {NavDropdown,MenuItem}  from 'react-bootstrap';
@@ -8,119 +8,88 @@ import SingleProjectStore from '../../stores/Project.es6';
 import Constants from '../../constants/Contants.es6';
 import * as Intro from 'intro.js'
 import Message from '../Message.jsx'
-import SearchHelp from '../../help/LocationsSearch.es6';
+import Help from '../../help/LocationsSearch.es6';
 
 const GazetteerSearch = React.createClass({ 
 
-  getInitialState() {
-    return {'fuzzy':false,'country':false,'text':''}
-    this.onStoreChange = this.onStoreChange.bind(this);
-  },
+    getInitialState() {
+      return {'fuzzy':false,'country':false,'text':''}
+    },
 
-  componentDidMount() {
-    LocationsStore.listen(this.onStoreChange);
-    SingleProjectStore.listen(this.getCountry);
-  },
+    componentDidMount() {
+      //LocationsStore.listen(this.onStoreChange); //TODO:maybe we can show a message when there are no resutls 
+      SingleProjectStore.listen(this.getCountry); //TODO:we need the country to use the country filter anyway it can be removed from here and makes the stores listen btween each other
+    },
 
-  componentWillUnmount() {
-       // LocationsStore.unlisten(this.onStoreChange);
+      onStatusChange(status) {
+        this.setState({currentStatus: status});
+      },
+
+      getCountry(project) {
+        let countryISO = project.country?project.country.iso2:null;
+        if(countryISO){
+         let newState = Object.assign(this.state, { countryISO });
+       }
      },
-
-     onStoreChange(){
-      console.log('Store changed ..');
+     
+     doSearch(){
+      Actions.invoke(Constants.ACTION_SEARCH_LOCATIONS,this.state)
     },
 
-    onStatusChange(status) {
-      this.setState({currentStatus: status});
+    handleChange(e) {
+      let fuzzy=(e.target.name=='fuzzy')?!this.state.fuzzy:this.state.fuzzy;
+      let country=(e.target.name=='country')?!this.state.country:this.state.country;
+      let text=this.refs.text.getValue();
+      let newState=Object.assign(this.state, {text,fuzzy,country});
+      this.setState(newState);
     },
 
-    getCountry(project) {
-      let countryISO = project.country?project.country.iso2:null;
-      if(countryISO){
-       let newState = Object.assign(this.state, { countryISO });
-     }
-   },
-   
-   doSearch(){
-    Actions.invoke(Constants.ACTION_SEARCH_LOCATIONS,this.state)
-  },
+    handleKey(e) {
+      if(e.keyCode == 13){
+        this.doSearch();
+      }
+    },
 
-  handleChange(e) {
-    let fuzzy=(e.target.name=='fuzzy')?!this.state.fuzzy:this.state.fuzzy;
-    let country=(e.target.name=='country')?!this.state.country:this.state.country;
-    let text=this.refs.text.getValue();
-    let newState=Object.assign(this.state, {text,fuzzy,country});
-    this.setState(newState);
-  },
+    validationState() {
+      console.log('Validations');
 
-  handleKey(e) {
-    if(e.keyCode == 13){
-      this.doSearch();
-    }
-  },
+      let length = this.state.text.length;
+      if (length > 3) return 'success';
+      else if (length > 0) return 'error';
 
-  validationState() {
-    console.log('Validations');
-
-    let length = this.state.text.length;
-    if (length > 3) return 'success';
-    else if (length > 0) return 'error';
-
-  },
+    },
 
   render() {
-   var selector=(  
-     <ul   className="nav navbar-nav navbar-right">
-     <NavDropdown eventKey={1} title="Search" id="nav-dropdown">
-     <MenuItem eventKey="1.1">Geonames</MenuItem>
-     <MenuItem eventKey="1.2">Esri Geocoding</MenuItem>
-     <MenuItem eventKey="1.3">Custom Gazzetter</MenuItem>
-     <MenuItem divider />
-     </NavDropdown>
-     </ul>
-          ) //TODO:this can be a child component is added here just for mocking purpose 
 
    return (
-     <div id="searchContainer" className="navbar-form navbar-left small" role="search">
-       <div className="form-group">
-       
-        <label className="small spacing" ><Message k="header.search.label"/></label> 
-
-       
-         <Input  type="text" value={this.state.text} 
-         placeholder={Message.t('header.search.holder')} 
-         bsStyle={this.validationState() } 
-         hasFeedback bsSize="small" 
-         ref="text" 
-         className="spacing"
-         groupClassName="group-class" 
-         labelClassName="label-class" 
-         onChange={this.handleChange}
-         onKeyDown={this.handleKey}/>
-       </div>
-
-       <div className="form-group small">
-         <input type="checkbox"  name="fuzzy"  className="spacing"    checked={this.state.fuzzy} onChange={this.handleChange}/> 
-         <Message k="header.search.fuzzy"/>
-       </div>
-       <div className="form-group small"> {' '}
-         <input type="checkbox"  name="country"  className="spacing"  checked={this.state.country} onChange={this.handleChange}/> 
-           
-           <Message k="header.search.country"/>
-       
-       </div>
-
-       <div className="form-group small">
-         <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}>
-           <Message k="header.search.submit"/>
-         </Button>
-       </div>
-
-       <div className="form-group small" > {' '}
-          <SearchHelp parentId="searchContainer"/>
-       </div>
-
+    <div id="gazetteer-search" className="navbar-form navbar-left" role="search">
+     <div className="form-group">
+          <Help parentId="gazetteer-search"/>
      </div>
+   
+     <div className="form-group">
+      <div className="separator"/>
+     </div>
+
+     <div className="form-group">
+       <label><Message k="header.search.label"/></label>  
+       <Input  type="text" value={this.state.text}  placeholder={Message.t('header.search.holder')}  bsStyle={this.validationState() }  hasFeedback bsSize="small"  ref="text"   onChange={this.handleChange} onKeyDown={this.handleKey}/>
+     </div>
+
+     <div className="form-group">
+       <input type="checkbox"  name="fuzzy"      checked={this.state.fuzzy} onChange={this.handleChange}/> 
+       <Message k="header.search.fuzzy"/>
+     </div>
+
+     <div className="form-group small"> {' '}
+       <input type="checkbox"  name="country"   checked={this.state.country} onChange={this.handleChange}/> 
+       <Message k="header.search.country"/>
+       </div>
+
+     <div className="form-group small">
+       <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}> <Message k="header.search.submit"/> </Button>
+     </div>
+    </div>
      )
 }
 })

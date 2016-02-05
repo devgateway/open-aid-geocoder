@@ -8,7 +8,7 @@ import Constants from '../constants/Contants.es6';
 import LanStore from '../stores/LanStore.es6';
 
 export default class Header extends React.Component {
-  
+
   constructor() {
     super();
     this.state = LanStore.get();
@@ -35,41 +35,47 @@ changeLanguage(lan){
 render() {
   console.log(this.state.lan)
   return (
-  <div className="header">
+        <div className="header">
+          <nav className="navbar navbar-default">
 
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
+            <div className="container-fluid">
 
-        <div className="navbar-header">
-          <Message className="navbar-brand"  k="header.branding"/>
-        </div>
+              <div className="navbar-header">
+               <Message className="navbar-brand"  k="header.branding"/>
+             </div>
+             <div className="nav navbar-left">
+               <div className="separator"/>
+             </div>
 
-        <div className="nav navbar-left">
-           <GazetteerSearch/>
-        </div>
-
-
-        <ul className="nav navbar-nav navbar-right ">
-          <NavDropdown eventKey={4} title={Message.t('header.options.label')} id="nav-dropdown">
-            <li>
-              <p>
-                <i className="fa fa-cog"></i> Language 
-                <select  value={this.state.lan} name="lan" className="pull-right" onChange={this.changeLan}>
-                  <option value="en">English</option>
-                  <option value="es">Espa&ntilde;ol</option>
-                </select>
-              </p>
-            </li>
-            <MenuItem eventKey="4.2"><i className="fa fa-cog"></i> Auto Zoom <input type="checkbox"/></MenuItem>
-            <MenuItem eventKey="4.2"><i className="fa fa-cog"></i> Auto Clean Locations <i className="fa fa-check"></i></MenuItem>
-          </NavDropdown>
-
-        </ul>
+             <div className="nav navbar-left">
+              <GazetteerSearch/>
+            </div>
+            
+          </div>
+        </nav>
       </div>
-    </nav>
-    {this.props.children}
-  </div>
     )
 }
 }
 
+
+
+/*<ul className="nav navbar-nav navbar-right ">
+    <NavDropdown eventKey={4} title={Message.t('header.options.label')} id="nav-dropdown">
+    <li>
+    <p>
+    <i className="fa fa-cog"></i> Language 
+    <select  value={this.state.lan} name="lan" className="pull-right" onChange={this.changeLan}>
+    <option value="en">English</option>
+    <option value="es">Espa&ntilde;ol</option>
+    </select>
+    </p>
+    </li>
+    <MenuItem eventKey="4.2"><i className="fa fa-cog"></i> Auto Zoom <input type="checkbox"/></MenuItem>
+    <MenuItem eventKey="4.2"><i className="fa fa-cog"></i> Auto Clean Locations <i className="fa fa-check"></i></MenuItem>
+    </NavDropdown>
+
+    </ul>
+    </div>
+    </nav>
+    */

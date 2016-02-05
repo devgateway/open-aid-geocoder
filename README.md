@@ -13,12 +13,9 @@ http://devgateway.github.io/open-aid-geocoder
 #Development
 
 ```
-npm install gulp -G
-npm install 
 gulp 
 
 ```
-
 ##Production build
 ```
 gulp build-prod

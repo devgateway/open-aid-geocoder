@@ -1,0 +1,201 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+//@import "constans.scss";
+@import "callouts.scss";
+
+
+
+$black:000000;
+$darkGray:#666666;
+
+$green:#669933;
+$bigSize: 16px;
+
+$giant:18px;
+$huge:16px;
+$big:14px;
+$medium:12px;
+$regular:10px;
+$small:9px;
+
+
+@mixin fontDefault($size,$color){
+	font-family: 'Open Sans', sans-serif;
+	color:$color;
+	font-size:$size;
+
+}
+
+@mixin middle(){
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	height:auto;
+
+}
+
+@mixin grayBorder(){
+	border:1px solid rgb(243,243,243);
+}
+
+@mixin boxSizeRegular{
+	height:22;
+}
+
+@mixin boxSizeBig(){
+	height:35px;
+}
+
+
+body{
+	@include fontDefault($regular,$black);
+}
+
+h1{
+	@include fontDefault($giant,$black);
+}
+
+h2{
+	@include fontDefault($huge,$black);
+}
+
+h3{
+	@include fontDefault($big,$black);
+}
+
+
+h4{
+	@include fontDefault($medium,$black);
+}
+
+
+
+input[type="text"] {
+	@include fontDefault($regular,$black);
+	@include boxSizeRegular();
+	@include grayBorder();
+}
+
+input[type="radio"], input[type="checkbox"] {
+	margin: 0px;
+	line-height: normal;
+}
+
+/*Project list page*/
+
+#project-search-form{
+	input[type="text"] {
+		@include boxSizeBig();
+	}
+
+	div.radio{
+		margin-left:10px;
+	}
+}
+
+.centered {
+	text-align: center;
+}
+
+
+/*Pagination*/
+.pagination.pagination-sm{
+	border:0px solid red;
+	li{
+
+		a{
+			@include fontDefault($small,$green);
+		}
+
+	}
+}
+
+.pagination > .active > a{
+	background-color:#EEE;
+	border:1px solid #CCC;
+	color: #000;
+}
+
+.pagination > .active > a:hover{
+	background-color:#EEE;
+
+}
+
+
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+
+	z-index: 3;
+	color: #000;
+	cursor: default;
+	background-color: #EEE;
+	border-color: #EEE;
+
+}
+
+
+
+/*General objecs*/
+
+.help{
+	width:20px;
+	height:20px;
+	border:1px solid red;	
+}
+
+/*Header*/
+
+
+.header{
+	.navbar{
+		border: 1px rgb(244,244,244);
+		height: 38px;
+		min-height: 38px !important;
+		background-color:rgb(249,249,249);
+
+	}
+
+	.container-fluid {
+		padding-right: 0px; 
+		padding-left: 0px; 
+	}
+
+	.navbar-header{
+		height:36px;
+
+	}
+
+	.navbar-brand {
+		margin:0px 0px 0px 10px !important;
+		padding: 0px 0px;
+
+		@include fontDefault($huge,$darkGray);
+		font-weight: normal;
+
+		@include middle();
+
+	}
+	
+	.nav {
+		padding-left: 0;
+		margin-bottom: 0;
+		list-style: none;
+		height: 38px;
+		/* border: 1px solid red; */
+	}
+
+	.separator{
+		@include middle();
+		height:14px;
+		width:1px;
+		background-color:rgb(241,241,241);
+		margin-left:7px;
+		margin-rigth:7px;
+
+	}
+
+}
+
+
+
+
+
