@@ -144,8 +144,10 @@ export default class MapView extends React.Component {
               <LocationPopup/>
           </MapPopUp>
           
-          <ProjectInfo id={this.props.params.projectID}/>
-          
+          <Control position="topleft">
+              <ProjectInfo id={this.props.params.projectID}/>
+          </Control>
+
           <DataEntryPopup/>
           
         

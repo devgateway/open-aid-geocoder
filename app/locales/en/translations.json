@@ -12,7 +12,7 @@
 			"label": "Search locations",
 			"fuzzy": "Fuzzy",
 			"country": "Country",
-			"submit": "Search"
+			"submit": "search"
 		},
 		"options": {
 			"label": "Options"

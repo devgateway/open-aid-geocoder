@@ -19,9 +19,9 @@ $small:9px;
 
 
 @mixin fontDefault($size,$color){
-	font-family: 'Open Sans', sans-serif;
-	color:$color;
-	font-size:$size;
+	font-family: 'Open Sans', sans-serif !important;
+	color:$color !important;
+	font-size:$size !important;
 
 }
 
@@ -43,6 +43,13 @@ $small:9px;
 
 @mixin boxSizeBig(){
 	height:35px;
+}
+
+
+@mixin inputText(){
+	@include fontDefault($regular,$black);
+	@include boxSizeRegular();
+	@include grayBorder();
 }
 
 
@@ -69,10 +76,9 @@ h4{
 
 
 
-input[type="text"] {
-	@include fontDefault($regular,$black);
-	@include boxSizeRegular();
-	@include grayBorder();
+input[type="text"]  {
+	@include inputText();
+	font-weight: bold;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -136,10 +142,27 @@ input[type="radio"], input[type="checkbox"] {
 
 /*General objecs*/
 
-.help{
-	width:20px;
-	height:20px;
-	border:1px solid red;	
+.help {
+	@include middle();
+	width: 13px;
+	height: 13px !important;
+	background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABwID/8QAIhAAAgICAQQDAQAAAAAAAAAAAQIDBAURBgASEyEHFUFh/8QAFAEBAAAAAAAAAAAAAAAAAAAABf/EAB4RAAIBAwUAAAAAAAAAAAAAAAECAAMxkRESQXGx/9oADAMBAAIRAxEAPwBNy2MmzHH8fnJWSzfvkNHDNGsoEkhHiiUOCI0Ud3cV05I3vfU8o5pc4Flnw9WBshVKieEzMztCrevH3b2QCCRv3ogfnWfyNmLXCsjVr4jxvVtSmysFhe9YJCx2Y9aI9knRJGz6A6QePYWn9alm0gu27erE09lVd2ZlH80AAAAAAAB0szBED1BqvA8xBVQu5Skdri56vmf/2Q=="); 
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.separator{
+	@include middle();
+	height:14px;
+	width:1px;
+	background-color:rgb(241,241,241);
+	margin-left:7px;
+	margin-right:7px;
+
+}
+
+.middle{
+	@include middle();
 }
 
 /*Header*/
@@ -151,7 +174,7 @@ input[type="radio"], input[type="checkbox"] {
 		height: 38px;
 		min-height: 38px !important;
 		background-color:rgb(249,249,249);
-
+		margin:0px;
 	}
 
 	.container-fluid {
@@ -183,19 +206,130 @@ input[type="radio"], input[type="checkbox"] {
 		/* border: 1px solid red; */
 	}
 
-	.separator{
-		@include middle();
-		height:14px;
-		width:1px;
-		background-color:rgb(241,241,241);
-		margin-left:7px;
-		margin-rigth:7px;
+}
 
+
+input[type="checkbox"] {
+	display:none;
+	
+}
+
+input[type="checkbox"]+label,input[type="radio"]+label{
+	cursor:pointer;
+
+}
+input[type="checkbox"]+label:before,input[type="radio"]+label:before{
+	content: '';
+	display:inline-block;
+	vertical-align:middle;
+	height:12px;
+	width:12px;
+	margin:4px;
+}
+input[type="checkbox"]+label:before{
+	@include grayBorder();
+	background-color:#FFF;
+}
+input[type="checkbox"]:checked+label:before{
+	
+	font-size:$small !important;
+	padding-left:1px; 
+	display: inline-block;
+	font-family:FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	
+	@include grayBorder();
+	content: "\f00c";
+}
+
+label{
+	margin:0px 15px 0px 0px ;
+	@include fontDefault($regular,$darkGray);
+	font-weight: 100;
+}
+
+.btn{
+	color:#FFF;
+
+
+}
+
+.btn-sm {
+	padding: 3px 15px 3px 15px;;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 0px;
+	height:19px;
+	@include fontDefault($small,"#FFF");
+	@include grayBorder();
+	@include middle();
+}
+
+.btn-success {
+	color: #fff;
+	background-color: rgb(137,184,90);
+	border-color: #4cae4c;
+}
+
+.btn-success:hover {
+	color: #fff;
+	background-color: rgb(137,184,90);
+	border-color: #4cae4c;
+}
+
+
+#gazetteer-search{
+	padding: 0px;
+	margin: 0px;
+
+	.form-group{
+		padding:0px;
+		margin:0px;
+		height:36px;
+		label:{
+			border:1px solid red;
+		}
+		
+		.form-group-sm {
+		}
+
+		input{
+			@include inputText();
+			margin:6px 19px 0px 25px;
+
+		}
 	}
-
 }
 
 
 
 
 
+
+/*Map*/
+
+.map{
+
+	-webkit-border-radius: 30%;
+	border-radius: 30%;
+
+	>div {
+		height: calc(100% - 51px);
+		height: -webkit-calc(100% - 51px);
+		height: -moz-calc(100% - 51px);
+		height: calc(100% - 51px);
+
+	}
+}
+
+
+#project-info {
+
+	position: absolute;
+	left: 10px;
+	top: 80px;
+	width: 500px;
+	max-height: 600px;
+	z-index: 99;
+}

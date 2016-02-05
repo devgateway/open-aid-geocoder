@@ -72,22 +72,25 @@ const GazetteerSearch = React.createClass({
      </div>
 
      <div className="form-group">
-       <label><Message k="header.search.label"/></label>  
-       <Input  type="text" value={this.state.text}  placeholder={Message.t('header.search.holder')}  bsStyle={this.validationState() }  hasFeedback bsSize="small"  ref="text"   onChange={this.handleChange} onKeyDown={this.handleKey}/>
+        <Input  type="text" value={this.state.text}  placeholder={Message.t('header.search.holder')}  bsStyle={this.validationState() }   bsSize="small"  ref="text"   onChange={this.handleChange} onKeyDown={this.handleKey}/>
      </div>
 
      <div className="form-group">
-       <input type="checkbox"  name="fuzzy"      checked={this.state.fuzzy} onChange={this.handleChange}/> 
-       <Message k="header.search.fuzzy"/>
+     <div className="middle">
+       <input type="checkbox"  id="fuzzy" name="fuzzy"      checked={this.state.fuzzy} onChange={this.handleChange}/> 
+        <label htmlFor="fuzzy"><Message k="header.search.fuzzy"/></label>
+     </div>
      </div>
 
-     <div className="form-group small"> {' '}
-       <input type="checkbox"  name="country"   checked={this.state.country} onChange={this.handleChange}/> 
-       <Message k="header.search.country"/>
+     <div className="form-group">
+       <div className="middle">
+       <input type="checkbox" id="country"  name="country"   checked={this.state.country} onChange={this.handleChange}/> 
+       <label htmlFor="country">  <Message k="header.search.country"/></label>
+      </div>
        </div>
 
      <div className="form-group small">
-       <Button className="spacing btn-search" bsStyle="success" bsSize="xsmall" onClick={this.doSearch}> <Message k="header.search.submit"/> </Button>
+       <Button className="btn-search wide" bsStyle="success" bsSize="small" onClick={this.doSearch}> <Message k="header.search.submit"/> </Button>
      </div>
     </div>
      )

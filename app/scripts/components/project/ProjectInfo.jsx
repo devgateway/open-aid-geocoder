@@ -11,14 +11,14 @@ import ProjectInfoHelp from '../../help/ProjectInfo.es6';
 
 /*
   Renders a single Location 
-*/
-class Item extends React.Component{
+  */
+  class Item extends React.Component{
 
-  constructor() {
-    super();
-  }
+    constructor() {
+      super();
+    }
 
-   _showLocationPopup(){
+    _showLocationPopup(){
     Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props});//TODO make data conversion for infowindow
   }
 
@@ -30,124 +30,123 @@ class Item extends React.Component{
   render() {
     var status = this.props.status=='EXISTING' ? '' : this.props.status;
 
-  	return (
-       	<div className="list-group-item">
-       		
-       		<div className="row small pull-right">
-				
-       			<div className="col-lg-8">
-       				<Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showDataEntryForm.bind(this)}>Edit</Button>			
-       			</div>
-       			<div className="col-lg-4">
-       				<Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Map it</Button>			
-       			</div>
+    return (
+      <div className="list-group-item">
 
-       		</div>
-       		
-       		<h4 className="list-group-item-heading">{this.props.name}</h4>
+      <div className="row small pull-right">
 
-          	<p className="list-group-item-text">
-          		{this.props.featureDesignation.code} - {this.props.featureDesignation.name}
-       		</p>
-       		<p className="list-group-item-text">
-          		{this.props.activityDescription}
-       		</p>
-       		<p className="list-group-item-text">
-          		{this.props.locationClass.name}
-       		</p>
+      <div className="col-lg-8">
+      <Button bsStyle='warning' className="show-location-button" bsSize="xsmall" onClick={this._showDataEntryForm.bind(this)}>Edit</Button>			
+      </div>
+      <div className="col-lg-4">
+      <Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this._showLocationPopup.bind(this)}>Map it</Button>			
+      </div>
 
-       		<p className="list-group-item-text">
-          		{this.props.exactness.name}
-       		</p>
-       		<p className="list-group-item-text">
-          		{this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
-       		</p>
-       		   <Label bsStyle={status=='DELETED'? 'danger' : status=='NEW'? 'success' : 'warning'}>{status}</Label>
-       		
-        </div>
-    )
-  }
+      </div>
+
+      <h4 className="list-group-item-heading">{this.props.name}</h4>
+
+      <p className="list-group-item-text">
+      {this.props.featureDesignation.code} - {this.props.featureDesignation.name}
+      </p>
+      <p className="list-group-item-text">
+      {this.props.activityDescription}
+      </p>
+      <p className="list-group-item-text">
+      {this.props.locationClass.name}
+      </p>
+
+      <p className="list-group-item-text">
+      {this.props.exactness.name}
+      </p>
+      <p className="list-group-item-text">
+      {this.props.geometry.type} - {this.props.geometry.coordinates[0]}, {this.props.geometry.coordinates[0]}
+      </p>
+      <Label bsStyle={status=='DELETED'? 'danger' : status=='NEW'? 'success' : 'warning'}>{status}</Label>
+
+      </div>
+      )
+}
 }
 
 /*
    This view renders the Project Information UI component
-*/
-class ProjectInfo extends React.Component {
+   */
+   class ProjectInfo extends React.Component {
 
     constructor() {
       super();
-    }
-	
-	componentWillMount() {
-	  this.loadProject(this.props.id);
-	  this.store = ProjectStore;
-	  let data = (this.store.get()) ? this.store.get() : {};
-	  this.state = data;		
-	}
-
-    componentDidMount() {  
-  	  this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
+      this.state={expanded:false};
     }
 
+    componentWillMount() {
+      this.unsuscribe=ProjectStore.listen(this.onStoreChange.bind(this));
+      this.loadProject(this.props.id); //TODO:this can be triggered by an external event
+    }
+
+    
     componentWillUnmount() {
       this.unsuscribe()
     }
-	
-	loadProject(id) {
-	  Actions.invoke(Constants.ACTION_LOAD_SINGLE_PROJECT, id);  
-	}
-	
-	onStoreChange(project){
-	  this.setState(project);
-	}
+
+    loadProject(id) {
+     Actions.invoke(Constants.ACTION_LOAD_SINGLE_PROJECT, id);  
+   }
+
+   onStoreChange(project){
+     let newState=Object.assign({},this.state);
+     Object.assign(newState,{project})
+     this.setState(newState);
+   }
 
 
-    render() {
-    return (
-		<Draggable
-			handle=".handle"
-			start={{x: 20, y: 0}}
-			grid={[1, 1]}
-			zIndex={100}>
-			<div id="project-info">
-			  <div className="panel panel-success">
-				 <div className="panel-heading  handle">
-				 <h4>
-				 	{this.state.project_id} - {this.state.title}   
+   render() {
+
+    return (    
+      <div className="leaflet-control leaflet-control-layers leaflet-control-layers-countries leaflet-control">
+        {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Info Panel"></div>:null} 
+      </div>
+      )
+   
+
+    }
+  }
+
+
+/*
+        <div id="project-info">
+        <div className="panel panel-success">
+         <div className="panel-heading  handle">
+         <h4>
+          {this.state.project_id} - {this.state.title}   
           <ProjectInfoHelp parentId="project-info"/>
-				 </h4>
-				 </div>
-				 <Tabs defaultActiveKey={1}>
-				    <Tab className="project-info" eventKey={1} title="Project Info">
-				    	<div className="panel-body list">
-							  {this.state.long_description}
+         </h4>
+         </div>
+         <Tabs defaultActiveKey={1}>
+            <Tab className="project-info" eventKey={1} title="Project Info">
+              <div className="panel-body list">
+                {this.state.long_description}
 
                <p><label>Country</label> {this.state.country?this.state.country.name:'N/A'}</p>
-						</div>
-					</Tab>
-				    <Tab eventKey={2} title="Geocoding">
-				    	<div className="panel-body list location-list">
-							{
-								this.state.locations?
-									this.state.locations.map((item) => {
+            </div>
+          </Tab>
+            <Tab eventKey={2} title="Geocoding">
+              <div className="panel-body list location-list">
+              {
+                this.state.locations?
+                  this.state.locations.map((item) => {
                     if(item.status != 'LOCATION') 
-	        						return <Item key={item.id} {...item}/>})
-	        					: <h4> No Geocoding Data. </h4>
-							}
-						</div>
-				    </Tab>
-				    <Tab eventKey={3} title="Gazetteer Locations">
-				    	<LocationsList/>
-				    </Tab>
-				  </Tabs>
-				
-			  </div>
+                      return <Item key={item.id} {...item}/>})
+                    : <h4> No Geocoding Data. </h4>
+              }
+            </div>
+            </Tab>
+            <Tab eventKey={3} title="Gazetteer Locations">
+              <LocationsList/>
+            </Tab>
+          </Tabs>
+        
+        </div>
 
-			</div>
-		  </Draggable>
-    )
-  }
-}
-
-
-export default ProjectInfo 
+        </div>*/
+        export default ProjectInfo 
