@@ -45,5 +45,77 @@
 			"cancelbtn": "Click here to cancel",
 			"deletebtn": "Click here to delete the location"
 		}
+	},
+
+	"dataentry": {
+		"sourceadmin": {
+			"stored": "Stored",
+			"shapes": "Shapes",
+			"geonames": "Geonames"
+		},
+		"deletemessage": "This location will be marked as deleted, are you sure you want to continue?",
+		"name": "Name",
+		"country": "Country",
+		"firstadm": "First ADM",
+		"secondadm": "Second ADM",
+		"identifier": "Identifier",
+		"type": "Type",
+		"coordinates": "Coordinates",
+		"featuredesignation": "Feature Designation",
+		"locationclass": "Location Class",
+		"geographicexactness": "Geographic Exactness",
+		"activitydescription": "Activity Description",
+		"updatefromgeonames": "Update data from Geonames service",
+		"save": "Save",
+		"update": "Update data from Geonames service",
+		"delete": "Delete",
+		"cancel": "Cancel"
+	},
+
+	"layerselector": {
+		"loading": "(Loading)",
+		"add": "Add",
+		"remove": "Remove"
+	},
+
+	"submitgeocoding": {	
+		"submitmessage": "This will overwrite the project geocoding with the current changes.  Are you sure?",
+		"cancel": "Cancel",
+		"submit": "Submit"
+	},
+
+	"projectinfo": {	
+		"locationslist": {	
+			"edit": "Edit",
+			"mapit": "Map it"
+		},
+		"locationstatus": {	
+			"edited": "EDITED",
+			"deleted": "DELETED",
+			"new": "NEW"
+		},
+		"country": "Country",
+		"projectinfo": "Project Info",
+		"geocoding": "Geocoding",
+		"gazetteerlocations": "Gazetteer Locations",
+		"nogeocodingdata": "No Geocoding Data."
+	},
+
+	"projectlist": {
+		"geocodeproject": "Geocode Project",
+		"geocodingfilter": "Geocoding Filter",
+		"havelocations": "Having Locations",
+		"nothavelocations": "Not having Location",
+		"any": "Any of them"
+	},
+
+	"locationpopup": {
+		"adminsource": {
+			"stored": "Using stored values",
+			"shapes": "Using shape values",
+			"geonames": "Using gazetter values"
+		},
+		"picklocation": "Pick this location",
+		"update": "Update"
 	}
 }

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import {Modal,Button} from 'react-bootstrap';
 import * as Actions from '../../../actions/Actions.es6';
 import Constants from '../../../constants/Contants.es6';
+import Message from '../../Message.jsx';
 
 /*Popup info*/
 
@@ -37,48 +38,45 @@ class InfoView extends React.Component {
       country=this.props.adminCodes.shape.country?this.props.adminCodes.shape.country.name:null;
       admin1=this.props.adminCodes.shape.admin1?this.props.adminCodes.shape.admin1.name:null;
       admin2=this.props.adminCodes.shape.admin2?this.props.adminCodes.shape.admin2.name:null;
-      comment="Using shape values";
+      comment= Message.t('locationpopup.adminsource.shapes');
     } else {
       country=this.props.adminCodes.geonames.country?this.props.adminCodes.geonames.country.name:null;
       admin1=this.props.adminCodes.geonames.admin1?this.props.adminCodes.geonames.admin1.name:null;
       admin2=this.props.adminCodes.geonames.admin2?this.props.adminCodes.geonames.admin2.name:null;
-      comment="Using gazetter values";
+      comment= Message.t('locationpopup.adminsource.geonames');
     }
 
     switch(this.props.adminSource) {
       case 'geonames':
-        comment="Using gazetter values";
+        comment=Message.t('locationpopup.adminsource.geonames');
         break;
       case 'shape':
-        comment="Using shape values";
+        comment=Message.t('locationpopup.adminsource.shapes');
         break;
       case 'saved':
-        comment="Using stored values";
+        comment=Message.t('locationpopup.adminsource.stored');
         break;
     }
 
     return (
         <div className={cssClass}>
-
-          <h4>{this.props.name}</h4>
-          
+          <h4>{this.props.name}</h4>          
           <div className="row"> 
-
             <div className="col-lg-4">
               <div className="form-group">
-                <label  for="geonameId,">Country <span className="small">*</span></label>
+                <label><Message k="dataentry.country"/> <span className="small">*</span></label>
                 <div>{country||'NA'}</div>
               </div>
             </div>
             <div className="col-lg-4">
               <div className="form-group">
-                <label  for="admin1">First ADM <span className="small">*</span></label>
+                <label><Message k="dataentry.firstadm"/> <span className="small">*</span></label>
                 <div>{admin1||'NA'}</div>
               </div>
             </div>
             <div className="col-lg-4">
               <div className="form-group">
-                <label  for="admin2">Second ADM <span className="small">*</span></label>
+                <label><Message k="dataentry.secondadm"/> <span className="small">*</span></label>
                 <div>{admin2||'NA'}</div>
               </div>
             </div>
@@ -87,19 +85,19 @@ class InfoView extends React.Component {
           <div className="row">
             <div className="col-lg-4">
               <div className="form-group">
-                <label  for="lat">Identifier</label>
+                <label><Message k="dataentry.identifier"/></label>
                 <div>{this.props.id}</div>
               </div>
             </div>
             <div className="col-lg-4">
               <div className="form-group">
-                <label  for="lat">Type</label>
+                <label><Message k="dataentry.type"/></label>
                 <div>{this.props.geometry.type}</div>
               </div>
             </div>
             <div className="col-lg-4">
               <div className="form-group">
-                <label  for="lat">Coordinates</label>
+                <label><Message k="dataentry.coordinates"/></label>
                 <div>{this.props.geometry.coordinates.join(', ')}</div>
               </div>
             </div>
@@ -108,7 +106,7 @@ class InfoView extends React.Component {
           <div className="row"> 
             <div className="col-lg-12">
               <div className="form-group">
-                <label  for="typeCode">Feature Designation</label>
+                <label><Message k="dataentry.featuredesignation"/></label>
                 <div>{this.props.featureDesignation.code} - {this.props.featureDesignation.name} </div> 
               </div>
             </div>
@@ -119,7 +117,7 @@ class InfoView extends React.Component {
               <button 
               className={this.props.type=='location'? "btn btn-sm btn-success pull-right" :"btn btn-sm btn-warning pull-right"} 
               onClick={this.onPickLocation.bind(this)}>
-              {this.props.type=='location'? "Pick this location" : "Update"}
+              {this.props.type=='location'? Message.t('locationpopup.picklocation') : Message.t('locationpopup.update')}
             </button>
           </div>
         </div>

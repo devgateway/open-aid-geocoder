@@ -5,6 +5,7 @@ import { Link  } from 'react-router';
 import  * as Actions from '../../../actions/Actions.es6'
 import Constants from '../../../constants/Contants.es6';
 import MapHelp from '../../../help/Map.es6';
+import Message from '../../Message.jsx'
 
 class SubmitGeocoding extends React.Component{ 
 
@@ -39,26 +40,20 @@ class SubmitGeocoding extends React.Component{
 
   render() {
     return (
-      <div className='submit-container'>
-       
+      <div className='submit-container'>       
         <Modal  {...this.props} show={this.state.showModal} onHide={this.cancel}>
           <Modal.Body>
             <h4 className="list-group-item-heading">
-              This will overwrite the project geocoding with the current changes. 
-              Are you sure?
+              <Message k="submitgeocoding.submitmessage"/>
             </h4>
             <hr/>
-            <Button bsStyle='danger' onClick={this.cancel.bind(this)}>No</Button>
-            <Button bsStyle='success' className="pull-right" onClick={this.onSubmitCoding.bind(this)}>Yes</Button>
+            <Button bsStyle='danger' onClick={this.cancel.bind(this)}><Message k="general.no"/></Button>
+            <Button bsStyle='success' className="pull-right" onClick={this.onSubmitCoding.bind(this)}><Message k="general.yes"/></Button>
           </Modal.Body>
         </Modal>        
         <MapHelp parentId="mapContainer"/>
-        <Button bsStyle='warning' className="pull-right" onClick={this.onCancelCoding.bind(this)}>Cancel</Button>
-        <Button bsStyle='success' className="pull-right" onClick={this.openConfirm.bind(this)}>Submit</Button>
-    
-
-        
-
+        <Button bsStyle='warning' className="pull-right" onClick={this.onCancelCoding.bind(this)}><Message k="submitgeocoding.cancel"/></Button>
+        <Button bsStyle='success' className="pull-right" onClick={this.openConfirm.bind(this)}><Message k="submitgeocoding.submit"/></Button>
       </div>
     );
   }

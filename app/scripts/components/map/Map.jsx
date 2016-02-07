@@ -109,54 +109,39 @@ export default class MapView extends React.Component {
     })
   }
 
-  render() {
-     
+  render() { 
     return (
-
       <div id="mapContainer">
-       <div className="map">
-      
-        <Map   {...this.state.map}  ref="map">
-
-          <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>
-            
-           <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
-               {
-                this.state.layers.countries?this.state.layers.countries.map( (country)=>{
-                return   <CountryLayer {...country}/>
+        <div className="map">      
+          <Map   {...this.state.map}  ref="map">
+            <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
+              <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
+                {this.state.layers.countries?this.state.layers.countries.map( (country)=>{
+                  return <CountryLayer {...country}/>
                 }):null}
-            </LayerGroup>
+              </LayerGroup>
+              <GeocodingLayer name="Geocoding" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/>         
+              <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
+            </MiniMap>
+            <Control position="topright">
+              <CountryLayerSelector/>
+            </Control>
+            
+            <SubmitGeocoding/>
+            <ZoomControl position="bottomright"/>
 
-            <GeocodingLayer name="Geocoding"  onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/> 
-        
-            <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
-          
-          </MiniMap>
-          
-          
-          <Control position="topright">
-            <CountryLayerSelector/>
-          </Control>
-          
-          <SubmitGeocoding/>
-          <ZoomControl position="bottomright"/>
-
-          <MapPopUp maxWidth="850" {...this.state.popup}>
-              <LocationPopup/>
-          </MapPopUp>
-          
-          <Control position="topleft">
-              <ProjectInfo id={this.props.params.projectID}/>
-          </Control>
-
-          <DataEntryPopup/>
-          
-        
-
-        </Map>
+            <MapPopUp maxWidth="850" {...this.state.popup}>
+                <LocationPopup/>
+            </MapPopUp>
+            
+            <Control position="topleft">
+                <ProjectInfo id={this.props.params.projectID}/>
+            </Control>
+            <DataEntryPopup/>        
+          </Map>
+        </div>
       </div>
-      </div>
-      )
-}
+    )
+  }
 }
 
