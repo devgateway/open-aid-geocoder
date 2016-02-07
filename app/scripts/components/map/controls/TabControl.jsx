@@ -1,1 +1,0 @@
-//TODO implement a tab control that should contain project info and lcoations

@@ -16,7 +16,7 @@ import { render } from 'react-dom';
 /*Layout elements*/
 import Header  from './components/Header.jsx';
 import ProjectList  from './components/project/ProjectList.jsx';
-import MapComponent from  './components/map/MapComponent.jsx';
+import Map from  './components/map/Map.jsx';
 
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
@@ -62,7 +62,7 @@ i18next.use(XHR).init(options, (err, t) => {
       </Route>
 
       <Route path="/map" component={App}>
-      <Route path="/map/:projectID" component={MapComponent}/>
+      <Route path="/map/:projectID" component={Map}/>
       </Route>
 
       <Route path="*" component={NoMatch}/>

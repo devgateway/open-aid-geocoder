@@ -16,10 +16,11 @@ import CountryLayer from './layers/CountryLayer.jsx';
 
 /*Controls*/
 import Control from './controls/Control.jsx'; //control container
+
 import SubmitGeocoding from './controls/SubmitGeocoding.jsx';
 import MiniMap from './controls/MiniMap.jsx';
 import CountryLayerSelector from './controls/CountryLayerSelector.jsx'
-import ProjectInfo from '../project/ProjectInfo.jsx';
+import ProjectInfo from './controls/ProjectInfo.jsx';
 
 /*Popups*/
 import MapPopUp from './popups/PopUp.jsx';
