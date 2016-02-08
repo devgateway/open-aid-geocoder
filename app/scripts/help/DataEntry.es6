@@ -28,11 +28,15 @@ export default class DataEntryHelp extends Help{
         position: 'left'
       },
       {
+        element:node.querySelector('#activityDescription'),
+        intro: Message.t('help.dataentry.activitydescription'),
+        position: 'left'
+      },
+      {
         element:node.querySelector('.btn-success'),
         intro: Message.t('help.dataentry.savebtn'),
         position: 'left'
-      }
-      ,
+      },
       {
         element:node.querySelector('.btn-warning'),
         intro: Message.t('help.dataentry.cancelbtn'),

@@ -48,6 +48,7 @@
 			"locationname": "The data for the following fields is automatically generated from the gazetteer and not editable by the user",
 			"locationclass": "Location class defines whether the location is a populated place (e.g. city or village), administrative division, or another topological feature (e.g. river or mountain)",
 			"exactness": "Exactness defines whether the location represents the most distinct point reasonably possible for this type of activity or if it is an approximation due to lack of more detailed data",
+			"activitydescription": "Add here a description for the activity at this location",
 			"savebtn": "Click here to save or update the location",
 			"cancelbtn": "Click here to cancel",
 			"deletebtn": "Click here to delete the location"

@@ -137,7 +137,7 @@ export default class MapView extends React.Component {
            
             <ZoomControl position="bottomright"/>
 
-           <Control className="leaflet-control-layer-selector" position="bottomleft">
+            <Control className="leaflet-control-layer-selector" position="bottomleft">
               <CountrySelector/>
             </Control>
 

@@ -67,33 +67,33 @@ import Constants from '../../../constants/Contants.es6';
     render() {
       return (
         <div className="list-group-item">
-        <div className="list-group-item-heading"><h4 className="green">Country Boundaries
+          <div className="list-group-item-heading">
+            <h4 className="green">Country Boundaries
               <div className="close-btn" onClick={this.props.onClose}>
-            <i className='fa fa-times-circle-o'></i>
+                <i className='fa fa-times-circle-o'></i>
+              </div>
+            </h4>
           </div>
-        </h4>
-          
+          {
+            this.props.shapeList.map((item) =>{
+              return <LayerItem key={item.iso} {...item}/>})           
+          }
         </div>
-        {
-          this.props.shapeList.map((item) =>{
-            return <LayerItem key={item.iso} {...item}/>})           
-        }
-        </div>
-        )
+      )
     }
   }
 
 
 
-  export default class CountrySelector extends React.Component{ 
+export default class CountrySelector extends React.Component{ 
 
-    constructor() {
-      super();
-      this.store=CountryLayersStore;
-      this.state = {'expanded': false};
-    }
+  constructor() {
+    super();
+    this.store=CountryLayersStore;
+    this.state = {'expanded': false};
+  }
 
-    componentDidMount() {
+  componentDidMount() {
     Actions.invoke(Constants.ACTION_LOAD_COUNTRY_LAYER_LIST);//loads country layer list
     this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
   }
@@ -115,15 +115,15 @@ import Constants from '../../../constants/Contants.es6';
 
   render() {
     return (
-      <div className="leaflet-control leaflet-control-layers ">
-      {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Manage Country Layers" onClick={this.toggle.bind(this)}></div>:
-      (
-       <div className="countries-list">
-           <LayerList {...this.state} onClose={this.toggle.bind(this)}/>
-        </div>
-       )
-    }
-    </div>
+      <div className="leaflet-control leaflet-control-layers" id="countryLayerSelector">
+        {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Manage Country Layers" onClick={this.toggle.bind(this)}></div>:
+          (
+          <div className="countries-list">
+            <LayerList {...this.state} onClose={this.toggle.bind(this)}/>
+          </div>
+          )
+        }
+      </div>
     )
   }
 }

@@ -60,6 +60,7 @@ class DataEntryContent extends React.Component {
 
   codingValueChanged(e) {
     this.changeCodingValue(e.target.name, e.target.value);
+    this.validateField(e.target.value, e.target.name)
   }
 
   changeCodingValue(name, value){
