@@ -10,6 +10,44 @@ import ReactDOM from 'react-dom';
 import Message from '../Message.jsx'
 
 
+class AdminOptions extends React.Component {
+
+  toggleAdminSource(e){    
+      var newSource = e.target.parentElement.value; 
+      this.props.changeCodingValue('adminSource', newSource);
+      if (newSource=='geonames'){
+        Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.geocoding.id});
+      }
+  }  
+
+  render() {
+    let geocoding = this.props.geocoding;
+    let adminSource = this.props.adminSource;
+    return (
+      <div className="pull-right options">
+        <label className="inline mini">Use Admin Division from:</label> 
+        {(geocoding.type=='geocoding' && geocoding.status!='NEW')? //if it is an existing location, it shows the "Stored" option
+            <button className={adminSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggleAdminSource.bind(this)}>
+              <Message k="dataentry.sourceadmin.stored"/>
+            </button>
+          : null 
+        }            
+        {geocoding.adminCodes.shape? //if it have shapes data, it shows the "Shapes" option
+            <button className={adminSource=='shape'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shape' onClick={this.toggleAdminSource.bind(this)}>
+              <Message k="dataentry.sourceadmin.shapes"/>
+            </button> 
+          : null 
+        }             
+        <button className={adminSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggleAdminSource.bind(this)}><Message k="dataentry.sourceadmin.geonames"/></button>
+        {this.props.loadingAdminGeonames? 
+          <i className="fa fa-spinner fa-spin"></i>
+          : null 
+        }
+      </div>
+    )
+  }
+}
+
 /*Popup Data Entry*/
 class DataEntryContent extends React.Component {
 
@@ -103,21 +141,29 @@ class DataEntryContent extends React.Component {
     this.changeCodingValue('adminSource', 'geonames');
   }
 
-  toggleAdminSource(e){    
-      var newSource = e.target.parentElement.value; 
-      this.changeCodingValue('adminSource', newSource);
-      if (newSource=='geonames'){
-        Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.geocoding.id});
-      }
-  }  
+  getAdminSource(geocoding){
+    /*values:
+        saved: load admin data from stored values
+        shape: load admin data from shape info
+        geocoding: load admin data from geonames
+     */
+    if (geocoding.adminSource){
+      return geocoding.adminSource; //if adminSource is set, return it
+    } else if (geocoding.type=='geocoding'){
+      return 'saved'; //if adminSource is NOT set and it is an existing location, return saved
+    } else if (geocoding.adminCodes.shape){
+      return 'shape'; //else if it have shapes data, return shape
+    } else {
+      return 'geonames'; //otherwise, return geonames
+    }
+  }
 
   render() {  
-    let country,admin1,admin2 ,comment;
     let geocoding = this.props.geocoding;
-    let adminSource = geocoding.adminSource || (geocoding.type=='geocoding'? 'saved' : geocoding.adminCodes.shape? 'shape' : 'geonames');
-    country=geocoding.adminCodes[adminSource].country.name;
-    admin1=geocoding.adminCodes[adminSource].admin1.name;
-    admin2=geocoding.adminCodes[adminSource].admin2?geocoding.adminCodes[adminSource].admin2.name:'N/A';
+    let adminSource = this.getAdminSource(geocoding);
+    let country = geocoding.adminCodes[adminSource].country.name;
+    let admin1 = geocoding.adminCodes[adminSource].admin1 ? geocoding.adminCodes[adminSource].admin1.name:'N/A';
+    let admin2 = geocoding.adminCodes[adminSource].admin2 ? geocoding.adminCodes[adminSource].admin2.name:'N/A';
     
     if(this.props.geocoding.confirmDelete=='TO_CONFIRM'){
       return (
@@ -160,16 +206,12 @@ class DataEntryContent extends React.Component {
               <input type="text" className="form-control" id="admin2" placeholder="NA" value={admin2 || ''} disabled/>
             </div>
           </div>
-
-
-          <div className="pull-right options">
-            <label className="inline mini">Use Admin Division from:</label> 
-            {(geocoding.type=='geocoding' && geocoding.status!='NEW')?<button className={adminSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggleAdminSource.bind(this)}><Message k="dataentry.sourceadmin.stored"/></button>: null }            
-            {geocoding.adminCodes.shape? <button className={adminSource=='shape'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shape' onClick={this.toggleAdminSource.bind(this)}><Message k="dataentry.sourceadmin.shapes"/></button> : null }             
-            <button className={adminSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggleAdminSource.bind(this)}><Message k="dataentry.sourceadmin.geonames"/></button>
-            {(!geocoding.adminCodes.geonames.country.name && this.props.loadingAdminGeonames)?<i className="fa fa-spinner fa-spin"></i>: null }
-          </div>
-
+          <AdminOptions 
+              geocoding={geocoding} 
+              adminSource={adminSource} 
+              loadingAdminGeonames={this.props.loadingAdminGeonames}
+              changeCodingValue={this.changeCodingValue}
+              />
         </div>
 
 
@@ -188,7 +230,7 @@ class DataEntryContent extends React.Component {
           </div>
           <div className="col-lg-4">
             <div className="form-group" id="coordinates">
-              <label><Message k="dataentry.coordinates"/></label>
+              <label className="colored"><Message k="dataentry.coordinates"/></label>
               <div>{geocoding.geometry.coordinates.join(', ')}</div>
             </div>
           </div>
@@ -252,7 +294,7 @@ class DataEntryContent extends React.Component {
             {(geocoding.type!='location')?<button className="btn  btn-lg btn-danger pull-right" onClick={this.onDelete.bind(this)}><Message k="dataentry.delete"/></button>:null}
             <button className="btn  btn-lg btn-warning pull-right" onClick={this.onCancel.bind(this)}><Message k="dataentry.cancel"/></button>      
             <button className="btn  btn-lg btn-default  pull-right" title={Message.t('dataentry.updatefromgeonames')} onClick={this.updateFromGeonames.bind(this)}>
-              {(!geocoding.adminCodes.geonames.country.name && this.props.loadingGeonames)?<i className="fa fa-refresh fa-spin"></i>:  <i className="fa fa-refresh"></i> }
+              {(this.props.loadingGeonames)?<i className="fa fa-refresh fa-spin"></i>:  <i className="fa fa-refresh"></i> }
             </button>        
           </div>
         </div>
