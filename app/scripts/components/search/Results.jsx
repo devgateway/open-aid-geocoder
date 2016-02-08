@@ -22,11 +22,15 @@ import {Button}  from 'react-bootstrap';
     render() {
       return (
         <div className="list-group-item">
-        <Button bsStyle='success' className="show-location-button" bsSize="xsmall" onClick={this.setActiveLocation.bind(this, this.props)}>Map it</Button>
-        <a><h4 className="list-group-item-heading">{this.props.name}</h4></a>
-        <h5><b>{this.props.countryName}</b></h5>
-        <p className="list-group-item-text">{this.props.fclName}</p>
-        <p className="list-group-item-text">{this.props.fcodeName}</p>
+         <Button className="pull-right" bsStyle='success' bsSize="small" onClick={this.setActiveLocation.bind(this, this.props)}>show</Button>
+       <p className="list-group-item-text">
+        <label className='green text-large inline'>{this.props.name}:</label> {this.props.countryName}
+       </p> 
+       
+       <p className="list-group-item-text">
+          {this.props.fclName} {this.props.fcodeName}
+        </p>
+            
         </div>
         )
     }
@@ -46,7 +50,7 @@ import {Button}  from 'react-bootstrap';
         )
      } else {
        return (
-         <div className="list-group location-list">
+         <div className="list-group">
          {
           this.props.records.map((item) => {
         		return <Item   key={item.geonameId} {...item}/>}) //TODO: we should define another way to obtain the object key in order to support different sources maybe a hashcode 
@@ -92,17 +96,15 @@ import {Button}  from 'react-bootstrap';
     render() {
 
       return (
-      <div className="gazetteer-locations panel-body list ">
-        <div className="form small">
-          <div className="form-group">
-            <div><label>Type filter</label></div>
-            <div>  
-              <select name="typeFilter" onChange={this.typefilter.bind(this)} value={this.state.typefilter}>
+      <div id="search-results">
+        <div className="form">
+          <div className="form-group form-sm">
+            <label className="bolder">Type filter</label>
+              <select name="typeFilter" className="large-input  form-control" onChange={this.typefilter.bind(this)} value={this.state.typefilter}>
                 <option value='ALL'>All Types</option> 
                 {this.state.types.map((t)=>{return <option key={t.code} value={t.code}>{t.name}</option>})}
               </select>
-            </div>
-          </div>
+            </div>  
         </div>
         <ListItems {...this.state}/>
       </div>

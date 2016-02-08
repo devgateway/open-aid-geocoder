@@ -7,6 +7,7 @@ import { Popup } from 'react-leaflet';
 export default class MapPopUp extends Popup {
 
 	componentDidUpdate(prevProps) {
+		
 		const {open,position,map} = this.props;
 		
 		if (open) {
@@ -23,7 +24,12 @@ export default class MapPopUp extends Popup {
 		}
 	}
 
+	componentDidMount(){
+		/*keep this method empty*/
+	};
+
 	renderPopupContent() {
+				
 		if (this.props.children) {
 			render(
 				React.cloneElement(Children.only(this.props.children), this.props) ,

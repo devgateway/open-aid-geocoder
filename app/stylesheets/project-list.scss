@@ -1,0 +1,51 @@
+
+#project-search-form{
+	input[type="text"] {
+		@include boxSizeBig();
+	}
+
+	div.radio{
+		margin-left:10px;
+	}
+}
+
+.centered {
+	text-align: center;
+}
+
+
+/*Pagination*/
+.pagination.pagination-sm{
+	border:0px solid red;
+	li{
+
+		a{
+			@include fontDefault($small,$green);
+		}
+
+	}
+}
+
+.pagination > .active > a{
+	background-color:#EEE;
+	border:1px solid #CCC;
+	color: #000;
+}
+
+.pagination > .active > a:hover{
+	background-color:#EEE;
+
+}
+
+
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+
+	z-index: 3;
+	color: #000;
+	cursor: default;
+	background-color: #EEE;
+	border-color: #EEE;
+
+}
+

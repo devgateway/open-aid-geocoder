@@ -111,6 +111,7 @@ export default class MapView extends React.Component {
 
   render() { 
     return (
+
       <div id="mapContainer">
         <div className="map">      
           <Map   {...this.state.map}  ref="map">
@@ -123,21 +124,26 @@ export default class MapView extends React.Component {
               <GeocodingLayer name="Geocoding" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/>         
               <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
             </MiniMap>
-            <Control position="topright">
+           
+            <Control position="bottomleft">
               <CountryLayerSelector/>
             </Control>
             
-            <SubmitGeocoding/>
+            
             <ZoomControl position="bottomright"/>
+
+            
+            <Control position="topleft">
+                <ProjectInfo id={this.props.params.projectID}/>
+            </Control>
 
             <MapPopUp maxWidth="850" {...this.state.popup}>
                 <LocationPopup/>
             </MapPopUp>
             
-            <Control position="topleft">
-                <ProjectInfo id={this.props.params.projectID}/>
-            </Control>
-            <DataEntryPopup/>        
+            <DataEntryPopup/>
+            <SubmitGeocoding/>
+                    
           </Map>
         </div>
       </div>

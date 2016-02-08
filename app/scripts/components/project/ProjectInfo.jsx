@@ -107,8 +107,9 @@ class ProjectInfo extends React.Component {
 
   render() {
     return (    
-      <div className="leaflet-control leaflet-control-layers leaflet-control-layers-countries leaflet-control">
-        {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Info Panel" onClick={this.toggle.bind(this)}></div>:
+      <div className="leaflet-control">
+      
+        {(!this.state.expanded)?<div className="control-info-toggle" title="Info Panel" onClick={this.toggle.bind(this)}></div>:
         <div id="project-info">
           <div className="panel panel-success">
             <div className="panel-heading  handle">

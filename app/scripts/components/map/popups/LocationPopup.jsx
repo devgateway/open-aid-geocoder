@@ -20,6 +20,7 @@ class InfoView extends React.Component {
   }
 
   render() {
+    
     var cssClass;
     if (this.props.type == 'location') {
       cssClass = 'popup-location';
@@ -48,90 +49,90 @@ class InfoView extends React.Component {
 
     switch(this.props.adminSource) {
       case 'geonames':
-        comment=Message.t('locationpopup.adminsource.geonames');
-        break;
+      comment=Message.t('locationpopup.adminsource.geonames');
+      break;
       case 'shape':
-        comment=Message.t('locationpopup.adminsource.shapes');
-        break;
+      comment=Message.t('locationpopup.adminsource.shapes');
+      break;
       case 'saved':
-        comment=Message.t('locationpopup.adminsource.stored');
-        break;
+      comment=Message.t('locationpopup.adminsource.stored');
+      break;
     }
 
     return (
-        <div className={cssClass}>
-          <h4>{this.props.name}</h4>          
-          <div className="row"> 
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label><Message k="dataentry.country"/> <span className="small">*</span></label>
-                <div>{country||'NA'}</div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label><Message k="dataentry.firstadm"/> <span className="small">*</span></label>
-                <div>{admin1||'NA'}</div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label><Message k="dataentry.secondadm"/> <span className="small">*</span></label>
-                <div>{admin2||'NA'}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label><Message k="dataentry.identifier"/></label>
-                <div>{this.props.id}</div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label><Message k="dataentry.type"/></label>
-                <div>{this.props.geometry.type}</div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label><Message k="dataentry.coordinates"/></label>
-                <div>{this.props.geometry.coordinates.join(', ')}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="row"> 
-            <div className="col-lg-12">
-              <div className="form-group">
-                <label><Message k="dataentry.featuredesignation"/></label>
-                <div>{this.props.featureDesignation.code} - {this.props.featureDesignation.name} </div> 
-              </div>
-            </div>
-          </div>
-
-          <div className="row"> 
-            <div className="col-lg-12"> 
-              <button 
-              className={this.props.type=='location'? "btn btn-sm btn-success pull-right" :"btn btn-sm btn-warning pull-right"} 
-              onClick={this.onPickLocation.bind(this)}>
-              {this.props.type=='location'? Message.t('locationpopup.picklocation') : Message.t('locationpopup.update')}
-            </button>
-          </div>
-        </div>
-
-        <div className ="row">
-          <div className="col-lg-12">
-            <div className="form-group">
-              <div className="small"><span>* {comment} </span></div>
-            </div>
-          </div>
-        </div>
+      <div className={cssClass}>
+      <h4>{this.props.name}</h4>          
+      <div className="row"> 
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label><Message k="dataentry.country"/> <span className="small">*</span></label>
+      <div>{country||'NA'}</div>
       </div>
-    );
-  }
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label><Message k="dataentry.firstadm"/> <span className="small">*</span></label>
+      <div>{admin1||'NA'}</div>
+      </div>
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label><Message k="dataentry.secondadm"/> <span className="small">*</span></label>
+      <div>{admin2||'NA'}</div>
+      </div>
+      </div>
+      </div>
+
+      <div className="row">
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label><Message k="dataentry.identifier"/></label>
+      <div>{this.props.id}</div>
+      </div>
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label><Message k="dataentry.type"/></label>
+      <div>{this.props.geometry.type}</div>
+      </div>
+      </div>
+      <div className="col-lg-4">
+      <div className="form-group">
+      <label><Message k="dataentry.coordinates"/></label>
+      <div>{this.props.geometry.coordinates.join(', ')}</div>
+      </div>
+      </div>
+      </div>
+
+      <div className="row"> 
+      <div className="col-lg-12">
+      <div className="form-group">
+      <label><Message k="dataentry.featuredesignation"/></label>
+      <div>{this.props.featureDesignation.code} - {this.props.featureDesignation.name} </div> 
+      </div>
+      </div>
+      </div>
+
+      <div className="row"> 
+      <div className="col-lg-12"> 
+      <button 
+      className={this.props.type=='location'? "btn btn-sm btn-success pull-right" :"btn btn-sm btn-warning pull-right"} 
+      onClick={this.onPickLocation.bind(this)}>
+      {this.props.type=='location'? Message.t('locationpopup.picklocation') : Message.t('locationpopup.update')}
+      </button>
+      </div>
+      </div>
+
+      <div className ="row">
+      <div className="col-lg-12">
+      <div className="form-group">
+      <div className="small"><span>* {comment} </span></div>
+      </div>
+      </div>
+      </div>
+      </div>
+      );
+}
 }
 
 export default class LocationPopup extends React.Component {

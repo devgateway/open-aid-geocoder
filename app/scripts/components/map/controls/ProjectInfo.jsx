@@ -51,8 +51,8 @@ class ProjectInfo extends React.Component {
         
 
         return (    
-            <div className="leaflet-control leaflet-control-layers leaflet-control-layers-countries leaflet-control">
-              {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Info Panel" onClick={this.toggle.bind(this)}></div>:
+            <div className="leaflet-control leaflet-control-layers ">
+              {(!this.state.expanded)?<div className="control-info-toggle" title="Info Panel" onClick={this.toggle.bind(this)}></div>:
               <div id="project-info">
                 <div className="panel panel-success">
                   <div className="close-btn"  onClick={this.toggle.bind(this)}>
@@ -77,10 +77,10 @@ class ProjectInfo extends React.Component {
                     <Tabs defaultActiveKey={1}>
 
                       <Tab className="project-info" eventKey={1} title="Project Info">
-                        <div className="panel-body list">
+                        <div className="panel-body">
                           {this.state.project.long_description}
 
-                          <p><label>Country</label> {this.state.project.country?this.state.project.country.name:'N/A'}</p>
+                          <p><label className="green inline text-medium">Country:</label> {this.state.project.country?this.state.project.country.name:'N/A'}</p>
                         </div>
                       </Tab>
                       <Tab eventKey={2} title="Geocoding">
