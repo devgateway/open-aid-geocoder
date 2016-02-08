@@ -216,58 +216,47 @@ class DataEntryContent extends React.Component {
               <select value={geocoding.locationClass? geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.codingValueChanged.bind(this)}>
                 <option>Select</option>
                 {
-                Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-              }
-            </select>
+                  Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+                }
+              </select>
+            </div>
+          </div>
+          <div className="col-lg-6"> 
+            <div className="form-group">
+              <label  className="colored" for="Exactness"><Message k="dataentry.geographicexactness"/></label>
+              <select value={geocoding.exactness? geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.codingValueChanged.bind(this)}>
+                <option>Select</option>
+                {
+                  Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+                }
+              </select>
+            </div>
           </div>
         </div>
-        <div className="col-lg-6"> 
-          <div className="form-group">
-            <label  className="colored" for="Exactness"><Message k="dataentry.geographicexactness"/></label>
-            <select value={geocoding.exactness? geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.codingValueChanged.bind(this)}>
-              <option>Select</option>
-              {
-              Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-            }
-          </select>
+
+        <div className="row"> 
+          <div className="col-lg-12"> 
+            <div className="form-group">
+              <label  className="colored" for="typeCode"><Message k="dataentry.activitydescription"/></label>
+              <textarea   className="form-control" name="activityDescription" id="activityDescription" value={geocoding.activityDescription} onChange={this.codingValueChanged.bind(this)}></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div className="row"> 
+          <div className="col-lg-12 help-container"> 
+            <div className='separator'/>        
+            <DataEntryHelp  parentId='dataentry'/>
+            <div className='separator'/> 
+            <button className="btn  btn-lg btn-success pull-right" onClick={this.onSave.bind(this)}>{geocoding.type=='location'? Message.t('dataentry.save') : Message.t('dataentry.update')}</button>
+            {(geocoding.type!='location')?<button className="btn  btn-lg btn-danger pull-right" onClick={this.onDelete.bind(this)}><Message k="dataentry.delete"/></button>:null}
+            <button className="btn  btn-lg btn-warning pull-right" onClick={this.onCancel.bind(this)}><Message k="dataentry.cancel"/></button>      
+            <button className="btn  btn-lg btn-default  pull-right" title={Message.t('dataentry.updatefromgeonames')} onClick={this.updateFromGeonames.bind(this)}>
+              {(!geocoding.adminCodes.geonames.country.name && this.props.loadingGeonames)?<i className="fa fa-refresh fa-spin"></i>:  <i className="fa fa-refresh"></i> }
+            </button>        
+          </div>
         </div>
       </div>
-    </div>
-
-    <div className="row"> 
-      <div className="col-lg-12"> 
-        <div className="form-group">
-          <label  className="colored" for="typeCode"><Message k="dataentry.activitydescription"/></label>
-          <textarea   className="form-control" name="activityDescription" id="activityDescription" value={geocoding.activityDescription} onChange={this.codingValueChanged.bind(this)}></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div className="row"> 
-      <div className="col-lg-12 help-container"> 
-       
-           <div className='separator'/> 
-       
-        <DataEntryHelp  parentId='dataEntryContainer'/>
-        <div className='separator'/> 
-       
-      
-
-        
-        <button className="btn  btn-lg btn-success pull-right" onClick={this.onSave.bind(this)}>{geocoding.type=='location'? Message.t('dataentry.save') : Message.t('dataentry.update')}</button>
-        
-        {(geocoding.type!='location')?<button className="btn  btn-lg btn-danger pull-right" onClick={this.onDelete.bind(this)}><Message k="dataentry.delete"/></button>:null}
-
-        <button className="btn  btn-lg btn-warning pull-right" onClick={this.onCancel.bind(this)}><Message k="dataentry.cancel"/></button>
-      
-       <button className="btn  btn-lg btn-default  pull-right" title={Message.t('dataentry.updatefromgeonames')} onClick={this.updateFromGeonames.bind(this)}>
-          {(!geocoding.adminCodes.geonames.country.name && this.props.loadingGeonames)?<i className="fa fa-refresh fa-spin"></i>:  <i className="fa fa-refresh"></i> }
-        </button>
-        
-      </div>
-    </div>
-
-  </div>
       );
     }//end else
   }

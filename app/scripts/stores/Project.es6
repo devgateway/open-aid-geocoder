@@ -58,6 +58,9 @@ const SingleProjectStore = createStore({
 		} else {
 			locations.push(geocoding);
 		}		
+		if (geocoding.status=='LOCATION'){ //if a location has been deleted and not yet commited, it'll be removed
+			locations = locations.filter((it) => {return it.id!=geocoding.id});	
+		}
 		Object.assign(newState,{'locations':locations});
 		this.setData(newState);
 		
