@@ -3,17 +3,19 @@ import {Tabs, Tab, Button, Label}  from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 import  * as Actions from '../../actions/Actions.es6';
 import Constants from '../../constants/Contants.es6';
+import Message from '../Message.jsx';
+
 /*
   Renders a single Location 
   */
   class Item extends React.Component{
 
-    constructor() {
-      super();
-    }
+  constructor() {
+    super();
+  }
 
-    _showLocationPopup(){
-    Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props});//TODO make data conversion for infowindow
+  _showLocationPopup(){
+    Actions.invoke(Constants.ACTION_SET_ACTIVE_LOCATION, {'isCoded': true, 'locationFeature': this.props});
   }
 
   _showDataEntryForm(){
@@ -21,69 +23,87 @@ import Constants from '../../constants/Contants.es6';
   }
 
   render() {
-    var status = !this.props.status ? 'Existing' : this.props.status;
-
+    var status = !this.props.status ? 'EXISTING' : this.props.status;
+    let statusLabel, statusStyle;
+    switch(status) {
+      case 'NEW':
+        statusLabel = Message.t('projectinfo.locationstatus.new');
+        statusStyle = 'success';
+        break;
+      case 'EXISTING':
+        statusLabel = Message.t('projectinfo.locationstatus.existing');
+        statusStyle = 'warning';
+        break;
+      case 'UPDATED':
+        statusLabel = Message.t('projectinfo.locationstatus.updated');
+        statusStyle = 'warning';
+        break;
+      case 'DELETED':
+        statusLabel = Message.t('projectinfo.locationstatus.deleted');
+        statusStyle = 'danger';
+        break;
+    }
     return (
     <div className="list-group-item">
       <h3 className="list-group-item-heading"><b>{this.props.name}</b></h3>
 
       <p className="list-group-item-text">
-        <label>Designation</label> 
+        <label><Message k="dataentry.featuredesignation"/></label> 
         <span> {this.props.featureDesignation.code} - {this.props.featureDesignation.name}</span>
       </p>
       <p className="list-group-item-text">
-        <label>Activity Description</label> 
+        <label><Message k="dataentry.activitydescription"/></label> 
 
         <span>{this.props.activityDescription}</span>
       </p>
       <p className="list-group-item-text">
-        <label>Type</label> 
+        <label><Message k="dataentry.type"/></label> 
         <span>{this.props.locationClass.name}</span>
       </p>
 
       <p className="list-group-item-text">
-        <label>Exactness</label>
+        <label><Message k="dataentry.geographicexactness"/></label>
         <span>{this.props.exactness.name}</span>
       </p>
       <p className="list-group-item-text">
-        <label>Geometry</label>
+        <label><Message k="dataentry.geometry"/></label>
         <span>{this.props.geometry.type} - {parseFloat(this.props.geometry.coordinates[0]).toFixed(5)}, {parseFloat(this.props.geometry.coordinates[0]).toFixed(5)}</span>
       </p>
       <p className="list-group-item-text">
-        <label className="inline">Status</label>
-        <Label bsStyle={status=='DELETED'? 'danger' : status=='NEW'? 'success' : 'warning'}>{status}</Label>
-
+        <label className="inline"><Message k="dataentry.status"/></label>
+        <Label bsStyle={statusStyle} style={status=='EXISTING'?{'backgroundColor': '#FFEE42'}:{}}>{statusLabel}</Label>
       </p>
       <p className="list-group-item-text pull-right">
-        <Button bsStyle='warning' className="show-location-button" bsSize="small" onClick={this._showDataEntryForm.bind(this)}>edit</Button>     
-        <Button bsStyle='success' className="show-location-button" bsSize="small" onClick={this._showLocationPopup.bind(this)}>map it</Button>     
+        <Button bsStyle='warning' className="show-location-button" bsSize="small" onClick={this._showDataEntryForm.bind(this)}>
+          <Message k="projectinfo.locationslist.edit"/>
+        </Button>     
+        <Button bsStyle='success' className="show-location-button" bsSize="small" onClick={this._showLocationPopup.bind(this)}>
+          <Message k="projectinfo.locationslist.mapit"/>
+        </Button>     
       </p>
       <br/>
-
     </div>
-
-      )
-}
+    )
+  }
 }
 
 /*
    This view renders the Project Information UI component
    */
-   export default class ProjectCoding extends React.Component {
+export default class ProjectCoding extends React.Component {
 
-    constructor() {
-      super();
-    }
+  constructor() {
+    super();
+  }
 
-    render() {
-
-     return (
+  render() {
+    return (
       <div className="list">
-       <div className="list-group">
+        <div className="list-group">
           {this.props.locations? this.props.locations.map((item) =>{return  <Item key={item.id} {...item}/>}):null}
-       </div>
-       </div>
-       );
-   } 
- }
+        </div>
+      </div>
+    );
+  } 
+}
 

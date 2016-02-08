@@ -72,9 +72,11 @@
 		"activitydescription": "Activity Description",
 		"updatefromgeonames": "Update data from Geonames service",
 		"save": "Save",
+		"geometry": "Geometry",
 		"update": "Update",
 		"delete": "Delete",
-		"cancel": "Cancel"
+		"cancel": "Cancel",
+		"status": "Status"
 	},
 
 	"layerselector": {
@@ -95,7 +97,8 @@
 			"mapit": "Map it"
 		},
 		"locationstatus": {	
-			"edited": "EDITED",
+			"existing": "EXISTING",
+			"updated": "UPDATED",
 			"deleted": "DELETED",
 			"new": "NEW"
 		},

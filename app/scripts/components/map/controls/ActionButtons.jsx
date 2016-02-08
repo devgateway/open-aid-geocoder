@@ -6,6 +6,7 @@ import  * as Actions from '../../../actions/Actions.es6'
 import Constants from '../../../constants/Contants.es6';
 import MapHelp from '../../../help/Map.es6';
 import Message from '../../Message.jsx'
+import ReactDOM from 'react-dom';
 
 class SubmitGeocoding extends React.Component{ 
 
