@@ -11,7 +11,7 @@ export default class Help extends React.Component{
 
     render(){
       return (
-        <div className="help" onClick={this.help.bind(this)}>{""}</div>
+        <div className={"help"+(this.props.className?this.props.className:"")} onClick={this.help.bind(this)}>{""}</div>
       );
     }
 }

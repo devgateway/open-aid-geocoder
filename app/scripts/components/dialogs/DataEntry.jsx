@@ -117,7 +117,7 @@ class DataEntryContent extends React.Component {
     let adminSource = geocoding.adminSource || (geocoding.type=='geocoding'? 'saved' : geocoding.adminCodes.shape? 'shape' : 'geonames');
     country=geocoding.adminCodes[adminSource].country.name;
     admin1=geocoding.adminCodes[adminSource].admin1.name;
-    admin2=geocoding.adminCodes[adminSource].admin2.name;
+    admin2=geocoding.adminCodes[adminSource].admin2?geocoding.adminCodes[adminSource].admin2.name:'N/A';
     
     if(this.props.geocoding.confirmDelete=='TO_CONFIRM'){
       return (
@@ -132,89 +132,90 @@ class DataEntryContent extends React.Component {
       )
     } else {
       return (
-      <div id='dataEntryContainer' className={geocoding.type=='location'? 'dataEntry' : 'dataEntryEdition'}>
+      <div id='dataentry' className={geocoding.type=='location'? 'new' : 'update'}>
+        
         <div className="row"> 
           <div className="col-lg-12">
-            <label for="admin1"><Message k="dataentry.name"/></label>
+            <label  className="colored" for="admin1"><Message k="dataentry.name"/></label>
             <input type="text" className="form-control big" id="name" placeholder="name" value={geocoding.name} disabled/> 
           </div>
         </div>
+        
         <div className="row"> 
           <div className="col-lg-4">
             <div className="form-group">
-              <label  for="country,"><Message k="dataentry.country"/></label>
+              <label  className="colored" for="country,"><Message k="dataentry.country"/></label>
               <input type="text" className="form-control" id="country" placeholder="NA" value={country || ''} disabled/>
             </div>
           </div>
           <div className="col-lg-4">
             <div className="form-group">
-              <label  for="admin1"><Message k="dataentry.firstadm"/></label>
+              <label  className="colored" for="admin1"><Message k="dataentry.firstadm"/></label>
               <input type="text" className="form-control" id="admin1" placeholder="NA" value={admin1 || ''} disabled/>
             </div>
           </div>
           <div className="col-lg-4">
             <div className="form-group">
-              <label  for="admin2"><Message k="dataentry.secondadm"/></label>
+              <label  className="colored" for="admin2"><Message k="dataentry.secondadm"/></label>
               <input type="text" className="form-control" id="admin2" placeholder="NA" value={admin2 || ''} disabled/>
             </div>
           </div>
-      </div>
 
-      <div className="row small mini ">       
-        <div className="col-lg-12">
-          <div className="pull-right bottom-line">
-            Use Admin Division from:
+
+          <div className="pull-right options">
+            <label className="inline mini">Use Admin Division from:</label> 
             {(geocoding.type=='geocoding' && geocoding.status!='NEW')?<button className={adminSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggleAdminSource.bind(this)}><Message k="dataentry.sourceadmin.stored"/></button>: null }            
             {geocoding.adminCodes.shape? <button className={adminSource=='shape'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shape' onClick={this.toggleAdminSource.bind(this)}><Message k="dataentry.sourceadmin.shapes"/></button> : null }             
             <button className={adminSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggleAdminSource.bind(this)}><Message k="dataentry.sourceadmin.geonames"/></button>
             {(!geocoding.adminCodes.geonames.country.name && this.props.loadingAdminGeonames)?<i className="fa fa-spinner fa-spin"></i>: null }
           </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label  for="id"><Message k="dataentry.identifier"/></label>
-            <input type="text" className="form-control" id="id" placeholder="id" value={geocoding.id} disabled/>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label  for="geometryType"><Message k="dataentry.type"/></label>
-            <input type="text" className="form-control" id="geometryType"  placeholder="" value={geocoding.geometry.type} disabled/>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group small" id="coordinates">
-            <label><Message k="dataentry.coordinates"/></label>
-            <div>{geocoding.geometry.coordinates.join(', ')}</div>
-          </div>
-        </div>
-      </div>
 
-      <div className="row"> 
-        <div className="col-lg-12">
-          <div className="form-group">
-            <label><Message k="dataentry.featuredesignation"/></label>
-            <div className="row" id="featureDesignationContainer">
-              <div className="col-lg-3">
-                <input type="text" className="form-control" id="featureDesignation"  value={geocoding.featureDesignation.code} disabled/>
-              </div>
-              <div className="col-lg-9"> 
-                <input type="text" className="form-control" id="featureDesignationName"  value={geocoding.featureDesignation.name} disabled/>
-              </div>
+        </div>
+
+
+        <div className="row">
+          <div className="col-lg-4">
+            <div className="form-group">
+              <label  className="colored" for="id"><Message k="dataentry.identifier"/></label>
+              <input type="text" className="form-control" id="id" placeholder="id" value={geocoding.id} disabled/>
+            </div>
+          </div>
+          <div className="col-lg-4">
+            <div className="form-group">
+              <label  className="colored" for="geometryType"><Message k="dataentry.type"/></label>
+              <input type="text" className="form-control" id="geometryType"  placeholder="" value={geocoding.geometry.type} disabled/>
+            </div>
+          </div>
+          <div className="col-lg-4">
+            <div className="form-group" id="coordinates">
+              <label><Message k="dataentry.coordinates"/></label>
+              <div>{geocoding.geometry.coordinates.join(', ')}</div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="row"> 
-        <div className="col-lg-6"> 
-          <div className="form-group" >
-            <label  for="locationClass"><Message k="dataentry.locationclass"/></label>
-            <select value={geocoding.locationClass? geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.codingValueChanged.bind(this)}>
-              <option>Select</option>
-              {
+        <div className="row"> 
+          <div className="col-lg-3">
+            <div className="form-group" >
+              <label><Message k="dataentry.featuredesignation"/></label>
+              <input type="text" className="form-control" id="featureDesignation"  value={geocoding.featureDesignation.code} disabled/>
+            </div>
+          </div>
+          <div className="col-lg-9"> 
+            <div className="form-group" >
+              <label>&nbsp;</label>
+              <input type="text" className="form-control" id="featureDesignationName"  value={geocoding.featureDesignation.name} disabled/>
+            </div>
+          </div>
+        </div>
+
+        <div className="row"> 
+          <div className="col-lg-6"> 
+            <div className="form-group" >
+              <label  className="colored" for="locationClass"><Message k="dataentry.locationclass"/></label>
+              <select value={geocoding.locationClass? geocoding.locationClass.code : ''} className="form-control" name="locationClass" id="locationClass" onChange={this.codingValueChanged.bind(this)}>
+                <option>Select</option>
+                {
                 Constants.LOCATION_CLASS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
               }
             </select>
@@ -222,41 +223,51 @@ class DataEntryContent extends React.Component {
         </div>
         <div className="col-lg-6"> 
           <div className="form-group">
-            <label  for="Exactness"><Message k="dataentry.geographicexactness"/></label>
+            <label  className="colored" for="Exactness"><Message k="dataentry.geographicexactness"/></label>
             <select value={geocoding.exactness? geocoding.exactness.code : ''} className="form-control" name="exactness" id="exactness" onChange={this.codingValueChanged.bind(this)}>
               <option>Select</option>
               {
-                Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
-              }
-            </select>
-          </div>
+              Constants.EXACTNESS_LIST.map((item)=>{return (<option key={item.code} value={item.code}>{item.name}</option>)})
+            }
+          </select>
         </div>
       </div>
+    </div>
 
-      <div className="row"> 
-        <div className="col-lg-12"> 
-          <div className="form-group">
-            <label  for="typeCode"><Message k="dataentry.activitydescription"/></label>
-            <textarea   className="form-control" name="activityDescription" id="activityDescription" value={geocoding.activityDescription} onChange={this.codingValueChanged.bind(this)}></textarea>
-          </div>
+    <div className="row"> 
+      <div className="col-lg-12"> 
+        <div className="form-group">
+          <label  className="colored" for="typeCode"><Message k="dataentry.activitydescription"/></label>
+          <textarea   className="form-control" name="activityDescription" id="activityDescription" value={geocoding.activityDescription} onChange={this.codingValueChanged.bind(this)}></textarea>
         </div>
       </div>
+    </div>
 
-      <div className="row"> 
-        <div className="col-lg-12"> 
-          <button className="btn btn-sm btn-default pull-left" title={Message.t('dataentry.updatefromgeonames')} onClick={this.updateFromGeonames.bind(this)}>
-            {(!geocoding.adminCodes.geonames.country.name && this.props.loadingGeonames)?
-              <span className="fa fa-refresh fa-spin"></span>
-            :  <span className="fa fa-refresh"></span> }
-          </button>
-          <DataEntryHelp parentId='dataEntryContainer'/>
-          <button className="btn btn-sm btn-success pull-right" onClick={this.onSave.bind(this)}>{geocoding.type=='location'? Message.t('dataentry.save') : Message.t('dataentry.update')}</button>
-          {(geocoding.type!='location')?<button className="btn btn-sm btn-danger pull-right" onClick={this.onDelete.bind(this)}><Message k="dataentry.delete"/></button>:null}
-          <button className="btn btn-sm btn-warning pull-right" onClick={this.onCancel.bind(this)}><Message k="dataentry.cancel"/></button>
-        </div>
-      </div>
+    <div className="row"> 
+      <div className="col-lg-12 help-container"> 
+       
+           <div className='separator'/> 
+       
+        <DataEntryHelp  parentId='dataEntryContainer'/>
+        <div className='separator'/> 
+       
+      
 
+        
+        <button className="btn  btn-lg btn-success pull-right" onClick={this.onSave.bind(this)}>{geocoding.type=='location'? Message.t('dataentry.save') : Message.t('dataentry.update')}</button>
+        
+        {(geocoding.type!='location')?<button className="btn  btn-lg btn-danger pull-right" onClick={this.onDelete.bind(this)}><Message k="dataentry.delete"/></button>:null}
+
+        <button className="btn  btn-lg btn-warning pull-right" onClick={this.onCancel.bind(this)}><Message k="dataentry.cancel"/></button>
+      
+       <button className="btn  btn-lg btn-default  pull-right" title={Message.t('dataentry.updatefromgeonames')} onClick={this.updateFromGeonames.bind(this)}>
+          {(!geocoding.adminCodes.geonames.country.name && this.props.loadingGeonames)?<i className="fa fa-refresh fa-spin"></i>:  <i className="fa fa-refresh"></i> }
+        </button>
+        
       </div>
+    </div>
+
+  </div>
       );
     }//end else
   }
@@ -293,7 +304,7 @@ class DataEntry extends React.Component{
 
   render() {
   return (
-    <Modal {...this.props} show={this.state.showPopup} onHide={this.close}>
+    <Modal className="dataentry-dialog" {...this.props} show={this.state.showPopup} onHide={this.close}>
       <Modal.Body>
         <DataEntryContent {...this.state} onCancel={this.close.bind(this)}/>
       </Modal.Body>

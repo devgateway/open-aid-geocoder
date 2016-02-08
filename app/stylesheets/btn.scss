@@ -1,5 +1,27 @@
+.btn{
+	color:#FFF;
+	margin:2px;
 
+}
+.btn-xs{
+	padding: 1px 7px;
+	line-height: 1;
+	border-radius: 0px;
+	@include fontDefault($small,#FFF);
+	@include grayBorder();
+    height:14px;
+	margin:1px;
+	background-color:#EEE;
+}
 
+.btn-default{
+	@include fontDefault($small,#000);
+	@include grayBorder();
+}
+.btn-default:hover{
+	@include fontDefault($small,#000);
+	@include grayBorder();
+}
 .btn-sm {
 	padding: 3px 15px 3px 15px;;
 	line-height: 1.5;
@@ -11,6 +33,16 @@
 	margin:1px;
 }
 
+
+.btn-lg {
+	padding: 3px 15px 3px 15px;;
+	line-height: 1.5;
+	border-radius: 0px;
+	height:24px !important;
+	@include fontDefault($small,"#FFF");
+	@include middle();
+	margin:1px;
+}
 .btn-success {
 	color: #fff;
 	background-color: rgb(137,184,90);

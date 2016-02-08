@@ -114,7 +114,8 @@ class InfoView extends React.Component {
               
             </div>
             <div className="col-lg-4">
-               <label className="green text-large bolder">{this.props.geometry.coordinates.join(', ')}</label>
+               <label className="green text-large bolder">
+               ({this.props.geometry.coordinates?this.props.geometry.coordinates.map(function(c){return parseFloat(c).toFixed(3)+" "}):null}</label>)
             </div>
           </div>
 
