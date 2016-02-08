@@ -144,7 +144,7 @@ export default class MapView extends React.Component {
             </MapPopUp>
             
            
-            <Control position="bottomright">
+            <Control className="leaflet-control-actions-buttons" position="bottomright">
                 <ActionButtons/>
             </Control>
 

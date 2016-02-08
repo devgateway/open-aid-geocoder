@@ -41,16 +41,13 @@ class SubmitGeocoding extends React.Component{
 
   componentDidMount(){
     let container=ReactDOM.findDOMNode(this);
-
     L.DomEvent.disableClickPropagation(container).disableScrollPropagation(container);
     L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
-
   }
-
 
   render() {
     return (
-      <div className='leaflet-control'>       
+   <div id="action-buttons">       
         <Modal  {...this.props} show={this.state.showModal} onHide={this.cancel}>
           <Modal.Body>
             <h4 className="list-group-item-heading">
@@ -61,13 +58,16 @@ class SubmitGeocoding extends React.Component{
             <Button bsStyle='success' className="pull-right" onClick={this.onSubmitCoding.bind(this)}><Message k="general.yes"/></Button>
           </Modal.Body>
         </Modal>        
+        
+
         <MapHelp parentId="mapContainer"/>
-        <Button bsStyle='warning' className="pull-right" onClick={this.onCancelCoding.bind(this)}><Message k="submitgeocoding.cancel"/></Button>
-        <Button bsStyle='success' className="pull-right" onClick={this.openConfirm.bind(this)}><Message k="submitgeocoding.submit"/></Button>
-      </div>
+        <Button bsStyle='warning'  onClick={this.onCancelCoding.bind(this)}><Message k="submitgeocoding.cancel"/></Button>
+        <Button bsStyle='success'  onClick={this.openConfirm.bind(this)}><Message k="submitgeocoding.submit"/></Button>
+    </div>
     );
   }
 }
 
 export default SubmitGeocoding
+
 

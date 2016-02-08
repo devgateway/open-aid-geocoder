@@ -14,7 +14,7 @@ class MapControl extends React.Component{
     let pos = this.props.position;
     let corner = map._controlCorners[pos];
     
-    let container=L.DomUtil.create('div','');
+    let container=L.DomUtil.create('div','leaflet-control '+this.props.className);
     
     if (pos.indexOf('bottom') !== -1) {
       corner.insertBefore(container, corner.firstChild);
@@ -27,7 +27,7 @@ class MapControl extends React.Component{
   }
 
   render(){
-    return <div></div>
+    return <div>asas</div>
   }
 } 
 
