@@ -11,6 +11,7 @@ $medium:11px;
 $regular:10px;
 $small:9px;
 
+$gray:rgb(243,243,243);
 
 @mixin fontDefault($size,$color,$weight:100){
 	font-family: 'Open Sans', sans-serif ;
@@ -29,7 +30,7 @@ $small:9px;
 }
 
 @mixin grayBorder(){
-	border:1px solid rgb(243,243,243);
+	border:1px $gray;
 }
 
 
@@ -263,5 +264,27 @@ h4{
 	}
 	.actions-container{
 		height: 40px;
+	}
+}
+
+
+.leaflet-control-layer-selector{
+	.countries-list{
+		background-color:#FFF;
+		width:300px;
+	}
+	.close-btn{
+		margin-top: 0px;
+		margin-right: 0px;
+		@include fontDefault($large,$green,100);
+		float:right;
+	}
+	.list-group-item-text{
+		border-bottom: 1px solid $gray;
+		padding: 4px;
+	}
+
+	.btn{
+		margin-top: 7px;
 	}
 }

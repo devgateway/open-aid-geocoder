@@ -62,48 +62,48 @@ import ProjectCoding from '../../project/ProjectCoding.jsx';
 
 
         return (    
-          <div className="leaflet-control leaflet-control-layers ">
+        <div className="leaflet-control leaflet-control-layers ">
           {(!this.state.expanded)?<div className="control-info-toggle" title="Info Panel" onClick={this.toggle.bind(this)}></div>:
           <div id="project-info">
-          <div className="panel panel-success">
-          <div className="close-btn"  onClick={this.toggle.bind(this)}>
-          <i className='fa fa-times-circle-o'></i>
-          </div>
-          <div className="panel-heading">
+            <div className="panel panel-success">
+              <div className="close-btn"  onClick={this.toggle.bind(this)}>
+                <i className='fa fa-times-circle-o'></i>
+              </div>
+              <div className="panel-heading">
 
-          <div className="options"> 
-          <div className="small-title header-icon" >  
-          {this.state.project.project_id}
-          </div>    
-          <div className="separator"/>    
-          <ProjectInfoHelp parentId="project-info"/> 
-          <div className="separator"/> 
-          </div>
-          <div className="title">
-          {this.state.project.title}
-          </div> 
+                <div className="options"> 
+                  <div className="small-title header-icon" >  
+                    {this.state.project.project_id}
+                  </div>    
+                  <div className="separator"/>    
+                  <ProjectInfoHelp parentId="project-info"/> 
+                  <div className="separator"/> 
+                </div>
+                <div className="title">
+                  {this.state.project.title}
+                </div> 
 
-          </div>
-          <div className="tab-container">
-          <Tabs defaultActiveKey={1}>
+              </div>
+              <div className="tab-container">
+                <Tabs defaultActiveKey={1}>
 
-          <Tab className="project-info" eventKey={1} title="Project Info">
-          <ProjectDescription  {...this.state.project}/>
-          </Tab>
-          <Tab eventKey={2} title={"Geocoding ("+(this.state.project.locations?this.state.project.locations.length:0)+")"}>
-          <ProjectCoding {...this.state.project}/>
-          </Tab>
+                  <Tab className="project-info" eventKey={1} title="Project Info">
+                    <ProjectDescription  {...this.state.project}/>
+                  </Tab>
+                  <Tab eventKey={2} title={"Geocoding ("+(this.state.project.locations?this.state.project.locations.length:0)+")"}>
+                    <ProjectCoding {...this.state.project}/>
+                  </Tab>
 
-          <Tab eventKey={3} title="Gazetteer Locations">
-          <Results/>
-          </Tab>
+                  <Tab eventKey={3} title="Gazetteer Locations">
+                    <Results/>
+                  </Tab>
 
-          </Tabs>
-          </div>
-          </div>
+                </Tabs>
+              </div>
+            </div>
 
           </div>} 
-          </div>
+        </div>
           )
 
 

@@ -19,8 +19,8 @@ import Control from './controls/Control.jsx'; //control container
 
 import ActionButtons from './controls/ActionButtons.jsx';
 import MiniMap from './controls/MiniMap.jsx';
-import CountryLayerSelector from './controls/CountryLayerSelector.jsx'
-import InfoControl from './controls/InfoControl.jsx';
+import CountrySelector from './controls/CountrySelector.jsx'
+import InfoPanel from './controls/InfoPanel.jsx';
 
 /*Popups*/
 import MapPopUp from './popups/PopUp.jsx';
@@ -114,38 +114,39 @@ export default class MapView extends React.Component {
 
       <div id="mapContainer">
         <div className="map">  
-           <DataEntryPopup/>
-
+          
+          <DataEntryPopup/>
+          
           <Map   {...this.state.map}  ref="map">
+            
             <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
               <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
-                {this.state.layers.countries?this.state.layers.countries.map( (country)=>{
+                {this.state.layers.countries?this.state.layers.countries.map((country)=>{
                   return <CountryLayer {...country}/>
                 }):null}
               </LayerGroup>
+         
               <GeocodingLayer name="Geocoding" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/>         
               <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
+
             </MiniMap>
            
-            <Control position="bottomleft">
-              <CountryLayerSelector/>
-            </Control>
-            
-            
-            <ZoomControl position="bottomright"/>
-
-            
-            <Control position="topleft">
-                <InfoControl id={this.props.params.projectID}/>
-            </Control>
-
             <MapPopUp maxWidth="850" {...this.state.popup}>
                 <LocationPopup/>
             </MapPopUp>
-            
            
+            <ZoomControl position="bottomright"/>
+
+           <Control className="leaflet-control-layer-selector" position="bottomleft">
+              <CountrySelector/>
+            </Control>
+
             <Control className="leaflet-control-actions-buttons" position="bottomright">
                 <ActionButtons/>
+            </Control>
+            
+            <Control className="leaflet-control-info-panel"  position="topleft">
+                <InfoPanel id={this.props.params.projectID}/>
             </Control>
 
            

@@ -27,7 +27,7 @@ class MapControl extends React.Component{
   }
 
   render(){
-    return <div>asas</div>
+    return null;
   }
 } 
 
