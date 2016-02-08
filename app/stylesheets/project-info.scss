@@ -12,11 +12,14 @@
 /*INFO PANEL*/
 #project-info {
 	z-index:9999;
--webkit-transition: opacity .1s; /* Safari */
-    transition: opacity .1s;
+	-webkit-transition: opacity .1s; /* Safari */
+	transition: opacity .1s;
 
 	width:365px;
 	z-index: 99;
+
+	@include fontDefault($medium,$darkGray);
+
 	
 	.panel-success{
 		.panel-heading{
@@ -96,7 +99,7 @@
 
 	.list-group{
 		overflow: auto;
-		max-height: 600px;
+		max-height: 400px;
 		padding: 5px;
 
 	}

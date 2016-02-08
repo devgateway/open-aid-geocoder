@@ -14,7 +14,7 @@ export default class GazetteerLayer extends GeoJsonLayer {
   }
 
   pointToLayer(feature, latlng) {
-    let  icon = L.divIcon({ iconSize: [30, 30], className: 'location-marker', html:`<div class="text">${feature.properties.fcode}</div>`}); //TODO:this  can be managed by a child view of the layer
+    let  icon = L.divIcon({ iconSize: [30, 30], className: 'marker location-marker', html:`<div class="text">${feature.properties.fcode}</div>`}); //TODO:this  can be managed by a child view of the layer
     let marker= L.marker(latlng,  {icon: icon});
     return marker
   }

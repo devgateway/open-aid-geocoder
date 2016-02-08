@@ -19,7 +19,7 @@
 	border-bottom: 1px solid #EEE !important;
 	border-radius: 0px;
 	outline: 0px;
-	@include fontDefault($large,$darkGray,100);
+	@include fontDefault($medium,$darkGray,100);
 }
 .nav-tabs > li > a:hover {
 	border-color: #EEE

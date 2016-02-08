@@ -8,7 +8,9 @@ import Constants from '../../../constants/Contants.es6';
 import ProjectStore from '../../../stores/Project.es6';
 import Results from '../../gazetteer/Results.jsx';
 import ProjectInfoHelp from '../../../help/ProjectInfo.es6';
-import ProjectDetails from '../../project/ProjectDetails.jsx';
+import ProjectDescription from '../../project/ProjectDescription.jsx';
+
+import ProjectCoding from '../../project/ProjectCoding.jsx';
 
 /*
    This view renders the info Ttab view UI component
@@ -77,14 +79,10 @@ class InfoControl extends React.Component {
                     <Tabs defaultActiveKey={1}>
 
                       <Tab className="project-info" eventKey={1} title="Project Info">
-                        <div className="panel-body">
-                          {this.state.project.long_description}
-
-                          <p><label className="green inline text-medium">Country:</label> {this.state.project.country?this.state.project.country.name:'N/A'}</p>
-                        </div>
+                       <ProjectDescription  {...this.state.project}/>
                       </Tab>
-                      <Tab eventKey={2} title="Geocoding">
-                        <ProjectDetails {...this.state.project}/>
+                      <Tab eventKey={2} title={"Geocoding ("+(this.state.project.locations?this.state.project.locations.length:0)+")"}>
+                        <ProjectCoding {...this.state.project}/>
                       </Tab>
 
                       <Tab eventKey={3} title="Gazetteer Locations">
