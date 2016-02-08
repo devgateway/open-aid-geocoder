@@ -1,7 +1,12 @@
 {
 	
+	"general":{
+		"yes": "Yes",
+      	"no": "No"
+	},
+
 	"projects":{
-		 "projectsCount": "{{count}} project found",
+		"projectsCount": "{{count}} project found",
       	"projectsCount_plural": "{{count}} projects found"
 	},
 
@@ -67,9 +72,11 @@
 		"activitydescription": "Activity Description",
 		"updatefromgeonames": "Update data from Geonames service",
 		"save": "Save",
-		"update": "Update data from Geonames service",
+		"geometry": "Geometry",
+		"update": "Update",
 		"delete": "Delete",
-		"cancel": "Cancel"
+		"cancel": "Cancel",
+		"status": "Status"
 	},
 
 	"layerselector": {
@@ -90,7 +97,8 @@
 			"mapit": "Map it"
 		},
 		"locationstatus": {	
-			"edited": "EDITED",
+			"existing": "EXISTING",
+			"updated": "UPDATED",
 			"deleted": "DELETED",
 			"new": "NEW"
 		},
