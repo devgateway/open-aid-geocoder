@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navbar,Nav,NavDropdown,MenuItem,NavBrand,NavItem}  from 'react-bootstrap';
-import GazetteerSearch from  './search/GazetteerSearch.jsx';
+import Search from  './gazetteer/Search.jsx';
 import { Link  } from 'react-router';
 import Message from './Message.jsx';
 import * as Actions from '../actions/Actions.es6';
@@ -46,7 +46,7 @@ export default class Header extends React.Component {
             </div>
 
             <div className="nav navbar-left">
-              <GazetteerSearch/>
+              <Search/>
             </div>            
           </div>
         </nav>

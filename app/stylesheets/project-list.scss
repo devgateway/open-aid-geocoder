@@ -1,5 +1,5 @@
 
-#project-search-form{
+#project-search-form {
 	input[type="text"] {
 		@include boxSizeBig();
 	}
@@ -9,18 +9,26 @@
 	}
 }
 
-.centered {
-	text-align: center;
+
+
+#project-search-list{
+	@include fontDefault($medium,$black);
+	
+	.list-group{
+		padding:10px;
+	}
 }
 
-
 /*Pagination*/
+.centered{
+	text-align: center;
+}
 .pagination.pagination-sm{
 	border:0px solid red;
 	li{
 
 		a{
-			@include fontDefault($small,$green);
+			@include fontDefault($medium,$green);
 		}
 
 	}

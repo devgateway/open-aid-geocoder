@@ -6,14 +6,14 @@ import Draggable from 'react-draggable';
 import  * as Actions from '../../../actions/Actions.es6';
 import Constants from '../../../constants/Contants.es6';
 import ProjectStore from '../../../stores/Project.es6';
-import LocationsList from '../../search/Results.jsx';
+import Results from '../../gazetteer/Results.jsx';
 import ProjectInfoHelp from '../../../help/ProjectInfo.es6';
 import ProjectDetails from '../../project/ProjectDetails.jsx';
 
 /*
    This view renders the info Ttab view UI component
 */
-class ProjectInfo extends React.Component {
+class InfoControl extends React.Component {
 
       constructor() {
         super();
@@ -88,7 +88,7 @@ class ProjectInfo extends React.Component {
                       </Tab>
 
                       <Tab eventKey={3} title="Gazetteer Locations">
-                        <LocationsList/>
+                        <Results/>
                       </Tab>
 
                     </Tabs>
@@ -103,4 +103,4 @@ class ProjectInfo extends React.Component {
       }
 }
 
-export default ProjectInfo 
+export default InfoControl; 

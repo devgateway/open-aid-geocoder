@@ -17,10 +17,10 @@ import CountryLayer from './layers/CountryLayer.jsx';
 /*Controls*/
 import Control from './controls/Control.jsx'; //control container
 
-import SubmitGeocoding from './controls/SubmitGeocoding.jsx';
+import ActionButtons from './controls/ActionButtons.jsx';
 import MiniMap from './controls/MiniMap.jsx';
 import CountryLayerSelector from './controls/CountryLayerSelector.jsx'
-import ProjectInfo from './controls/ProjectInfo.jsx';
+import InfoControl from './controls/InfoControl.jsx';
 
 /*Popups*/
 import MapPopUp from './popups/PopUp.jsx';
@@ -134,7 +134,7 @@ export default class MapView extends React.Component {
 
             
             <Control position="topleft">
-                <ProjectInfo id={this.props.params.projectID}/>
+                <InfoControl id={this.props.params.projectID}/>
             </Control>
 
             <MapPopUp maxWidth="850" {...this.state.popup}>
@@ -142,7 +142,12 @@ export default class MapView extends React.Component {
             </MapPopUp>
             
             <DataEntryPopup/>
-            <SubmitGeocoding/>
+
+             <Control position="bottomright">
+                 <ActionButtons/>
+            </Control>
+
+           
                     
           </Map>
         </div>
