@@ -38,9 +38,19 @@ class SubmitGeocoding extends React.Component{
     this.setState(newState);
   }
 
+
+  componentDidMount(){
+    let container=ReactDOM.findDOMNode(this);
+
+    L.DomEvent.disableClickPropagation(container).disableScrollPropagation(container);
+    L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
+
+  }
+
+
   render() {
     return (
-      <div className='submit-container'>       
+      <div className='leaflet-control'>       
         <Modal  {...this.props} show={this.state.showModal} onHide={this.cancel}>
           <Modal.Body>
             <h4 className="list-group-item-heading">
