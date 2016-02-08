@@ -117,7 +117,7 @@ export default class MapView extends React.Component {
            <DataEntryPopup/>
 
           <Map   {...this.state.map}  ref="map">
-            <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
+            <MiniMap collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
               <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
                 {this.state.layers.countries?this.state.layers.countries.map( (country)=>{
                   return <CountryLayer {...country}/>

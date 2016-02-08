@@ -13,7 +13,7 @@ export default class DataEntryHelp extends Help{
       let steps=[
 
       {
-        element:node.querySelector('#name'),
+        element:node.querySelector('#noteditablefields'),
         intro: Message.t('help.dataentry.locationname'),
         position: 'left'
       },

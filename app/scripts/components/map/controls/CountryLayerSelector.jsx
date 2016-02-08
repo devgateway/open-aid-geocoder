@@ -108,7 +108,7 @@ class CountryLayerSelector extends React.Component{
 
   render() {
     return (
-        <div className="leaflet-control leaflet-control-layers leaflet-control-layers-countries leaflet-control">
+        <div id="countryLayerSelector" className="leaflet-control leaflet-control-layers leaflet-control-layers-countries leaflet-control">
 
         <div className="leaflet-control-layers-toggle" title="Manage Country Layers" onClick={this.open.bind(this)}></div>
           <Modal  {...this.props} bsSize='large' show={this.state.showModal} onHide={this.close}>

@@ -142,7 +142,7 @@ class DataEntryContent extends React.Component {
   }
 
   getAdminSource(geocoding){
-    /*values:
+    /*adminSource values:
         saved: load admin data from stored values
         shape: load admin data from shape info
         geocoding: load admin data from geonames
@@ -179,78 +179,78 @@ class DataEntryContent extends React.Component {
     } else {
       return (
       <div id='dataentry' className={geocoding.type=='location'? 'new' : 'update'}>
-        
-        <div className="row"> 
-          <div className="col-lg-12">
-            <label  className="colored" for="admin1"><Message k="dataentry.name"/></label>
-            <input type="text" className="form-control big" id="name" placeholder="name" value={geocoding.name} disabled/> 
-          </div>
-        </div>
-        
-        <div className="row"> 
-          <div className="col-lg-4">
-            <div className="form-group">
-              <label  className="colored" for="country,"><Message k="dataentry.country"/></label>
-              <input type="text" className="form-control" id="country" placeholder="NA" value={country || ''} disabled/>
+        <div id='noteditablefields'>
+          <div className="row"> 
+            <div className="col-lg-12">
+              <label  className="colored" for="admin1"><Message k="dataentry.name"/></label>
+              <input type="text" className="form-control big" id="name" placeholder="name" value={geocoding.name} disabled/> 
             </div>
           </div>
-          <div className="col-lg-4">
-            <div className="form-group">
-              <label  className="colored" for="admin1"><Message k="dataentry.firstadm"/></label>
-              <input type="text" className="form-control" id="admin1" placeholder="NA" value={admin1 || ''} disabled/>
+          
+          <div className="row"> 
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  className="colored" for="country,"><Message k="dataentry.country"/></label>
+                <input type="text" className="form-control" id="country" placeholder="NA" value={country || ''} disabled/>
+              </div>
             </div>
-          </div>
-          <div className="col-lg-4">
-            <div className="form-group">
-              <label  className="colored" for="admin2"><Message k="dataentry.secondadm"/></label>
-              <input type="text" className="form-control" id="admin2" placeholder="NA" value={admin2 || ''} disabled/>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  className="colored" for="admin1"><Message k="dataentry.firstadm"/></label>
+                <input type="text" className="form-control" id="admin1" placeholder="NA" value={admin1 || ''} disabled/>
+              </div>
             </div>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  className="colored" for="admin2"><Message k="dataentry.secondadm"/></label>
+                <input type="text" className="form-control" id="admin2" placeholder="NA" value={admin2 || ''} disabled/>
+              </div>
+            </div>
+            <AdminOptions 
+                geocoding={geocoding} 
+                adminSource={adminSource} 
+                loadingAdminGeonames={this.props.loadingAdminGeonames}
+                changeCodingValue={this.changeCodingValue}
+                />
           </div>
-          <AdminOptions 
-              geocoding={geocoding} 
-              adminSource={adminSource} 
-              loadingAdminGeonames={this.props.loadingAdminGeonames}
-              changeCodingValue={this.changeCodingValue}
-              />
-        </div>
 
 
-        <div className="row">
-          <div className="col-lg-4">
-            <div className="form-group">
-              <label  className="colored" for="id"><Message k="dataentry.identifier"/></label>
-              <input type="text" className="form-control" id="id" placeholder="id" value={geocoding.id} disabled/>
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  className="colored" for="id"><Message k="dataentry.identifier"/></label>
+                <input type="text" className="form-control" id="id" placeholder="id" value={geocoding.id} disabled/>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label  className="colored" for="geometryType"><Message k="dataentry.type"/></label>
+                <input type="text" className="form-control" id="geometryType"  placeholder="" value={geocoding.geometry.type} disabled/>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="form-group" id="coordinates">
+                <label className="colored"><Message k="dataentry.coordinates"/></label>
+                <div>{geocoding.geometry.coordinates.join(', ')}</div>
+              </div>
             </div>
           </div>
-          <div className="col-lg-4">
-            <div className="form-group">
-              <label  className="colored" for="geometryType"><Message k="dataentry.type"/></label>
-              <input type="text" className="form-control" id="geometryType"  placeholder="" value={geocoding.geometry.type} disabled/>
+
+          <div className="row"> 
+            <div className="col-lg-3">
+              <div className="form-group" >
+                <label className="colored"><Message k="dataentry.featuredesignation"/></label>
+                <input type="text" className="form-control" id="featureDesignation"  value={geocoding.featureDesignation.code} disabled/>
+              </div>
             </div>
-          </div>
-          <div className="col-lg-4">
-            <div className="form-group" id="coordinates">
-              <label className="colored"><Message k="dataentry.coordinates"/></label>
-              <div>{geocoding.geometry.coordinates.join(', ')}</div>
+            <div className="col-lg-9"> 
+              <div className="form-group" >
+                <label>&nbsp;</label>
+                <input type="text" className="form-control" id="featureDesignationName"  value={geocoding.featureDesignation.name} disabled/>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="row"> 
-          <div className="col-lg-3">
-            <div className="form-group" >
-              <label><Message k="dataentry.featuredesignation"/></label>
-              <input type="text" className="form-control" id="featureDesignation"  value={geocoding.featureDesignation.code} disabled/>
-            </div>
-          </div>
-          <div className="col-lg-9"> 
-            <div className="form-group" >
-              <label>&nbsp;</label>
-              <input type="text" className="form-control" id="featureDesignationName"  value={geocoding.featureDesignation.name} disabled/>
-            </div>
-          </div>
-        </div>
-
         <div className="row"> 
           <div className="col-lg-6"> 
             <div className="form-group" >
@@ -328,9 +328,6 @@ class DataEntry extends React.Component{
 
   close(e){
     Actions.invoke(Constants.ACTION_CLOSE_DATAENTRY_POPUP);
-    if (this.props.onClose){
-      this.props.onClose();
-    }
   }
 
   render() {
