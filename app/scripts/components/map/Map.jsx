@@ -113,7 +113,9 @@ export default class MapView extends React.Component {
     return (
 
       <div id="mapContainer">
-        <div className="map">      
+        <div className="map">  
+           <DataEntryPopup/>
+
           <Map   {...this.state.map}  ref="map">
             <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
               <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
@@ -141,8 +143,7 @@ export default class MapView extends React.Component {
                 <LocationPopup/>
             </MapPopUp>
             
-            <DataEntryPopup/>
-
+           
             <Control position="bottomright">
                 <ActionButtons/>
             </Control>

@@ -60,6 +60,10 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 		var className = 'leaflet-control-layers',
 		container = this._container = L.DomUtil.create('div', className);
 
+		L.DomEvent.disableClickPropagation(container).disableScrollPropagation(container);
+		L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
+		L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
+
 		//Makes this work on IE10 Touch devices by stopping it from firing a mouseout event when the touch is released
 		container.setAttribute('aria-haspopup', true);
 

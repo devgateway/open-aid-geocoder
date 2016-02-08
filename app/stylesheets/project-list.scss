@@ -1,5 +1,6 @@
 
 #project-search-form {
+	@include fontDefault($medium,$black);
 	input[type="text"] {
 		@include boxSizeBig();
 	}
