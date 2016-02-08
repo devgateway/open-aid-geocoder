@@ -1,7 +1,12 @@
 {
 	
+	"general":{
+		"yes": "Yes",
+      	"no": "No"
+	},
+
 	"projects":{
-		 "projectsCount": "{{count}} project found",
+		"projectsCount": "{{count}} project found",
       	"projectsCount_plural": "{{count}} projects found"
 	},
 
@@ -67,7 +72,7 @@
 		"activitydescription": "Activity Description",
 		"updatefromgeonames": "Update data from Geonames service",
 		"save": "Save",
-		"update": "Update data from Geonames service",
+		"update": "Update",
 		"delete": "Delete",
 		"cancel": "Cancel"
 	},

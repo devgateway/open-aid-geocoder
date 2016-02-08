@@ -104,7 +104,7 @@ class DataEntryContent extends React.Component {
   }
 
   toggleAdminSource(e){    
-      var newSource = e.target.value; 
+      var newSource = e.target.parentElement.value; 
       this.changeCodingValue('adminSource', newSource);
       if (newSource=='geonames'){
         Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.geocoding.id});

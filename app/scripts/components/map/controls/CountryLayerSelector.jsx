@@ -113,7 +113,7 @@ class CountryLayerSelector extends React.Component{
         <div className="leaflet-control-layers-toggle" title="Manage Country Layers" onClick={this.open.bind(this)}></div>
           <Modal  {...this.props} bsSize='large' show={this.state.showModal} onHide={this.close}>
             <Modal.Header>
-              <a className='close-dialog pull-right' href='#' onClick={this.close.bind(this)}><i className='fa fa-times-circle-o'></i></a>
+              <a className='close-dialog pull-right' onClick={this.close.bind(this)}><i className='fa fa-times-circle-o'></i></a>
               <Modal.Title><i className='fa fa-arrows-h'></i>Select Country Layer</Modal.Title>
             </Modal.Header>
             <Modal.Body>

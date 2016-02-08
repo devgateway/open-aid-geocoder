@@ -143,8 +143,8 @@ export default class MapView extends React.Component {
             
             <DataEntryPopup/>
 
-             <Control position="bottomright">
-                 <ActionButtons/>
+            <Control position="bottomright">
+                <ActionButtons/>
             </Control>
 
            

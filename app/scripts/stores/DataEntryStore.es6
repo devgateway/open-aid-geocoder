@@ -70,7 +70,7 @@ const DataEntryStore = createStore({
 		var newState = Object.assign({}, this.get());
 		let geocoding = this.buildGecoding(newState.geocoding);
 		let prev_status = geocoding.status;
-		let status = geocoding.type == 'location' ? 'NEW' : newState.confirmDelete=='CONFIRMED' ? 'DELETED' : 'UPDATED';
+		let status = geocoding.type == 'location' ? 'NEW' : newState.geocoding.confirmDelete=='CONFIRMED' ? 'DELETED' : 'UPDATED';
 		if (prev_status == 'NEW' && status == 'DELETED') {
 			status = 'LOCATION';
 		}
@@ -140,7 +140,7 @@ const DataEntryStore = createStore({
 				name: location.fcodeName
 			}
 		}
-		Object.assign(newState.location, newData);//set the new data from Geonames
+		Object.assign(newState.geocoding, newData);//set the new data from Geonames
 		var newAdminData = {
 			'country': {
 				code: location.countryId,
@@ -155,7 +155,7 @@ const DataEntryStore = createStore({
 				name: location.adminName2
 			}
 		}
-		Object.assign(newState.location.adminCodes.geonames, newAdminData);//set the new data from Geonames
+		Object.assign(newState.geocoding.adminCodes.geonames, newAdminData);//set the new data from Geonames
 		Object.assign(newState, {'loadingGeonames': false});
 		this.setData(newState);
 	}
