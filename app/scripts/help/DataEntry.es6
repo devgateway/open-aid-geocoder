@@ -38,7 +38,7 @@ export default class DataEntryHelp extends Help{
         position: 'left'
       },
       {
-        element:node.querySelector('#actionbuttons'),
+        element:node.querySelector('#savebutton'),
         intro: Message.t('help.dataentry.savebtn'),
         position: 'left'
       },
