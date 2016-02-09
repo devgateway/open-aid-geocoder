@@ -45,7 +45,7 @@ gulp.task("deploy", ["gh_pages"]);
 /**
  * Production build
  */
- gulp.task("build:webpack-prod", function(callback) {
+ gulp.task("build:webpack-prod",["copy-files"], function(callback) {
   // run webpack
   prodCompiler.run(function(err, stats) {
     if (err) throw new gutil.PluginError("build-prod", err);
@@ -153,4 +153,13 @@ gulp.task("deploy", ["gh_pages"]);
   return gulp.src('./app/**/*.*')
     .pipe(jshint({esversion:6}))
     .pipe(jshint.reporter('default', { verbose: true }));
+});
+
+
+
+gulp.task('copy-files', function() {
+ 
+  gulp.src(['app/locales/**/*']).pipe(gulp.dest('dist/locales'));
+  gulp.src(['app/conf/**/*']).pipe(gulp.dest('dist/conf'));
+
 });

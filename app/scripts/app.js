@@ -1,4 +1,7 @@
 /*webpack require directives*/
+
+window._setting_instance=null;
+
 require('bootstrap/dist/css/bootstrap.css');
 require('font-awesome/css/font-awesome.css');
 require('intro.js/introjs.css');
@@ -21,8 +24,8 @@ import Map from  './components/map/Map.jsx';
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
 
-let settings=Settings.getInstace();
-
+import AjaxUtil from './util/AjaxUtil.es6';
+import Setting from './util/Settings.es6';
 /**
  * Root view
  */
@@ -30,8 +33,8 @@ let settings=Settings.getInstace();
    render() {
     return (
       <div className="app">
-        <Header/>
-        {this.props.children}
+      <Header/>
+      {this.props.children}
       </div>
       )
   }
@@ -48,10 +51,14 @@ class NoMatch extends React.Component{
 }
 
 
-const options = settings.get('I18N', 'OPTIONS');
 
+AjaxUtil.get('conf/settings.json').then((conf)=>{
+  debugger;
+  let settings=new Setting();
+  settings.initialize(conf.data);
+  const options = settings.get('I18N', 'OPTIONS');
 
-i18next.use(XHR).init(options, (err, t) => {
+  i18next.use(XHR).init(options, (err, t) => {
     //if a locale was loaded 
 
     render((
@@ -73,6 +80,6 @@ i18next.use(XHR).init(options, (err, t) => {
 
   });
 
-
+})
 
 

@@ -1,80 +1,31 @@
 import Constants from '../constants/Contants.es6'
 
-let _instance;
-export
-default class Settings {
+
+
+export default class Settings {
 
 	constructor() {
+			this.env = (document.location.host.indexOf('localhost') > -1 ? 'development' : 'production');
+	}
 
-
-		this.env = (document.location.host.indexOf('localhost') > -1 ? 'development' : 'production');
-
-
-		/*Default settings, this json can be loaded from an external url*/
-		this.settings = {
-			'MAP': {
-				'AUTO_ZOOM': true,
-				'AUTO_REMOVE_LOCATIONS': true,
-			},
-
-			'SEARCH': {
-				'GEO_NAMES_SERVICE_USER_NAME': 'aiddata',
-				'FUZZY_LEVEL': 0
-			},
-
-			'API': {
-				'API_BASE_URL': {
-					'development': 'http://localhost:3001',
-					'production': 'http://geocoding.dgstg.org',
-				},
-
-				PROJECT_LIST_END_POINT: 'projects',
-
-				PROJECT_END_POINT: 'project'
-
-			},
-
-			'I18N': {
-
-				'OPTIONS': {
-					'development': {
-						'lng': 'en',
-						'fallbackLng': 'en',
-						'ns': ['translations'],
-						'defaultNS': 'translations',
-						'fallbackNS': 'common',
-						'backend': {
-							'loadPath': '/locales/{{lng}}/{{ns}}.json'
-						}
-					},
-
-					'production': {
-						'lng': 'en',
-						'fallbackLng': 'en',
-						'ns': ['translations'],
-						'defaultNS': 'translations',
-						'fallbackNS': 'common',
-						'backend': {
-							'loadPath': 'locales/{{lng}}/{{ns}}.json'
-						}
-					}
-					}
-
-				}
-			};
-		}
-
+	initialize(settings){
+		window._setting=settings;
+	}
 
 
 	static getInstace() {
-		if (!_instance) {
-			_instance = new Settings()
+		if (!window._setting_instance) {
+			debugger;
+			window._setting_instance = new Settings()
 		}
-		return _instance;
+		return window._setting_instance ;
 	}
 
 	get(module, name) {
-		let mod = this.settings[module];
+		if(!window._setting){
+			throw new Error('Settings should be initialize');
+		}
+		let mod = window._setting[module];
 		let item = mod[name];
 
 		if (item instanceof Object) {
@@ -86,7 +37,7 @@ default class Settings {
 	}
 
 	set(name, value) {
-		this.settings[name] = value;
+		window._setting[name] = value;
 	}
 
 	getEnv() {
