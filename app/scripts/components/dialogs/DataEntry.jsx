@@ -24,7 +24,7 @@ class AdminOptions extends React.Component {
     let geocoding = this.props.geocoding;
     let adminSource = this.props.adminSource;
     return (
-      <div className="pull-right options">
+      <div className="pull-right options" id="adminOptionsContainer">
         <label className="inline mini">Use Admin Division from:</label> 
         {(geocoding.type=='geocoding' && geocoding.status!='NEW')? //if it is an existing location, it shows the "Stored" option
             <button className={adminSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggleAdminSource.bind(this)}>
@@ -180,7 +180,7 @@ class DataEntryContent extends React.Component {
     } else {
       return (
       <div id='dataentry' className={geocoding.type=='location'? 'new' : 'update'}>
-        <div id='noteditablefields'>
+        <div id='noneditablefields'>
           <div className="row"> 
             <div className="col-lg-12">
               <label  className="colored" for="admin1"><Message k="dataentry.name"/></label>
@@ -289,12 +289,12 @@ class DataEntryContent extends React.Component {
         <div className="row"> 
           <div className="col-lg-12 help-container"> 
             <div className='separator'/>        
-            <DataEntryHelp  parentId='dataentry'/>
+            <DataEntryHelp  parentId='dataentry' type={geocoding.type}/>
             <div className='separator'/> 
-            <button className="btn  btn-lg btn-success pull-right" onClick={this.onSave.bind(this)}>{geocoding.type=='location'? Message.t('dataentry.save') : Message.t('dataentry.update')}</button>
-            {(geocoding.type!='location')?<button className="btn  btn-lg btn-danger pull-right" onClick={this.onDelete.bind(this)}><Message k="dataentry.delete"/></button>:null}
-            <button className="btn  btn-lg btn-warning pull-right" onClick={this.onCancel.bind(this)}><Message k="dataentry.cancel"/></button>      
-            <button className="btn  btn-lg btn-default  pull-right" title={Message.t('dataentry.updatefromgeonames')} onClick={this.updateFromGeonames.bind(this)}>
+            <button className="btn btn-lg btn-success pull-right" id="savebutton" onClick={this.onSave.bind(this)}>{geocoding.type=='location'? Message.t('dataentry.save') : Message.t('dataentry.update')}</button>
+            {(geocoding.type!='location')?<button className="btn btn-lg btn-danger pull-right" id="deletebutton" onClick={this.onDelete.bind(this)}><Message k="dataentry.delete"/></button>:null}
+            <button className="btn btn-lg btn-warning pull-right" id="cancelbutton" onClick={this.onCancel.bind(this)}><Message k="dataentry.cancel"/></button>      
+            <button className="btn btn-lg btn-default pull-right" title={Message.t('dataentry.updatefromgeonames')} onClick={this.updateFromGeonames.bind(this)}>
               {(this.props.loadingGeonames)?<i className="fa fa-refresh fa-spin"></i>:  <i className="fa fa-refresh"></i> }
             </button>        
           </div>
