@@ -12,7 +12,7 @@ export default class DataEntryHelp extends Help{
 
       {
         element:this.node().querySelector('#noneditablefields'),
-        intro: Message.t('help.dataentry.locationname'),
+        intro: Message.t('help.dataentry.noneditablefields'),
         position: 'left'
       },
       {

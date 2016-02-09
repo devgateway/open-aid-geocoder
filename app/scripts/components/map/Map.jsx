@@ -99,6 +99,7 @@ export default class MapView extends React.Component {
   setActiveLocation(location, showDataEntry) {
     let countryInfo = this.queryFeatures([location.lng, location.lat], this.refs.country.leafletElement);
     let countryFeature = (countryInfo && countryInfo.length > 0) ? countryInfo[0].feature : null;
+    this.refs.map.leafletElement.panTo({lat: location.lat, lng: location.lng});//center the map at point
     Actions.invoke(Constants.ACTION_POPUP_INFO, {
       locationFeature: {
         properties: location
