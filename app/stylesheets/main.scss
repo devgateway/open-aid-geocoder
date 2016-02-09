@@ -69,8 +69,7 @@ $gray:rgb(243,243,243);
 @import "data-entry.scss";
 
 @import "callouts.scss";
-
-
+@import "intro.scss";
 
 body{
 	@include fontDefault($regular,$black);
@@ -248,7 +247,7 @@ h4{
 	position: relative;
 	top: 57px;
 	display: inline;
-	right: 40px;
+	right: 60px;
 
 	.help {
 		position: relative;

@@ -1,7 +1,6 @@
 /*webpack require directives*/
 require('bootstrap/dist/css/bootstrap.css');
 require('font-awesome/css/font-awesome.css');
-require('intro.js/introjs.css');
 require('../stylesheets/control.layers.minimap.css');
 require('babel-polyfill');
 

@@ -7,43 +7,41 @@ import Message from '../components/Message.jsx'
 export default class DataEntryHelp extends Help{
  
   help() {
-     
-      let node = this.getDomObject();
-      let intro = Intro.introJs();
+      
       let steps=[
 
       {
-        element:node.querySelector('#noneditablefields'),
+        element:this.node().querySelector('#noneditablefields'),
         intro: Message.t('help.dataentry.locationname'),
         position: 'left'
       },
       {
-        element:node.querySelector('#adminOptionsContainer'),
+        element:this.node().querySelector('#adminOptionsContainer'),
         intro: Message.t('help.dataentry.adminoptions'),
         position: 'left'
       },
       {
-        element:node.querySelector('#locationClass'),
+        element:this.node().querySelector('#locationClass'),
         intro: Message.t('help.dataentry.locationclass'),
         position: 'left'
       },
       {
-        element:node.querySelector('#exactness'),
+        element:this.node().querySelector('#exactness'),
         intro: Message.t('help.dataentry.exactness'),
         position: 'left'
       },
       {
-        element:node.querySelector('#activityDescription'),
+        element:this.node().querySelector('#activityDescription'),
         intro: Message.t('help.dataentry.activitydescription'),
         position: 'left'
       },
       {
-        element:node.querySelector('#savebutton'),
+        element:this.node().querySelector('#savebutton'),
         intro: Message.t('help.dataentry.savebtn'),
         position: 'left'
       },
       {
-        element:node.querySelector('#cancelbutton'),
+        element:this.node().querySelector('#cancelbutton'),
         intro: Message.t('help.dataentry.cancelbtn'),
         position: 'left'
       }
@@ -51,14 +49,14 @@ export default class DataEntryHelp extends Help{
 
       if (this.props.type!='location') {
        steps.push({
-        element:node.querySelector('#deletebutton'),
+        element:this.node().querySelector('#deletebutton'),
         intro: Message.t('help.dataentry.deletebtn'),
         position: 'left'
       });
      }
 
-     intro.setOptions({steps: steps});
-     intro.start()
+      this.options={steps}
+      this.show();
    }
 
 
