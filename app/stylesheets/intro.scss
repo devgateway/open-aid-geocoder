@@ -1,0 +1,13 @@
+.modal{
+	display:block;
+	.introjs-fixParent{
+		left: 0px !important;
+		top: 0px !important;
+		right: 0px !important;
+	}
+}
+
+.introjs-tooltiptext{
+	borde:1px solid red !important;
+	@include fontDefault($medium,$green);
+}

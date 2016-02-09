@@ -29,7 +29,7 @@
 	height:19px;
 	@include fontDefault($small,"#FFF");
 	@include grayBorder();
-	@include middle();
+
 	margin:1px;
 }
 
@@ -40,7 +40,6 @@
 	border-radius: 0px;
 	height:24px !important;
 	@include fontDefault($small,"#FFF");
-	@include middle();
 	margin:1px;
 }
 .btn-success {
