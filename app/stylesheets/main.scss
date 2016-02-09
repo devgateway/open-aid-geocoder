@@ -294,3 +294,13 @@ h4{
 .leaflet-control-layer-selector.introjs-fixParent{
 	position: relative !important;
 }
+
+
+
+.lan-selector-container{
+	padding-top:5px;
+	padding-right:7px;
+	select{
+		@include fontDefault($large,$green,100);
+	}
+}
