@@ -16,26 +16,39 @@ export default class MapHelp extends Help{
       },
 
       {
-        element: node.querySelector('.leaflet-control-layers '),
-        intro: Message.t('help.main.layercontrol')
+        element: node.querySelector('#countryLayerSelector'),
+        intro: Message.t('help.main.countrylayercontrol'),
+        position: 'right'
+      },
+
+      {
+        element: node.querySelector('.leaflet-control-layers-minimap'),
+        intro: Message.t('help.main.layercontrol'),
+        position: 'left'
+      },
+
+      {
+        element: node.querySelector('#infoControl'),
+        intro: Message.t('help.main.infocontrol'),
+        position: 'right'
       },
 
       {
         element: node.querySelector('.leaflet-control-zoom'),
         intro: Message.t('help.main.zoomcontrol'),
-        position:'left'
+        position: 'left'
       },
 
       {
-        element: node.querySelector('.btn-warning'),
+        element: node.querySelector('#cancelCoding'),
         intro: Message.t('help.main.cancelbtn'),
-         position:'left'
+        position: 'left'
       },
 
       {
-        element: node.querySelector('.btn-success'),
+        element: node.querySelector('#submitCoding'),
         intro: Message.t('help.main.submitbtn'),
-        position:'left'
+        position: 'left'
       }]
     });
     intro.start()

@@ -13,8 +13,13 @@ export default class DataEntryHelp extends Help{
       let steps=[
 
       {
-        element:node.querySelector('#name'),
+        element:node.querySelector('#noneditablefields'),
         intro: Message.t('help.dataentry.locationname'),
+        position: 'left'
+      },
+      {
+        element:node.querySelector('#adminOptionsContainer'),
+        intro: Message.t('help.dataentry.adminoptions'),
         position: 'left'
       },
       {
@@ -28,13 +33,17 @@ export default class DataEntryHelp extends Help{
         position: 'left'
       },
       {
-        element:node.querySelector('.btn-success'),
+        element:node.querySelector('#activityDescription'),
+        intro: Message.t('help.dataentry.activitydescription'),
+        position: 'left'
+      },
+      {
+        element:node.querySelector('#savebutton'),
         intro: Message.t('help.dataentry.savebtn'),
         position: 'left'
-      }
-      ,
+      },
       {
-        element:node.querySelector('.btn-warning'),
+        element:node.querySelector('#cancelbutton'),
         intro: Message.t('help.dataentry.cancelbtn'),
         position: 'left'
       }
@@ -42,7 +51,7 @@ export default class DataEntryHelp extends Help{
 
       if (this.props.type!='location') {
        steps.push({
-        element:node.querySelector('.btn-danger'),
+        element:node.querySelector('#deletebutton'),
         intro: Message.t('help.dataentry.deletebtn'),
         position: 'left'
       });

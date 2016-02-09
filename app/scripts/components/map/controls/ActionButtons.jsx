@@ -62,8 +62,8 @@ class SubmitGeocoding extends React.Component{
         
 
         <MapHelp parentId="mapContainer"/>
-        <Button bsStyle='warning'  onClick={this.onCancelCoding.bind(this)}><Message k="submitgeocoding.cancel"/></Button>
-        <Button bsStyle='success'  onClick={this.openConfirm.bind(this)}><Message k="submitgeocoding.submit"/></Button>
+        <Button bsStyle='warning' id='cancelCoding' onClick={this.onCancelCoding.bind(this)}><Message k="submitgeocoding.cancel"/></Button>
+        <Button bsStyle='success' id='submitCoding' onClick={this.openConfirm.bind(this)}><Message k="submitgeocoding.submit"/></Button>
     </div>
     );
   }

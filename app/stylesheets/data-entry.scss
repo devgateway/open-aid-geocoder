@@ -56,10 +56,35 @@
 	}
 }
 
-
-
 #dataentry.update{
 	.colored{
 		color:rgba(253, 154, 0, 0.8);
 	}
 }
+
+#dataentry{
+	.has-error label{
+		color: #E25956 !important;
+		font-weight: bold;
+	}
+
+	.has-error select{
+		border-color: #E25956;
+		border-style: solid;
+    	border-width: 2px;
+	}
+
+	.has-error textarea{
+		border-color: #E25956;
+		border-style: solid;
+    	border-width: 2px;
+	}
+}
+
+#noneditablefields{
+	margin-right: -15px;
+    margin-left: -15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+

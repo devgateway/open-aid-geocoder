@@ -112,40 +112,48 @@ export default class MapView extends React.Component {
   render() { 
     return (
 
-    <div id="mapContainer">
-      <div className="map">  
-        <DataEntryPopup/>
-        <Map   {...this.state.map}  ref="map">
-          <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
-            <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
-              {this.state.layers.countries?this.state.layers.countries.map((country)=>{
-              return <CountryLayer {...country}/>
-            }):null}
-          </LayerGroup>
-          <GeocodingLayer name="Geocoding" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/>         
-          <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
-        </MiniMap>
+      <div id="mapContainer">
+        <div className="map">  
+          
+          <DataEntryPopup/>
+          
+          <Map   {...this.state.map}  ref="map">
+            
+            <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
+              <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
+                {this.state.layers.countries?this.state.layers.countries.map((country)=>{
+                  return <CountryLayer {...country}/>
+                }):null}
+              </LayerGroup>
+         
+              <GeocodingLayer name="Geocoding" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/>         
+              <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
 
-        <MapPopUp maxWidth="850" {...this.state.popup}>
-          <LocationPopup/>
-        </MapPopUp>
+            </MiniMap>
+           
+            <MapPopUp maxWidth="850" {...this.state.popup}>
+                <LocationPopup/>
+            </MapPopUp>
+           
+            <ZoomControl position="bottomright"/>
 
-        <ZoomControl position="bottomright"/>
+            <Control className="leaflet-control-layer-selector" position="bottomleft">
+              <CountrySelector/>
+            </Control>
 
-        <Control className="leaflet-control-layer-selector" position="bottomleft">
-          <CountrySelector/>
-        </Control>
+            <Control className="leaflet-control-actions-buttons" position="bottomright">
+                <ActionButtons/>
+            </Control>
+            
+            <Control className="leaflet-control-info-panel"  position="topleft">
+                <InfoPanel id={this.props.params.projectID}/>
+            </Control>
 
-        <Control className="leaflet-control-actions-buttons" position="bottomright">
-          <ActionButtons/>
-        </Control>
-
-        <Control className="leaflet-control-info-panel"  position="topleft">
-          <InfoPanel id={this.props.params.projectID}/>
-        </Control>
-      </Map>
-    </div>
-  </div>
+           
+                    
+          </Map>
+        </div>
+      </div>
     )
   }
 }

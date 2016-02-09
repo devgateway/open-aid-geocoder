@@ -12,21 +12,24 @@ export default class LocationsSearchHelp extends Help {
     intro.setOptions({steps:[
       {
         element: node.querySelector('input[type=text]'),
-        intro: Message.t('help.header.textinput')
+        intro: Message.t('help.header.textinput'),
+        position:'bottom'
       },
 
       {
-        element: node.querySelector('input[name=fuzzy]'),
+        element: node.querySelector('#fuzzydiv'),
         intro: Message.t('help.header.fuzzycheck'),
-        position: 'left'
+        position:'bottom'
       },
       {
-        element: node.querySelector('input[name=country]'),
+        element: node.querySelector('#countrydiv'),
         intro: Message.t('help.header.countrycheck'),
+        position:'bottom'
       },
       {
-        element: node.querySelector('.btn-search'),
+        element: node.querySelector('#searchdiv'),
         intro: Message.t('help.header.searchbtn'),
+        position:'bottom'
       }      
     ]});
     intro.start()

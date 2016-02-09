@@ -12,7 +12,7 @@ export default class ProjectInfoHelp extends Help{
     let intro=Intro.introJs();
     intro.setOptions({steps:[
       {
-        element: node.querySelector('h4'),
+        element: node.querySelector('.panel-heading'),
         intro: Message.t('help.main.panel_title'),
         position:'bottom'
       },
