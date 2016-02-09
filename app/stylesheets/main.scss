@@ -271,11 +271,11 @@ h4{
 .leaflet-control-layer-selector{
 	.countries-list{
 		background-color:#FFF;
-		width:300px;
+		width:365px;
 	}
 	.close-btn{
-		margin-top: 0px;
-		margin-right: 0px;
+		  margin-top: -16px;
+		  margin-right: -12px;
 		@include fontDefault($large,$green,100);
 		float:right;
 	}

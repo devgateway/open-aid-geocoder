@@ -19,7 +19,7 @@ const GazetteerSearch = React.createClass({
     componentDidMount() {
       //LocationsStore.listen(this.onStoreChange); //TODO:maybe we can show a message when there are no resutls 
       SingleProjectStore.listen(this.getCountry); //TODO:we need the country to use the country filter anyway it can be removed from here and makes the stores listen btween each other
-      Actions.invoke(Constants.ACTION_SEARCH_LOCATIONS,{'text':'maputo'});
+      //Actions.invoke(Constants.ACTION_SEARCH_LOCATIONS,{'text':'maputo'});
     },
 
       onStatusChange(status) {
