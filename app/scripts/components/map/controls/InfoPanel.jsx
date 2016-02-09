@@ -10,7 +10,7 @@ import Results from '../../gazetteer/Results.jsx';
 import ProjectInfoHelp from '../../../help/ProjectInfo.es6';
 import ProjectDescription from '../../project/ProjectDescription.jsx';
 import L from 'leaflet'; 
-
+import Message from '../../Message.jsx';
 import ProjectCoding from '../../project/ProjectCoding.jsx';
 
 /*
@@ -82,14 +82,14 @@ class InfoControl extends React.Component {
             <div className="tab-container">
               <Tabs defaultActiveKey={1}>
 
-                <Tab className="project-info" eventKey={1} title="Project Info">
+                <Tab className="project-info" eventKey={1} title={Message.t('projectinfo.projectinfo')}>
                   <ProjectDescription  {...this.state.project}/>
                 </Tab>
-                <Tab eventKey={2} title={"Geocoding ("+(this.state.project.locations?this.state.project.locations.length:0)+")"}>
+                <Tab eventKey={2} title={Message.t('projectinfo.geocoding') + " ("+(this.state.project.locations?this.state.project.locations.length:0)+")"}>
                   <ProjectCoding {...this.state.project}/>
                 </Tab>
 
-                <Tab eventKey={3} title="Gazetteer Locations">
+                <Tab eventKey={3} title={Message.t('projectinfo.gazetteerlocations')}>
                   <Results/>
                 </Tab>
 

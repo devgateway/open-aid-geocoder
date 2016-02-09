@@ -65,12 +65,12 @@
 		"deletemessage": "Esta ubicación se marcará como eliminada, ¿está seguro de que desea continuar?",
 		"name": "Nombre",
 		"country": "País",
-		"firstadm": "Primer nivel administrativo",
-		"secondadm": "Segundo nivel administrativo",
+		"firstadm": "Primer nivel ADM",
+		"secondadm": "Segundo nivel ADM",
 		"identifier": "Identificador",
 		"type": "Tipo",
 		"coordinates": "Coordenadas",
-		"featuredesignation": "Designación característica",
+		"featuredesignation": "Designación",
 		"locationclass": "Clase de ubicación",
 		"geographicexactness": "Exactitud geográfica",
 		"activitydescription": "Descripción de la actividad",
@@ -107,9 +107,9 @@
 			"new": "NUEVA"
 		},
 		"country": "País",
-		"projectinfo": "Información del proyecto",
+		"projectinfo": "Información",
 		"geocoding": "Geocodificación",
-		"gazetteerlocations": "Ubicaciones encontradas",
+		"gazetteerlocations": "Ubicaciones",
 		"nogeocodingdata": "Sin datos de geocodificación."
 	},
 
