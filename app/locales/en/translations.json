@@ -36,7 +36,7 @@
 			"panel_project": "Shows related project information for the current project",
 			"panel_geocoding": "Shows all existing and recently added geocoded locations for the current project",
 			"panel_locations": "Shows location search results",
-			"map": "Map shows existing (green) and recently added (yellow) geocoded locations for the current project, as well as search results (grey)",
+			"map": "Map shows existing (yellow) and recently added (green) geocoded locations for the current project, as well as search results (grey)",
 			"countrylayercontrol": "Click on this icon to manage country layers",
 			"layercontrol": "Click on this icon to manage layers and basemaps",
 			"infocontrol": "Information about the project",
