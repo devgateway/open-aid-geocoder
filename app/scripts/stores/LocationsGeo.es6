@@ -24,31 +24,27 @@ const LocationsGeoJsonStore = createStore({
 
 	process(data) {
 		
-		if(data.get('total') > 0) {
+		if(data.locations.get('total') > 0) {
 			let featureCollection=
 			new GeoJsonBuilder({
 				type: 'Point',
 				coordinates: function() {
 					return [this.lng, this.lat]
 				}
-			}).build(data.get('records'));
-			let newData=Object.assign(this.get(),{data:featureCollection,autoZoom:true});
+			}).build(data.locations.get('records'));
+			let newData=Object.assign(this.get(),{data: featureCollection, autoZoom: true});
 			this.setData(newData);
 		} else {
 			this.setData({});
 		}
 	},
 
-	removeSavedLocation(location){
-		
+	removeSavedLocation(location){		
 		let newState=Object.assign({},this.get())
 		let newGeoJson=newState.data;
-
 		let filteredFeatures=newGeoJson.features.filter((it)=>{ if (it.properties.geonameId!=location.id){return it}})
-			 newGeoJson=Object.assign(newGeoJson,{'features':filteredFeatures})
-			
-			 newState=Object.assign(newState,{data:newGeoJson,autoZoom:false});
-
+		newGeoJson=Object.assign(newGeoJson,{'features': filteredFeatures})
+		newState=Object.assign(newState,{data: newGeoJson, autoZoom: false});
 		this.setData(newState);
 	}
 });

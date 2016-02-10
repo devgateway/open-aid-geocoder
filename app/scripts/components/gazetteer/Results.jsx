@@ -72,8 +72,9 @@ class Results extends React.Component {
   constructor() {
     super();
     this.store = LocationsStore;
-    let data = (this.store.get()) ? this.store.get().toJS() : []
-    this.state = data
+    let data = (this.store.get().locations) ? this.store.get().locations.toJS() : null;
+    debugger;
+    this.state = data;
   }
 
   componentDidMount() {
@@ -85,7 +86,7 @@ class Results extends React.Component {
   }
 
   onStoreChange(data) {
-    this.setState(data.toJS())
+    this.setState(data.locations.toJS())
   }
 
   typefilter(e) {

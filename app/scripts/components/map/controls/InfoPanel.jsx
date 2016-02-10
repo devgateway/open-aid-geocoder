@@ -6,6 +6,7 @@ import Draggable from 'react-draggable';
 import  * as Actions from '../../../actions/Actions.es6';
 import Constants from '../../../constants/Contants.es6';
 import ProjectStore from '../../../stores/Project.es6';
+import LocationsStore from '../../../stores/Locations.es6';
 import Results from '../../gazetteer/Results.jsx';
 import ProjectInfoHelp from '../../../help/ProjectInfo.es6';
 import ProjectDescription from '../../project/ProjectDescription.jsx';
@@ -20,11 +21,12 @@ class InfoControl extends React.Component {
 
   constructor() {
     super();
-    this.state={expanded:true,project:{}};
+    this.state={expanded:true, project:{}, locationsCount: 0};
   }
 
   componentWillMount() {
     this.unsuscribe=ProjectStore.listen(this.onStoreChange.bind(this));
+    this.unsuscribe=LocationsStore.listen(this.onLocationsLoaded.bind(this));
     this.loadProject(this.props.id); //TODO:this can be triggered by an external event
   }
 
@@ -40,6 +42,12 @@ class InfoControl extends React.Component {
 
   loadProject(id) {
     Actions.invoke(Constants.ACTION_LOAD_SINGLE_PROJECT, id);  
+  }
+
+  onLocationsLoaded(data){
+    let newState=Object.assign({},this.state);
+    Object.assign(newState,{'locationsCount': data.locations.toJS().records.length})
+    this.setState(newState);
   }
 
   onStoreChange(project){
@@ -89,7 +97,7 @@ class InfoControl extends React.Component {
                   <ProjectCoding {...this.state.project}/>
                 </Tab>
 
-                <Tab eventKey={3} title={Message.t('projectinfo.gazetteerlocations')}>
+                <Tab eventKey={3} title={Message.t('projectinfo.gazetteerlocations') + " ("+(this.state.locationsCount)+")"}>
                   <Results/>
                 </Tab>
 
