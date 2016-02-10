@@ -13,6 +13,7 @@ import ProjectDescription from '../../project/ProjectDescription.jsx';
 import L from 'leaflet'; 
 import Message from '../../Message.jsx';
 import ProjectCoding from '../../project/ProjectCoding.jsx';
+import LanStore from '../../../stores/LanStore.es6';
 
 /*
    This view renders the info Ttab view UI component
@@ -21,15 +22,20 @@ class InfoControl extends React.Component {
 
   constructor() {
     super();
-    this.state={expanded:true, project:{}, locationsCount: 0};
+    this.state = {expanded:true, project:{}, locationsCount: 0};
   }
 
   componentWillMount() {
-    this.unsuscribe=ProjectStore.listen(this.onStoreChange.bind(this));
-    this.unsuscribe=LocationsStore.listen(this.onLocationsLoaded.bind(this));
+    this.unsuscribe = ProjectStore.listen(this.onStoreChange.bind(this));
+    this.unsuscribe = LocationsStore.listen(this.onLocationsLoaded.bind(this));
     this.loadProject(this.props.id); //TODO:this can be triggered by an external event
+    this.unsubscribe = LanStore.listen(this.changeLanguage.bind(this));
   }
 
+  changeLanguage(lan){
+    this.forceUpdate()
+  }
+  
   componentWillUnmount() {
     this.unsuscribe()
   }

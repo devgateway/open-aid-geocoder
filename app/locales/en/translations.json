@@ -12,6 +12,10 @@
 
 	"header": {
 		"branding": "Open Aid Geocoder",
+		"language": {
+			"english": "English",
+			"spanish": "Spanish"
+		},
 		"search": {
 			"holder": "Enter text to search",
 			"label": "Search locations",
@@ -84,6 +88,8 @@
 	},
 
 	"layerselector": {
+		"managecountrylayers": "Manage Country Layers",
+		"countryboundaries": "Country Boundaries",
 		"loading": "(Loading)",
 		"add": "Add",
 		"remove": "Remove"
@@ -106,6 +112,7 @@
 			"deleted": "DELETED",
 			"new": "NEW"
 		},
+		"locationtype": "Location Type",
 		"country": "Country",
 		"projectinfo": "Project Info",
 		"geocoding": "Geocoding",

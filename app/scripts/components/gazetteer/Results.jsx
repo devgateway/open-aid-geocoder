@@ -73,7 +73,6 @@ class Results extends React.Component {
     super();
     this.store = LocationsStore;
     let data = (this.store.get().locations) ? this.store.get().locations.toJS() : null;
-    debugger;
     this.state = data;
   }
 
@@ -98,7 +97,7 @@ class Results extends React.Component {
     <div id="search-results">
       <div className="form">
         <div className="form-group form-sm">
-          <label className="bolder"><Message k="dataentry.type"/>:</label>
+          <label className="bolder"><Message k="projectinfo.locationtype"/>:</label>
             <select name="typeFilter" className="large-input  form-control" onChange={this.typefilter.bind(this)} value={this.state.typefilter}>
               <option value='ALL'>All Types</option> 
               {this.state.types.map((t)=>{return <option key={t.code} value={t.code}>{t.name}</option>})}

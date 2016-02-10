@@ -18,13 +18,15 @@ const DataEntryStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_PREPARE_SAVE_LOCATION), 'saveLocation');
 		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID), 'loadingData');
 		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID).completed, 'updateData');
+		this.listenTo(Actions.get(Constants.ACTION_SEARCH_LOCATION_BY_GEONAMEID).failed, 'geonamesFailed');
 		this.listenTo(Actions.get(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES), 'loadingAdminData');
 		this.listenTo(Actions.get(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES).completed, 'updateAdminData');
+		this.listenTo(Actions.get(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES).failed, 'geonamesFailed');		
 	},
 
 	closePopup(){
 		var newState = Object.assign({}, this.get());
-		Object.assign(newState, {'showPopup': false});
+		Object.assign(newState, {'showPopup': false, 'error': null});
 		this.setData(newState);
 	},
 
@@ -157,6 +159,12 @@ const DataEntryStore = createStore({
 		}
 		Object.assign(newState.geocoding.adminCodes.geonames, newAdminData);//set the new data from Geonames
 		Object.assign(newState, {'loadingGeonames': false});
+		this.setData(newState);
+	},
+
+	geonamesFailed(error){
+		var newState = Object.assign({}, this.get());
+		Object.assign(newState, {error, 'loadingGeonames': false, 'loadingAdminGeonames': false});
 		this.setData(newState);
 	}
 });

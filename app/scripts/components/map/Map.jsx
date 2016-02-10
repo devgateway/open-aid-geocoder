@@ -13,7 +13,6 @@ import GeocodingLayer from './layers/GeocodingLayer.jsx';
 import GazetterLayer  from './layers/GazetterLayer.jsx';
 import CountryLayer from './layers/CountryLayer.jsx';
 
-
 /*Controls*/
 import Control from './controls/Control.jsx'; //control container
 
@@ -29,11 +28,8 @@ import LocationPopup from './popups/LocationPopup.jsx';
 /*Dialogs*/
 import DataEntryPopup from '../dialogs/DataEntry.jsx';
 
-
 /*Store*/
 import MapStore from '../../stores/Map.es6';
-
-
 
 export default class MapView extends React.Component {
 

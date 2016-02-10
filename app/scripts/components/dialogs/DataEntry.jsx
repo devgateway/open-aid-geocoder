@@ -215,7 +215,6 @@ class DataEntryContent extends React.Component {
                 />
           </div>
 
-
           <div className="row">
             <div className="col-lg-4">
               <div className="form-group">
@@ -280,7 +279,7 @@ class DataEntryContent extends React.Component {
         <div className="row"> 
           <div className="col-lg-12"> 
             <div className="form-group">
-              <label  className="colored" for="typeCode"><Message k="dataentry.activitydescription"/></label>
+              <label  className="colored"><Message k="dataentry.activitydescription"/></label>
               <textarea   className="form-control" name="activityDescription" id="activityDescription" value={geocoding.activityDescription} onChange={this.codingValueChanged.bind(this)}></textarea>
             </div>
           </div>
@@ -299,6 +298,17 @@ class DataEntryContent extends React.Component {
             </button>        
           </div>
         </div>
+        {this.props.error?
+          <div className="row"> 
+            <div className="col-lg-12"> 
+              <div className="form-group has-error">
+                <label  className="colored">
+                  ERROR: {this.props.error}
+                </label>
+              </div>
+            </div>
+          </div>
+        : null}
       </div>
       );
     }//end else

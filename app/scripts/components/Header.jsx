@@ -50,8 +50,8 @@ export default class Header extends React.Component {
             </div>            
             <div className="nav navbar-rigth lan-selector-container">
             <select  value={this.state.lan} name="lan" className="pull-right" onChange={this.changeLan}>
-              <option value="en">English</option>
-              <option value="es">Espa&ntilde;ol</option>
+              <option value="en">{Message.t('header.language.english')}</option>
+              <option value="es">{Message.t('header.language.spanish')}</option>
             </select>
             </div>
           </div>

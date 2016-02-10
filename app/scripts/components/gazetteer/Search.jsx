@@ -9,6 +9,7 @@ import Constants from '../../constants/Contants.es6';
 import * as Intro from 'intro.js'
 import Message from '../Message.jsx'
 import Help from '../../help/LocationsSearch.es6';
+import LanStore from '../../stores/LanStore.es6';
 
 class GazetteerSearch extends React.Component{ 
 
@@ -20,8 +21,13 @@ class GazetteerSearch extends React.Component{
 
   componentDidMount() {
     this.unsuscribe=this.store.listen(this.onStoreChange.bind(this));
+    this.unsubscribe = LanStore.listen(this.changeLanguage.bind(this));
   }
 
+  changeLanguage(lan){
+    this.forceUpdate()
+  }
+  
   componentWillUnmount() {
     this.unsuscribe();
   }

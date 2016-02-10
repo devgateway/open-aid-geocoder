@@ -22,9 +22,9 @@ class ProjectInfo extends React.Component {
         <h3><Link to={'map/'+this.props.project_id}>{this.props.title}</Link> </h3>
         <p>
           {this.props.long_description}  
-          <div className="pull-right"> <Link to={'map/' + this.props.project_id}><Message k="projectlist.geocodeproject"/></Link></div>
-          <br/>
         </p>
+        <div className="pull-right"> <Link to={'map/' + this.props.project_id}><Message k="projectlist.geocodeproject"/></Link></div>
+        <br/>        
       </div>
     )
   }

@@ -6,6 +6,7 @@ import {Modal,Button} from 'react-bootstrap';
 import * as Actions from '../../../actions/Actions.es6';
 import Constants from '../../../constants/Contants.es6';
 import Message from '../../Message.jsx';
+import LanStore from '../../../stores/LanStore.es6';
 
 /*Popup info*/
 
@@ -15,6 +16,14 @@ class InfoView extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.unsubscribe = LanStore.listen(this.changeLanguage.bind(this));
+  }
+
+  changeLanguage(lan){
+    this.forceUpdate()
+  }
+  
   onPickLocation(){
     this.props.onPickLocation?this.props.onPickLocation():null
   }
