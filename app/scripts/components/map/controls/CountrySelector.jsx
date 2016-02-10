@@ -116,7 +116,7 @@ export default class CountrySelector extends React.Component{
   render() {
     return (
       <div className="leaflet-control leaflet-control-layers" id="countryLayerSelector">
-        {(!this.state.expanded)?<div className="leaflet-control-layers-toggle" title="Manage Country Layers" onClick={this.toggle.bind(this)}></div>:
+        {(!this.state.expanded)?<div className="leaflet-control-country-toggle" title="Manage Country Layers" onClick={this.toggle.bind(this)}></div>:
           (
           <div className="countries-list">
             <LayerList {...this.state} onClose={this.toggle.bind(this)}/>
