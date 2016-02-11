@@ -4,7 +4,7 @@ import {
 from 'reflux';
 
 import * as Actions from '../actions/Actions.es6';
-import * as Constants from '../constants/Contants.es6';
+import Constants from '../constants/Contants.es6';
 import {
 	List, Map, Record
 }
@@ -43,6 +43,7 @@ const PopUpStore = createStore({
 		},
 		project: null,
 		activeLocation: null,
+		activeDataentry: null,
 		geocoding: null,
 		clickedLocationPosition: null
 	},
@@ -52,8 +53,10 @@ const PopUpStore = createStore({
 	init() {
 
 		this.listenTo(ProjectStore, this.onProjectUpdate);
-		this.listenTo(ProjectGeo, this.updateProjectLocations);
-		this.listenTo(LocationsGeoJson, this.updateLocations);
+		
+		this.listenTo(ProjectGeo, this.updateGeocodingLayer);
+		this.listenTo(LocationsGeoJson, this.updateGazetteerLayer);
+
 		this.listenTo(CountryGeo, this.updateCountry);
 		this.listenTo(Actions.get(Constants.ACTION_POPUP_INFO), 'updatePopupInfo');
 		this.listenTo(Actions.get(Constants.ACTION_OPEN_DATAENTRY_POPUP), 'closeInfoWindow');
@@ -62,8 +65,7 @@ const PopUpStore = createStore({
 	},
 
 	cleanStore() {
-		 
-    	this.setData(this.initialData);
+		this.setData(this.initialData);
 	},
 
 	getInitialState() {
@@ -72,30 +74,23 @@ const PopUpStore = createStore({
 
 	setActiveLocation(params) {
 		const {
-			locationFeature, isCoded
+			locationFeature, isCoded, activeDataentry
 		} = params;
 		var newState = Object.assign({}, this.get());
+		let activeLocation;
 		if (isCoded) {
 			var lf = Object.assign({}, locationFeature);
 			Object.assign(lf, {'lat': lf.geometry.coordinates[1]});
 			Object.assign(lf, {'lng': lf.geometry.coordinates[0]});
-			newState.activeLocation = lf;
+			activeLocation = lf;
 		} else {
-			newState.activeLocation = locationFeature;
+			activeLocation = locationFeature;
 		}
-		this.setData(newState);
-	},
-
-	updateLocations(data) {
-		var newState = Object.assign({}, this.get())
-		newState.layers.locations = data;
-
-		Object.assign(newState, {
-			popup: {
-				'open': false
-			}
-		});
-
+		if (activeDataentry){
+			Object.assign(newState, {'activeDataentry': activeLocation});
+		} else {
+			Object.assign(newState, {'activeLocation': activeLocation});
+		}
 		this.setData(newState);
 	},
 
@@ -119,15 +114,34 @@ const PopUpStore = createStore({
 		}));
 	},
 
-	updateProjectLocations(data) {
-		
+	updateGazetteerLayer(data) {
 		var newState = Object.assign({}, this.get())
-		newState.geocoding = data.geojson;
+		newState.layers.locations = data;
+
+		Object.assign(newState, {
+			popup: {
+				'open': false
+			}
+		});
+
+		this.setData(newState);
+	},
+
+
+	updateGeocodingLayer(data) {
+		var newState = Object.assign({}, this.get())
+		newState.layers.geocoding = data;
+
+		Object.assign(newState, {
+			popup: {
+				'open': false
+			}
+		});
 		this.setData(newState);
 	},
 
 	updatePopupInfo(properties) {
-		const {countryFeature, locationFeature, position} = properties;
+		const {countryFeature, locationFeature, position, showDataEntry} = properties;
 		const {ID_0, ID_1, GAUL01, ID_2, GAUL02, NAME_0, Country, NAME_1, ADM1, NAME_2, ADM2} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
 		const {
 			fclName, adminCode1, adminCode2, adminId1, adminId2, adminName1, adminName2, adminName3, fcode, fcodeName, geonameId, lat, lng, name, toponymName, countryId, countryName, activityDescription
@@ -141,6 +155,7 @@ const PopUpStore = createStore({
 			NAME_2: (NAME_2 || ADM2),
 			...locationFeature.properties
 		};
+
 		if (locationFeature.properties.type == 'geocoding') {
 			var geocoding = locationFeature.properties;
 			this.addAdminCodes(geocoding, params);
@@ -149,13 +164,17 @@ const PopUpStore = createStore({
 			this.addAdminCodes(geocoding, params);
 		}
 		/*creates info window parameters */
-		this.setData(Object.assign({}, this.get(), {
-			popup: {
-				'open': true,
-				'position': position,
-				'location': geocoding
-			}
-		}));
+		if (showDataEntry){
+			Actions.invoke(Constants.ACTION_OPEN_DATAENTRY_POPUP, geocoding);
+		} else {
+			this.setData(Object.assign({}, this.get(), {
+				popup: {
+					'open': true,
+					'position': position,
+					'location': geocoding
+				}
+			}));
+		}
 	},
 
 	makeGeocodingObject(params) {
@@ -164,8 +183,8 @@ const PopUpStore = createStore({
 			'id': params.geonameId,
 			'activityDescription': params.activityDescription || '',
 			'geometry': {
-				"type": "Point",
-				"coordinates": [params.lng, params.lat]
+				'type': 'Point',
+				'coordinates': [params.lng, params.lat]
 			},
 
 			'toponymName': params.toponymName,
@@ -176,7 +195,7 @@ const PopUpStore = createStore({
 			'type': params.type || 'location',
 			'status': params.status || 'EXISTING',
 			'locationClass': params.locationClass || null, //{code:''m,name:''}
-			'exactness': params.exactness || null, // {{"code": "1", "name": "Exact"}
+			'exactness': params.exactness || null, // {{'code': '1', 'name': 'Exact'}
 
 		}
 		return model;
