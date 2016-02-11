@@ -1,8 +1,8 @@
 import {createStore} from 'reflux';
 import * as Actions from '../actions/Actions.es6';
-import *  as Constants from '../constants/Contants.es6';
+import  Constants from '../constants/Contants.es6';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
-import _ from 'lodash';
+import _ from 'lodash'; //TODO: rewview if we can use an es6 method instead of lodash
 
 const initialData = {};
 const SingleProjectStore = createStore({
@@ -11,6 +11,8 @@ const SingleProjectStore = createStore({
 	mixins: [StoreMixins],
 
 	init() {
+		
+		console.log(Constants.ACTION_LOAD_SINGLE_PROJECT);
 		this.data=initialData;
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT), 'loading');		
 		this.listenTo(Actions.get(Constants.ACTION_LOAD_SINGLE_PROJECT).completed, 'completed');
@@ -23,8 +25,7 @@ const SingleProjectStore = createStore({
 		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');
 	},
 
-	cleanStore() {
-		 
+	cleanStore() {		 
     	this.setData(this.initialData);
 	},
 
@@ -37,6 +38,7 @@ const SingleProjectStore = createStore({
 		if (project.country){
 			Actions.invoke(Constants.ACTION_LOAD_SHAPE,project.country.iso3)
 		}
+		Object.assign(project, {'locationsBackup': _.cloneDeep(project.locations)});//add a copy of the locations for rollback purposes
 		this.setData(project); 
 	},
 
@@ -56,6 +58,9 @@ const SingleProjectStore = createStore({
 		} else {
 			locations.push(geocoding);
 		}		
+		if (geocoding.status=='LOCATION'){ //if a location has been deleted and not yet commited, it'll be removed
+			locations = locations.filter((it) => {return it.id!=geocoding.id});	
+		}
 		Object.assign(newState,{'locations':locations});
 		this.setData(newState);
 		
@@ -67,8 +72,11 @@ const SingleProjectStore = createStore({
 		let locations=newState.locations || [];
 		let locNotDeleted = locations.filter((it) => {return it.status!='DELETED'});
 		let locNoStatus = []
-		locNotDeleted.map((it) => {locNoStatus.push(_.omit(it, 'status'));});
+		locNotDeleted.map((it) => {
+			locNoStatus.push(_.omit(it, ['status','adminSource','confirmDelete', 'adminCodes', 'rollbackData']));//remove unnecesary fields before submit
+		});
 		Object.assign(newState,{'locations': locNoStatus});
+		_.omit(newState, 'locationsBackup');
 		this.setData(newState);
 		Actions.invoke(Constants.ACTION_SAVE_PROJECT, newState);		
 	},

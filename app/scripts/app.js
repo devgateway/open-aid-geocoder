@@ -1,39 +1,31 @@
+/*webpack require directives*/
 
-require('bootstrap/dist/css/bootstrap.css')
-require('intro.js/introjs.css');
-require('../stylesheets/app.scss');
-require('../stylesheets/control.layers.minimap.css');
-require("babel-polyfill");
+window._setting_instance=null;
+
+require('bootstrap/dist/css/bootstrap.css');
 require('font-awesome/css/font-awesome.css');
+require('intro.js/introjs.css');
+require('../stylesheets/control.layers.minimap.css');
+require('babel-polyfill');
 
-import  Settings from  "./util/Settings.es6";
-import  * as Actions from './actions/Actions.es6'
-import { Router, Route, Link ,Redirect,IndexRoute } from 'react-router'
+require('../stylesheets/main.scss');
+
 import React from 'react';
+import  Settings from  './util/Settings.es6';
+import { Router, Route ,Redirect,IndexRoute ,hashHistory} from 'react-router';
+
 import { render } from 'react-dom';
-import ProjectList  from './components/ProjectList.jsx'
+
+/*Layout elements*/
 import Header  from './components/Header.jsx';
-import GridLayout from './components/Grid.jsx';
-import FixedLayout from  './components/Fixed.jsx';
+import ProjectList  from './components/project/ProjectList.jsx';
+import Map from  './components/map/Map.jsx';
+
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
-/*Global constants */
-window.GEO_NAMES_SERVICE_USER_NAME = 'aiddata';
-window.APP_SETTINGS = new Settings();
 
-if (document.location.hostname=='localhost'){
-  window.API_BASE_URL = 'http://localhost:3000';
-  window.LOCALES_PATH='/locales/{{lng}}/{{ns}}.json'
-}else{
-
-window.API_BASE_URL = 'http://geocoding.dgstg.org';
-  window.LOCALES_PATH='locales/{{lng}}/{{ns}}.json'
-}
-window.PROJECT_LIST_URL = `${window.API_BASE_URL}/projects`;
-window.PROJECT_URL = `${window.API_BASE_URL}/project`;
-window.FUZZY = 0;
-
-
+import AjaxUtil from './util/AjaxUtil.es6';
+import Setting from './util/Settings.es6';
 /**
  * Root view
  */
@@ -60,43 +52,34 @@ class NoMatch extends React.Component{
 
 
 
-i18next.use(XHR).init({
-  lng: 'en',
-  "debug": true,
-  "fallbackLng": "en",
-  "ns": [
-  "translations"
-  ],
-  "defaultNS": "translations",
-  "fallbackNS": "common",
-  "backend": {
-    "loadPath": window.LOCALES_PATH
-  }
-}, (err, t) =>{
-  
+AjaxUtil.get('conf/settings.json').then((conf)=>{
+  debugger;
+  let settings=new Setting();
+  settings.initialize(conf.data);
+  const options = settings.get('I18N', 'OPTIONS');
 
-  render((
-    <Router>
-    <Route path="/" component={ProjectList}>
-    <IndexRoute component={ProjectList} />
-    </Route>
+  i18next.use(XHR).init(options, (err, t) => {
+    //if a locale was loaded 
 
-    <Route path="/grid" component={App}>
-    <Route path="map" component={GridLayout}/>
-    </Route>
+    render((
+      <Router history={hashHistory} >
 
-    <Route path="/fixed" component={App}>
-    <Route path="map/:projectID" component={FixedLayout}/>
-    </Route>
-    
-    <Route path="*" component={NoMatch}/>
+      <Route path="/" component={ProjectList}>
+      <IndexRoute component={ProjectList} />
+      </Route>
 
-    </Router>
-    ), document.getElementById('root'))
+      <Route path="/map" component={App}>
+      <Route path="/map/:projectID" component={Map}/>
+      </Route>
+
+      <Route path="*" component={NoMatch}/>
+
+      </Router>
+      ), document.getElementById('root'))
 
 
-});
+  });
 
-
+})
 
 

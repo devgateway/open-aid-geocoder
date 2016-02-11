@@ -1,20 +1,19 @@
 .bs-callout {
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid #eee;
-  border-left-width: 5px;
-  border-radius: 3px;
+ padding: 0px 10px 10px 20px;
+ margin: 20px 0;
+ border: 1px solid #eee;
+ border-left-width: 5px;
+ border-radius: 3px;
 
-  .text-vertical{
-    transform: rotate(90deg);
-    transform-origin: left top 0;
-    margin-left: -26px;
-    position: absolute;
-    color: #FFF;
-    padding: 1px 4px 1px 4px;
-    margin-top: -20px;
-    font-family: monospace;
-  }
+ .text-vertical{
+  transform: rotate(90deg);
+  transform-origin: left top 0;
+  margin-left: -26px;
+  position: absolute;
+  color: #FFF;
+  padding: 1px 4px 1px 4px;
+  font-family: monospace;
+}
 }
 .bs-callout h4 {
   margin-top: 0;
@@ -60,15 +59,15 @@
 
 
 .bs-callout-success {
-  border-left-color: #5cb85c;
+  border-left-color: #669933;
   .text-vertical{
-    background-color: #5cb85c;
+    background-color: #669933;
   }
-  a { color: #5cb85c};
-  a:hover{color:#5cb85c};
+  a { color: #669933};
+  a:hover{color:#669933};
 }
 .bs-callout-success h4 {
-  color: #5cb85c;
+  color: #669933;
 }
 
 .bs-callout-danger {
