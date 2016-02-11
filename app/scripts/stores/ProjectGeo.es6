@@ -1,6 +1,6 @@
 import {createStore} from 'reflux';
 import {getAction} from '../actions/Actions.es6';
-import Constants from '../constants/Contants.es6';
+import * as Constants from '../constants/Contants.es6';
 import {List, Map, Record} from 'immutable';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
 import ProjectStore from './Project.es6';
@@ -19,25 +19,22 @@ const ProjectGeoJsonStore = createStore({
 	},
 
 	process(project) {
-		let newData;
 		if (project.locations) {
 			let featureCollection=
 			new GeoJsonBuilder({
-				type: 'Point',
+				type: "Point",
 				coordinates: function() {
 					return [this.geometry.coordinates[0], this.geometry.coordinates[1]]
 				}
 			}).build(project.locations);
 			featureCollection.features.forEach((record) => {
-				let rollbackData = project.locationsBackup? project.locationsBackup.find((it)=>{return it.id==record.properties.id}) : null;
+				let rollbackData = project.locationsBackup.find((it)=>{return it.id==record.properties.id});
 				Object.assign(record.properties, {'rollbackData': rollbackData});//duplicates the values into same object for rollback purposes
-			});
-			newData=Object.assign(this.get(),{data:featureCollection,autoZoom:false, date:new Date()});
+			}.bind(this));
+			this.setData({'geojson':featureCollection});
 		} else {
-			newData=Object.assign(this.get(),{data:null,autoZoom:false,date:new Date()});
+			this.setData({'geojson':null});	
 		}
-
-		this.setData(newData);
 	}
 
 });

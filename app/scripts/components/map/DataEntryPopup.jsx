@@ -21,16 +21,15 @@ class DataEntryContent extends DataEntryHelp {
       loadingAdminGeonames: false,
       loadingGeonames: false,
       showDeleteDialog: false,
-      geocoding: {},
-      admSource: this.props.type=='geocoding'? 'saved' : 'shapes'
+      geocoding: {}
     };
   }
 
   componentWillMount() {
-    this.setState({
-      'geocoding': this.props,
-      'admSource': this.props.type=='geocoding'? 'saved' : 'shapes'
-    });
+    if (this.props.adminSource=='geonames'){
+      Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.id});
+    }
+    this.setState({'geocoding': this.props});
 
     
   }
@@ -40,12 +39,8 @@ class DataEntryContent extends DataEntryHelp {
       if (item.code == e.target.value) return item;
     }) || null;
     let newGeocoding = Object.assign({}, this.state.geocoding);
-    Object.assign(newGeocoding, {
-      'locationClass': locationClass
-    });
-    this.setState({
-      'geocoding': newGeocoding
-    });
+    Object.assign(newGeocoding, {'locationClass': locationClass});
+    this.setState({'geocoding': newGeocoding});
     this.validateField(locationClass, 'locationClass');
   }
 
@@ -54,24 +49,16 @@ class DataEntryContent extends DataEntryHelp {
       if (item.code == e.target.value) return item;
     }) || null;
     let newGeocoding = Object.assign({}, this.state.geocoding);
-    Object.assign(newGeocoding, {
-      'exactness': exactness
-    });
-    this.setState({
-      'geocoding': newGeocoding
-    });
+    Object.assign(newGeocoding, {'exactness': exactness});
+    this.setState({'geocoding': newGeocoding});
     this.validateField(exactness, 'exactness');
   }
 
   activityDescriptionChanged(e) {
     let newGeocoding = Object.assign({}, this.state.geocoding);
     let activityDescription = e.target.value;
-    Object.assign(newGeocoding, {
-      'activityDescription': activityDescription
-    });
-    this.setState({
-      'geocoding': newGeocoding
-    });
+    Object.assign(newGeocoding, {'activityDescription': activityDescription});
+    this.setState({'geocoding': newGeocoding});
     this.validateField(activityDescription, 'activityDescription', (val) => {
       return (val != null && val.length > 0)
     });
@@ -129,7 +116,7 @@ class DataEntryContent extends DataEntryHelp {
      buildGecoding(source) {
       var newGeocoding={};
       Object.assign(newGeocoding, {
-        name: source.name,
+        'name': source.name,
         'id': source.id,
         'geometry': source.geometry,
         'description':source.description,
@@ -139,11 +126,17 @@ class DataEntryContent extends DataEntryHelp {
         'activityDescription':source.activityDescription,
         'locationClass':source.locationClass,
         'exactness':source.exactness,
-
+        'adminSource': source.adminSource
       });
 
-      switch(this.state.admSource) {
-        case 'saved':          
+      let adminSource = this.state.geocoding.adminSource || (this.state.geocoding.type=='geocoding'? 'saved' : 'shapes');
+      switch(adminSource) {
+        case 'saved':  
+          Object.assign(newGeocoding, {
+            'country': source.adminCodes.saved.country,
+            'admin1': source.adminCodes.saved.admin1,
+            'admin2': source.adminCodes.saved.admin2,
+          });        
           break;
         case 'shapes':
           Object.assign(newGeocoding, {
@@ -167,20 +160,15 @@ class DataEntryContent extends DataEntryHelp {
     /**
      * Validate the new geocoding object
      */
-
-     validate(newGeocoding) {
+    validate(newGeocoding) {
+      debugger;
       return (
         this.validateField(newGeocoding.exactness, 'exactness') & 
         this.validateField(newGeocoding.locationClass, 'locationClass') &
         this.validateField(newGeocoding.activityDescription, 'activityDescription', (val) => {return (val != null && val.length > 0)} ) &
-        this.validateField(newGeocoding.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) //& 
-        //this.validateField(newGeocoding.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
-        //this.validateField(newGeocoding.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
-        );
-
+        this.validateField(newGeocoding.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} )
+      );
     }
-
-
 
     validateField(value, elementId, validator) {
 
@@ -213,38 +201,28 @@ class DataEntryContent extends DataEntryHelp {
       this.setState(newState); 
     }
 
-    toggle(e){
-      let newState=Object.assign({},this.state);
-      let newSource =  e.target.value;
-      Object.assign(newState,{'admSource': e.target.value});
-      let holder;
-      switch(newSource) {
-        case 'saved':  
-          holder = this.props;      
-          break;
-        case 'shapes':
-          holder = this.props.adminCodes.shape;
-          break;
-        case 'geonames':
-          Object.assign(newState, {'loadingAdminGeonames': true});
-          Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.id});
-          holder=this.props.adminCodes.geonames;
-          break;
+    toggleAdminSource(e){    
+      let newState = Object.assign({},this.state);
+      let newGeocoding = Object.assign({}, newState.geocoding)
+      var newSource = e.target.value; 
+      Object.assign(newGeocoding, {'adminSource': newSource});
+      Object.assign(newState, {'geocoding': newGeocoding});
+      if (newSource=='geonames'){
+        Object.assign(newState, {'loadingAdminGeonames': true});
+        Actions.invoke(Constants.ACTION_UPDATE_ADM_FROM_GEONAMES, {'geonameID': this.props.id});
       }
-      //this.validateField(holder.country, 'country',(val) => {return (val != null && val.code!=null && val.name!=null)} ) & 
-      //this.validateField(holder.admin1, 'admin1',(val) => {return (val != null && val.code!=null && val.name!=null)}) & 
-      //this.validateField(holder.admin2, 'admin2',(val) => {return (val != null && val.code!=null && val.name!=null)})
       this.setState(newState);  
    }
 
-   render() {
+   render() { 
     
     let country,admin1,admin2 ,comment;
-    switch(this.state.admSource) {
+    let adminSource = this.state.geocoding.adminSource || (this.state.geocoding.type=='geocoding'? 'saved' : 'shapes');
+    switch(adminSource) {
       case 'saved':  
-        country=this.props.country.name;
-        admin1=this.props.admin1?this.props.admin1.name:null;
-        admin2=this.props.admin2?this.props.admin2.name:null;      
+        country=this.props.adminCodes.saved.country.name;
+        admin1=this.props.adminCodes.saved.admin1.name;
+        admin2=this.props.adminCodes.saved.admin2.name;
         break;
       case 'shapes':
         country=this.props.adminCodes.shape.country.name;
@@ -262,12 +240,12 @@ class DataEntryContent extends DataEntryHelp {
    if(this.state.confirmDelete){
     return (
       <div>    
-      <h4 className="list-group-item-heading">
-      This location will be marked as deleted, are you sure you want to continue?
-      </h4>
-      <hr/>
-      <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
-      <Button bsStyle='success' className="pull-right" onClick={this.doDelete.bind(this)}>Yes</Button>
+        <h4 className="list-group-item-heading">
+          This location will be marked as deleted, are you sure you want to continue?
+        </h4>
+        <hr/>
+        <Button bsStyle='danger' onClick={this.cancelDelete.bind(this)}>No</Button>
+        <Button bsStyle='success' className="pull-right" onClick={this.doDelete.bind(this)}>Yes</Button>
       </div>
       )
   } else {
@@ -306,11 +284,11 @@ class DataEntryContent extends DataEntryHelp {
             <div className="col-lg-12">
               <div className="pull-right bottom-line">
               Use Admin Division from:
-              {(this.props.type=='geocoding')?<button className={this.state.admSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggle.bind(this)}> Stored </button>: null }
+              {(this.props.type=='geocoding' && this.props.status!='NEW')?<button className={adminSource=='saved'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='saved' onClick={this.toggleAdminSource.bind(this)}> Stored </button>: null }
               
-              <button className={this.state.admSource=='shapes'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shapes' onClick={this.toggle.bind(this)}>Shapes </button> 
+              <button className={adminSource=='shapes'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='shapes' onClick={this.toggleAdminSource.bind(this)}>Shapes </button> 
               
-              <button className={this.state.admSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggle.bind(this)}>Geonames </button>
+              <button className={adminSource=='geonames'? "btn btn-xs btn-success" : "btn btn-xs btn-default"} value='geonames' onClick={this.toggleAdminSource.bind(this)}>Geonames </button>
                {(!this.props.adminCodes.geonames.country.name && this.state.loadingAdminGeonames)?<i className="fa fa-spinner fa-spin"></i>: null }
             </div>
             </div>
