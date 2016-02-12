@@ -11,7 +11,7 @@
  .text{
   @include fontDefault(8px,$black);
 
-  } 
+} 
 }
 
 
@@ -77,3 +77,20 @@
   box-shadow: 0 0 6px 5px rgba(255, 255, 255, 0.6), 0 0 0 6px rgba(238, 221, 130, 0.4), 0 0 0 8px rgba(255, 215, 0, 0.24);
   z-index: 100000000000 !important;
 }
+
+/*
+.leaflet-minimap-container{
+  .marker{
+    height: 15px !important; 
+   width:15px !important;
+   -webkit-border-radius: 100%;
+   border-radius: 100%;
+   background-clip: padding-box;
+   padding-top: 4px !important;
+   text-align: center;
+   .text{
+    @include fontDefault(6px,$black);
+
+  } 
+}
+}*/

@@ -20,7 +20,6 @@ class LayerItem extends React.Component{
   componentWillUnmount() {}
 
   _addLayer(e){
-    debugger;
     Actions.invoke(Constants.ACTION_ADD_COUNTRY_LAYER, e.currentTarget.value);
   }
 
@@ -116,7 +115,8 @@ export default class CountrySelector extends React.Component{
   render() {
     return (
       <div className="leaflet-control leaflet-control-layers" id="countryLayerSelector">
-        {(!this.state.expanded)?<div className="leaflet-control-country-toggle" title={Message.t('layerselector.managecountrylayers')} onClick={this.toggle.bind(this)}></div>:
+        {(!this.state.expanded)?
+            <div className="leaflet-control-country-toggle" title={Message.t('layerselector.managecountrylayers')} onClick={this.toggle.bind(this)}></div>:
           (
           <div className="countries-list">
             <LayerList {...this.state} onClose={this.toggle.bind(this)}/>

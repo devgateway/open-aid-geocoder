@@ -122,10 +122,9 @@ export default class MapView extends React.Component {
                   return <CountryLayer {...country}/>
                 }):null}
               </LayerGroup>
+                <GeocodingLayer name="Geocoding" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/>         
+                <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
          
-              <GeocodingLayer name="Geocoding" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.geocoding}/>         
-              <GazetterLayer name="Available Locations" onFeatureClick={this.locationClick.bind(this)}  {...this.state.layers.locations}/>
-
             </MiniMap>
            
             <MapPopUp maxWidth="850" {...this.state.popup}>
@@ -142,7 +141,7 @@ export default class MapView extends React.Component {
                 <ActionButtons/>
             </Control>
             
-            <Control className="leaflet-control-info-panel"  position="topleft">
+            <Control bottomPadding={80} topPadding={0} className="leaflet-control-info-panel"  position="topleft">
                 <InfoPanel id={this.props.params.projectID}/>
             </Control>
 

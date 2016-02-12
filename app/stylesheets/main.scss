@@ -54,8 +54,6 @@ $gray:rgb(243,243,243);
 }
 
 
-
-
 @import "btn.scss";
 @import "lists.scss";
 @import "nav-tabs.scss";
@@ -70,6 +68,7 @@ $gray:rgb(243,243,243);
 
 @import "callouts.scss";
 @import "intro.scss";
+@import "minimap.scss";
 
 body{
 	@include fontDefault($regular,$black);

@@ -8,6 +8,13 @@
 	div.radio{
 		margin-left:10px;
 	}
+
+	input[type="checkbox"],input[type="radio"]{
+		display:block;
+		float: left;
+		margin: 3px;
+	}
+
 }
 
 

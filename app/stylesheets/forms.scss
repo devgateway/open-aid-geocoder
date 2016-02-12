@@ -7,21 +7,7 @@
 	color:$black; 
 }
 
-
-
-input[type="text"]  {
-	@include inputText();
-	font-weight: bold;
-	padding:5px;
-
-}
-
-
-input[type="radio"], input[type="checkbox"] {
-	margin: 0px;
-	line-height: normal;
-}
-input[type="checkbox"] {
+input[type="checkbox"],input[type="radio"]{
 	display:none;
 	
 }
@@ -30,6 +16,9 @@ input[type="checkbox"]+label,input[type="radio"]+label{
 	cursor:pointer;
 
 }
+
+
+
 input[type="checkbox"]+label:before,input[type="radio"]+label:before{
 	content: '';
 	display:inline-block;
@@ -38,11 +27,13 @@ input[type="checkbox"]+label:before,input[type="radio"]+label:before{
 	width:12px;
 	margin:4px;
 }
-input[type="checkbox"]+label:before{
+
+input[type="checkbox"]+label:before,input[type="radio"]+label:before{
 	@include grayBorder();
 	background-color:#FFF;
 }
-input[type="checkbox"]:checked+label:before{
+
+input[type="checkbox"]:checked+label:before,input[type="radio"]:checked+label:before{
 	
 	font-size:$small !important;
 	padding-left:1px; 
@@ -50,7 +41,7 @@ input[type="checkbox"]:checked+label:before{
 	font-family:FontAwesome;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-	
+	font-stretch: bold;
 	@include grayBorder();
 	content: "\f00c";
 }

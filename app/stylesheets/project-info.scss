@@ -1,10 +1,15 @@
 
 /*INFO PANEL*/
+.leaflet-control-info-panel{
+	overflow:hidden!important;
+}
+
+
 #project-info {
 	z-index:9999;
 	-webkit-transition: opacity .1s; /* Safari */
 	transition: opacity .1s;
-
+	height:100%;
 	width:375px;
 	z-index: 99;
 
@@ -78,8 +83,6 @@
 	}
 	
 	.tab-content{
-		max-height: 75%; 
-		min-height: 200px;
 	}
 
 	.form-group{
