@@ -21,7 +21,7 @@ export default class MapHelp extends Help{
     },
 
     {
-      element: this.node().querySelector('.leaflet-control-layers-'),
+      element: this.node().querySelector('.leaflet-control-layers-minimap'),
       intro: Message.t('help.main.layercontrol'),
       position: 'left'
     },

@@ -2,6 +2,14 @@
 /*INFO PANEL*/
 .leaflet-control-info-panel{
 	overflow:hidden!important;
+
+	.leaflet-control-layers.introjs-fixParent{
+		position: relative !important;
+	}
+}
+
+.leaflet-control-info-panel.introjs-fixParent{
+	position: relative !important;
 }
 
 
@@ -94,7 +102,7 @@
 		overflow: auto;
 		max-height: 400px;
 		padding: 5px;
-	    margin-top: 2px;
+		margin-top: 2px;
 	}
 }
 
