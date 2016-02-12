@@ -14,8 +14,14 @@
   color:$green;
   font-weight: bold;
 }
-
-
+.close-btn {
+    float: right;
+    padding: 3px;
+    cursor: pointer;
+    position: absolute;
+    right: 3px;
+    top: -5px;
+}
 .leaflet-control-layers{
     overflow: scroll;
 }

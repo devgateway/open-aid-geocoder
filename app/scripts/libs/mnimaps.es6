@@ -9,7 +9,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
     bottomPadding: 90,
     overlayBackgroundLayer: L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
       attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a>' +
-        ' &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      ' &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     })
   },
 
@@ -55,6 +55,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
   },
 
   _expand: function() {
+    debugger;
     L.Control.Layers.prototype._expand.call(this);
     this._onListScroll();
   },
@@ -63,28 +64,30 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
   _initLayout: function() {
     var className = 'leaflet-control-layers',
-      container = this._container = L.DomUtil.create('div', className);
-
-    L.DomEvent.disableClickPropagation(container).disableScrollPropagation(container);
-    L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
-    L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
+    container = this._container = L.DomUtil.create('div', className);
+    
+    
 
     //Makes this work on IE10 Touch devices by stopping it from firing a mouseout event when the touch is released
     container.setAttribute('aria-haspopup', true);
 
     if (!L.Browser.touch) {
       L.DomEvent
-        .disableClickPropagation(container)
-        .disableScrollPropagation(container);
+      .disableClickPropagation(container)
+      .disableScrollPropagation(container);
     } else {
       L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
     }
 
+    var closeDiv= L.DomUtil.create('div', 'close-btn');
+    closeDiv.innerHTML='<i class="fa fa-times-circle-o"></i>';
+
     var form = this._form = L.DomUtil.create('form', className + '-list');
+    form.appendChild(closeDiv)
 
     if (this.options.collapsed) {
       if (!L.Browser.android) {
-        L.DomEvent.on(container, 'click', this._expand, this);
+       // L.DomEvent.on(container, 'click', this._expand, this);
         //.on(container, 'mouseout', this._collapse, this);
       }
       var link = this._layersLink = L.DomUtil.create('div', className + '-toggle', container);
@@ -101,7 +104,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
         setTimeout(L.bind(this._onInputClick, this), 0);
       }, this);
 
-      this._map.on('click', this._collapse, this);
+     // this._map.on('click', this._collapse, this);
       // TODO keyboard accessibility
     } else {
       this._expand();
@@ -123,6 +126,13 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
     L.DomUtil.addClass(this._container, 'leaflet-control-layers-minimap');
     L.DomEvent.on(this._container, 'scroll', this._onListScroll, this);
+    L.DomEvent.on(closeDiv, 'click', function(){
+      this._collapse();
+    }, this);
+
+    L.DomEvent.disableClickPropagation(container).disableScrollPropagation(container);
+    L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
+    L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
 
   },
 
@@ -131,8 +141,8 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
     console.log('click');
 
     var i, input, obj,
-      inputs = this._form.getElementsByTagName('input'),
-      inputsLen = inputs.length;
+    inputs = this._form.getElementsByTagName('input'),
+    inputsLen = inputs.length;
 
     this._handlingClick = true;
 
@@ -211,7 +221,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
       L.DomUtil.create('div', 'leaflet-minimap', label),
       obj.layer,
       obj.overlay
-    );
+      );
 
 
     var div = L.DomUtil.create('div', 'leaflet-minimap-label', label);
@@ -302,7 +312,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
     if (this.isCollapsed()) {
       first = last = -1;
     } else {
-      
+
       var container = this._container;
       var scrollTop = container.scrollTop;
 
@@ -311,13 +321,13 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
       var titleHeight=container.querySelector('.leaflet-minimap-title').clientHeight;
       var separatorHeight=container.querySelector('.leaflet-control-layers-separator').clientHeight;
 
-        var firstRow = Math.floor(scrollTop / minimapHeight);
-        
-         var mapsPerRow = Math.floor(container.clientWidth / minimaps.item(0).clientWidth);
+      var firstRow = Math.floor(scrollTop / minimapHeight);
+
+      var mapsPerRow = Math.floor(container.clientWidth / minimaps.item(0).clientWidth);
 
       var start =  Math.floor(scrollTop / (minimapHeight+titleHeight +separatorHeight));
       var end =  Math.floor((scrollTop+listHeight-titleHeight-separatorHeight)/minimapHeight);
-     
+
      first = start * mapsPerRow; //(3 number of map in row)
       last = end * mapsPerRow; //(3 number of map in row)
 
@@ -331,7 +341,7 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
       first = firstRow * mapsPerRow; //(3 number of map in row)
       last = lastRow * mapsPerRow; //(3 number of map in row)
       */
-    
+
     }
 
 
