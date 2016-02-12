@@ -10,7 +10,7 @@
 	-webkit-transition: opacity .1s; /* Safari */
 	transition: opacity .1s;
 	height:100%;
-	width:375px;
+	width:378px;
 	z-index: 99;
 
 	@include fontDefault($medium,$darkGray);
@@ -94,7 +94,7 @@
 		overflow: auto;
 		max-height: 400px;
 		padding: 5px;
-
+	    margin-top: 2px;
 	}
 }
 
