@@ -1,0 +1,39 @@
+/*TAB NAVS*/
+.nav-tabs {
+	border: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.nav-tabs > li {
+	float: left;
+	margin-bottom: -1px;
+	border: 0px
+}
+
+
+.nav-tabs > li > a {
+	margin:0px;
+	padding:10px 15px ;
+	border-top: 1px solid #EEE !important;
+	border-bottom: 1px solid #EEE !important;
+	border-radius: 0px;
+	outline: 0px;
+	@include fontDefault($medium,$darkGray,100);
+}
+.nav-tabs > li > a:hover {
+	border-color: #EEE
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+	margin:0px;
+	padding:10px 15px ;
+	border:0px;
+	border-top: 1px solid #EEE !important;
+	border-bottom: 1px solid $green !important;
+	border-radius: 0px;
+
+	outline: 0px;
+	@include fontDefault($medium,$green,100);
+}

@@ -15,7 +15,6 @@ export default class Settings {
 
 	static getInstace() {
 		if (!window._setting_instance) {
-			debugger;
 			window._setting_instance = new Settings()
 		}
 		return window._setting_instance ;

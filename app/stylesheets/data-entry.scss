@@ -1,0 +1,91 @@
+.modal-dialog{
+	width:480px;
+
+}
+#dataentry{
+	width:450px;
+	padding: 10px;
+
+	input[type="text"]  {
+		@include fontDefault($regular,$darkGray);
+		padding:5px;
+		height: 26px;
+		line-height: 1.5;
+
+	}
+	.help-container{
+		height: 24px;
+		float: left;
+	}
+	.separator{
+		margin-right: 5px;
+		float: left;
+	}
+	.help{
+		float: left
+	}
+	.form-group {
+		margin-bottom: 3px;
+	}
+	label{
+		padding: 3px;
+	}
+	.row{
+		border:0px solid red;
+		padding-bottom: 7px;
+	}
+	.col-lg-1,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-10,.col-lg-11,.col-lg-12{
+		padding: 0px 7px;
+	}
+
+	.options{
+		padding-top: 2px;
+		padding-right: 5px;
+		label{
+			padding-right: 5px;
+		}
+		.btn{
+			margin: 2px;
+		}
+	}
+}
+
+#dataentry.new{
+	.colored{
+		color: $green;
+	}
+}
+
+#dataentry.update{
+	.colored{
+		color:rgba(253, 154, 0, 0.8);
+	}
+}
+
+#dataentry{
+	.has-error label{
+		color: #E25956 !important;
+		font-weight: bold;
+	}
+
+	.has-error select{
+		border-color: #E25956;
+		border-style: solid;
+    	border-width: 1px;
+	}
+
+	.has-error textarea{
+		border-color: #E25956;
+		border-style: solid;
+    	border-width: 1px;
+	}
+}
+
+#noneditablefields{
+	margin-right: -15px;
+    margin-left: -15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+

@@ -1,0 +1,55 @@
+/*Locations Search*/
+#gazetteer-search{
+	padding: 0px;
+	margin: 0px;
+
+	.form-group{
+		padding:0px;
+		margin:0px;
+		height:36px;
+		label:{
+			border:1px solid red;
+		}
+
+		input{
+			@include inputText();
+			margin:6px 19px 0px 25px;
+
+		}
+		label{
+			padding:5px 15px 0px 0px ;
+		}
+		
+	}
+
+	.btn{
+			@include middle();
+	}
+}
+
+#search-results{
+	.btn{
+		@include middle();
+		position: absolute;
+		right: 0px;
+	}
+	
+	p{
+
+		width: 85%;
+	}
+
+	.list-group{
+		overflow: auto;
+		max-height: 400px;
+		padding: 5px;
+
+	}
+	.list-group-item{
+		font-size: $medium;
+		border:0px;
+		margin:1px;
+		border-bottom: 1px solid #eee;
+
+	}
+}

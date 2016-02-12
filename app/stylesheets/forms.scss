@@ -1,0 +1,88 @@
+
+/*Forms*/
+@mixin inputText(){
+	@include fontDefault($regular,$black);
+	height:22px;
+	@include grayBorder();
+	color:$black; 
+}
+
+input[type="checkbox"],input[type="radio"]{
+	display:none;
+	
+}
+
+input[type="checkbox"]+label,input[type="radio"]+label{
+	cursor:pointer;
+
+}
+
+
+
+input[type="checkbox"]+label:before,input[type="radio"]+label:before{
+	content: '';
+	display:inline-block;
+	vertical-align:middle;
+	height:12px;
+	width:12px;
+	margin:4px;
+}
+
+input[type="checkbox"]+label:before,input[type="radio"]+label:before{
+	@include grayBorder();
+	background-color:#FFF;
+}
+
+input[type="checkbox"]:checked+label:before,input[type="radio"]:checked+label:before{
+	
+	font-size:$small !important;
+	padding-left:1px; 
+	display: inline-block;
+	font-family:FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	font-stretch: bold;
+	@include grayBorder();
+	content: "\f00c";
+}
+
+
+.form-control {
+	@include inputText();
+	@include grayBorder();
+	display: block;
+	width: 100%;
+	height: 24px;
+	padding: 2px 2px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border-radius: 0px;
+}
+
+
+label{
+	@include fontDefault($regular,$darkGray);
+	font-weight: 100;
+	padding:3px 0px;
+}
+
+
+.form-control[disabled], fieldset[disabled] .form-control {
+    cursor: not-allowed;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #FFF;
+    color:#EEE;
+    opacity: 1;
+}
+
+.modal{
+  display:block;
+  .introjs-fixParent{
+   	left: 0px !important;
+   	top: 0px !important;
+   	right: 0px !important;
+ 	}
+}

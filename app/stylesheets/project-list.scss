@@ -1,0 +1,67 @@
+
+#project-search-form {
+	@include fontDefault($medium,$black);
+	input[type="text"] {
+		@include boxSizeBig();
+	}
+
+	div.radio{
+		margin-left:10px;
+	}
+
+	input[type="checkbox"],input[type="radio"]{
+		display:block;
+		float: left;
+		margin: 3px;
+	}
+
+}
+
+
+
+#project-search-list{
+	@include fontDefault($medium,$black);
+	
+	.list-group{
+		padding:10px;
+	}
+}
+
+/*Pagination*/
+.centered{
+	text-align: center;
+}
+.pagination.pagination-sm{
+	border:0px solid red;
+	li{
+
+		a{
+			@include fontDefault($medium,$green);
+		}
+
+	}
+}
+
+.pagination > .active > a{
+	background-color:#EEE;
+	border:1px solid #CCC;
+	color: #000;
+}
+
+.pagination > .active > a:hover{
+	background-color:#EEE;
+
+}
+
+
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+
+	z-index: 3;
+	color: #000;
+	cursor: default;
+	background-color: #EEE;
+	border-color: #EEE;
+
+}
+

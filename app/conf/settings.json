@@ -1,0 +1,46 @@
+{
+			"SEARCH": {
+				"GEO_NAMES_SERVICE_USER_NAME": "aiddata",
+				"FUZZY_LEVEL": 0
+			},
+
+			"API": {
+				"API_BASE_URL": {
+					"development": "http://localhost:3001",
+					"production": "http://geocoding.dgstg.org"
+				},
+
+				"PROJECT_LIST_END_POINT": "projects",
+
+				"PROJECT_END_POINT": "project"
+
+			},
+
+			"I18N": {
+
+				"OPTIONS": {
+					"development": {
+						"lng": "en",
+						"fallbackLng": "en",
+						"ns": ["translations"],
+						"defaultNS": "translations",
+						"fallbackNS": "common",
+						"backend": {
+							"loadPath": "/locales/{{lng}}/{{ns}}.json"
+						}
+					},
+
+					"production": {
+						"lng": "en",
+						"fallbackLng": "en",
+						"ns": ["translations"],
+						"defaultNS": "translations",
+						"fallbackNS": "common",
+						"backend": {
+							"loadPath": "locales/{{lng}}/{{ns}}.json"
+						}
+					}
+					}
+
+				}
+			}

@@ -5,7 +5,7 @@ window._setting_instance=null;
 require('bootstrap/dist/css/bootstrap.css');
 require('font-awesome/css/font-awesome.css');
 require('intro.js/introjs.css');
-require('../stylesheets/control.layers.minimap.css');
+
 require('babel-polyfill');
 
 require('../stylesheets/main.scss');
@@ -53,7 +53,7 @@ class NoMatch extends React.Component{
 
 
 AjaxUtil.get('conf/settings.json').then((conf)=>{
-  debugger;
+  
   let settings=new Setting();
   settings.initialize(conf.data);
   const options = settings.get('I18N', 'OPTIONS');

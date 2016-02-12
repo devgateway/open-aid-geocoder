@@ -1,0 +1,40 @@
+
+.header{
+	.navbar{
+		border: 1px rgb(244,244,244);
+		height: 38px;
+		min-height: 38px !important;
+		background-color:rgb(249,249,249);
+		margin:0px;
+	}
+
+	.container-fluid {
+		padding-right: 0px; 
+		padding-left: 0px; 
+	}
+
+	.navbar-header{
+		height:36px;
+
+	}
+
+	.navbar-brand {
+		margin:0px 0px 0px 10px !important;
+		padding: 0px 0px;
+
+		@include fontDefault($huge,$darkGray);
+		font-weight: normal;
+
+		@include middle();
+
+	}
+	
+	.nav {
+		padding-left: 0;
+		margin-bottom: 0;
+		list-style: none;
+		height: 38px;
+		/* border: 1px solid red; */
+	}
+
+}
