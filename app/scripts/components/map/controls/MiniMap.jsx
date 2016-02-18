@@ -14,41 +14,51 @@ export default class  extends MapControl {
 
 
 	constructor() {
+		debugger;	
 		super();
 		this.state =Object.assign({overlay:{} ,baseLayers:BaseLayerStore.get()});
 	}
 
 
-	componentDidMount() {
-		
+	componentDidMount() {	
+		debugger;	
 		this.leafletElement = control.layers.minimap(this.state.baseLayers, this.state.overlay, {
 			collapsed: true,
 			overlayBackgroundLayer: this.state.baseLayers.OpenStreetMap
 		}).addTo(this.props.map);
+		
+		this.map=this.props.map;
 
 		this.state.baseLayers.OpenStreetMap.addTo(this.props.map);		
 		this.initiated=true;
 
 	}
 
+	//componentWillUnmount(){
+	//	super.componentWillUnmount();
+	//	this.leafletElement = null;
+	//}
 
-	addLayer(layer,name,showAsMiniMap){
-		
+	addLayer(layer,name,showAsMiniMap){	
 		if (!this.initiated){
 			let newState=Object.assign({},this.state);
 
 			newState.overlay[name]={layer,showAsMiniMap};
 
 			this.setState(newState)
-		}else{
-			this.leafletElement.addOverlay(layer, name,showAsMiniMap)
+		} else {
+			//if (this.leafletElement){
+				this.leafletElement.addOverlay(layer, name,showAsMiniMap);
+			//}
 		}
 		this.props.map.addLayer(layer);
 	}
 
 	removeLayer(layer){
 		this.props.map.removeLayer(layer);
-		this.leafletElement.removeLayer(layer);
+		if (this.leafletElement._map){
+			this.leafletElement.removeLayer(layer);
+		}
 	}
 
 	getClonedChildrenWithMap(extra) {
