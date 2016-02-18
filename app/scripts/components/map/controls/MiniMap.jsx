@@ -20,19 +20,23 @@ export default class  extends MapControl {
 
 
 	componentDidMount() {		
+	
+		this.state.baseLayers.OpenStreetMap.addTo(this.props.map);
+				
 		this.leafletElement = control.layers.minimap(this.state.baseLayers, this.state.overlay, {
 			collapsed: true,
 			overlayBackgroundLayer: this.state.baseLayers.OpenStreetMap
 		}).addTo(this.props.map);
 		
-		this.map=this.props.map;
 
-		this.state.baseLayers.OpenStreetMap.addTo(this.props.map);		
+	
 		this.initiated=true;
-
+			//force update
+	
 	}
 
 	componentWillUnmount(){
+	
 		super.componentWillUnmount();
 		this.leafletElement = null;
 	}
