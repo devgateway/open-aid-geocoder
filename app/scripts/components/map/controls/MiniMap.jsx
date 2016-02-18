@@ -14,14 +14,12 @@ export default class  extends MapControl {
 
 
 	constructor() {
-		debugger;	
 		super();
 		this.state =Object.assign({overlay:{} ,baseLayers:BaseLayerStore.get()});
 	}
 
 
-	componentDidMount() {	
-		debugger;	
+	componentDidMount() {		
 		this.leafletElement = control.layers.minimap(this.state.baseLayers, this.state.overlay, {
 			collapsed: true,
 			overlayBackgroundLayer: this.state.baseLayers.OpenStreetMap
@@ -34,10 +32,10 @@ export default class  extends MapControl {
 
 	}
 
-	//componentWillUnmount(){
-	//	super.componentWillUnmount();
-	//	this.leafletElement = null;
-	//}
+	componentWillUnmount(){
+		super.componentWillUnmount();
+		this.leafletElement = null;
+	}
 
 	addLayer(layer,name,showAsMiniMap){	
 		if (!this.initiated){
@@ -47,16 +45,16 @@ export default class  extends MapControl {
 
 			this.setState(newState)
 		} else {
-			//if (this.leafletElement){
+			if (this.leafletElement){
 				this.leafletElement.addOverlay(layer, name,showAsMiniMap);
-			//}
+			}
 		}
 		this.props.map.addLayer(layer);
 	}
 
 	removeLayer(layer){
 		this.props.map.removeLayer(layer);
-		if (this.leafletElement._map){
+		if (this.leafletElement){
 			this.leafletElement.removeLayer(layer);
 		}
 	}
