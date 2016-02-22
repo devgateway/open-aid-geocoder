@@ -22,7 +22,7 @@ class InfoControl extends React.Component {
 
   constructor() {
     super();
-    this.state = {expanded:true, project:{}, locationsCount: 0};
+    this.state = {expanded:true, project:{}, locationsCount: 0, showTab: 1};
   }
 
   componentWillMount() {
@@ -52,7 +52,16 @@ class InfoControl extends React.Component {
 
   onLocationsLoaded(data){
     let newState=Object.assign({},this.state);
-    Object.assign(newState,{'locationsCount': data.locations.toJS().records.length})
+    if (data.loadingLocations){
+      Object.assign(newState,{'showTab': 3}); //if hit load locations, then show the results tab
+    }
+    Object.assign(newState,{'locationsCount': data.locations.toJS().records.length});
+    this.setState(newState);
+  }
+
+  handleSelect(key) {
+    let newState=Object.assign({},this.state);
+    Object.assign(newState,{'showTab': key});
     this.setState(newState);
   }
 
@@ -69,7 +78,7 @@ class InfoControl extends React.Component {
   }
 
   render() {
-
+    var activeTab = this.state.showTab || 1;
     return (    
       <div className="leaflet-control leaflet-control-layers" id="infoControl">
         {(!this.state.expanded)?<div className="control-info-toggle" title="Info Panel" onClick={this.toggle.bind(this)}></div>:
@@ -94,7 +103,7 @@ class InfoControl extends React.Component {
 
             </div>
             <div className="tab-container">
-              <Tabs defaultActiveKey={1}>
+              <Tabs activeKey={activeTab} onSelect={this.handleSelect.bind(this)}>
 
                 <Tab className="project-info" eventKey={1} title={Message.t('projectinfo.projectinfo')}>
                   <ProjectDescription  {...this.state.project}/>
