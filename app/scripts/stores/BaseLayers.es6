@@ -3,7 +3,7 @@ import * as Providers from 'leaflet-providers';
 import {createStore} from 'reflux';
 import Constants from '../constants/Contants.es6';
 import {StoreMixins} from '../mixins/StoreMixins.es6';
-
+import * as Actions from '../actions/Actions.es6';
 
 const initialData=
 {
@@ -74,15 +74,18 @@ const initialData=
 }
 
 
-
-
-
-
 const BaseLayers = createStore({
 
 	initialData: initialData,
 	mixins: [StoreMixins],
 
+	init() {
+		this.listenTo(Actions.get(Constants.ACTION_CLEAN_MAP_STORE), 'cleanStore');
+	},
+
+	cleanStore() {
+		this.setData(this.initialData);
+	}
 });
 
 export default	BaseLayers

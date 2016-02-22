@@ -15,28 +15,24 @@ export default class  extends MapControl {
 
 	constructor() {
 		super();
-		this.state =Object.assign({overlay:{} ,baseLayers:BaseLayerStore.get()});
+		let baseLayers = Object.assign({}, BaseLayerStore.get());
+		this.state =Object.assign({overlay:{} ,baseLayers: baseLayers});
 	}
 
-
 	componentDidMount() {		
-	
 		this.state.baseLayers.OpenStreetMap.addTo(this.props.map);
 				
 		this.leafletElement = control.layers.minimap(this.state.baseLayers, this.state.overlay, {
 			collapsed: true,
 			overlayBackgroundLayer: this.state.baseLayers.OpenStreetMap
 		}).addTo(this.props.map);
-		
-
 	
 		this.initiated=true;
-			//force update
 	
 	}
 
 	componentWillUnmount(){
-	
+		this.props.map.eachLayer(function(i){this.props.map.removeLayer(i);}.bind(this));//removes all layers from map
 		super.componentWillUnmount();
 		this.leafletElement = null;
 	}
