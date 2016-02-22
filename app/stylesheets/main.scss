@@ -163,10 +163,7 @@ h4{
 	border-radius: 30%;
 
 	>div {
-		height: calc(100% - 51px);
-		height: -webkit-calc(100% - 51px);
-		height: -moz-calc(100% - 51px);
-		height: calc(100% - 51px);
+		height:100%;	
 
 	}
 }

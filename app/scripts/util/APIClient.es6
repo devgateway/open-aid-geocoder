@@ -33,9 +33,7 @@ export default class ApiClient {
 	 */
 	 static getProject(project_id) {
 	 	const API_BASE_URL=settings.get('API','API_BASE_URL')
-	 	const PROJECT_LIST_END_POINT=settings.get('API','PROJECT_LIST_END_POINT');
 	 	const PROJECT_END_POINT=settings.get('API','PROJECT_END_POINT');
-
 
 	 	return new Promise((resolve, reject) => {
 	 		AjaxUtil.get(`${API_BASE_URL}/${PROJECT_END_POINT}/${project_id}`)
@@ -53,7 +51,8 @@ export default class ApiClient {
 	 * @return {} project
 	 */
 	 static saveProject(project) {
-
+	 	const API_BASE_URL=settings.get('API','API_BASE_URL')
+	 	const PROJECT_END_POINT=settings.get('API','PROJECT_END_POINT');
 	 	let url = `${API_BASE_URL}/${PROJECT_END_POINT}/${project.project_id}`;
 
 	 	return new Promise((resolve, reject) => {
