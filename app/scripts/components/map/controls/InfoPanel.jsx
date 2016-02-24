@@ -90,7 +90,8 @@ class InfoControl extends React.Component {
             <div className="panel-heading">
 
               <div className="options"> 
-                <div className="small-title header-icon" >  
+                <div className="header-icon"/>    
+                <div className="small-title" >  
                   {this.state.project.project_id}
                 </div>    
                 <div className="separator"/>    

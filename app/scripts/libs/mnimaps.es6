@@ -82,8 +82,9 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
     var closeDiv= L.DomUtil.create('div', 'close-btn');
     closeDiv.innerHTML='<i class="fa fa-times-circle-o"></i>';
 
-    var form = this._form = L.DomUtil.create('form', className + '-list');
-    form.appendChild(closeDiv)
+    var formContainer = this._form = L.DomUtil.create('form', className + '-list');
+    var form = this._form = L.DomUtil.create('div', className + '-container');
+    formContainer.appendChild(closeDiv);
 
     if (this.options.collapsed) {
       if (!L.Browser.android) {
@@ -122,7 +123,8 @@ L.Control.Layers.Minimap = L.Control.Layers.extend({
 
     this._baseLayersList = L.DomUtil.create('div', className + '-base', form);
 
-    container.appendChild(form);
+    formContainer.appendChild(form);
+    container.appendChild(formContainer);
 
     L.DomUtil.addClass(this._container, 'leaflet-control-layers-minimap');
     L.DomEvent.on(this._container, 'scroll', this._onListScroll, this);
