@@ -5,13 +5,15 @@ const Datastore = require('nedb'),
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const Axios = require('axios');
-const port = 3001;
+const port = 3000;
 
 server.connection({
-    host: 'localhost',
     port: port,
     routes: {
-        cors: true
+        cors: {
+            origin :['*'],
+            methods :['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        }
     }
 });
 
