@@ -35,8 +35,9 @@ server.route({
 
 
         if (t && t != '') {
+            const text=t.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
             findParams['title'] = {
-                $regex: new RegExp(t, "i")
+                $regex: new RegExp(text, "i"),
             };
         }
 
