@@ -34,7 +34,7 @@ Run gulp build-prod to build a distributable application.
 
 Run gulp deploy to push dist folder into gh_pages branch 
 
-
+##Copyright
 
 Copyright 2015-20016 Development Gateway
 
