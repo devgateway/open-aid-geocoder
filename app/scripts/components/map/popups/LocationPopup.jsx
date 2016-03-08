@@ -99,21 +99,21 @@ class InfoView extends React.Component {
           </div>
 
           <div className="row border">
-            <div className="col-lg-4">
+            <div className="col-lg-3">
                 <label className="mini"><Message k="dataentry.identifier"/></label>
             </div>
             <div className="col-lg-4">
              
                 <label className="mini"><Message k="dataentry.type"/></label>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-5">
                 <label className="mini"><Message k="dataentry.coordinates"/></label>
             </div>
           </div>
 
 
            <div className="row">
-            <div className="col-lg-4">
+            <div className="col-lg-3">
                 <label className="green text-large bolder">{this.props.id}</label>
               
             </div>
@@ -122,9 +122,10 @@ class InfoView extends React.Component {
                 <label className="green text-large bolder">{this.props.geometry.type}</label>
               
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-5">
                <label className="green text-large bolder">
-               ({this.props.geometry.coordinates?this.props.geometry.coordinates.map(function(c){return parseFloat(c).toFixed(3)+" "}):null}</label>)
+                  {this.props.geometry.coordinates?this.props.geometry.coordinates.map(function(c){return parseFloat(c).toFixed(3)+" "}):null}
+                </label>
             </div>
           </div>
 
