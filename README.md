@@ -36,7 +36,7 @@ Run gulp deploy to push dist folder into gh_pages branch
 
 ##Copyright
 
-Copyright 2015-20016 Development Gateway
+Copyright 2015-2016 Development Gateway
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
