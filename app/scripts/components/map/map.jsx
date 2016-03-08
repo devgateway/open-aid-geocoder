@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react';
 import { PropTypes } from 'react';
 
 import {L, Popup, Map, Marker, TileLayer,ZoomControl,MapLayer,ScaleControl} from 'react-leaflet'; 
@@ -30,6 +31,17 @@ import DataEntryPopup from '../dialogs/DataEntry.jsx';
 
 /*Store*/
 import MapStore from '../../stores/Map.es6';
+
+
+ const MapSize=React.createClass({
+   componentDidMount(){
+   
+   },
+
+  render(){
+     return null;
+  }
+ });
 
 export default class MapView extends React.Component {
 
@@ -115,7 +127,7 @@ export default class MapView extends React.Component {
           <DataEntryPopup/>
           
           <Map   {...this.state.map}  ref="map">
-            
+            <MapSize/>
             <MiniMap  collapsed={true} position='topright' topPadding= {1500} bottomPadding= {40}>            
               <LayerGroup name="Administrative Shapes" ref="country" showAsMiniMap={false}>
                 {this.state.layers.countries?this.state.layers.countries.map((country)=>{
