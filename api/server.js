@@ -1,7 +1,10 @@
 'use strict'
 const INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/api/data/projects.json';
+
+const DATABASE_PATH = __dirname + '/data/';
+const filename = DATABASE_PATH + '/project-data.json';
 const Datastore = require('nedb'),
-    db = new Datastore();
+    db = new Datastore({ filename: filename, autoload: true });
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const Axios = require('axios');
@@ -102,30 +105,36 @@ server.route({
 });
 
 
-
-Axios.get(INITIAL_PROJECT_LIST_URL, {
-    responseType: 'json',
-    params: {}
-}).then(function(response) {
-
-    console.log('inserting projects docs into nedb ---> total: ' + response.data.length);
-
-    db.insert(response.data, function(err, newDoc) {
-        if (err) {
-            console.log('error: ' + err);
-        } else {
-
-
-            server.start((err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log('API running listening on', server.info.uri);
-            });
-
-        }
-    });
-
-}).catch(function(response) {
-    console.log('fail!');
+server.start((err) => {
+    if (err) {
+        throw err;
+    }
+    console.log('API running listening on', server.info.uri);
 });
+
+// Axios.get(INITIAL_PROJECT_LIST_URL, {
+//     responseType: 'json',
+//     params: {}
+// }).then(function(response) {
+
+//     console.log('inserting projects docs into nedb ---> total: ' + response.data.length);
+
+//     db.insert(response.data, function(err, newDoc) {
+//         if (err) {
+//             console.log('error: ' + err);
+//         } else {
+
+
+//             server.start((err) => {
+//                 if (err) {
+//                     throw err;
+//                 }
+//                 console.log('API running listening on', server.info.uri);
+//             });
+
+//         }
+//     });
+
+// }).catch(function(response) {
+//     console.log('fail!');
+// });

@@ -6,7 +6,7 @@
 
 	"API": {
 		"API_BASE_URL": {
-			"development": "http://localhost:3001",
+			"development": "http://localhost:3333",
 			"production": "http://geocoding.dgstg.org"
 		},
 
