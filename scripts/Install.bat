@@ -11,7 +11,7 @@ del tmp.zip
 
 move tmp\open-aid-geocoder-windows-local .
 
-del tmp
+rmdir \Q tmp
 
 cd open-aid-geocoder-windows-local
 
@@ -20,3 +20,8 @@ npm install
 cd api
 
 npm install
+
+cd ..\..
+
+move open-aid-geocoder-windows-local\scripts\Start.bat .
+
