@@ -10,7 +10,8 @@
   "author": "Sebastian Dimunzio <sdimunzio@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.9.1"
+    "axios": "^0.9.1",
+    "csvtojson": "^0.5.8"
   },
   "devDependencies": {
     "hapi": "^13.0.0",

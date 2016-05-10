@@ -104,6 +104,78 @@ server.route({
     }
 });
 
+server.route({
+    method: 'get',
+    path: '/import-http',
+    handler: function(request, reply) {
+        const url = request.url.query.url ? request.url.query.url : INITIAL_PROJECT_LIST_URL;
+        console.log('Getting data from: ' + url);
+        Axios.get(url, {
+            responseType: 'json',
+            params: {}
+        }).then(function(response) {
+            for(let i = 0; i < response.data.length; i++) {
+                db.findOne({
+                    project_id: response.data[i].project_id
+                }, function(err, project) {
+                    //console.log(project);
+                    if(!project) {
+                        db.insert(response.data[i], function(err, newDoc) {
+                            if(err) {
+                                console.log('error: ' + error);
+                            } else {
+                                console.log('inserted');
+                            }
+                        });
+                    }
+                })   
+            }
+            reply('Import completed');
+        }).catch(function(response) {
+            console.log('fail!');
+            reply('Error');
+        });
+    }
+});
+
+var Converter = require("csvtojson").Converter;
+var converter = new Converter({});
+
+server.route({
+    method: 'post',
+    path: '/import-file',
+    config: {
+        payload: {
+            maxBytes: 209715200,
+            output:'stream',
+            parse: true
+        },
+        handler: function(request, reply) {
+            converter.on("end_parsed", function (jsonArray) {
+               console.log(jsonArray); //here is your result jsonarray
+               reply('Import completed');
+            });
+            converter.on("record_parsed", function (jsonObj) {
+                console.log(jsonObj); //here is your result json object 
+                db.findOne({
+                    project_id: jsonObj.project_id
+                }, function(err, project) {
+                    //console.log(project);
+                    if(!project) {
+                        db.insert(jsonObj, function(err, newDoc) {
+                            if(err) {
+                                console.log('error: ' + error);
+                            } else {
+                                console.log('inserted');
+                            }
+                        });
+                    }
+                });
+            });
+            request.payload["imported-file"].pipe(converter);
+        }
+    }
+});
 
 server.start((err) => {
     if (err) {
@@ -111,30 +183,3 @@ server.start((err) => {
     }
     console.log('API running listening on', server.info.uri);
 });
-
-// Axios.get(INITIAL_PROJECT_LIST_URL, {
-//     responseType: 'json',
-//     params: {}
-// }).then(function(response) {
-
-//     console.log('inserting projects docs into nedb ---> total: ' + response.data.length);
-
-//     db.insert(response.data, function(err, newDoc) {
-//         if (err) {
-//             console.log('error: ' + err);
-//         } else {
-
-
-//             server.start((err) => {
-//                 if (err) {
-//                     throw err;
-//                 }
-//                 console.log('API running listening on', server.info.uri);
-//             });
-
-//         }
-//     });
-
-// }).catch(function(response) {
-//     console.log('fail!');
-// });
