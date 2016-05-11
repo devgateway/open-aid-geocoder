@@ -177,6 +177,67 @@ server.route({
     }
 });
 
+server.route({
+    method: 'get',
+    path: '/export',
+    handler: function(request, reply) {
+        const skip = request.query.skip || 0;;
+        const limit = request.query.limit || (1000);
+        const sort = request.query.sort || 'title';
+        const order = request.query.oder || 1;
+        const t = request.query.t;
+
+        let sortParam = {};
+        sortParam[sort] = order;
+
+        let findParams = {};
+
+
+        if (t && t != '') {
+            const text=t.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            findParams['title'] = {
+                $regex: new RegExp(text, "i"),
+            };
+        }
+
+        db.count(findParams, function(err, count) {
+            db.find(findParams).sort(sortParam).skip(parseInt(skip)).limit(parseInt(limit)).exec(function(err, docs) {
+                const exportOjb = { 
+                    type: 'FeatureCollection',
+                    features: []
+                };
+                for (let i = 0; i < docs.length; i++) {
+                    if(docs[i] && docs[i].locations) {
+                        for (let j = 0; j < docs[i].locations.length; j++) {
+                            exportOjb.features.push({
+                                type: 'Feature',
+                                geometry: docs[i].locations[j].geometry,
+                                properties: {
+                                    project_id: docs[i].project_id,
+                                    title: docs[i].title,
+                                    long_description: docs[i].long_description,
+                                    name: docs[i].locations[j].name,
+                                    id: docs[i].locations[j].id,
+                                    description: docs[i].locations[j].description,
+                                    activityDescription: docs[i].locations[j].activityDescription,
+                                    country: docs[i].locations[j].country,
+                                    admin1: docs[i].locations[j].admin1,
+                                    toponymName: docs[i].locations[j].toponymName,
+                                    featureDesignation: docs[i].locations[j].featureDesignation,
+                                    type: docs[i].locations[j].type,
+                                    locationClass: docs[i].locations[j].locationClass,
+                                    exactness: docs[i].locations[j].exactness
+                                }
+                            });
+                        }
+                    }
+                }
+                reply(exportOjb);
+            });
+        });
+    }
+});
+
 server.start((err) => {
     if (err) {
         throw err;
