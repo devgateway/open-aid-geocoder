@@ -1,21 +1,14 @@
 import AjaxUtil from './AjaxUtil.es6';
-//TODO: this can be moved to Settings;
-let _mappings = [
-	{'name': 'Mozambique', 'iso': 'MOZ', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/MOZ.json'},
-	{'name': 'Tanzania', 'iso': 'TZA', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/TZA.json'},
-	{'name': 'Malawi', 'iso': 'MWI', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/MWI.json'},
-	{'name': 'Zambia', 'iso': 'ZMB', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/ZMB.json'}
-	{'name': 'Afghanistan', 'iso': 'AFG', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/AFG.json'}
+import Settings from './Settings.es6';
 
-
-]
+let settings=Settings.getInstace();
 
 let util=AjaxUtil;
 
 export default class ShapesMapping {
 
 	static getGeoJsonShape (iso) {
-		let url = _mappings.find(mapping => mapping.iso == iso).url;
+		let url = settings.get('SHAPES', 'LIST').find(mapping => mapping.iso == iso).url;
 		if (!url) {
 			throw  `Can\'t find shape mapping for iso code ${iso}`
 		} else {
@@ -35,9 +28,7 @@ export default class ShapesMapping {
 
 	static getShapeList () {
 		return new Promise((resolve, reject) => {
-			degugger;
-			window._setting_instance.get('SHAPES');
-			resolve(_mappings);
+			resolve(settings.get('SHAPES', 'LIST'));
 		})
 	}
 
