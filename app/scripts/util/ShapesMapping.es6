@@ -5,7 +5,7 @@ let _mappings = [
 	{'name': 'Tanzania', 'iso': 'TZA', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/TZA.json'},
 	{'name': 'Malawi', 'iso': 'MWI', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/MWI.json'},
 	{'name': 'Zambia', 'iso': 'ZMB', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/ZMB.json'}
-
+	{'name': 'Afghanistan', 'iso': 'AFG', 'url' :'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/demo/shapes/AFG.json'}
 
 
 ]
@@ -34,7 +34,9 @@ export default class ShapesMapping {
 	}
 
 	static getShapeList () {
-		return new Promise((resolve, reject) => {	
+		return new Promise((resolve, reject) => {
+			degugger;
+			window._setting_instance.get('SHAPES');
 			resolve(_mappings);
 		})
 	}
