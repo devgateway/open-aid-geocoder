@@ -49,3 +49,14 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+## Local Install
+1- Install node on your pc, download it from https://nodejs.org/en/download/
+2- Create an empty folder where you want to install it
+3- Download the following file and save it on the empty folder: 
+	https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/update.sh
+	https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/install.sh
+4- Run update.sh
+5- Run install.sh
+6- The tool should work locally, run start.sh to start.
+

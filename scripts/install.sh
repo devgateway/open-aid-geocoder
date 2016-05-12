@@ -1,4 +1,4 @@
-
+#!/bin/bash
 echo "******************************"
 echo "* Installing geocoder plugin *"
 echo "******************************"
@@ -7,18 +7,17 @@ wget "https://github.com/devgateway/open-aid-geocoder/archive/windows-local.zip"
 
 unzip windows-local.zip
 
-#rm windows-local.zip
+rm windows-local.zip
 
-mv open-aid-geocoder-windows-local .
-
-rm -r open-aid-geocoder-windows-local
+mv open-aid-geocoder-windows-local open-aid-geocoder
 
 npm install
 
-cd api
+cd open-aid-geocoder/api
 
 npm install
 
-cd ..\..
+cd ../..
 
-mv scripts\Start.bat .
+mv open-aid-geocoder/scripts/start.sh .
+
