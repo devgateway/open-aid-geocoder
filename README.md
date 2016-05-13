@@ -51,12 +51,61 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ## Local Install
-1- Install node on your pc, download it from https://nodejs.org/en/download/
-2- Create an empty folder where you want to install it
-3- Download the following file and save it on the empty folder: 
+
+1- Install node on your local computer, download it from https://nodejs.org/en/download/
+
+2- Make sure node is installed correctly, Open a terminal and type the following commands:
+
+``` 
+node -v
+npm -v
+```
+	The output of these command should look like
+```
+$ node -v
+v4.4.3
+$ npm -v
+2.15.1
+```
+
+3- Create an empty folder where you want to install it
+
+4- Download the following file and save it on the empty folder: 
+```
 	https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/update.sh
 	https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/install.sh
-4- Run update.sh
-5- Run install.sh
-6- The tool should work locally, run start.sh to start.
+```
+4.1 - To save the files, right click on the url and select "save link as" option.
 
+5 Run the scripts
+
+5.1 - Open a Terminal
+
+5.2 - Browser to the install folder. (i.e: cd /path-to-folder)
+
+5.3 - Run the following commands to add execute permision:
+
+``` 
+chmod +x update.sh
+chmod +x install.sh
+```
+
+5.4- Run update command
+
+``` ./update.sh```
+5.5- Run install command
+``` ./install.sh```
+
+6- The tool should work locally The empty folder shall contain start.sh file and open-aid-geocoder folder.
+
+6.1 - Add execute permision:
+``` 
+chmod +x start.sh
+```
+
+6.2 - Run the application
+```
+./start.sh 
+```
+
+7 - A new browser shall be open with the tool.
