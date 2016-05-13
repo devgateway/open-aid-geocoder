@@ -73,6 +73,7 @@ $ npm -v
 4. Download the following file and save it on the empty folder: 
 
 https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/update.sh
+
 https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/install.sh
 
 4.1. To save the files, right click on the url and select "save link as" option.
@@ -122,14 +123,17 @@ open-aid-geocoder/api/data/project-data.json
 open-aid-geocoder/import.html
 ```
 9.2. Select the file with projects to import. It must have the following format:
-| project_id    | title         | long_description  |
-| ------------- |:-------------:| -----:|
-| 123           | Mafambisse Sugar Rehabilitation Test | The project aims at restoring and sustaining the productive capacity of the Mafambisse plantation and factory.  |
-| 1234          | Cashew Rehabilitation Project      | The objective of the project is to increase the production of raw cashew nuts |
+
+ project_id    | title         | long_description
+ --- | --- | ---
+ 123           | Mafambisse Sugar Rehabilitation Test | The project aims at restoring and sustaining the productive capacity of the Mafambisse plantation and factory.
+ 1234          | Cashew Rehabilitation Project      | The objective of the project is to increase the production of raw cashew nuts
+
+
 9.3 Click on the import button and you could start using them
 
 10. To export the project to GeoJson. Right click on the following url and select "save link as" option.
-```
+
 http://localhost:3333/export
-```
+
 
