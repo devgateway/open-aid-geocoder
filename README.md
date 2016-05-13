@@ -89,13 +89,14 @@ $ npm -v
 chmod +x update.sh
 chmod +x install.sh
 ```
-
 5.4- Run update command
-
-``` ./update.sh```
+```
+./update.sh
+```
 5.5- Run install command
-``` ./install.sh```
-
+```
+./install.sh
+```
 6- The tool should work locally The empty folder shall contain start.sh file and open-aid-geocoder folder.
 
 6.1 - Add execute permision:
