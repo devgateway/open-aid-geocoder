@@ -55,19 +55,17 @@ limitations under the License.
 1. Install node on your local computer, download it from https://nodejs.org/en/download/
 
 2. Make sure node is installed correctly, Open a terminal and type the following commands:
-
 ``` 
 node -v
 npm -v
 ```
-	The output of these command should look like
+2.2. The output of these command should look like
 ```
 $ node -v
 v4.4.3
 $ npm -v
 2.15.1
 ```
-
 3. Create an empty folder where you want to install it
 
 4. Download the following file and save it on the empty folder: 
@@ -85,7 +83,6 @@ https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/insta
 5.2. Browser to the install folder. (i.e: cd /path-to-folder)
 
 5.3. Run the following commands to add execute permision:
-
 ``` 
 chmod +x update.sh
 chmod +x install.sh
@@ -111,6 +108,7 @@ chmod +x start.sh
 ```
 
 7. A new browser shall be open with the tool.
+
 8. The project shall be save in:
 ```
 open-aid-geocoder/api/data/project-data.json
@@ -118,22 +116,22 @@ open-aid-geocoder/api/data/project-data.json
 8.1. You could delete or rename it in order to clean the project
 
 9. You could add more project by import them
+
 9.1. Open the following file:
 ```
 open-aid-geocoder/import.html
 ```
 9.2. Select the file with projects to import. It must have the following format:
 
- project_id    | title         | long_description
- --- | --- | ---
- 123           | Mafambisse Sugar Rehabilitation Test | The project aims at restoring and sustaining the productive capacity of the Mafambisse plantation and factory.
- 1234          | Cashew Rehabilitation Project      | The objective of the project is to increase the production of raw cashew nuts
-
+project_id    | title         | long_description
+--- | --- | ---
+123           | Mafambisse Sugar Rehabilitation Test | The project aims at restoring and sustaining the productive capacity of the Mafambisse plantation and factory.
+1234          | Cashew Rehabilitation Project      | The objective of the project is to increase the production of raw cashew nuts
 
 9.3 Click on the import button and you could start using them
 
 10. To export the project to GeoJson. Right click on the following url and select "save link as" option.
 
-http://localhost:3333/export
+[http://localhost:3333/export](http://localhost:3333/export)
 
 
