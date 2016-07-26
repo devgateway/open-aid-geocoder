@@ -71,8 +71,10 @@ $ npm -v
 4 - Download the following file and save it on the empty folder: 
 
 https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/update.sh
+https://github.com/devgateway/open-aid-geocoder/blob/windows-local/open-aid-geocoder/scripts/Update Environment.bat (windows)
 
 https://github.com/devgateway/open-aid-geocoder/blob/windows-local/scripts/install.sh
+https://github.com/devgateway/open-aid-geocoder/blob/windows-local/open-aid-geocoder/scripts/Install.bat (windows)
 
 	To save the files, right click on the url and select "save link as" option.
 5 - Run the scripts.
