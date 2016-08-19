@@ -26,7 +26,11 @@ const initialData=
 
 	'Hydda Full': L.tileLayer.provider('Hydda.Full'),
 
-	'MapQuest OSM': L.tileLayer.provider('MapQuestOpen.OSM'),
+	'MapQuest OSM': L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.png', {
+		subdomains: '1234',
+		type: 'osm',
+		attribution: 'Tiles &copy; <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" />'
+	}),
 
 	'MapQuest Aerial': L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
 		attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
