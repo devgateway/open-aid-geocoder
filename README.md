@@ -74,7 +74,7 @@ $ npm -v
 
 [Update Windows](https://github.com/devgateway/open-aid-geocoder/raw/windows-local/scripts/Update Environment.bat)
 
-[Install Mac and Linux](https://github.com/devgateway/open-aid-geocoder/raw/windows-local/scripts/update.sh)
+[Install Mac and Linux](https://github.com/devgateway/open-aid-geocoder/raw/windows-local/scripts/install.sh)
 
 [Install Windows](https://github.com/devgateway/open-aid-geocoder/raw/windows-local/scripts/Install.bat)
 
