@@ -27,6 +27,7 @@ const ShapesStore = createStore({
 	},
 
 	loading(){
+		debugger;
 		//TODO:activate loading spiner 
 		console.log('Loading country shape')
 	},

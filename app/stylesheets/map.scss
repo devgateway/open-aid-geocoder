@@ -114,6 +114,8 @@
 	.countries-list{
 		background-color:#FFF;
 		width:365px;
+		max-height: 400px;
+		overflow: auto;
 	}
 	.close-btn{
 		margin-top: -16px;

@@ -48,7 +48,7 @@ module.exports = {
   resolve: {
     alias: {
       'react': path.join(__dirname, 'node_modules', 'react'),
-      'i18next': 'i18next/lib/index.js',
+      'i18next': 'i18next/index.js',
       'i18next-xhr-backend':'i18next-xhr-backend/lib/index.js'
       
     },

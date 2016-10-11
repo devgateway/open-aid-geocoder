@@ -15,7 +15,6 @@ export default class ApiClient {
 	 	const PROJECT_LIST_END_POINT=settings.get('API','PROJECT_LIST_END_POINT');
 	 	const PROJECT_END_POINT=settings.get('API','PROJECT_END_POINT');
 
-
 	 	return new Promise((resolve, reject) => {
 	 		AjaxUtil.get(`${API_BASE_URL}/${PROJECT_LIST_END_POINT}`,params)
 	 		.then((response) => {
@@ -66,4 +65,27 @@ export default class ApiClient {
 	 	})
 	 }
 
+
+
+	 static upload(file){
+	 	const API_BASE_URL=settings.get('API','API_BASE_URL')
+	 	const IMPORT_END_POINT=settings.get('API','IMPORT_END_POINT')
+	 	var data = new FormData();
+	 	data.append('file',file);
+		debugger;
+	 	return new Promise((resolve, reject) => {
+	 		AjaxUtil.post(`${API_BASE_URL}/${IMPORT_END_POINT}`,data).then((response) => {
+	 			debugger;
+	 			resolve(response);
+
+	 		})
+	 		.catch((response) => {
+	 			debugger;
+	 			reject(`got ${response.status}  ${response.statusText}`)
+	 		})
+
+	 	})
+	 
+	}	
+	 
 	}

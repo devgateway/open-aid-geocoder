@@ -10,16 +10,19 @@ import {
 from '../mixins/StoreMixins.es6';
 
 
-const pageSize = 10;
+const pageSize = 20;
 const initialData = {
+	files:[],
 	data: {},
+ 	'page':1,
 	params: {
 		t: '',
 		withLoc: 'none',
 		'skip': 0,
 		'limit': pageSize,
 		'sort': 'title',
-		'order': 1
+		'order': 1,
+		
 	}
 };
 const Projects = createStore({
@@ -30,6 +33,9 @@ const Projects = createStore({
 	init() {
 		this.data = initialData;
 		this.listenTo(Actions.get(Constants.ACTION_FIND_PROJECTS), 'loading');
+		this.listenTo(Actions.get(Constants.ACTION_SET_FILE), 'setFile');
+		this.listenTo(Actions.get(Constants.ACTION_UPLOAD_FILE).completed, 'uploadCompleted');
+				this.listenTo(Actions.get(Constants.ACTION_UPLOAD_FILE).failed, 'uploadCompleted');
 		this.listenTo(Actions.get(Constants.ACTION_FIND_PROJECTS).completed, 'completed');
 		this.listenTo(Actions.get(Constants.ACTION_FIND_PROJECTS).failed, 'failed');
 		this.listenTo(Actions.get(Constants.ACTION_FIND_PROJECTS_SET_PARAM), 'setParam');
@@ -62,10 +68,10 @@ const Projects = createStore({
 	},
 
 	setParam(param) {
-		
-		let resetParams=Object.assign({},{'page':1,'params':{'skip':0,'limit':10}},this.get().params);
+		debugger;
+		let resetParams=Object.assign({},this.get().params,{'skip':0});
 
-		let newState = this.cloneState({params:resetParams}); //reset pagination since it will be a new result
+		let newState = this.cloneState({page:1,params:resetParams}); //reset pagination since it will be a new result
 		
 		Object.assign(newState.params, param);
 		
@@ -74,6 +80,11 @@ const Projects = createStore({
 	},
 
 
+	setFile(files) {
+		let newState = this.cloneState({files:files}); //reset pagination since it will be a new result
+		this.setData(newState);
+		Actions.invoke(Constants.ACTION_UPLOAD_FILE, files[0]);
+	},
 
 	setPage(page) {
 		let skip = (page - 1) * pageSize;
@@ -83,6 +94,13 @@ const Projects = createStore({
 		this.setData(newState);
 		Actions.invoke(Constants.ACTION_FIND_PROJECTS, newState.params);
 	},
+
+	uploadCompleted(){
+		let newState = this.cloneState({files:[]}); //reset pagination since it will be a new result
+		this.setData(newState);
+	},
+
+
 
 
 
