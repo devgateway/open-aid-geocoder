@@ -29,8 +29,7 @@ class ProjectInfo extends React.Component {
             {this.props.long_description}  
           </p>
           
-        <div className="pull-right">Delete</div>
-        <div className="pull-right"> <Link to={'map/' + this.props.project_id}><Message k="projectlist.geocodeproject"/></Link></div>
+          <div className="pull-right"> <Link to={'map/' + this.props.project_id}><Message k="projectlist.geocodeproject"/></Link></div>
         <br/>        
       </div>
     )
@@ -172,7 +171,8 @@ class ProjectList extends React.Component {
         </Row>
         <Row>
           <Col className="centered">
-              <Pagination next={true}  maxButtons={10} prev={true} bsSize="small" items={this.state.pageCount} activePage={this.state.page} 
+              <Pagination next={true}  maxButtons={10} prev={true} bsSize="small" 
+              items={this.state.pageCount} activePage={this.state.page} 
               onSelect={this.handlePageChanged.bind(this)} />
           </Col>
         </Row>

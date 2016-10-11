@@ -37,7 +37,7 @@ const SingleProjectStore = createStore({
 		let project=response.data;
 		if (project.country){
 			debugger;
-			Actions.invoke(Constants.ACTION_LOAD_SHAPE,(project.country.iso3 || project.country.iso));
+			Actions.invoke(Constants.ACTION_LOAD_SHAPE,(project.country.iso3 || project.country.iso2 || project.country.iso));
 		}
 		Object.assign(project, {'locationsBackup': _.cloneDeep(project.locations)});//add a copy of the locations for rollback purposes
 		this.setData(project); 
