@@ -40,6 +40,17 @@ actionsDef[Constants.ACTION_SAVE_PROJECT] = {
 	children: ['completed', 'failed']
 }
 
+
+
+actionsDef[Constants.ACTION_UPLOAD_FILE] = {
+	children: ['completed', 'failed']
+}
+
+
+actionsDef[Constants.ACTION_SET_FILE];
+
+
+
 /*create async actions*/
 const actions = createActions(actionsDef);
 
@@ -122,6 +133,21 @@ actions[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST].listen(function() {
 	ShapesMapping.getShapeList().then((results) => actions[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST].completed(results))
 		.catch((message) => actions[Constants.ACTION_LOAD_COUNTRY_LAYER_LIST].failed(message));
 })
+
+actions[Constants.ACTION_UPLOAD_FILE].listen(function(file) {
+	debugger;
+	APIClient.upload(file)	
+		.then((results) => {
+			debugger;
+			actions[Constants.ACTION_UPLOAD_FILE].completed(results)
+		})
+		.catch((message) =>{
+			debugger
+			 actions[Constants.ACTION_UPLOAD_FILE].failed(message)
+		});
+})
+
+
 
 export {
 	get, invoke

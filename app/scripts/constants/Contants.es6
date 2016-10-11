@@ -70,6 +70,14 @@ export default class Constants {
 	static ACTION_CLEAN_MAP_STORE='ACTION_CLEAN_MAP_STORE';
 
 
+	static ACTION_SET_FILE='ACTION_SET_FILE';
+
+	static ACTION_UPLOAD_FILE='ACTION_UPLOAD_FILE';
+
+	static ACTION_DISABLE_IMPORT='ACTION_DISABLE_IMPORT';
+
+	static ACTION_ENABLE_IMPORT=' ACTION_ENABLE_IMPORT';
+
 	static LOCATION_CLASS_LIST = [{
 		'code': '1',
 		'name': 'Administrative Region',

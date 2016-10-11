@@ -17,6 +17,21 @@ export default class AjaxUtil {
 			});
 	}
 
+
+	static post(url, data) {
+		return new Promise(
+			function(resolve, reject) { // (A)
+				Axios.post(url,data)
+					.then(function(response) {
+						resolve(response);
+					})
+					.catch(function(response) {
+						reject(response);
+					});
+			});
+	}
+
+
 	static put(url, body = {}) {
 		return new Promise(
 			function(resolve, reject) { 
@@ -29,6 +44,7 @@ export default class AjaxUtil {
 					});
 			});
 	}
+
 
 
 }

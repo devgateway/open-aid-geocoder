@@ -7,7 +7,9 @@ import  * as Actions from '../../actions/Actions.es6';
 import Constants from '../../constants/Contants.es6';
 import Projects from '../../stores/Projects.es6';
 import Message from '../Message.jsx';
-/* Renders a quick project info view */
+import Dropzone from 'react-dropzone';
+
+/*Renders a quick project info view */
 
 class ProjectInfo extends React.Component {
   
@@ -19,10 +21,15 @@ class ProjectInfo extends React.Component {
     return (
       <div className={(this.props.locations && this.props.locations.length>0)?'bs-callout bs-callout-success':'bs-callout bs-callout-info'}>
         <div className="text-vertical">{this.props.project_id}</div>
-        <h3><Link to={'map/'+this.props.project_id}>{this.props.title}</Link> </h3>
-        <p>
-          {this.props.long_description}  
-        </p>
+        <h3><Link to={'map/'+this.props.project_id}>{this.props.title || this.props.alternate_title}</Link> </h3>
+          <span>
+           <b> {this.props.country.name}</b>  
+          </span>
+          <p>
+            {this.props.long_description}  
+          </p>
+          
+        <div className="pull-right">Delete</div>
         <div className="pull-right"> <Link to={'map/' + this.props.project_id}><Message k="projectlist.geocodeproject"/></Link></div>
         <br/>        
       </div>
@@ -83,9 +90,15 @@ class ProjectList extends React.Component {
   
   }
 
+  onDrop(files) {
+ 
+      Actions.invoke(Constants.ACTION_SET_FILE,files);
+  }
+
+
   render() {
-    
-    return (
+
+ return (
       <Grid>
         <Row>
           <Col>
@@ -93,21 +106,40 @@ class ProjectList extends React.Component {
           </Col>
         </Row>
         <div id="project-search-form"> 
+
           <Row>
-            <Col lg={12}>
+
+            <Col lg={8}>
               <Input  type="text"
-              name="t"
-              value={this.state.value}
-              placeholder="Enter text to search"
-              label="Text search"
-              // bsStyle={this.validationState()}
-              hasFeedback
-              ref="input"
-              groupClassName="group-class"
-              labelClassName="label-class"
-              onChange={this.handleChange.bind(this)} />
+                name="t"
+                value={this.state.value}
+                placeholder="Enter text to search"
+                label="Text search"
+                // bsStyle={this.validationState()}
+                hasFeedback
+                ref="input"
+                groupClassName="group-class"
+                labelClassName="label-class"
+                onChange={this.handleChange.bind(this)}/>
             </Col>
+
+            <Col lg={4}>
+        
+
+            {this.state.files.length>0?
+              <div  className="btn  btn-sm btn-default small upload" disabled={true}> import</div>
+              :<Dropzone onDrop={this.onDrop} multiple={false} accept="application/csv" className="btn  btn-sm btn-info small upload">
+                import
+              </Dropzone>} 
+              
+                 {this.state.files.length > 0 ? 
+                  <div>
+                     <span className="small">Uploading {this.state.files.length} files...</span>
+                  </div> : null}  
+            </Col>
+
           </Row>
+
           <Row>
             <Col lg={12}>
               <div className="form form-inline pull-rigth">
@@ -140,7 +172,8 @@ class ProjectList extends React.Component {
         </Row>
         <Row>
           <Col className="centered">
-              <Pagination next={true}  prev={true} bsSize="small" items={this.state.pageCount} activePage={this.state.page} onSelect={this.handlePageChanged.bind(this)} />
+              <Pagination next={true}  maxButtons={10} prev={true} bsSize="small" items={this.state.pageCount} activePage={this.state.page} 
+              onSelect={this.handlePageChanged.bind(this)} />
           </Col>
         </Row>
       </Grid>

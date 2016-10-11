@@ -87,6 +87,7 @@
     "webpack-hot-middleware": "^2.6.4"
   },
   "dependencies": {
-    "i18next": "^2.5.1"
+    "i18next": "^2.5.1",
+    "react-dropzone": "^2.2.4"
   }
 }

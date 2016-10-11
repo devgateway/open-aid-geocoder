@@ -1,10 +1,11 @@
-'use strict'
+'use strict';
 const INITIAL_PROJECT_LIST_URL = 'https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/api/data/projects.json';
-
 const DATABASE_PATH = __dirname + '/data/';
 const filename = DATABASE_PATH + '/project-data.json';
+const  fs = require('fs')
+
 const Datastore = require('nedb'),
-    db = new Datastore({ filename: filename, autoload: true });
+db = new Datastore({ filename: filename, autoload: true ,});
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const Axios = require('axios');
@@ -40,9 +41,16 @@ server.route({
 
         if (t && t != '') {
             const text=t.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-            findParams['title'] = {
-                $regex: new RegExp(text, "i"),
-            };
+            findParams['$or'] =  [
+                { title:{ $regex: new RegExp(text, "i") }},
+                { project_id: {$regex: new RegExp(text, "i") }},
+                { long_description: {$regex: new RegExp(text, "i") }},
+                { 'country.name': {$regex: new RegExp(text, "i") }}
+            
+                ];
+
+            
+
         }
 
         if (withLoc && withLoc == 'yes') {
@@ -73,22 +81,41 @@ server.route({
 
 
 server.route({
-        method: 'GET',
-        path: '/project/{id}',
-        config: {
-            cors: true,
-        },
-        handler: function(request, reply) {
-            
-            db.findOne({
-                project_id: parseInt(request.params.id)
-            }, function(err, project) {
-                reply(project);
-            })
-            
-        }
+    method: 'GET',
+    path: '/project/{id}',
+    config: {
+        cors: true,
+    },
+    handler: function(request, reply) {
+
+        db.findOne({
+            project_id: request.params.id
+        }, function(err, project) {
+            reply(project);
+        })
+
+    }
 });
 
+
+
+
+server.route({
+    method: 'DELETE',
+    path: '/project/{id}',
+    config: {
+        cors: true,
+    },
+    handler: function(request, reply) {
+
+        db.remove({
+            project_id: request.params.id
+        }, function(err, project) {
+            reply(true);
+        })
+
+    }
+});
 
 
 server.route({
@@ -97,7 +124,7 @@ server.route({
     handler: function(request, reply) {
         delete request.payload._id;
         db.update({
-            'project_id': parseInt(request.params.id)
+            'project_id': request.params.id
         }, request.payload, {}, function(err, numReplaced) {
             reply(request.payload);
         });
@@ -118,7 +145,7 @@ server.route({
                 db.findOne({
                     project_id: response.data[i].project_id
                 }, function(err, project) {
-                    //console.log(project);
+                    console.log(project);
                     if(!project) {
                         db.insert(response.data[i], function(err, newDoc) {
                             if(err) {
@@ -139,7 +166,10 @@ server.route({
 });
 
 var Converter = require("csvtojson").Converter;
-var converter = new Converter({});
+
+var readline = require('readline'),
+stream = require('stream');
+
 
 server.route({
     method: 'post',
@@ -148,31 +178,72 @@ server.route({
         payload: {
             maxBytes: 209715200,
             output:'stream',
-            parse: true
+            parse: true,
+            allow: 'multipart/form-data',
+
         },
         handler: function(request, reply) {
-            converter.on("end_parsed", function (jsonArray) {
-               console.log(jsonArray); //here is your result jsonarray
-               reply('Import completed');
-            });
-            converter.on("record_parsed", function (jsonObj) {
-                console.log(jsonObj); //here is your result json object 
-                db.findOne({
-                    project_id: jsonObj.project_id
-                }, function(err, project) {
-                    //console.log(project);
-                    if(!project) {
-                        db.insert(jsonObj, function(err, newDoc) {
-                            if(err) {
-                                console.log('error: ' + error);
-                            } else {
-                                console.log('inserted');
-                            }
-                        });
-                    }
+
+            var data=request.payload;
+
+            if (data.file) {
+                var name = data.file.hapi.filename;
+                var path = __dirname + "/uploads/" + name;
+                var file = fs.createWriteStream(path);
+
+                file.on('error', function (err) { 
+                    console.error(err) 
                 });
-            });
-            request.payload["imported-file"].pipe(converter);
+
+                data.file.pipe(file);
+
+
+
+                data.file.on('end', function (err) { 
+
+                var converter = new Converter({});  
+                converter.on("record_parsed", function (jsonObj) {
+                    db.findOne({
+                        project_id: jsonObj.project_id
+                    }, function(err, project) {
+                        
+                        if(!project) {
+                            db.insert(jsonObj, function(err, newDoc) {
+                                if(err) {
+                                    console.log('error: ' + error);
+                                } else {
+                                    console.log('inserted');
+                                }
+                            });
+                        }else{
+                            console.log('Project already exists '+jsonObj.project_id)
+                        }
+                    });
+                });
+
+                converter.on("end_parsed",function(){
+                   console.log("Completed"); 
+                   reply('Import completed');
+               })
+
+                converter.on("error",function(){
+                    console.log("Failed"); 
+                    
+                })
+
+
+                    fs.createReadStream(path,{encoding:'binary'}).pipe(converter);
+
+                })
+            }
+
+
+
+
+
+
+
+
         }
     }
 });

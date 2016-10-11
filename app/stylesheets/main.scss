@@ -73,7 +73,7 @@ $gray:rgb(243,243,243);
 
 body{
 	@include fontDefault($regular,$black);
-	overflow: hidden;
+	
 	padding: 0;
 	margin: 0;
 	width: 100%;

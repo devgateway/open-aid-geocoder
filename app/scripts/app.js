@@ -5,9 +5,7 @@ window._setting_instance=null;
 require('bootstrap/dist/css/bootstrap.css');
 require('font-awesome/css/font-awesome.css');
 require('intro.js/introjs.css');
-
 require('babel-polyfill');
-
 require('../stylesheets/main.scss');
 
 import React from 'react';

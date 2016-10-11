@@ -1,5 +1,3 @@
-
-
 @echo off
     for /R "./" %%f in (*.shp) do (
      	@echo Working on %%~nf

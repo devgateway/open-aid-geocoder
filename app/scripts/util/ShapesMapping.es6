@@ -8,6 +8,7 @@ let util=AjaxUtil;
 export default class ShapesMapping {
 
 	static getGeoJsonShape (iso) {
+		debugger;
 		let url = settings.get('SHAPES', 'LIST').find(mapping => mapping.iso == iso).url;
 		if (!url) {
 			throw  `Can\'t find shape mapping for iso code ${iso}`
