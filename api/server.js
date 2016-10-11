@@ -10,14 +10,41 @@ const Hapi = require('hapi');
 const server = new Hapi.Server();
 const Axios = require('axios');
 const port = 3333;
+const Path=require('path');
+const Inert = require('inert');
+const Zlib = require('zlib');
 
 server.connection({
     port: port,
+      compression:true,
     routes: {
+      
+        cors: true,
 
-        cors: true
+        files: {
+            relativeTo: Path.join(__dirname, 'dist')
+        }
+        
     }
 });
+
+
+
+
+server.register(Inert, () => {});
+
+server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+        directory: {
+            path: '.',
+            redirectToSlash: true,
+            index: true
+        }
+    }
+});
+
 
 //server.ext('onPreResponse', addCorsHeaders);
 server.route({
@@ -42,12 +69,12 @@ server.route({
         if (t && t != '') {
             const text=t.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
             findParams['$or'] =  [
-                { title:{ $regex: new RegExp(text, "i") }},
-                { project_id: {$regex: new RegExp(text, "i") }},
-                { long_description: {$regex: new RegExp(text, "i") }},
-                { 'country.name': {$regex: new RegExp(text, "i") }}
+            { title:{ $regex: new RegExp(text, "i") }},
+            { project_id: {$regex: new RegExp(text, "i") }},
+            { long_description: {$regex: new RegExp(text, "i") }},
+            { 'country.name': {$regex: new RegExp(text, "i") }}
             
-                ];
+            ];
 
             
 
@@ -201,35 +228,35 @@ server.route({
 
                 data.file.on('end', function (err) { 
 
-                var converter = new Converter({});  
-                converter.on("record_parsed", function (jsonObj) {
-                    db.findOne({
-                        project_id: jsonObj.project_id
-                    }, function(err, project) {
-                        
-                        if(!project) {
-                            db.insert(jsonObj, function(err, newDoc) {
-                                if(err) {
-                                    console.log('error: ' + error);
-                                } else {
-                                    console.log('inserted');
-                                }
-                            });
-                        }else{
-                            console.log('Project already exists '+jsonObj.project_id)
-                        }
+                    var converter = new Converter({});  
+                    converter.on("record_parsed", function (jsonObj) {
+                        db.findOne({
+                            project_id: jsonObj.project_id
+                        }, function(err, project) {
+
+                            if(!project) {
+                                db.insert(jsonObj, function(err, newDoc) {
+                                    if(err) {
+                                        console.log('error: ' + error);
+                                    } else {
+                                        console.log('inserted');
+                                    }
+                                });
+                            }else{
+                                console.log('Project already exists '+jsonObj.project_id)
+                            }
+                        });
                     });
-                });
 
-                converter.on("end_parsed",function(){
-                   console.log("Completed"); 
-                   reply('Import completed');
-               })
+                    converter.on("end_parsed",function(){
+                     console.log("Completed"); 
+                     reply('Import completed');
+                 })
 
-                converter.on("error",function(){
-                    console.log("Failed"); 
-                    
-                })
+                    converter.on("error",function(){
+                        console.log("Failed"); 
+
+                    })
 
 
                     fs.createReadStream(path,{encoding:'binary'}).pipe(converter);

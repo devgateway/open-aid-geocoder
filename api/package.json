@@ -11,10 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.9.1",
-    "csvtojson": "^0.5.8"
-  },
-  "devDependencies": {
+    "csvtojson": "^0.5.8",
     "hapi": "^13.0.0",
+    "inert": "^4.0.2",
     "nedb": "^1.7.3"
   }
 }
