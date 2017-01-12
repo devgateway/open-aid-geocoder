@@ -130,7 +130,9 @@ class ProjectList extends React.Component {
               :<Dropzone onDrop={this.onDrop} multiple={false} accept="application/csv" className="btn  btn-sm btn-info small upload">
                 {Message.t('projectlist.import')}
               </Dropzone>}
-                <a href='export' className="btn  btn-sm btn-info small export" >{Message.t('projectlist.export')} </a>
+                <a href='export' className="btn  btn-sm btn-info small export" >{Message.t('projectlist.geojsonexport')} </a>
+
+                <a href='export?f=kml' className="btn  btn-sm btn-info small export" >{Message.t('projectlist.kmlexport')} </a>
                  {this.state.files.length > 0 ?
                   <div>
                      <span className="small">{Message.t('projectlist.uploading')} {this.state.files.length} files...</span>

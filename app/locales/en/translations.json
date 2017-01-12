@@ -126,7 +126,8 @@
         "havelocations": "Having Locations",
         "nothavelocations": "Not having Location",
         "any": "Any of them",
-        "export": "Export",
+        "geojsonexport": "GeoJson",
+        "kmlexport":"Kml",
         "import": "Import"
     },
 
