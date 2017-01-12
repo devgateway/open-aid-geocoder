@@ -15,13 +15,20 @@
 		margin: 3px;
 	}
 
+	a{
+		cursor: pointer;
+	}
+
+	a:hover{
+		text-decoration: none;
+	}
 }
 
 
 
 #project-search-list{
 	@include fontDefault($medium,$black);
-	
+
 	.list-group{
 		padding:10px;
 	}
@@ -71,4 +78,3 @@
 	border-color: #EEE;
 
 }
-
