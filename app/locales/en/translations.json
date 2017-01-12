@@ -1,140 +1,142 @@
 {
-	
-	"general":{
-		"yes": "Yes",
-      	"no": "No"
-	},
 
-	"projects":{
-		"projectsCount": "{{count}} project found",
-      	"projectsCount_plural": "{{count}} projects found"
-	},
+    "general": {
+        "yes": "Yes",
+        "no": "No"
+    },
 
-	"header": {
-		"branding": "Open Aid Geocoder",
-		"language": {
-			"english": "English",
-			"spanish": "Spanish"
-		},
-		"search": {
-			"holder": "Enter text to search",
-			"label": "Search locations",
-			"fuzzy": "Fuzzy",
-			"country": "Country",
-			"submit": "search"
-		},
-		"options": {
-			"label": "Options"
-		}
-	},
+    "projects": {
+        "projectsCount": "{{count}} project found",
+        "projectsCount_plural": "{{count}} projects found"
+    },
 
-	"help": {
-		"header": {
-			"textinput": "Type a location name in this search box",
-			"fuzzycheck": "Select the \"Fuzzy\" checkbox to perform an approximate name search",
-			"countrycheck": "Select the \"Country\" checkbox to search for locations only within the country the project is located in",
-			"searchbtn": "Click the Search button to perform the search"
-		},
-		"main": {
-			"panel_title": "Project ID and title of the current project",
-			"panel_project": "Shows related project information for the current project",
-			"panel_geocoding": "Shows all existing and recently added geocoded locations for the current project",
-			"panel_locations": "Shows location search results",
-			"map": "Map shows existing (yellow) and recently added (green) geocoded locations for the current project, as well as search results (grey)",
-			"countrylayercontrol": "Click on this icon to manage country layers",
-			"layercontrol": "Click on this icon to manage layers and basemaps",
-			"infocontrol": "Information about the project",
-			"zoomcontrol": "Use the zoom controls to zoom the map in or out",
-			"cancelbtn": "Click on cancel to return to the project list",
-			"submitbtn": "Click on submit button to save your changes"
-		},
-		"dataentry": {
-			"noneditablefields": "The data for the following fields is automatically generated from the gazetteer and not editable by the user",
-			"adminoptions": "Use these options to select the source of the admin levels",
-			"locationclass": "Location class defines whether the location is a populated place (e.g. city or village), administrative division, or another topological feature (e.g. river or mountain)",
-			"exactness": "Exactness defines whether the location represents the most distinct point reasonably possible for this type of activity or if it is an approximation due to lack of more detailed data",
-			"activitydescription": "Add here a description for the activity at this location",
-			"savebtn": "Click here to save or update the location",
-			"cancelbtn": "Click here to cancel",
-			"deletebtn": "Click here to delete the location"
-		}
-	},
+    "header": {
+        "branding": "Open Aid Geocoder",
+        "language": {
+            "english": "English",
+            "spanish": "Spanish"
+        },
+        "search": {
+            "holder": "Enter text to search",
+            "label": "Search locations",
+            "fuzzy": "Fuzzy",
+            "country": "Country",
+            "submit": "search"
+        },
+        "options": {
+            "label": "Options"
+        }
+    },
 
-	"dataentry": {
-		"sourceadmin": {
-			"stored": "Stored",
-			"shapes": "Shapes",
-			"geonames": "Geonames"
-		},
-		"deletemessage": "This location will be marked as deleted, are you sure you want to continue?",
-		"name": "Name",
-		"country": "Country",
-		"firstadm": "First ADM",
-		"secondadm": "Second ADM",
-		"identifier": "Identifier",
-		"type": "Type",
-		"coordinates": "Coordinates",
-		"featuredesignation": "Feature Designation",
-		"locationclass": "Location Class",
-		"geographicexactness": "Geographic Exactness",
-		"activitydescription": "Activity Description",
-		"updatefromgeonames": "Update data from Geonames service",
-		"save": "Save",
-		"geometry": "Geometry",
-		"update": "Update",
-		"delete": "Delete",
-		"cancel": "Cancel",
-		"status": "Status"
-	},
+    "help": {
+        "header": {
+            "textinput": "Type a location name in this search box",
+            "fuzzycheck": "Select the \"Fuzzy\" checkbox to perform an approximate name search",
+            "countrycheck": "Select the \"Country\" checkbox to search for locations only within the country the project is located in",
+            "searchbtn": "Click the Search button to perform the search"
+        },
+        "main": {
+            "panel_title": "Project ID and title of the current project",
+            "panel_project": "Shows related project information for the current project",
+            "panel_geocoding": "Shows all existing and recently added geocoded locations for the current project",
+            "panel_locations": "Shows location search results",
+            "map": "Map shows existing (yellow) and recently added (green) geocoded locations for the current project, as well as search results (grey)",
+            "countrylayercontrol": "Click on this icon to manage country layers",
+            "layercontrol": "Click on this icon to manage layers and basemaps",
+            "infocontrol": "Information about the project",
+            "zoomcontrol": "Use the zoom controls to zoom the map in or out",
+            "cancelbtn": "Click on cancel to return to the project list",
+            "submitbtn": "Click on submit button to save your changes"
+        },
+        "dataentry": {
+            "noneditablefields": "The data for the following fields is automatically generated from the gazetteer and not editable by the user",
+            "adminoptions": "Use these options to select the source of the admin levels",
+            "locationclass": "Location class defines whether the location is a populated place (e.g. city or village), administrative division, or another topological feature (e.g. river or mountain)",
+            "exactness": "Exactness defines whether the location represents the most distinct point reasonably possible for this type of activity or if it is an approximation due to lack of more detailed data",
+            "activitydescription": "Add here a description for the activity at this location",
+            "savebtn": "Click here to save or update the location",
+            "cancelbtn": "Click here to cancel",
+            "deletebtn": "Click here to delete the location"
+        }
+    },
 
-	"layerselector": {
-		"managecountrylayers": "Manage Country Layers",
-		"countryboundaries": "Country Boundaries",
-		"loading": "(Loading)",
-		"add": "Add",
-		"remove": "Remove"
-	},
+    "dataentry": {
+        "sourceadmin": {
+            "stored": "Stored",
+            "shapes": "Shapes",
+            "geonames": "Geonames"
+        },
+        "deletemessage": "This location will be marked as deleted, are you sure you want to continue?",
+        "name": "Name",
+        "country": "Country",
+        "firstadm": "First ADM",
+        "secondadm": "Second ADM",
+        "identifier": "Identifier",
+        "type": "Type",
+        "coordinates": "Coordinates",
+        "featuredesignation": "Feature Designation",
+        "locationclass": "Location Class",
+        "geographicexactness": "Geographic Exactness",
+        "activitydescription": "Activity Description",
+        "updatefromgeonames": "Update data from Geonames service",
+        "save": "Save",
+        "geometry": "Geometry",
+        "update": "Update",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "status": "Status"
+    },
 
-	"submitgeocoding": {	
-		"submitmessage": "This will overwrite the project geocoding with the current changes.  Are you sure?",
-		"cancel": "Cancel",
-		"submit": "Submit"
-	},
+    "layerselector": {
+        "managecountrylayers": "Manage Country Layers",
+        "countryboundaries": "Country Boundaries",
+        "loading": "(Loading)",
+        "add": "Add",
+        "remove": "Remove"
+    },
 
-	"projectinfo": {	
-		"locationslist": {	
-			"edit": "Edit",
-			"mapit": "Map it"
-		},
-		"locationstatus": {	
-			"existing": "EXISTING",
-			"updated": "UPDATED",
-			"deleted": "DELETED",
-			"new": "NEW"
-		},
-		"locationtype": "Location Type",
-		"country": "Country",
-		"projectinfo": "Project Info",
-		"geocoding": "Geocoding",
-		"gazetteerlocations": "Gazetteer Locations",
-		"nogeocodingdata": "No Geocoding Data."
-	},
+    "submitgeocoding": {
+        "submitmessage": "This will overwrite the project geocoding with the current changes.  Are you sure?",
+        "cancel": "Cancel",
+        "submit": "Submit"
+    },
 
-	"projectlist": {
-		"geocodeproject": "Geocode Project",
-		"geocodingfilter": "Geocoding Filter",
-		"havelocations": "Having Locations",
-		"nothavelocations": "Not having Location",
-		"any": "Any of them"
-	},
+    "projectinfo": {
+        "locationslist": {
+            "edit": "Edit",
+            "mapit": "Map it"
+        },
+        "locationstatus": {
+            "existing": "EXISTING",
+            "updated": "UPDATED",
+            "deleted": "DELETED",
+            "new": "NEW"
+        },
+        "locationtype": "Location Type",
+        "country": "Country",
+        "projectinfo": "Project Info",
+        "geocoding": "Geocoding",
+        "gazetteerlocations": "Gazetteer Locations",
+        "nogeocodingdata": "No Geocoding Data."
+    },
 
-	"locationpopup": {
-		"adminsource": {
-			"stored": "Using stored values",
-			"shapes": "Using shape values",
-			"geonames": "Using gazetter values"
-		},
-		"picklocation": "Pick this location",
-		"update": "Update"
-	}
+    "projectlist": {
+        "geocodeproject": "Geocode Project",
+        "geocodingfilter": "Geocoding Filter",
+        "havelocations": "Having Locations",
+        "nothavelocations": "Not having Location",
+        "any": "Any of them",
+        "export": "Export",
+        "import": "Import"
+    },
+
+    "locationpopup": {
+        "adminsource": {
+            "stored": "Using stored values",
+            "shapes": "Using shape values",
+            "geonames": "Using gazetter values"
+        },
+        "picklocation": "Pick this location",
+        "update": "Update"
+    }
 }

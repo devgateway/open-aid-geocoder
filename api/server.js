@@ -18,13 +18,13 @@ server.connection({
     port: port,
       compression:true,
     routes: {
-      
+
         cors: true,
 
         files: {
-            relativeTo: Path.join(__dirname, 'dist')
+            relativeTo: Path.join(__dirname, '../dist')
         }
-        
+
     }
 });
 
@@ -73,10 +73,10 @@ server.route({
             { project_id: {$regex: new RegExp(text, "i") }},
             { long_description: {$regex: new RegExp(text, "i") }},
             { 'country.name': {$regex: new RegExp(text, "i") }}
-            
+
             ];
 
-            
+
 
         }
 
@@ -182,7 +182,7 @@ server.route({
                             }
                         });
                     }
-                })   
+                })
             }
             reply('Import completed');
         }).catch(function(response) {
@@ -218,17 +218,17 @@ server.route({
                 var path = __dirname + "/uploads/" + name;
                 var file = fs.createWriteStream(path);
 
-                file.on('error', function (err) { 
-                    console.error(err) 
+                file.on('error', function (err) {
+                    console.error(err)
                 });
 
                 data.file.pipe(file);
 
 
 
-                data.file.on('end', function (err) { 
+                data.file.on('end', function (err) {
 
-                    var converter = new Converter({});  
+                    var converter = new Converter({});
                     converter.on("record_parsed", function (jsonObj) {
                         db.findOne({
                             project_id: jsonObj.project_id
@@ -249,12 +249,12 @@ server.route({
                     });
 
                     converter.on("end_parsed",function(){
-                     console.log("Completed"); 
+                     console.log("Completed");
                      reply('Import completed');
                  })
 
                     converter.on("error",function(){
-                        console.log("Failed"); 
+                        console.log("Failed");
 
                     })
 
@@ -300,7 +300,7 @@ server.route({
 
         db.count(findParams, function(err, count) {
             db.find(findParams).sort(sortParam).skip(parseInt(skip)).limit(parseInt(limit)).exec(function(err, docs) {
-                const exportOjb = { 
+                const exportOjb = {
                     type: 'FeatureCollection',
                     features: []
                 };

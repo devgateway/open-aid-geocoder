@@ -12,25 +12,25 @@ import Dropzone from 'react-dropzone';
 /*Renders a quick project info view */
 
 class ProjectInfo extends React.Component {
-  
+
   constructor() {
     super();
   }
-  
+
   render() {
     return (
       <div className={(this.props.locations && this.props.locations.length>0)?'bs-callout bs-callout-success':'bs-callout bs-callout-info'}>
         <div className="text-vertical">{this.props.project_id}</div>
         <h3><Link to={'map/'+this.props.project_id}>{this.props.title || this.props.alternate_title}</Link> </h3>
           <span>
-           <b> {this.props.country.name}</b>  
+           <b> {this.props.country.name}</b>
           </span>
           <p>
-            {this.props.long_description}  
+            {this.props.long_description}
           </p>
-          
+
           <div className="pull-right"> <Link to={'map/' + this.props.project_id}><Message k="projectlist.geocodeproject"/></Link></div>
-        <br/>        
+        <br/>
       </div>
     )
   }
@@ -44,13 +44,13 @@ class ProjectList extends React.Component {
 
     this.state = Projects.get();
   }
-  
-  componentDidMount() {  
+
+  componentDidMount() {
   	this.unsuscribe=Projects.listen(this.onStoreChange.bind(this));
   }
 
   componentWillMount(){
-    Actions.invoke(Constants.ACTION_FIND_PROJECTS,this.state.params);  
+    Actions.invoke(Constants.ACTION_FIND_PROJECTS,this.state.params);
   }
 
   componentWillUnmount() {
@@ -63,34 +63,34 @@ class ProjectList extends React.Component {
   }
 
   validationState() {
-    
+
     let length = this.state.params.t?this.state.params.t.length:0;
     if (length > 3) return 'success';
     else if (length > 0) return 'warning';
     else if (length > 0) return 'error';
   }
-  
+
   search(){
     Actions.invoke(Constants.ACTION_FIND_PROJECTS,this.state.params);
   }
 
   handlePageChanged(event,target){
-    let page=target.eventKey; 
+    let page=target.eventKey;
     Actions.invoke(Constants.ACTION_FIND_PROJECTS_SET_PAGE,page);
   }
 
-  
+
   handleChange(event){
     let name=event.target.name;
     let value =event.target.value;
     let param={};
     param[name]=value;
     Actions.invoke(Constants.ACTION_FIND_PROJECTS_SET_PARAM,param);
-  
+
   }
 
   onDrop(files) {
- 
+
       Actions.invoke(Constants.ACTION_SET_FILE,files);
   }
 
@@ -104,7 +104,7 @@ class ProjectList extends React.Component {
               <h1>Projects</h1>
           </Col>
         </Row>
-        <div id="project-search-form"> 
+        <div id="project-search-form">
 
           <Row>
 
@@ -123,18 +123,18 @@ class ProjectList extends React.Component {
             </Col>
 
             <Col lg={4}>
-        
+
 
             {this.state.files.length>0?
               <div  className="btn  btn-sm btn-default small upload" disabled={true}> import</div>
               :<Dropzone onDrop={this.onDrop} multiple={false} accept="application/csv" className="btn  btn-sm btn-info small upload">
-                import
-              </Dropzone>} 
-              
-                 {this.state.files.length > 0 ? 
+                {Message.t('projectlist.import')}
+              </Dropzone>}
+                <a href='export' className="btn  btn-sm btn-info small export" >{Message.t('projectlist.export')} </a>
+                 {this.state.files.length > 0 ?
                   <div>
-                     <span className="small">Uploading {this.state.files.length} files...</span>
-                  </div> : null}  
+                     <span className="small">{Message.t('projectlist.uploading')} {this.state.files.length} files...</span>
+                  </div> : null}
             </Col>
 
           </Row>
@@ -143,7 +143,7 @@ class ProjectList extends React.Component {
             <Col lg={12}>
               <div className="form form-inline pull-rigth">
                 <label>
-                  <Message k="projectlist.geocodingfilter"/>  
+                  <Message k="projectlist.geocodingfilter"/>
                 </label>
                 <div className="form-group spacingLg">
                   <Input className="radio-inline" type="radio" name="withLoc" label={Message.t('projectlist.havelocations')} value="yes" checked={this.state.params.withLoc =='yes'}  onChange={this.handleChange.bind(this)}/>
@@ -161,8 +161,8 @@ class ProjectList extends React.Component {
         <Row id="project-search-list">
           <Col lg={12}>
             <ListGroup>
-              <h4> <Message k="projects.projectsCount" count={this.state.data.count}/> </h4> 
-              {this.state.data.projects?this.state.data.projects.map((project) => { 
+              <h4> <Message k="projects.projectsCount" count={this.state.data.count}/> </h4>
+              {this.state.data.projects?this.state.data.projects.map((project) => {
                   return <ProjectInfo key={project._id} {...project}/>
                 }):null
               }
@@ -171,8 +171,8 @@ class ProjectList extends React.Component {
         </Row>
         <Row>
           <Col className="centered">
-              <Pagination next={true}  maxButtons={10} prev={true} bsSize="small" 
-              items={this.state.pageCount} activePage={this.state.page} 
+              <Pagination next={true}  maxButtons={10} prev={true} bsSize="small"
+              items={this.state.pageCount} activePage={this.state.page}
               onSelect={this.handlePageChanged.bind(this)} />
           </Col>
         </Row>
