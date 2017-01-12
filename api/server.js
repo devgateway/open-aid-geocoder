@@ -148,6 +148,7 @@ const fs = require( 'fs' )
         method: 'PUT',
         path: '/project/{id}',
         handler: function ( request, reply ) {
+            debugger;
             delete request.payload._id;
             db.update({
                 'project_id': request.params.id
@@ -295,9 +296,13 @@ const fs = require( 'fs' )
                     for ( let i = 0; i < docs.length; i++ ) {
                         if ( docs[i] && docs[i].locations ) {
                             for ( let j = 0; j < docs[i].locations.length; j++ ) {
+                                debugger;
                                 exportOjb.features.push({
                                     type: 'Feature',
-                                    geometry: docs[i].locations[j].geometry,
+                                    geometry: {
+                                        type:docs[i].locations[j].geometry.type,
+                                        coordinates:docs[i].locations[j].geometry.coordinates.map(function(c){return parseFloat(c)}),
+                                    },
                                     properties: {
                                         project_id: docs[i].project_id,
                                         title: docs[i].title,

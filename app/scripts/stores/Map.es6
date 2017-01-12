@@ -53,7 +53,7 @@ const PopUpStore = createStore({
 	init() {
 
 		this.listenTo(ProjectStore, this.onProjectUpdate);
-		
+
 		this.listenTo(ProjectGeo, this.updateGeocodingLayer);
 		this.listenTo(LocationsGeoJson, this.updateGazetteerLayer);
 
@@ -141,6 +141,7 @@ const PopUpStore = createStore({
 	},
 
 	updatePopupInfo(properties) {
+		debugger;
 		const {countryFeature, locationFeature, position, showDataEntry} = properties;
 		const {ID_0, ID_1, GAUL01, ID_2, GAUL02, NAME_0, Country, NAME_1, ADM1, NAME_2, ADM2} = (countryFeature) ? countryFeature.properties: {}; //TODO: normalize field extraction
 		const {
@@ -202,7 +203,7 @@ const PopUpStore = createStore({
 	},
 
 	addAdminCodes(model, params) {
-		
+
 		var adminCodes = {
 			geonames: {
 				'country': {
