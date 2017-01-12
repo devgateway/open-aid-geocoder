@@ -274,7 +274,9 @@ const fs = require( 'fs' )
             const sort = request.query.sort || 'title';
             const order = request.query.oder || 1;
             const t = request.query.t;
-
+            const format = request.query.f
+                ? request.query.f
+                : 'geojson'
             let sortParam = {};
             sortParam[sort] = order;
 
@@ -296,38 +298,66 @@ const fs = require( 'fs' )
                     for ( let i = 0; i < docs.length; i++ ) {
                         if ( docs[i] && docs[i].locations ) {
                             for ( let j = 0; j < docs[i].locations.length; j++ ) {
-                                debugger;
+
                                 exportOjb.features.push({
                                     type: 'Feature',
                                     geometry: {
-                                        type:docs[i].locations[j].geometry.type,
-                                        coordinates:docs[i].locations[j].geometry.coordinates.map(function(c){return parseFloat(c)}),
+                                        type: docs[i].locations[j].geometry.type,
+                                        coordinates: docs[i].locations[j].geometry.coordinates.map( function ( c ) {
+                                            return parseFloat( c )
+                                        })
                                     },
                                     properties: {
-                                        project_id: docs[i].project_id,
-                                        title: docs[i].title,
-                                        long_description: docs[i].long_description,
-                                        name: docs[i].locations[j].name,
-                                        id: docs[i].locations[j].id,
-                                        description: docs[i].locations[j].description,
-                                        activityDescription: docs[i].locations[j].activityDescription,
-                                        country: docs[i].locations[j].country,
-                                        admin1: docs[i].locations[j].admin1,
-                                        toponymName: docs[i].locations[j].toponymName,
-                                        featureDesignation: docs[i].locations[j].featureDesignation,
-                                        type: docs[i].locations[j].type,
-                                        locationClass: docs[i].locations[j].locationClass,
+                                        project_id: docs[i].project_id || null,
+                                        title: docs[i].title || docs[i].alternate_title ||  docs[i].project_id  || null ,
+                                        long_description: docs[i].long_description || null,
+                                        name: docs[i].locations[j].name || null,
+                                        id: docs[i].locations[j].id || null,
+                                        description: docs[i].locations[j].description || null,
+                                        activity: docs[i].locations[j].activityDescription || null,
+                                        country: docs[i].locations[j].country
+                                            ? docs[i].locations[j].country.name
+                                            : null,
+                                        admin1: docs[i].locations[j].admin1
+                                            ? docs[i].locations[j].admin1.name
+                                            : null,
+                                        admin2: docs[i].locations[j].admin2
+                                            ? docs[i].locations[j].admin2.name
+                                            : null,
+                                        toponym: docs[i].locations[j].toponymName || null,
+                                        designation: docs[i].locations[j].featureDesignation
+                                            ? docs[i].locations[j].featureDesignation.code + ' - ' + docs[i].locations[j].featureDesignation.name
+                                            : null,
+                                        type: docs[i].locations[j].type || null,
+                                        'class': docs[i].locations[j].locationClass
+                                            ? docs[i].locations[j].locationClass.name
+                                            : null,
                                         exactness: docs[i].locations[j].exactness
+                                            ? docs[i].locations[j].exactness.name
+                                            : null
                                     }
                                 });
                             }
                         }
                     }
+                    if ( format === 'kml' ) {
 
-                    const response = reply( exportOjb ).hold( );
-                    response.type( 'text/plain' );
-                    response.header( 'Content-Disposition', 'attachment;filename="location.json"' );
-                    response.send( );
+                        const toKml = require( 'tokml' )
+                        var kml = toKml(exportOjb, {
+                            name: 'title'
+                        });
+                        const response = reply( kml ).hold( );
+                        response.type( 'application/kml' );
+                        response.header( 'Content-Disposition', 'attachment;filename="location.kml"' );
+                        response.send( );
+
+                    } else {
+                        const response = reply( exportOjb ).hold( );
+                        response.type( 'text/plain' );
+                        response.header( 'Content-Disposition', 'attachment;filename="location.json"' );
+                        response.send( );
+                    }
+
                 });
             });
         }
