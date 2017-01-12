@@ -2,7 +2,7 @@
   "API": {
     "API_BASE_URL": {
       "development": "http://localhost:3333",
-      "production": "http://geocoding.dgstg.org"
+      "production": "http://afdb-geocoder.developmentgateway.org"
     },
     "IMPORT_END_POINT": "import-file",
     "PROJECT_END_POINT": "project",
@@ -41,274 +41,272 @@
     "GEO_NAMES_SERVICE_USER_NAME": "developmentgateway"
   },
   "SHAPES": {
-    "LIST": {
-      "development": [
-        {
-          "iso": "AO",
-          "name": "Angola",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/AO.json"
-        },
-        {
-          "iso": "BF",
-          "name": "Burkina Faso",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BF.json"
-        },
-        {
-          "iso": "BI",
-          "name": "Burundi",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BI.json"
-        },
-        {
-          "iso": "BJ",
-          "name": "Benin",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BJ.json"
-        },
-        {
-          "iso": "BW",
-          "name": "Botswana",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BW.json"
-        },
-        {
-          "iso": "CD",
-          "name": "Congo, the Democratic Republic of the",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CD.json"
-        },
-        {
-          "iso": "CF",
-          "name": "Central African Republic",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CF.json"
-        },
-        {
-          "iso": "CG",
-          "name": "Congo",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CG.json"
-        },
-        {
-          "iso": "CI",
-          "name": "C´te D´Ivoire",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CI.json"
-        },
-        {
-          "iso": "CM",
-          "name": "Cameroon",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CM.json"
-        },
-        {
-          "iso": "CV",
-          "name": "Cape Verde",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CV.json"
-        },
-        {
-          "iso": "DJ",
-          "name": "Djibouti",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/DJ.json"
-        },
-        {
-          "iso": "DZ",
-          "name": "Algeria",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/DZ.json"
-        },
-        {
-          "iso": "EG",
-          "name": "Egypt",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/EG.json"
-        },
-        {
-          "iso": "ET",
-          "name": "Ethiopia",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ET.json"
-        },
-        {
-          "iso": "GA",
-          "name": "Gabon",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GA.json"
-        },
-        {
-          "iso": "GH",
-          "name": "Ghana",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GH.json"
-        },
-        {
-          "iso": "GM",
-          "name": "Gambia",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GM.json"
-        },
-        {
-          "iso": "GN",
-          "name": "Guinea",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GN.json"
-        },
-        {
-          "iso": "GQ",
-          "name": "Equatorial Guinea",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GQ.json"
-        },
-        {
-          "iso": "GW",
-          "name": "Guinea-Bissau",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GW.json"
-        },
-        {
-          "iso": "KE",
-          "name": "Kenya",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/KE.json"
-        },
-        {
-          "iso": "KM",
-          "name": "Comoros",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/KM.json"
-        },
-        {
-          "iso": "LR",
-          "name": "Liberia",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/LR.json"
-        },
-        {
-          "iso": "LS",
-          "name": "Lesotho",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/LS.json"
-        },
-        {
-          "iso": "MA",
-          "name": "Morocco",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MA.json"
-        },
-        {
-          "iso": "MG",
-          "name": "Madagascar",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MG.json"
-        },
-        {
-          "iso": "ML",
-          "name": "Mali",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ML.json"
-        },
-        {
-          "iso": "MR",
-          "name": "Mauritania",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MR.json"
-        },
-        {
-          "iso": "MU",
-          "name": "Mauritius",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MU.json"
-        },
-        {
-          "iso": "MW",
-          "name": "Malawi",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MW.json"
-        },
-        {
-          "iso": "MZ",
-          "name": "Mozambique",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MZ.json"
-        },
-        {
-          "iso": "NA",
-          "name": "Namibia",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/NA.json"
-        },
-        {
-          "iso": "NE",
-          "name": "Niger",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/NE.json"
-        },
-        {
-          "iso": "NG",
-          "name": "Nigeria",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/NG.json"
-        },
-        {
-          "iso": "RW",
-          "name": "Rwanda",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/RW.json"
-        },
-        {
-          "iso": "SC",
-          "name": "Seychelles",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SC.json"
-        },
-        {
-          "iso": "SD",
-          "name": "Sudan",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SD.json"
-        },
-        {
-          "iso": "SL",
-          "name": "Sierra Leone",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SL.json"
-        },
-        {
-          "iso": "SN",
-          "name": "Senegal",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SN.json"
-        },
-        {
-          "iso": "SO",
-          "name": "Somalia",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SO.json"
-        },
-        {
-          "iso": "SS",
-          "name": "South Sudan",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SS.json"
-        },
-        {
-          "iso": "ST",
-          "name": "Sao Tome and Principe",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ST.json"
-        },
-        {
-          "iso": "SZ",
-          "name": "Swaziland",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SZ.json"
-        },
-        {
-          "iso": "TD",
-          "name": "Chad",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TD.json"
-        },
-        {
-          "iso": "TG",
-          "name": "Togo",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TG.json"
-        },
-        {
-          "iso": "TN",
-          "name": "Tunisia",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TN.json"
-        },
-        {
-          "iso": "TZ",
-          "name": "Tanzania, United Republic of",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TZ.json"
-        },
-        {
-          "iso": "UG",
-          "name": "Uganda",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/UG.json"
-        },
-        {
-          "iso": "Z1",
-          "name": "Multinational",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/Z1.json"
-        },
-        {
-          "iso": "ZA",
-          "name": "South Africa",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ZA.json"
-        },
-        {
-          "iso": "ZM",
-          "name": "Zambia",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ZM.json"
-        },
-        {
-          "iso": "ZW",
-          "name": "Zimbabwe",
-          "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ZW.json"
-        }
-      ]
-    }
+    "LIST":[
+      {
+        "iso": "AO",
+        "name": "Angola",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/AO.json"
+      },
+      {
+        "iso": "BF",
+        "name": "Burkina Faso",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BF.json"
+      },
+      {
+        "iso": "BI",
+        "name": "Burundi",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BI.json"
+      },
+      {
+        "iso": "BJ",
+        "name": "Benin",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BJ.json"
+      },
+      {
+        "iso": "BW",
+        "name": "Botswana",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/BW.json"
+      },
+      {
+        "iso": "CD",
+        "name": "Congo, the Democratic Republic of the",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CD.json"
+      },
+      {
+        "iso": "CF",
+        "name": "Central African Republic",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CF.json"
+      },
+      {
+        "iso": "CG",
+        "name": "Congo",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CG.json"
+      },
+      {
+        "iso": "CI",
+        "name": "C´te D´Ivoire",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CI.json"
+      },
+      {
+        "iso": "CM",
+        "name": "Cameroon",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CM.json"
+      },
+      {
+        "iso": "CV",
+        "name": "Cape Verde",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/CV.json"
+      },
+      {
+        "iso": "DJ",
+        "name": "Djibouti",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/DJ.json"
+      },
+      {
+        "iso": "DZ",
+        "name": "Algeria",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/DZ.json"
+      },
+      {
+        "iso": "EG",
+        "name": "Egypt",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/EG.json"
+      },
+      {
+        "iso": "ET",
+        "name": "Ethiopia",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ET.json"
+      },
+      {
+        "iso": "GA",
+        "name": "Gabon",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GA.json"
+      },
+      {
+        "iso": "GH",
+        "name": "Ghana",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GH.json"
+      },
+      {
+        "iso": "GM",
+        "name": "Gambia",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GM.json"
+      },
+      {
+        "iso": "GN",
+        "name": "Guinea",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GN.json"
+      },
+      {
+        "iso": "GQ",
+        "name": "Equatorial Guinea",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GQ.json"
+      },
+      {
+        "iso": "GW",
+        "name": "Guinea-Bissau",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/GW.json"
+      },
+      {
+        "iso": "KE",
+        "name": "Kenya",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/KE.json"
+      },
+      {
+        "iso": "KM",
+        "name": "Comoros",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/KM.json"
+      },
+      {
+        "iso": "LR",
+        "name": "Liberia",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/LR.json"
+      },
+      {
+        "iso": "LS",
+        "name": "Lesotho",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/LS.json"
+      },
+      {
+        "iso": "MA",
+        "name": "Morocco",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MA.json"
+      },
+      {
+        "iso": "MG",
+        "name": "Madagascar",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MG.json"
+      },
+      {
+        "iso": "ML",
+        "name": "Mali",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ML.json"
+      },
+      {
+        "iso": "MR",
+        "name": "Mauritania",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MR.json"
+      },
+      {
+        "iso": "MU",
+        "name": "Mauritius",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MU.json"
+      },
+      {
+        "iso": "MW",
+        "name": "Malawi",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MW.json"
+      },
+      {
+        "iso": "MZ",
+        "name": "Mozambique",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/MZ.json"
+      },
+      {
+        "iso": "NA",
+        "name": "Namibia",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/NA.json"
+      },
+      {
+        "iso": "NE",
+        "name": "Niger",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/NE.json"
+      },
+      {
+        "iso": "NG",
+        "name": "Nigeria",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/NG.json"
+      },
+      {
+        "iso": "RW",
+        "name": "Rwanda",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/RW.json"
+      },
+      {
+        "iso": "SC",
+        "name": "Seychelles",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SC.json"
+      },
+      {
+        "iso": "SD",
+        "name": "Sudan",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SD.json"
+      },
+      {
+        "iso": "SL",
+        "name": "Sierra Leone",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SL.json"
+      },
+      {
+        "iso": "SN",
+        "name": "Senegal",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SN.json"
+      },
+      {
+        "iso": "SO",
+        "name": "Somalia",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SO.json"
+      },
+      {
+        "iso": "SS",
+        "name": "South Sudan",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SS.json"
+      },
+      {
+        "iso": "ST",
+        "name": "Sao Tome and Principe",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ST.json"
+      },
+      {
+        "iso": "SZ",
+        "name": "Swaziland",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/SZ.json"
+      },
+      {
+        "iso": "TD",
+        "name": "Chad",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TD.json"
+      },
+      {
+        "iso": "TG",
+        "name": "Togo",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TG.json"
+      },
+      {
+        "iso": "TN",
+        "name": "Tunisia",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TN.json"
+      },
+      {
+        "iso": "TZ",
+        "name": "Tanzania, United Republic of",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/TZ.json"
+      },
+      {
+        "iso": "UG",
+        "name": "Uganda",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/UG.json"
+      },
+      {
+        "iso": "Z1",
+        "name": "Multinational",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/Z1.json"
+      },
+      {
+        "iso": "ZA",
+        "name": "South Africa",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ZA.json"
+      },
+      {
+        "iso": "ZM",
+        "name": "Zambia",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ZM.json"
+      },
+      {
+        "iso": "ZW",
+        "name": "Zimbabwe",
+        "url": "https://raw.githubusercontent.com/devgateway/open-aid-geocoder/master/shapes/ZW.json"
+      }
+    ]
   }
 }

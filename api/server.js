@@ -308,33 +308,33 @@ const fs = require( 'fs' )
                                         })
                                     },
                                     properties: {
-                                        project_id: docs[i].project_id || null,
-                                        title: docs[i].title || docs[i].alternate_title ||  docs[i].project_id  || null ,
-                                        long_description: docs[i].long_description || null,
-                                        name: docs[i].locations[j].name || null,
-                                        id: docs[i].locations[j].id || null,
-                                        description: docs[i].locations[j].description || null,
-                                        activity: docs[i].locations[j].activityDescription || null,
+                                        project_id: docs[i].project_id || '',
+                                        title: docs[i].title || docs[i].alternate_title ||  docs[i].project_id  || '' ,
+                                        long_description: docs[i].long_description || '',
+                                        name: docs[i].locations[j].name || '',
+                                        id: docs[i].locations[j].id || '',
+                                        description: docs[i].locations[j].description || '',
+                                        activity: docs[i].locations[j].activityDescription || '',
                                         country: docs[i].locations[j].country
                                             ? docs[i].locations[j].country.name
-                                            : null,
+                                            : '',
                                         admin1: docs[i].locations[j].admin1
                                             ? docs[i].locations[j].admin1.name
-                                            : null,
+                                            : '',
                                         admin2: docs[i].locations[j].admin2
                                             ? docs[i].locations[j].admin2.name
-                                            : null,
-                                        toponym: docs[i].locations[j].toponymName || null,
+                                            : '',
+                                        toponym: docs[i].locations[j].toponymName || '',
                                         designation: docs[i].locations[j].featureDesignation
                                             ? docs[i].locations[j].featureDesignation.code + ' - ' + docs[i].locations[j].featureDesignation.name
-                                            : null,
-                                        type: docs[i].locations[j].type || null,
+                                            : '',
+
                                         'class': docs[i].locations[j].locationClass
                                             ? docs[i].locations[j].locationClass.name
                                             : null,
                                         exactness: docs[i].locations[j].exactness
                                             ? docs[i].locations[j].exactness.name
-                                            : null
+                                            : ''
                                     }
                                 });
                             }

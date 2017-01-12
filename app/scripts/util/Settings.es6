@@ -21,14 +21,16 @@ export default class Settings {
 	}
 
 	get(module, name) {
+		debugger;
 		if(!window._setting){
 			throw new Error('Settings should be initialize');
 		}
 		let mod = window._setting[module];
 		let item = mod[name];
 
-		if (item instanceof Object) {
-
+		if (item instanceof Array){
+			return item;
+		}else if (item instanceof Object) {
 			return item[this.env]; //return env based settin
 		} else {
 			return item;
