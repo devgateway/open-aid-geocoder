@@ -1,3 +1,10 @@
+
+
+This project has been replaced by https://github.com/devgateway/geocoder-ui
+=====================
+
+
+
 Open Aid Geocoder
 =====================
 
